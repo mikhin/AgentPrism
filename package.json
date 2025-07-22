@@ -8,11 +8,14 @@
   "scripts": {
     "dev": "pnpm run --parallel dev",
     "build": "pnpm run --parallel build",
-    "format": "pnpm run --parallel format",
-    "format:check": "pnpm run --parallel format:check",
+    "format": "pnpm exec prettier . --write",
+    "format:check": "pnpm exec prettier .",
     "eslint": "pnpm run --parallel eslint",
     "eslint:check": "pnpm run --parallel eslint:check",
     "tsc": "pnpm run --parallel tsc",
     "test": "pnpm run --parallel test"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
   }
 }
