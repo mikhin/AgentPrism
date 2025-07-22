@@ -9,8 +9,10 @@
     "tsc": "tsc -p tsconfig.json --noEmit --skipLibCheck"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
