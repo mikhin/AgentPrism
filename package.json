@@ -1,0 +1,18 @@
+{
+  "name": "ai-agent-trace-ui",
+  "private": false,
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm run --parallel dev",
+    "build": "pnpm run --parallel build",
+    "format": "pnpm run --parallel format",
+    "format:check": "pnpm run --parallel format:check",
+    "eslint": "pnpm run --parallel eslint",
+    "eslint:check": "pnpm run --parallel eslint:check",
+    "tsc": "pnpm run --parallel tsc",
+    "test": "pnpm run --parallel test"
+  }
+}
