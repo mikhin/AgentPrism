@@ -1,5 +1,5 @@
 import js from "@eslint/js";
-import perfectionist from 'eslint-plugin-perfectionist';
+import perfectionist from "eslint-plugin-perfectionist";
 import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
 import globals from "globals";
@@ -22,14 +22,14 @@ export default defineConfig([
       perfectionist,
     },
     rules: {
-      'react/react-in-jsx-scope': 'off',
-      'perfectionist/sort-imports': [
-        'error',
+      "react/react-in-jsx-scope": "off",
+      "perfectionist/sort-imports": [
+        "error",
         {
-          type: 'natural',
-          order: 'asc',
+          type: "natural",
+          order: "asc",
         },
       ],
-    }
-  }
+    },
+  },
 ]);
