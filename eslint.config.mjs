@@ -18,6 +18,9 @@ export default defineConfig([
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
+    ignores: ["packages/core/dist", "packages/sandbox/dist"],
+  },
+  {
     plugins: {
       perfectionist,
     },
