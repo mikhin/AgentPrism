@@ -1,5 +1,5 @@
 {
-  "name": "sandbox",
+  "name": "ai-agent-trace-ui-sandbox",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -15,7 +15,8 @@
     "nanostores": "^1.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "ai-agent-trace-ui-core": "workspace:^"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",

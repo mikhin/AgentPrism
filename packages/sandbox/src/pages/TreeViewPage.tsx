@@ -1,5 +1,7 @@
 import type { ReactElement } from "react";
 
+import { TreeView } from "ai-agent-trace-ui-core";
+
 export const TreeViewPage = (): ReactElement => {
-  return <div>There will be a tree view here</div>;
+  return <TreeView />;
 };
