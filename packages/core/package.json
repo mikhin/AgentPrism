@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "tsc": "tsc -p tsconfig.json --noEmit --skipLibCheck"
+    "tsc": "tsc -p tsconfig.app.json --noEmit --skipLibCheck"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",

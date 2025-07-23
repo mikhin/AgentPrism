@@ -1,5 +1,11 @@
+import { Layout } from "./components/Layout";
+import { Sidebar } from "./components/Sidebar";
+import { Routes } from "./pages/Routes";
+
 export function App() {
   return (
-    <h1 className="text-3xl font-bold underline text-center">Hello, World!</h1>
+    <Layout sidebar={<Sidebar />}>
+      <Routes />
+    </Layout>
   );
 }
