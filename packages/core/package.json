@@ -15,8 +15,6 @@
     "src"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
     "tsc": "tsc -p tsconfig.app.json --noEmit --skipLibCheck"
   },
   "dependencies": {
