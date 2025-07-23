@@ -36,7 +36,7 @@ export function Sidebar({ onNavItemClick }: Props) {
           return (
             <li key={routeKey} role="listitem">
               <button
-                className={`group w-full text-left px-3 py-3 md:py-2 rounded-lg transition-all duration-200 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                className={`group w-full text-left px-3 py-3 md:py-2 rounded-lg transition-all duration-200 text-base md:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2
                   ${
                     isActive
                       ? "bg-white text-gray-700 font-medium shadow-sm"
