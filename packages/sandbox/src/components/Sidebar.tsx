@@ -1,23 +1,16 @@
-import type { ComponentType } from "react";
-
 import { useStore } from "@nanostores/react";
 import { openPage } from "@nanostores/router";
 
 import { $router, ROUTES, type RouteKey } from "../stores/router";
-
-interface RouteConfig {
-  path: string;
-  component: ComponentType;
-  label: string;
-}
 
 export function Sidebar() {
   const page = useStore($router);
   const currentRoute = page?.route as RouteKey | undefined;
 
   const getRouteLabel = (routeKey: RouteKey): string => {
-    const routeConfig = ROUTES[routeKey] as RouteConfig;
-    return routeConfig.label || String(routeKey);
+    const routeConfig = ROUTES[routeKey];
+
+    return routeConfig.label;
   };
 
   return (
