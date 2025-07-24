@@ -10,6 +10,8 @@ type SpanCardProps = {
   onSelectionChange?: (id: string, isSelected: boolean) => void;
 };
 
+const MARGIN_LEVEL_STEP = 24; // Pixels per level for indentation
+
 export const SpanCard: FC<SpanCardProps> = ({
   data,
   level = 0,
@@ -31,15 +33,12 @@ export const SpanCard: FC<SpanCardProps> = ({
     [onSelectionChange],
   );
 
-  const marginLeft = level > 0 ? Math.min(level * 6, 24) : 0;
+  const marginLeft = level * MARGIN_LEVEL_STEP;
 
   return (
     <Collapsible.Root open={isExpanded} onOpenChange={setIsExpanded}>
       <div className="relative">
-        <div
-          style={{ marginLeft: `${marginLeft}px` }}
-          className={level > 0 ? "pl-4" : ""}
-        >
+        <div style={{ marginLeft: `${marginLeft}px` }}>
           <div
             className={`cursor-pointer border p-4 ${
               isSelected ? "bg-blue-50" : ""

@@ -9,22 +9,13 @@ export const TreeViewPage = (): ReactElement => {
   );
 
   return (
-    <div className="mx-auto min-h-screen max-w-4xl bg-gray-50 p-6">
-      <div className="rounded-lg bg-white p-6 shadow-sm">
-        {selectedCardId && (
-          <div className="mb-4 rounded-md border border-blue-200 bg-blue-50 p-3">
-            <p className="text-sm text-blue-800">
-              <strong>Selected:</strong> Card ID {selectedCardId}
-            </p>
-          </div>
-        )}
-
-        <SpanCardsList
-          spans={sampleTreeViewData}
-          onSelectionChange={setSelectedCardId}
-          initialSelectedId={selectedCardId}
-        />
-      </div>
+    <div>
+      <strong>Selected:</strong> Card ID {selectedCardId}
+      <SpanCardsList
+        spans={sampleTreeViewData}
+        onSelectionChange={setSelectedCardId}
+        initialSelectedId={selectedCardId}
+      />
     </div>
   );
 };

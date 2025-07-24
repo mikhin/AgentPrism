@@ -1,6 +1,7 @@
 import { useState, type FC, useCallback } from "react";
 
 import type { Span } from "../types/span.ts";
+
 import { SpanCard } from "./SpanCard.tsx";
 
 type SpanCardsListProps = {
