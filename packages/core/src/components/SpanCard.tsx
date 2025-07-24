@@ -1,0 +1,109 @@
+import * as Collapsible from "@radix-ui/react-collapsible";
+import { useState, type FC, useCallback } from "react";
+
+import type { Span } from "../types/span.ts";
+
+type SpanCardProps = {
+  data: Span;
+  level?: number;
+  selectedCardId?: string;
+  onSelectionChange?: (id: string, isSelected: boolean) => void;
+};
+
+export const SpanCard: FC<SpanCardProps> = ({
+  data,
+  level = 0,
+  selectedCardId,
+  onSelectionChange,
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const hasChildren = data.children && data.children.length > 0;
+  const isSelected = selectedCardId === data.id;
+
+  const handleCardClick = useCallback(() => {
+    onSelectionChange?.(data.id, !isSelected);
+  }, [data.id, isSelected, onSelectionChange]);
+
+  const handleChildSelectionChange = useCallback(
+    (childId: string, childIsSelected: boolean) => {
+      onSelectionChange?.(childId, childIsSelected);
+    },
+    [onSelectionChange],
+  );
+
+  const marginLeft = level > 0 ? Math.min(level * 6, 24) : 0;
+
+  return (
+    <Collapsible.Root open={isExpanded} onOpenChange={setIsExpanded}>
+      <div className="relative">
+        <div
+          style={{ marginLeft: `${marginLeft}px` }}
+          className={level > 0 ? "pl-4" : ""}
+        >
+          <div
+            className={`cursor-pointer border p-4 ${
+              isSelected ? "bg-blue-50" : ""
+            }`}
+            onClick={handleCardClick}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleCardClick();
+              }
+            }}
+            tabIndex={0}
+            role="button"
+            aria-pressed={isSelected}
+            aria-describedby={`card-desc-${data.id}`}
+            aria-expanded={hasChildren ? isExpanded : undefined}
+            aria-label={`Card: ${data.title}${hasChildren ? ". Has child items." : ""}`}
+          >
+            <div className="flex justify-between">
+              <div className="flex-1">
+                <h3>{data.title}</h3>
+                <p id={`card-desc-${data.id}`}>{data.description}</p>
+              </div>
+
+              {/* Expand/Collapse button - separate from card selection */}
+              {hasChildren && (
+                <Collapsible.Trigger asChild>
+                  <button
+                    className="p-2"
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card selection when expanding
+                    }}
+                    onKeyDown={(e) => {
+                      e.stopPropagation(); // Prevent keyboard events from bubbling to card
+                    }}
+                    aria-label={`${isExpanded ? "Collapse" : "Expand"} ${data.title} children`}
+                    aria-expanded={isExpanded}
+                  >
+                    {isExpanded ? (
+                      <span aria-hidden="true">&#9660;</span>
+                    ) : (
+                      <span aria-hidden="true">&#9654;</span>
+                    )}
+                  </button>
+                </Collapsible.Trigger>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {hasChildren && (
+          <Collapsible.Content>
+            {data.children?.map((child) => (
+              <SpanCard
+                key={child.id}
+                data={child}
+                level={level + 1}
+                selectedCardId={selectedCardId}
+                onSelectionChange={handleChildSelectionChange}
+              />
+            ))}
+          </Collapsible.Content>
+        )}
+      </div>
+    </Collapsible.Root>
+  );
+};
