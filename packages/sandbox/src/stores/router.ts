@@ -2,6 +2,7 @@ import { createRouter } from "@nanostores/router";
 
 import { DetailsPage } from "../pages/DetailsPage";
 import { HomePage } from "../pages/HomePage";
+import { SpanCardPage } from "../pages/SpanCardPage";
 import { TreeViewPage } from "../pages/TreeViewPage";
 
 export type RouteKey = keyof typeof ROUTES;
@@ -11,6 +12,11 @@ export const ROUTES = {
     path: "/",
     component: HomePage,
     label: "Home",
+  },
+  spanCard: {
+    path: "/span-card",
+    component: SpanCardPage,
+    label: "Span Card",
   },
   treeView: {
     path: "/tree-view",
