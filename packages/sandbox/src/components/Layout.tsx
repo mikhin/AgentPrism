@@ -41,7 +41,7 @@ export function Layout({ children }: LayoutProps) {
   }, [sidebarOpen]);
 
   return (
-    <div className="flex h-screen bg-gray-50 text-gray-900 overflow-hidden">
+    <div className="flex h-screen overflow-hidden bg-gray-50 text-gray-900">
       {/* Mobile backdrop */}
       {sidebarOpen && (
         <div
@@ -53,18 +53,15 @@ export function Layout({ children }: LayoutProps) {
 
       {/* Sidebar */}
       <aside
-        className={`
-        fixed md:relative w-80 h-full z-30 md:z-10 shadow-sm
-        ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-      `}
+        className={`fixed z-30 h-full w-80 shadow-sm md:relative md:z-10 ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"} `}
         aria-label="Navigation menu"
         aria-hidden={!sidebarOpen ? "true" : undefined}
       >
-        <div className="absolute inset-0 bg-white rounded-tr-lg rounded-br-2xl shadow-sm"></div>
+        <div className="absolute inset-0 rounded-br-2xl rounded-tr-lg bg-white shadow-sm"></div>
         <div className="relative h-full">
           {/* Mobile close button */}
           <button
-            className="absolute top-4 right-4 md:hidden text-gray-500 hover:text-gray-700 z-10"
+            className="absolute right-4 top-4 z-10 text-gray-500 hover:text-gray-700 md:hidden"
             onClick={() => setSidebarOpen(false)}
             aria-label="Close navigation menu"
           >
@@ -78,7 +75,7 @@ export function Layout({ children }: LayoutProps) {
       <main className="flex-1 overflow-auto p-3 md:p-6">
         {/* Mobile menu button */}
         <button
-          className="mb-4 md:hidden bg-white rounded-lg shadow-sm px-3 py-2 text-gray-600 hover:text-gray-900"
+          className="mb-4 rounded-lg bg-white px-3 py-2 text-gray-600 shadow-sm hover:text-gray-900 md:hidden"
           onClick={() => setSidebarOpen(true)}
           aria-label="Open navigation menu"
           aria-expanded={sidebarOpen}
@@ -87,7 +84,7 @@ export function Layout({ children }: LayoutProps) {
           <span aria-hidden="true">☰</span> Menu
         </button>
 
-        <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-sm min-h-[calc(100%-1rem)] p-3 md:p-6">
+        <div className="mx-auto min-h-[calc(100%-1rem)] max-w-7xl rounded-lg bg-white p-3 shadow-sm md:p-6">
           {children}
         </div>
       </main>

@@ -23,7 +23,7 @@ export function Sidebar({ onNavItemClick }: Props) {
 
   return (
     <nav
-      className="h-full p-4 bg-gradient-to-b from-gray-50 to-gray-100 pt-12 md:pt-4"
+      className="h-full bg-gradient-to-b from-gray-50 to-gray-100 p-4 pt-12 md:pt-4"
       aria-label="Main navigation"
       id="sidebar"
       role="navigation"
@@ -36,12 +36,11 @@ export function Sidebar({ onNavItemClick }: Props) {
           return (
             <li key={routeKey} role="listitem">
               <button
-                className={`group w-full text-left px-3 py-3 md:py-2 rounded-lg transition-all duration-200 text-base md:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2
-                  ${
-                    isActive
-                      ? "bg-white text-gray-700 font-medium shadow-sm"
-                      : "text-gray-500 hover:bg-white/60 hover:shadow-sm"
-                  }`}
+                className={`group w-full rounded-lg px-3 py-3 text-left text-base transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 md:py-2 md:text-sm ${
+                  isActive
+                    ? "bg-white font-medium text-gray-700 shadow-sm"
+                    : "text-gray-500 hover:bg-white/60 hover:shadow-sm"
+                }`}
                 onClick={() => handleNavItemClick(routeKey)}
                 aria-current={isActive ? "page" : undefined}
                 type="button"
