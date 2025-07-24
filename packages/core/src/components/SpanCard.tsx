@@ -91,15 +91,19 @@ export const SpanCard: FC<SpanCardProps> = ({
 
         {hasChildren && (
           <Collapsible.Content>
-            {data.children?.map((child) => (
-              <SpanCard
-                key={child.id}
-                data={child}
-                level={level + 1}
-                selectedCardId={selectedCardId}
-                onSelectionChange={handleChildSelectionChange}
-              />
-            ))}
+            <ul role="group">
+              {data.children?.map((child) => (
+                <li key={child.id} role="treeitem" aria-expanded={undefined}>
+                  <SpanCard
+                    key={child.id}
+                    data={child}
+                    level={level + 1}
+                    selectedCardId={selectedCardId}
+                    onSelectionChange={handleChildSelectionChange}
+                  />
+                </li>
+              ))}
+            </ul>
           </Collapsible.Content>
         )}
       </div>
