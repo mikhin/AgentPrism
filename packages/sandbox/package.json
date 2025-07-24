@@ -11,12 +11,13 @@
   "dependencies": {
     "@nanostores/react": "^1.0.0",
     "@nanostores/router": "^1.0.0",
-    "@tailwindcss/vite": "^4.1.11",
+    "ai-agent-trace-ui-core": "workspace:^",
+    "autoprefixer": "^10.4.21",
     "nanostores": "^1.0.1",
+    "postcss": "^8.4.49",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.11",
-    "ai-agent-trace-ui-core": "workspace:^"
+    "tailwindcss": "3.4.17"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
