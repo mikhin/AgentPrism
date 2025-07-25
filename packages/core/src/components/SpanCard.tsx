@@ -63,7 +63,9 @@ export const SpanCard: FC<SpanCardProps> = ({
         >
           <div className="flex justify-between">
             <div className="flex-1">
-              <h3 className="mb-2">{data.title}</h3>
+              <h3 className="mb-2 overflow-hidden text-ellipsis whitespace-nowrap">
+                {data.title}
+              </h3>
 
               <div className="flex space-x-2">
                 <Badge variant="primary" size="sm">
