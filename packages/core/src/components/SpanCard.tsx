@@ -44,12 +44,9 @@ export const SpanCard: FC<SpanCardProps> = ({
       className={"list-none"}
     >
       <Collapsible.Root open={isExpanded} onOpenChange={setIsExpanded}>
-        <div
-          className="relative bg-white"
-          style={{ marginLeft: `${marginLeft}px` }}
-        >
+        <div className="relative" style={{ marginLeft: `${marginLeft}px` }}>
           <div
-            className={`cursor-pointer border p-4 ${
+            className={`cursor-pointer border bg-white p-4 ${
               isSelected ? "bg-blue-50" : ""
             }`}
             onClick={handleCardClick}
