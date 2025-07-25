@@ -44,7 +44,8 @@ export const TreeView: FC<TreeViewProps> = ({
     <div className={`border bg-white ${className}`}>
       <div className="flex items-center justify-between border-b p-3">
         <div className="flex w-full items-center gap-2">
-          <h3 className="font-medium">Span Tree</h3>
+          <h3>Span Tree</h3>
+
           <Badge variant="warning">
             {totalSpans} {totalSpans === 1 ? "Span" : "Spans"}
           </Badge>
