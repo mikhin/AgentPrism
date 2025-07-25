@@ -21,7 +21,7 @@ export function SandboxItem({
     <div className="flex flex-col gap-2">
       {title && <h3 className="text-sm font-medium text-gray-700">{title}</h3>}
       <div
-        className={`rounded-md border border-gray-200 bg-white p-6 shadow-sm ${patternClasses[pattern]} `}
+        className={`rounded-md border border-gray-200 bg-gray-50 p-6 shadow-sm ${patternClasses[pattern]} `}
       >
         {children}
       </div>
