@@ -17,7 +17,6 @@ export const SpanCardPage = (): ReactElement => {
 
   const rootSpan = sampleTreeViewData[0];
   const childSpan = rootSpan.children?.[0] || rootSpan;
-  const grandchildSpan = childSpan.children?.[0] || childSpan;
 
   const noChildrenSpan = {
     id: "no-children-span",
@@ -40,10 +39,6 @@ export const SpanCardPage = (): ReactElement => {
 
         <SandboxItem title="Child Span (Level 1)">
           <SpanCard data={childSpan} level={1} />
-        </SandboxItem>
-
-        <SandboxItem title="Grandchild Span (Level 2)" pattern="dots">
-          <SpanCard data={grandchildSpan} level={2} />
         </SandboxItem>
       </SandboxSection>
 
