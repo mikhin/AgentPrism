@@ -19,6 +19,15 @@ export const SpanCardPage = (): ReactElement => {
   const childSpan = rootSpan.children?.[0] || rootSpan;
   const grandchildSpan = childSpan.children?.[0] || childSpan;
 
+  const noChildrenSpan = {
+    id: "no-children-span",
+    title: "Span With No Children",
+    startTime: new Date("2023-01-01T00:10:00Z"),
+    duration: 30,
+    cost: 5,
+    children: undefined,
+  };
+
   return (
     <>
       <SandboxSection
@@ -70,6 +79,20 @@ export const SpanCardPage = (): ReactElement => {
 
         <SandboxItem title="Pre-selected Card">
           <SpanCard data={childSpan} level={1} selectedCardId={childSpan.id} />
+        </SandboxItem>
+      </SandboxSection>
+
+      <SandboxSection
+        title="SpanCard Edge Cases"
+        description="Demonstrating edge cases for SpanCard components"
+      >
+        <SandboxItem title="Span With No Children" pattern="dots">
+          <SpanCard
+            data={noChildrenSpan}
+            level={0}
+            selectedCardId={selectedCardId}
+            onSelectionChange={handleSelectionChange}
+          />
         </SandboxItem>
       </SandboxSection>
     </>
