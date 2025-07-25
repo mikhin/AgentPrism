@@ -46,8 +46,8 @@ export const SpanCard: FC<SpanCardProps> = ({
       <Collapsible.Root open={isExpanded} onOpenChange={setIsExpanded}>
         <div className="relative" style={{ marginLeft: `${marginLeft}px` }}>
           <div
-            className={`cursor-pointer border bg-white p-4 ${
-              isSelected ? "bg-blue-50" : ""
+            className={`cursor-pointer border p-4 ${
+              isSelected ? "bg-blue-50" : "bg-white"
             }`}
             onClick={handleCardClick}
             onKeyDown={(e) => {

@@ -25,7 +25,6 @@ export const SpanCardsListPage = (): ReactElement => {
               selectedCardId={selectedCardId}
               onSelectionChange={(id, isSelected) => {
                 setSelectedCardId(isSelected ? id : undefined);
-                console.log(`Card ${id} selection changed to ${isSelected}`);
               }}
             />
           ))}
