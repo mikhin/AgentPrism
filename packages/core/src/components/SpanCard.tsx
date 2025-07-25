@@ -41,7 +41,7 @@ export const SpanCard: FC<SpanCardProps> = ({
     <li
       role="treeitem"
       aria-expanded={hasChildren ? isExpanded : undefined}
-      className={"list-none"}
+      className="list-none"
     >
       <Collapsible.Root open={isExpanded} onOpenChange={setIsExpanded}>
         <div className="relative" style={{ marginLeft: `${marginLeft}px` }}>
