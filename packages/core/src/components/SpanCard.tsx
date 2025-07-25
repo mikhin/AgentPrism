@@ -5,7 +5,7 @@ import type { Span } from "../types/span";
 
 import { Badge } from "./Badge";
 
-const MARGIN_LEVEL_STEP = 20;
+const MARGIN_LEVEL_STEP = 40;
 
 interface SpanCardProps {
   data: Span;
@@ -35,7 +35,7 @@ export const SpanCard: FC<SpanCardProps> = ({
     [onSelectionChange],
   );
 
-  const marginLeft = level * MARGIN_LEVEL_STEP;
+  const marginLeft = level ? MARGIN_LEVEL_STEP : 0;
 
   return (
     <li
