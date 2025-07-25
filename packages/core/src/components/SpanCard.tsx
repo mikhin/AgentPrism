@@ -1,18 +1,18 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { useState, type FC, useCallback } from "react";
 
-import type { Span } from "../types/span.ts";
+import type { Span } from "../types/span";
 
-import { Badge } from "./Badge.tsx";
+import { Badge } from "./Badge";
 
-type SpanCardProps = {
+const MARGIN_LEVEL_STEP = 20;
+
+interface SpanCardProps {
   data: Span;
   level?: number;
   selectedCardId?: string;
-  onSelectionChange?: (id: string, isSelected: boolean) => void;
-};
-
-const MARGIN_LEVEL_STEP = 24; // Pixels per level for indentation
+  onSelectionChange?: (cardId: string, isSelected: boolean) => void;
+}
 
 export const SpanCard: FC<SpanCardProps> = ({
   data,
@@ -38,75 +38,78 @@ export const SpanCard: FC<SpanCardProps> = ({
   const marginLeft = level * MARGIN_LEVEL_STEP;
 
   return (
-    <Collapsible.Root open={isExpanded} onOpenChange={setIsExpanded}>
-      <div
-        className="relative bg-white"
-        style={{ marginLeft: `${marginLeft}px` }}
-      >
+    <li
+      role="treeitem"
+      aria-expanded={hasChildren ? isExpanded : undefined}
+      className={"list-none"}
+    >
+      <Collapsible.Root open={isExpanded} onOpenChange={setIsExpanded}>
         <div
-          className={`cursor-pointer border p-4 ${
-            isSelected ? "bg-blue-50" : ""
-          }`}
-          onClick={handleCardClick}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              handleCardClick();
-            }
-          }}
-          tabIndex={0}
-          role="button"
-          aria-pressed={isSelected}
-          aria-describedby={`card-desc-${data.id}`}
-          aria-expanded={hasChildren ? isExpanded : undefined}
-          aria-label={`Card: ${data.title}${hasChildren ? ". Has child items." : ""}`}
+          className="relative bg-white"
+          style={{ marginLeft: `${marginLeft}px` }}
         >
-          <div className="flex justify-between">
-            <div className="flex-1">
-              <h3 className="mb-2 overflow-hidden text-ellipsis whitespace-nowrap">
-                {data.title}
-              </h3>
+          <div
+            className={`cursor-pointer border p-4 ${
+              isSelected ? "bg-blue-50" : ""
+            }`}
+            onClick={handleCardClick}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleCardClick();
+              }
+            }}
+            tabIndex={0}
+            role="button"
+            aria-pressed={isSelected}
+            aria-describedby={`card-desc-${data.id}`}
+            aria-expanded={hasChildren ? isExpanded : undefined}
+            aria-label={`Card: ${data.title}${hasChildren ? ". Has child items." : ""}`}
+          >
+            <div className="flex justify-between">
+              <div className="flex-1">
+                <h3 className="mb-2 overflow-hidden text-ellipsis whitespace-nowrap">
+                  {data.title}
+                </h3>
 
-              <div className="flex space-x-2">
-                <Badge variant="primary" size="sm">
-                  {data.startTime.toLocaleString()} - {data.duration}ms
-                </Badge>
-                <Badge variant="success" size="sm">
-                  {`Cost: $${data.cost.toFixed(2)}`}
-                </Badge>
+                <div className="flex space-x-2">
+                  <Badge variant="primary" size="sm">
+                    {data.startTime.toLocaleString()} - {data.duration}ms
+                  </Badge>
+                  <Badge variant="success" size="sm">
+                    {`Cost: $${data.cost.toFixed(2)}`}
+                  </Badge>
+                </div>
               </div>
+
+              {hasChildren && (
+                <Collapsible.Trigger asChild className="ml-2">
+                  <button
+                    className="p-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                    onKeyDown={(e) => {
+                      e.stopPropagation();
+                    }}
+                    aria-label={`${isExpanded ? "Collapse" : "Expand"} ${data.title} children`}
+                    aria-expanded={isExpanded}
+                  >
+                    {isExpanded ? (
+                      <span aria-hidden="true">&#9660;</span>
+                    ) : (
+                      <span aria-hidden="true">&#9654;</span>
+                    )}
+                  </button>
+                </Collapsible.Trigger>
+              )}
             </div>
-
-            {/* Expand/Collapse button - separate from card selection */}
-            {hasChildren && (
-              <Collapsible.Trigger asChild className="ml-2">
-                <button
-                  className="p-2"
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent card selection when expanding
-                  }}
-                  onKeyDown={(e) => {
-                    e.stopPropagation(); // Prevent keyboard events from bubbling to card
-                  }}
-                  aria-label={`${isExpanded ? "Collapse" : "Expand"} ${data.title} children`}
-                  aria-expanded={isExpanded}
-                >
-                  {isExpanded ? (
-                    <span aria-hidden="true">&#9660;</span>
-                  ) : (
-                    <span aria-hidden="true">&#9654;</span>
-                  )}
-                </button>
-              </Collapsible.Trigger>
-            )}
           </div>
-        </div>
 
-        {hasChildren && (
-          <Collapsible.Content>
-            <ul role="group">
-              {data.children?.map((child) => (
-                <li key={child.id} role="treeitem" aria-expanded={undefined}>
+          {hasChildren && (
+            <Collapsible.Content>
+              <ul role="group">
+                {data.children?.map((child) => (
                   <SpanCard
                     key={child.id}
                     data={child}
@@ -114,12 +117,12 @@ export const SpanCard: FC<SpanCardProps> = ({
                     selectedCardId={selectedCardId}
                     onSelectionChange={handleChildSelectionChange}
                   />
-                </li>
-              ))}
-            </ul>
-          </Collapsible.Content>
-        )}
-      </div>
-    </Collapsible.Root>
+                ))}
+              </ul>
+            </Collapsible.Content>
+          )}
+        </div>
+      </Collapsible.Root>
+    </li>
   );
 };
