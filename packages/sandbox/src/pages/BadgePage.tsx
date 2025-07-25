@@ -2,27 +2,43 @@ import type { ReactElement } from "react";
 
 import { Badge } from "ai-agent-trace-ui-core";
 
+import { SandboxSection, SandboxItem } from "../components/SandboxSection";
+
 export const BadgePage = (): ReactElement => {
   return (
-    <div className="space-y-8 p-6">
-      <section>
-        <h2 className="mb-4 text-xl font-bold">Badge Variants</h2>
-        <div className="flex flex-wrap gap-4">
+    <div className="space-y-8">
+      <SandboxSection
+        title="Badge Variants"
+        description="Different visual styles for badges"
+      >
+        <SandboxItem title="Primary" pattern="grid">
           <Badge variant="primary">Primary</Badge>
+        </SandboxItem>
+        <SandboxItem title="Success">
           <Badge variant="success">Success</Badge>
+        </SandboxItem>
+        <SandboxItem title="Warning" pattern="dots">
           <Badge variant="warning">Warning</Badge>
+        </SandboxItem>
+        <SandboxItem title="Danger">
           <Badge variant="danger">Danger</Badge>
+        </SandboxItem>
+        <SandboxItem title="Neutral">
           <Badge variant="neutral">Neutral</Badge>
-        </div>
-      </section>
+        </SandboxItem>
+      </SandboxSection>
 
-      <section>
-        <h2 className="mb-4 text-xl font-bold">Badge Sizes</h2>
-        <div className="flex flex-wrap items-center gap-4">
+      <SandboxSection
+        title="Badge Sizes"
+        description="Different size options for badges"
+      >
+        <SandboxItem title="Small">
           <Badge size="sm">Small</Badge>
+        </SandboxItem>
+        <SandboxItem title="Medium">
           <Badge size="md">Medium</Badge>
-        </div>
-      </section>
+        </SandboxItem>
+      </SandboxSection>
     </div>
   );
 };

@@ -39,63 +39,64 @@ export const SpanCard: FC<SpanCardProps> = ({
 
   return (
     <Collapsible.Root open={isExpanded} onOpenChange={setIsExpanded}>
-      <div className="relative">
-        <div style={{ marginLeft: `${marginLeft}px` }}>
-          <div
-            className={`cursor-pointer border p-4 ${
-              isSelected ? "bg-blue-50" : ""
-            }`}
-            onClick={handleCardClick}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                handleCardClick();
-              }
-            }}
-            tabIndex={0}
-            role="button"
-            aria-pressed={isSelected}
-            aria-describedby={`card-desc-${data.id}`}
-            aria-expanded={hasChildren ? isExpanded : undefined}
-            aria-label={`Card: ${data.title}${hasChildren ? ". Has child items." : ""}`}
-          >
-            <div className="flex justify-between">
-              <div className="flex-1">
-                <h3 className="mb-2">{data.title}</h3>
+      <div
+        className="relative bg-white"
+        style={{ marginLeft: `${marginLeft}px` }}
+      >
+        <div
+          className={`cursor-pointer border p-4 ${
+            isSelected ? "bg-blue-50" : ""
+          }`}
+          onClick={handleCardClick}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleCardClick();
+            }
+          }}
+          tabIndex={0}
+          role="button"
+          aria-pressed={isSelected}
+          aria-describedby={`card-desc-${data.id}`}
+          aria-expanded={hasChildren ? isExpanded : undefined}
+          aria-label={`Card: ${data.title}${hasChildren ? ". Has child items." : ""}`}
+        >
+          <div className="flex justify-between">
+            <div className="flex-1">
+              <h3 className="mb-2">{data.title}</h3>
 
-                <div className="flex space-x-2">
-                  <Badge variant="primary" size="sm">
-                    {data.startTime.toLocaleString()} - {data.duration}ms
-                  </Badge>
-                  <Badge variant="success" size="sm">
-                    {`Cost: $${data.cost.toFixed(2)}`}
-                  </Badge>
-                </div>
+              <div className="flex space-x-2">
+                <Badge variant="primary" size="sm">
+                  {data.startTime.toLocaleString()} - {data.duration}ms
+                </Badge>
+                <Badge variant="success" size="sm">
+                  {`Cost: $${data.cost.toFixed(2)}`}
+                </Badge>
               </div>
-
-              {/* Expand/Collapse button - separate from card selection */}
-              {hasChildren && (
-                <Collapsible.Trigger asChild>
-                  <button
-                    className="p-2"
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent card selection when expanding
-                    }}
-                    onKeyDown={(e) => {
-                      e.stopPropagation(); // Prevent keyboard events from bubbling to card
-                    }}
-                    aria-label={`${isExpanded ? "Collapse" : "Expand"} ${data.title} children`}
-                    aria-expanded={isExpanded}
-                  >
-                    {isExpanded ? (
-                      <span aria-hidden="true">&#9660;</span>
-                    ) : (
-                      <span aria-hidden="true">&#9654;</span>
-                    )}
-                  </button>
-                </Collapsible.Trigger>
-              )}
             </div>
+
+            {/* Expand/Collapse button - separate from card selection */}
+            {hasChildren && (
+              <Collapsible.Trigger asChild>
+                <button
+                  className="p-2"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent card selection when expanding
+                  }}
+                  onKeyDown={(e) => {
+                    e.stopPropagation(); // Prevent keyboard events from bubbling to card
+                  }}
+                  aria-label={`${isExpanded ? "Collapse" : "Expand"} ${data.title} children`}
+                  aria-expanded={isExpanded}
+                >
+                  {isExpanded ? (
+                    <span aria-hidden="true">&#9660;</span>
+                  ) : (
+                    <span aria-hidden="true">&#9654;</span>
+                  )}
+                </button>
+              </Collapsible.Trigger>
+            )}
           </div>
         </div>
 
