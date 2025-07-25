@@ -2,7 +2,8 @@ import type { ReactElement } from "react";
 
 import { Badge } from "ai-agent-trace-ui-core";
 
-import { SandboxSection, SandboxItem } from "../components/SandboxSection";
+import { SandboxSection } from "../components/SandboxSection";
+import { SandboxItem } from "../components/SandboxItem.tsx";
 
 export const BadgePage = (): ReactElement => {
   return (

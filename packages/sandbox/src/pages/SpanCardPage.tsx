@@ -1,8 +1,9 @@
 import { SpanCard } from "ai-agent-trace-ui-core";
 import { type ReactElement, useState } from "react";
 
-import { SandboxSection, SandboxItem } from "../components/SandboxSection";
+import { SandboxSection } from "../components/SandboxSection";
 import { sampleTreeViewData } from "../data/sample-tree-view-data.ts";
+import { SandboxItem } from "../components/SandboxItem.tsx";
 
 export const SpanCardPage = (): ReactElement => {
   const [selectedCardId, setSelectedCardId] = useState<string | undefined>(
@@ -19,7 +20,7 @@ export const SpanCardPage = (): ReactElement => {
   const grandchildSpan = childSpan.children?.[0] || childSpan;
 
   return (
-    <div className="space-y-8">
+    <>
       <SandboxSection
         title="SpanCard Basic Examples"
         description="Different levels and spans displayed with SpanCard component"
@@ -45,34 +46,32 @@ export const SpanCardPage = (): ReactElement => {
           title="Interactive Selection (Click to select)"
           pattern="grid"
         >
-          <div className="flex flex-col gap-4">
-            <SpanCard
-              data={rootSpan}
-              level={0}
-              selectedCardId={selectedCardId}
-              onSelectionChange={handleSelectionChange}
-            />
+          <SpanCard
+            data={rootSpan}
+            level={0}
+            selectedCardId={selectedCardId}
+            onSelectionChange={handleSelectionChange}
+          />
 
-            <SpanCard
-              data={childSpan}
-              level={1}
-              selectedCardId={selectedCardId}
-              onSelectionChange={handleSelectionChange}
-            />
+          <SpanCard
+            data={childSpan}
+            level={1}
+            selectedCardId={selectedCardId}
+            onSelectionChange={handleSelectionChange}
+          />
 
-            <SpanCard
-              data={grandchildSpan}
-              level={2}
-              selectedCardId={selectedCardId}
-              onSelectionChange={handleSelectionChange}
-            />
-          </div>
+          <SpanCard
+            data={grandchildSpan}
+            level={2}
+            selectedCardId={selectedCardId}
+            onSelectionChange={handleSelectionChange}
+          />
         </SandboxItem>
 
         <SandboxItem title="Pre-selected Card">
           <SpanCard data={childSpan} level={1} selectedCardId={childSpan.id} />
         </SandboxItem>
       </SandboxSection>
-    </div>
+    </>
   );
 };
