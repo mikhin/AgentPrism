@@ -27,7 +27,7 @@ export const Badge = ({
 
   return (
     <span
-      className={`inline-flex items-center rounded-full font-medium ${variants[variant]} ${sizes[size]}`}
+      className={`inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-full font-medium ${variants[variant]} ${sizes[size]}`}
     >
       {children}
     </span>

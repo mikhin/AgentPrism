@@ -77,7 +77,7 @@ export const SpanCard: FC<SpanCardProps> = ({
 
             {/* Expand/Collapse button - separate from card selection */}
             {hasChildren && (
-              <Collapsible.Trigger asChild>
+              <Collapsible.Trigger asChild className="ml-2">
                 <button
                   className="p-2"
                   onClick={(e) => {
