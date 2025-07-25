@@ -1,9 +1,9 @@
 import { SpanCard } from "ai-agent-trace-ui-core";
 import { type ReactElement, useState } from "react";
 
+import { SandboxItem } from "../components/SandboxItem.tsx";
 import { SandboxSection } from "../components/SandboxSection";
 import { sampleTreeViewData } from "../data/sample-tree-view-data.ts";
-import { SandboxItem } from "../components/SandboxItem.tsx";
 
 export const SpanCardPage = (): ReactElement => {
   const [selectedCardId, setSelectedCardId] = useState<string | undefined>(
