@@ -3,6 +3,8 @@ import { useState, type FC, useCallback } from "react";
 
 import type { Span } from "../types/span.ts";
 
+import { Badge } from "./Badge.tsx";
+
 type SpanCardProps = {
   data: Span;
   level?: number;
@@ -59,8 +61,16 @@ export const SpanCard: FC<SpanCardProps> = ({
           >
             <div className="flex justify-between">
               <div className="flex-1">
-                <h3>{data.title}</h3>
-                <p id={`card-desc-${data.id}`}>{data.description}</p>
+                <h3 className="mb-2">{data.title}</h3>
+
+                <div className="flex space-x-2">
+                  <Badge variant="primary" size="sm">
+                    {data.startTime.toLocaleString()} - {data.duration}ms
+                  </Badge>
+                  <Badge variant="success" size="sm">
+                    {`Cost: $${data.cost.toFixed(2)}`}
+                  </Badge>
+                </div>
               </div>
 
               {/* Expand/Collapse button - separate from card selection */}

@@ -1,5 +1,6 @@
 import { createRouter } from "@nanostores/router";
 
+import { BadgePage } from "../pages/BadgePage";
 import { DetailsPage } from "../pages/DetailsPage";
 import { HomePage } from "../pages/HomePage";
 import { SpanCardPage } from "../pages/SpanCardPage";
@@ -12,6 +13,11 @@ export const ROUTES = {
     path: "/",
     component: HomePage,
     label: "Home",
+  },
+  badge: {
+    path: "/badge",
+    component: BadgePage,
+    label: "Badge",
   },
   spanCard: {
     path: "/span-card",
