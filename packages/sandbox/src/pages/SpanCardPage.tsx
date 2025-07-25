@@ -64,14 +64,7 @@ export const SpanCardPage = (): ReactElement => {
 
           <SpanCard
             data={childSpan}
-            level={1}
-            selectedCardId={selectedCardId}
-            onSelectionChange={handleSelectionChange}
-          />
-
-          <SpanCard
-            data={grandchildSpan}
-            level={2}
+            level={0}
             selectedCardId={selectedCardId}
             onSelectionChange={handleSelectionChange}
           />

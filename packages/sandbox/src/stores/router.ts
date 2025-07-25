@@ -4,7 +4,7 @@ import { BadgePage } from "../pages/BadgePage";
 import { DetailsPage } from "../pages/DetailsPage";
 import { HomePage } from "../pages/HomePage";
 import { SpanCardPage } from "../pages/SpanCardPage";
-import { TreeViewPage } from "../pages/TreeViewPage";
+import { SpanCardsListPage } from "../pages/SpanCardsListPage";
 
 export type RouteKey = keyof typeof ROUTES;
 
@@ -26,8 +26,8 @@ export const ROUTES = {
   },
   treeView: {
     path: "/tree-view",
-    component: TreeViewPage,
-    label: "Tree View",
+    component: SpanCardsListPage,
+    label: "Span Cards List",
   },
   details: {
     path: "/details",
