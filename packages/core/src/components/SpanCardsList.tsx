@@ -24,7 +24,9 @@ export const SpanCardsList: FC<SpanCardsListProps> = ({
   const handleCardSelectionChange = useCallback(
     (cardId: string, isSelected: boolean) => {
       const newSelectedId = isSelected ? cardId : undefined;
+
       setSelectedCardId(newSelectedId);
+
       onSelectionChange?.(newSelectedId);
     },
     [onSelectionChange],
