@@ -3,9 +3,10 @@ import { useState, type FC, useCallback } from "react";
 
 import type { Span } from "../types/span";
 
+import { Avatar } from "./Avatar";
 import { Badge } from "./Badge";
 
-const MARGIN_LEVEL_STEP = 40;
+const MARGIN_LEVEL_STEP = 20;
 
 interface SpanCardProps {
   data: Span;
@@ -20,7 +21,7 @@ export const SpanCard: FC<SpanCardProps> = ({
   selectedCardId,
   onSelectionChange,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const hasChildren = data.children && data.children.length > 0;
   const isSelected = selectedCardId === data.id;
 
@@ -38,17 +39,12 @@ export const SpanCard: FC<SpanCardProps> = ({
   const marginLeft = level ? MARGIN_LEVEL_STEP : 0;
 
   return (
-    <li
-      role="treeitem"
-      aria-expanded={hasChildren ? isExpanded : undefined}
-      className="list-none"
-    >
+    <li role="treeitem" aria-expanded={hasChildren ? isExpanded : undefined}>
       <Collapsible.Root open={isExpanded} onOpenChange={setIsExpanded}>
         <div className="relative" style={{ marginLeft: `${marginLeft}px` }}>
           <div
-            className={`cursor-pointer border p-4 ${
-              isSelected ? "bg-blue-50" : "bg-white"
-            }`}
+            // ${isSelected ? "bg-blue-50" : "bg-white"}
+            className={`box-content h-5 cursor-pointer pb-3`}
             onClick={handleCardClick}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
@@ -63,26 +59,11 @@ export const SpanCard: FC<SpanCardProps> = ({
             aria-expanded={hasChildren ? isExpanded : undefined}
             aria-label={`Card: ${data.title}${hasChildren ? ". Has child items." : ""}`}
           >
-            <div className="flex justify-between">
-              <div className="flex-1">
-                <h3 className="mb-2 overflow-hidden text-ellipsis whitespace-nowrap">
-                  {data.title}
-                </h3>
-
-                <div className="flex space-x-2">
-                  <Badge variant="primary" size="sm">
-                    {data.startTime.toLocaleString()} - {data.duration}ms
-                  </Badge>
-                  <Badge variant="success" size="sm">
-                    {`Cost: $${data.cost.toFixed(2)}`}
-                  </Badge>
-                </div>
-              </div>
-
+            <div className="flex items-baseline">
               {hasChildren && (
-                <Collapsible.Trigger asChild className="ml-2">
+                <Collapsible.Trigger asChild className="ml-1 mr-3">
                   <button
-                    className="p-2"
+                    className="flex size-3 items-center justify-center bg-red-500 text-xs"
                     onClick={(e) => {
                       e.stopPropagation();
                     }}
@@ -100,6 +81,26 @@ export const SpanCard: FC<SpanCardProps> = ({
                   </button>
                 </Collapsible.Trigger>
               )}
+
+              <Avatar size="xs" rounded="full" className="mr-1.5" />
+
+              <h3 className="mr-3 overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-5">
+                {data.title}
+              </h3>
+
+              <div className="flex items-center justify-start space-x-1">
+                <Badge variant="primary" size="xs">
+                  {data.tokensCount}
+                </Badge>
+
+                <Badge variant="success" size="xs">
+                  {data.cost}
+                </Badge>
+
+                <Badge variant="warning" size="xs">
+                  {data.type}
+                </Badge>
+              </div>
             </div>
           </div>
 
