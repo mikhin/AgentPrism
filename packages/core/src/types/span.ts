@@ -8,4 +8,5 @@ export type Span = {
   type: "LLM" | "TOOL" | "CHAIN" | "AGENT";
   children?: Span[];
   tokensCount: number;
+  status: "success" | "error" | "running";
 };

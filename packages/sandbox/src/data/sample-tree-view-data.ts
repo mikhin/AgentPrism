@@ -10,6 +10,7 @@ export const sampleTreeViewData: Span[] = [
     cost: 1234,
     type: "CHAIN",
     tokensCount: 1000,
+    status: "success",
     children: [
       {
         id: "1-1",
@@ -20,6 +21,7 @@ export const sampleTreeViewData: Span[] = [
         tokensCount: 500,
         cost: 150,
         type: "LLM",
+        status: "success",
         children: [
           {
             id: "1-1-1",
@@ -29,6 +31,7 @@ export const sampleTreeViewData: Span[] = [
             duration: 1940,
             tokensCount: 250,
             cost: 75,
+            status: "running",
             type: "LLM",
           },
           {
@@ -39,6 +42,7 @@ export const sampleTreeViewData: Span[] = [
             duration: 2970,
             cost: 75,
             tokensCount: 250,
+            status: "error",
             type: "LLM",
           },
         ],
@@ -51,6 +55,7 @@ export const sampleTreeViewData: Span[] = [
         duration: 1950,
         cost: 80,
         tokensCount: 200,
+        status: "success",
         type: "CHAIN",
       },
       {
@@ -60,6 +65,7 @@ export const sampleTreeViewData: Span[] = [
         endTime: new Date("2023-01-01T00:02:00Z"),
         duration: 1880,
         cost: 25,
+        status: "success",
         tokensCount: 100,
         type: "TOOL",
       },
@@ -69,6 +75,7 @@ export const sampleTreeViewData: Span[] = [
         startTime: new Date("2023-01-01T00:02:00Z"),
         endTime: new Date("2023-01-01T00:05:00Z"),
         duration: 2990,
+        status: "running",
         cost: 90,
         tokensCount: 300,
         type: "CHAIN",
@@ -81,6 +88,7 @@ export const sampleTreeViewData: Span[] = [
             duration: 5270,
             cost: 15,
             tokensCount: 50,
+            status: "error",
             type: "CHAIN",
           },
           {
@@ -90,6 +98,7 @@ export const sampleTreeViewData: Span[] = [
             endTime: new Date("2023-01-01T00:02:15Z"),
             duration: 465900,
             tokensCount: 100,
+            status: "error",
             cost: 5,
             type: "LLM",
           },
@@ -101,6 +110,7 @@ export const sampleTreeViewData: Span[] = [
         startTime: new Date("2023-01-01T00:02:15Z"),
         endTime: new Date("2023-01-01T00:02:20Z"),
         duration: 363900,
+        status: "running",
         tokensCount: 150,
         cost: 20,
         type: "TOOL",
@@ -111,6 +121,7 @@ export const sampleTreeViewData: Span[] = [
         startTime: new Date("2023-01-01T00:02:20Z"),
         endTime: new Date("2023-01-01T00:02:25Z"),
         tokensCount: 50,
+        status: "success",
         duration: 7840,
         cost: 15,
         type: "CHAIN",
@@ -122,6 +133,7 @@ export const sampleTreeViewData: Span[] = [
         endTime: new Date("2023-01-01T00:02:30Z"),
         duration: 411900,
         tokensCount: 100,
+        status: "success",
         cost: 5,
         type: "LLM",
       },

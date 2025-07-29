@@ -7,6 +7,13 @@ import { Avatar } from "./Avatar";
 import { Badge } from "./Badge";
 
 const MARGIN_LEVEL_STEP = 20;
+const BASE_HORIZONTAL_LINE_WIDTH = 8;
+
+const STATUS_COLOR_MAP = {
+  success: "bg-green-500",
+  error: "bg-red-500",
+  running: "bg-yellow-500",
+};
 
 interface SpanCardProps {
   data: Span;
@@ -47,6 +54,9 @@ export const SpanCard: FC<SpanCardProps> = ({
   );
 
   const marginLeft = level ? MARGIN_LEVEL_STEP : 0;
+  const statusColor = STATUS_COLOR_MAP[data.status] || "bg-gray-500";
+  const horizontalLineStyle =
+    BASE_HORIZONTAL_LINE_WIDTH + (hasChildren ? 0 : MARGIN_LEVEL_STEP);
 
   return (
     <li role="treeitem" aria-expanded={hasChildren ? isExpanded : undefined}>
@@ -56,7 +66,7 @@ export const SpanCard: FC<SpanCardProps> = ({
         style={{ marginLeft: `${marginLeft}px` }}
       >
         <div
-          className={`relative box-content flex h-5 cursor-pointer items-center pb-3`}
+          className={`relative box-content flex h-5 w-full cursor-pointer items-center pb-3`}
           onClick={handleCardClick}
           onKeyDown={handleKeyDown}
           tabIndex={0}
@@ -68,7 +78,12 @@ export const SpanCard: FC<SpanCardProps> = ({
         >
           {/* Horizontal line to connect parent and children */}
           {level !== 0 && (
-            <div className="absolute -left-2.5 h-0.5 w-2 bg-red-500" />
+            <div
+              className="absolute -left-2.5 h-0.5 bg-gray-100"
+              style={{
+                width: `${horizontalLineStyle}px`,
+              }}
+            />
           )}
 
           {hasChildren ? (
@@ -100,7 +115,7 @@ export const SpanCard: FC<SpanCardProps> = ({
 
           <Avatar size="xs" rounded="full" className="mr-1.5" />
 
-          <h3 className="mr-3 overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-5">
+          <h3 className="mr-3 max-w-32 overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-5">
             {data.title}
           </h3>
 
@@ -117,12 +132,22 @@ export const SpanCard: FC<SpanCardProps> = ({
               {data.type}
             </Badge>
           </div>
+
+          <span className="ml-auto mr-2 text-xs leading-3">
+            {data.duration}
+          </span>
+
+          <span
+            className={`size-1.5 rounded-full ${statusColor}`}
+            aria-label={`Status: ${data.status}`}
+            title={`Status: ${data.status}`}
+          />
         </div>
 
         {hasChildren && (
           <div className="relative">
             {/* Vertical line to connect parent and children */}
-            <div className="absolute -top-3 ml-2 h-full w-0.5 translate-x-1/2 transform bg-red-500" />
+            <div className="absolute -top-3 ml-2 h-[calc(100%-9px)] w-0.5 translate-x-1/2 transform bg-gray-100" />
 
             <Collapsible.Content>
               <ul role="group">
