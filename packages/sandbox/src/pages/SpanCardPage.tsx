@@ -26,6 +26,7 @@ export const SpanCardPage = (): ReactElement => {
     tokensCount: 100,
     type: "LLM",
     duration: 30,
+    status: "success",
     cost: 5,
     children: undefined,
   };
