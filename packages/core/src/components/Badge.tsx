@@ -1,4 +1,5 @@
 import type { PropsWithChildren, ReactElement, ReactNode } from "react";
+
 import { badgeThemeClasses } from "../constants";
 
 export type BadgeTheme =
@@ -45,9 +46,9 @@ export const Badge = ({
     <span
       className={`inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded font-medium ${badgeThemeClasses[theme]} ${sizes[size]} ${className}`}
     >
-      {iconStart && iconStart}
+      {iconStart && <span className="mr-0.5">{iconStart}</span>}
       <span className={`${textSizes[size]} tracking-normal`}>{children}</span>
-      {iconEnd && iconEnd}
+      {iconEnd && <span className="ml-0.5">{iconEnd}</span>}
     </span>
   );
 };

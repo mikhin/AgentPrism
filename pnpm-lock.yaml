@@ -104,6 +104,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.6)
+      lucide-react:
+        specifier: ^0.534.0
+        version: 0.534.0(react@19.1.0)
       nanostores:
         specifier: ^1.0.1
         version: 1.0.1
