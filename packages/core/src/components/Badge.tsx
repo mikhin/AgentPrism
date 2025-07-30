@@ -1,29 +1,25 @@
 import type { PropsWithChildren, ReactElement, ReactNode } from "react";
+import { badgeThemeClasses } from "../constants";
 
-type BadgeVariant =
-  | "primary"
-  | "success"
-  | "warning"
-  | "danger"
-  | "neutral"
-  | "solid";
+export type BadgeTheme =
+  | "purple"
+  | "indigo"
+  | "orange"
+  | "teal"
+  | "cyan"
+  | "sky"
+  | "yellow"
+  | "emerald"
+  | "red"
+  | "gray";
 
 interface BadgeProps extends PropsWithChildren {
-  variant?: BadgeVariant;
+  theme?: BadgeTheme;
   size?: "sm" | "md" | "xs";
   iconStart?: ReactNode;
   iconEnd?: ReactNode;
   className?: string;
 }
-
-const variants = {
-  primary: "bg-blue-100 text-blue-800",
-  success: "bg-green-100 text-green-800",
-  warning: "bg-yellow-100 text-yellow-800",
-  danger: "bg-red-100 text-red-800",
-  neutral: "bg-gray-100 text-gray-800",
-  solid: "bg-gray-500 text-white",
-};
 
 const sizes = {
   xs: "text-xs px-1.5 py-1 h-3.5",
@@ -39,20 +35,18 @@ const textSizes = {
 
 export const Badge = ({
   children,
-  variant = "primary",
+  theme = "gray",
   size = "md",
   iconStart,
   iconEnd,
-  className,
+  className = "",
 }: BadgeProps): ReactElement => {
   return (
     <span
-      className={`inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded font-medium ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded font-medium ${badgeThemeClasses[theme]} ${sizes[size]} ${className}`}
     >
       {iconStart && iconStart}
-
       <span className={`${textSizes[size]} tracking-normal`}>{children}</span>
-
       {iconEnd && iconEnd}
     </span>
   );

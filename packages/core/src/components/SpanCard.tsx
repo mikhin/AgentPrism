@@ -11,9 +11,10 @@ const MARGIN_LEVEL_STEP = 20;
 const BASE_HORIZONTAL_LINE_WIDTH = 8;
 
 const STATUS_COLOR_MAP = {
-  success: "bg-green-500",
-  error: "bg-red-500",
-  running: "bg-yellow-500",
+  success: "bg-green-500 dark:bg-green-700",
+  error: "bg-red-500 dark:bg-red-700",
+  running: "bg-violet-500 dark:bg-violet-700",
+  warning: "bg-yellow-500 dark:bg-yellow-700",
 };
 
 interface SpanCardProps {
@@ -121,16 +122,16 @@ export const SpanCard: FC<SpanCardProps> = ({
           </h3>
 
           <div className="flex items-center justify-start space-x-1">
-            <Badge variant="primary" size="xs">
+            <Badge theme="cyan" size="xs">
+              {data.type}
+            </Badge>
+
+            <Badge theme="gray" size="xs">
               {data.tokensCount}
             </Badge>
 
-            <Badge variant="success" size="xs">
+            <Badge theme="gray" size="xs">
               {data.cost}
-            </Badge>
-
-            <Badge variant="warning" size="xs">
-              {data.type}
             </Badge>
           </div>
 

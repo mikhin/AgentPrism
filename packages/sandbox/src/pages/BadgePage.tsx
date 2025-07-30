@@ -9,23 +9,38 @@ export const BadgePage = (): ReactElement => {
   return (
     <div className="space-y-8">
       <SandboxSection
-        title="Badge Variants"
-        description="Different visual styles for badges"
+        title="Badge Themes"
+        description="Different visual themes for badges"
       >
-        <SandboxItem title="Primary" pattern="grid">
-          <Badge variant="primary">Primary</Badge>
+        <SandboxItem title="Purple">
+          <Badge theme="purple">Model Call</Badge>
         </SandboxItem>
-        <SandboxItem title="Success">
-          <Badge variant="success">Success</Badge>
+        <SandboxItem title="Indigo">
+          <Badge theme="indigo">Agent Call</Badge>
         </SandboxItem>
-        <SandboxItem title="Warning" pattern="dots">
-          <Badge variant="warning">Warning</Badge>
+        <SandboxItem title="Orange">
+          <Badge theme="orange">Tool Call</Badge>
         </SandboxItem>
-        <SandboxItem title="Danger">
-          <Badge variant="danger">Danger</Badge>
+        <SandboxItem title="Teal">
+          <Badge theme="teal">Workflow Call</Badge>
         </SandboxItem>
-        <SandboxItem title="Neutral">
-          <Badge variant="neutral">Neutral</Badge>
+        <SandboxItem title="Cyan">
+          <Badge theme="cyan">Planning Call</Badge>
+        </SandboxItem>
+        <SandboxItem title="Sky">
+          <Badge theme="sky">Memory Call</Badge>
+        </SandboxItem>
+        <SandboxItem title="Yellow">
+          <Badge theme="yellow">Reflection Call</Badge>
+        </SandboxItem>
+        <SandboxItem title="Emerald">
+          <Badge theme="emerald">Retrieval Call</Badge>
+        </SandboxItem>
+        <SandboxItem title="Red">
+          <Badge theme="red">Guardrail Call</Badge>
+        </SandboxItem>
+        <SandboxItem title="Gray">
+          <Badge theme="gray">Neutral</Badge>
         </SandboxItem>
       </SandboxSection>
 
@@ -33,11 +48,20 @@ export const BadgePage = (): ReactElement => {
         title="Badge Sizes"
         description="Different size options for badges"
       >
+        <SandboxItem title="Extra Small">
+          <Badge size="xs" theme="gray">
+            XS Badge
+          </Badge>
+        </SandboxItem>
         <SandboxItem title="Small">
-          <Badge size="sm">Small</Badge>
+          <Badge size="sm" theme="gray">
+            Small Badge
+          </Badge>
         </SandboxItem>
         <SandboxItem title="Medium">
-          <Badge size="md">Medium</Badge>
+          <Badge size="md" theme="gray">
+            Medium Badge
+          </Badge>
         </SandboxItem>
       </SandboxSection>
     </div>

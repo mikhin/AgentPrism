@@ -46,11 +46,11 @@ export const TreeView: FC<TreeViewProps> = ({
         <div className="flex w-full items-center gap-2">
           <h3>Span Tree</h3>
 
-          <Badge variant="warning">
+          <Badge theme="yellow">
             {totalSpans} {totalSpans === 1 ? "Span" : "Spans"}
           </Badge>
 
-          <Badge variant="neutral">{spans.length} Top-Level Spans</Badge>
+          <Badge theme="gray">{spans.length} Top-Level Spans</Badge>
 
           <div className="ml-auto flex items-center gap-3">
             <button type="button">Expand all</button>
