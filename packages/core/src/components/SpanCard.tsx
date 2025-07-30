@@ -61,7 +61,11 @@ export const SpanCard: FC<SpanCardProps> = ({
     BASE_HORIZONTAL_LINE_WIDTH + (hasChildren ? 0 : MARGIN_LEVEL_STEP);
 
   return (
-    <li role="treeitem" aria-expanded={hasChildren ? isExpanded : undefined}>
+    <li
+      role="treeitem"
+      aria-expanded={hasChildren ? isExpanded : undefined}
+      className="list-none"
+    >
       <Collapsible.Root
         open={isExpanded}
         onOpenChange={setIsExpanded}

@@ -44,11 +44,15 @@ export const Badge = ({
 }: BadgeProps): ReactElement => {
   return (
     <span
-      className={`inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded font-medium ${badgeThemeClasses[theme]} ${sizes[size]} ${className}`}
+      className={`inline-flex min-w-fit items-center overflow-hidden text-ellipsis whitespace-nowrap rounded font-medium ${badgeThemeClasses[theme]} ${sizes[size]} ${className}`}
     >
-      {iconStart && <span className="mr-0.5">{iconStart}</span>}
-      <span className={`${textSizes[size]} tracking-normal`}>{children}</span>
-      {iconEnd && <span className="ml-0.5">{iconEnd}</span>}
+      {iconStart && <span className="mr-0.5 flex-shrink-0">{iconStart}</span>}
+      <span
+        className={`${textSizes[size]} min-w-0 flex-shrink-0 tracking-normal`}
+      >
+        {children}
+      </span>
+      {iconEnd && <span className="ml-0.5 flex-shrink-0">{iconEnd}</span>}
     </span>
   );
 };
