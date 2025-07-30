@@ -1,4 +1,5 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { useState, type FC, useCallback, type KeyboardEvent } from "react";
 
 import type { Span } from "../types/span";
@@ -89,7 +90,7 @@ export const SpanCard: FC<SpanCardProps> = ({
           {hasChildren ? (
             <Collapsible.Trigger asChild className="ml-1 mr-3">
               <button
-                className="flex size-3 items-center justify-center bg-red-500 text-xs"
+                className="flex size-3 items-center justify-center"
                 onClick={(e) => {
                   e.stopPropagation();
                 }}
@@ -100,9 +101,9 @@ export const SpanCard: FC<SpanCardProps> = ({
                 aria-expanded={isExpanded}
               >
                 {isExpanded ? (
-                  <span aria-hidden="true">&#9660;</span>
+                  <ChevronDown aria-hidden="true" className="text-gray-500" />
                 ) : (
-                  <span aria-hidden="true">&#9654;</span>
+                  <ChevronRight aria-hidden="true" className="text-gray-500" />
                 )}
               </button>
             </Collapsible.Trigger>
