@@ -55,10 +55,11 @@ export const SpanCard: FC<SpanCardProps> = ({
     [handleCardClick],
   );
 
-  const marginLeft = level ? MARGIN_LEVEL_STEP : 0;
+  const marginLeft = level !== 0 ? MARGIN_LEVEL_STEP : 0;
   const statusColor = STATUS_COLOR_MAP[data.status] || "bg-gray-500";
   const horizontalLineStyle =
     BASE_HORIZONTAL_LINE_WIDTH + (hasChildren ? 0 : MARGIN_LEVEL_STEP);
+  const contentWidth = 300 - level * MARGIN_LEVEL_STEP;
 
   return (
     <li
@@ -72,7 +73,11 @@ export const SpanCard: FC<SpanCardProps> = ({
         style={{ marginLeft: `${marginLeft}px` }}
       >
         <div
-          className={`relative box-content flex h-5 w-full cursor-pointer items-center pb-3`}
+          className="relative box-content grid h-5 w-full cursor-pointer items-center pb-3"
+          style={{
+            gridTemplateColumns: `12px 16px ${contentWidth}px auto 50px 6px`,
+            gap: "8px",
+          }}
           onClick={handleCardClick}
           onKeyDown={handleKeyDown}
           tabIndex={0}
@@ -82,10 +87,11 @@ export const SpanCard: FC<SpanCardProps> = ({
           aria-expanded={hasChildren ? isExpanded : undefined}
           aria-label={`${isSelected ? "Selected" : "Not selected"} span card for ${data.title} at level ${level}`}
         >
+          {/* Card Content */}
           {/* Horizontal line to connect parent and children */}
           {level !== 0 && (
             <div
-              className="absolute -left-2.5 h-0.5 bg-gray-100"
+              className="absolute -left-[11px] top-2.5 h-0.5 bg-gray-100"
               style={{
                 width: `${horizontalLineStyle}px`,
               }}
@@ -93,7 +99,7 @@ export const SpanCard: FC<SpanCardProps> = ({
           )}
 
           {hasChildren ? (
-            <Collapsible.Trigger asChild className="ml-1 mr-3">
+            <Collapsible.Trigger asChild>
               <button
                 className="flex size-3 items-center justify-center"
                 onClick={(e) => {
@@ -115,31 +121,41 @@ export const SpanCard: FC<SpanCardProps> = ({
           ) : (
             <>
               {/* Invisible placeholder for alignment when no children */}
-              <div className="ml-1 mr-3 w-3" aria-hidden="true" />
+              <div className="w-3" aria-hidden="true" />
             </>
           )}
 
-          <Avatar size="xs" rounded="full" className="mr-1.5" />
+          <Avatar size="xs" rounded="full" />
 
-          <h3 className="mr-3 max-w-32 overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-5">
-            {data.title}
-          </h3>
+          <div className="flex items-center">
+            <h3 className="mr-3 max-w-32 overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-5">
+              {data.title}
+            </h3>
 
-          <div className="flex items-center justify-start space-x-1">
-            <Badge theme="cyan" size="xs">
-              {data.type}
-            </Badge>
+            <div className="flex items-center justify-start space-x-1">
+              <Badge theme="cyan" size="xs">
+                {data.type}
+              </Badge>
 
-            <Badge theme="gray" size="xs">
-              {data.tokensCount}
-            </Badge>
+              <Badge theme="gray" size="xs">
+                {data.tokensCount}
+              </Badge>
 
-            <Badge theme="gray" size="xs">
-              {data.cost}
-            </Badge>
+              <Badge theme="gray" size="xs">
+                {data.cost}
+              </Badge>
+            </div>
           </div>
 
-          <span className="ml-auto mr-2 text-xs leading-3">
+          {/* Timeline */}
+          <span
+            aria-hidden="true"
+            className="flex h-3.5 w-full items-center justify-self-start rounded bg-gray-100 px-1 py-1"
+          >
+            <span className="h-1.5 w-full rounded-sm bg-purple-400" />
+          </span>
+
+          <span className="justify-self-end text-xs leading-3">
             {data.duration}
           </span>
 

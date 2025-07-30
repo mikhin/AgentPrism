@@ -23,9 +23,9 @@ interface BadgeProps extends PropsWithChildren {
 }
 
 const sizes = {
-  xs: "text-xs px-1.5 py-1 h-3.5",
-  sm: "text-xs px-2 py-0.5",
-  md: "text-sm px-2.5 py-1",
+  xs: "px-1.5 py-1 h-3.5",
+  sm: "px-2 py-0.5",
+  md: "px-2.5 py-1",
 };
 
 const textSizes = {
