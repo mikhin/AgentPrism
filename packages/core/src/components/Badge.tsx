@@ -1,35 +1,58 @@
-import type { PropsWithChildren, ReactElement } from "react";
+import type { PropsWithChildren, ReactElement, ReactNode } from "react";
 
-type BadgeVariant = "primary" | "success" | "warning" | "danger" | "neutral";
+import { badgeThemeClasses } from "../constants";
+
+export type BadgeTheme =
+  | "purple"
+  | "indigo"
+  | "orange"
+  | "teal"
+  | "cyan"
+  | "sky"
+  | "yellow"
+  | "emerald"
+  | "red"
+  | "gray";
 
 interface BadgeProps extends PropsWithChildren {
-  variant?: BadgeVariant;
-  size?: "sm" | "md";
+  theme?: BadgeTheme;
+  size?: "sm" | "md" | "xs";
+  iconStart?: ReactNode;
+  iconEnd?: ReactNode;
+  className?: string;
 }
+
+const sizes = {
+  xs: "px-1.5 py-1 h-3.5",
+  sm: "px-2 py-0.5",
+  md: "px-2.5 py-1",
+};
+
+const textSizes = {
+  xs: "text-xs font-normal leading-3",
+  sm: "text-xs font-medium",
+  md: "text-sm font-medium",
+};
 
 export const Badge = ({
   children,
-  variant = "primary",
+  theme = "gray",
   size = "md",
+  iconStart,
+  iconEnd,
+  className = "",
 }: BadgeProps): ReactElement => {
-  const variants = {
-    primary: "bg-blue-100 text-blue-800",
-    success: "bg-green-100 text-green-800",
-    warning: "bg-yellow-100 text-yellow-800",
-    danger: "bg-red-100 text-red-800",
-    neutral: "bg-gray-100 text-gray-800",
-  };
-
-  const sizes = {
-    sm: "text-xs px-2 py-0.5",
-    md: "text-sm px-2.5 py-1",
-  };
-
   return (
     <span
-      className={`inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-full font-medium ${variants[variant]} ${sizes[size]}`}
+      className={`inline-flex min-w-fit items-center overflow-hidden text-ellipsis whitespace-nowrap rounded font-medium ${badgeThemeClasses[theme]} ${sizes[size]} ${className}`}
     >
-      {children}
+      {iconStart && <span className="mr-0.5 flex-shrink-0">{iconStart}</span>}
+      <span
+        className={`${textSizes[size]} min-w-0 flex-shrink-0 tracking-normal`}
+      >
+        {children}
+      </span>
+      {iconEnd && <span className="ml-0.5 flex-shrink-0">{iconEnd}</span>}
     </span>
   );
 };
