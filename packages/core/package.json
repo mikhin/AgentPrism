@@ -22,7 +22,6 @@
     "@opentelemetry/api": "^1.9.0",
     "@opentelemetry/sdk-trace-base": "^2.0.1",
     "@radix-ui/react-collapsible": "^1.1.11",
-    "@traceloop/node-server-sdk": "^0.14.6",
     "autoprefixer": "^10.4.21",
     "lucide-react": "^0.534.0",
     "postcss": "^8.5.6",
