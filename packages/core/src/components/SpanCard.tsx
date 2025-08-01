@@ -1,5 +1,5 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, Coins } from "lucide-react";
 import {
   useState,
   type FC,
@@ -140,12 +140,12 @@ const SpanCardContent: FC<{
         {data.type}
       </Badge>
 
-      <Badge theme="gray" size="xs">
+      <Badge iconStart={<Coins className="size-2.5" />} theme="gray" size="xs">
         {data.tokensCount}
       </Badge>
 
       <Badge theme="gray" size="xs">
-        {data.cost}
+        $ {data.cost}
       </Badge>
     </div>
   </div>
@@ -188,7 +188,7 @@ const SpanCardConnector: FC<{
 
   return (
     <div
-      className="absolute -left-[11px] top-2.5 h-0.5 bg-gray-100"
+      className="absolute -left-[15px] top-2.5 h-0.5 bg-gray-100"
       style={{ width: `${horizontalLineWidth}px` }}
     />
   );
@@ -204,7 +204,7 @@ const SpanCardChildren: FC<{
 
   return (
     <div className="relative">
-      <div className="absolute -top-3 ml-2 h-[calc(100%-9px)] w-0.5 translate-x-1/2 transform bg-gray-100" />
+      <div className="absolute -top-3 ml-1 h-[calc(100%-9px)] w-0.5 translate-x-1/2 transform bg-gray-100" />
 
       <Collapsible.Content>
         <ul role="group">
