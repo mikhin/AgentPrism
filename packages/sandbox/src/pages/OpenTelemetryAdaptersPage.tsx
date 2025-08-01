@@ -424,6 +424,7 @@ export const OpenTelemetryAdaptersPage = (): ReactElement => {
       >
         <SandboxItem title="AI Research Assistant Workflow" pattern="dots">
           <TreeView
+            expandButton="inside"
             spans={aiWorkflowSpans}
             onSelectionChange={handleSelectionChange}
           />
@@ -434,6 +435,7 @@ export const OpenTelemetryAdaptersPage = (): ReactElement => {
           pattern="grid"
         >
           <TreeView
+            expandButton="outside"
             spans={multiAgentSpans}
             initialSelectedId="agent-security"
             onSelectionChange={handleSelectionChange}
@@ -442,6 +444,7 @@ export const OpenTelemetryAdaptersPage = (): ReactElement => {
 
         <SandboxItem title="LLM Request with Retry Logic" pattern="dots">
           <TreeView
+            expandButton="inside"
             spans={errorRetrySpans}
             onSelectionChange={handleSelectionChange}
           />
@@ -454,6 +457,7 @@ export const OpenTelemetryAdaptersPage = (): ReactElement => {
       >
         <SandboxItem title="All Traces Combined View" pattern="grid">
           <TreeView
+            expandButton="outside"
             spans={allTraces}
             onSelectionChange={handleSelectionChange}
           />

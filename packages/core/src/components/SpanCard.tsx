@@ -196,11 +196,18 @@ const SpanCardConnector: FC<{
 };
 
 const SpanCardChildren: FC<{
+  expandButton: "inside" | "outside";
   data: Span;
   level: number;
   selectedCardId?: string;
   onChildSelectionChange: (childId: string, childIsSelected: boolean) => void;
-}> = ({ data, level, selectedCardId, onChildSelectionChange }) => {
+}> = ({
+  data,
+  level,
+  selectedCardId,
+  onChildSelectionChange,
+  expandButton,
+}) => {
   if (!data.children?.length) return null;
 
   return (
@@ -211,7 +218,7 @@ const SpanCardChildren: FC<{
         <ul role="group">
           {data.children.map((child) => (
             <SpanCard
-              expandButton="inside"
+              expandButton={expandButton}
               key={child.id}
               data={child}
               level={level + 1}
@@ -248,6 +255,11 @@ export const SpanCard: FC<SpanCardProps> = ({
     onSelectionChange,
   );
 
+  const gridTemplateColumns =
+    expandButton === "inside"
+      ? `12px 16px ${layout.contentWidth}px auto 50px 6px`
+      : `16px ${layout.contentWidth}px 6px auto 50px 12px`;
+
   return (
     <li
       role="treeitem"
@@ -262,7 +274,7 @@ export const SpanCard: FC<SpanCardProps> = ({
         <div
           className="relative box-content grid h-5 w-full cursor-pointer items-center pb-3"
           style={{
-            gridTemplateColumns: `12px 16px ${layout.contentWidth}px auto 50px 6px`,
+            gridTemplateColumns,
             gap: "8px",
           }}
           onClick={eventHandlers.handleCardClick}
@@ -313,6 +325,7 @@ export const SpanCard: FC<SpanCardProps> = ({
         </div>
 
         <SpanCardChildren
+          expandButton={expandButton}
           data={data}
           level={level}
           selectedCardId={selectedCardId}
