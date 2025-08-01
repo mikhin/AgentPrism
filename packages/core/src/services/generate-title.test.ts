@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { generateTitle } from "./generate-title";
+
 import { LLM_ATTRIBUTES, VECTOR_DB_ATTRIBUTES } from "../constants";
 import { createMockSpan } from "../utils/tests/create-mock-span";
+import { generateTitle } from "./generate-title";
 
 describe("generateTitle", () => {
   describe("LLM operations", () => {

@@ -1,4 +1,5 @@
 import type { ReadableSpan } from "@opentelemetry/sdk-trace-base";
+
 import { SpanKind, SpanStatusCode } from "@opentelemetry/api";
 
 interface MockSpanOptions {

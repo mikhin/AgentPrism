@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { getAttributeValue } from "./get-attribute-value";
+
 import { createMockSpan } from "../utils/tests/create-mock-span";
+import { getAttributeValue } from "./get-attribute-value";
 
 describe("getAttributeValue", () => {
   describe("string values", () => {

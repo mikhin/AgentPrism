@@ -1,5 +1,7 @@
 import type { ReadableSpan } from "@opentelemetry/sdk-trace-base";
+
 import type { Span } from "../types/span.ts";
+
 import { convertOTelSpanToSpanCard } from "./convert-o-tel-span-to-span-card.ts";
 
 export const convertOTelTraceToSpanTree = (spans: ReadableSpan[]): Span[] => {

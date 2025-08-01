@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { mapSpanStatus } from "./map-span-status";
+
 import { SpanStatusCode } from "..";
+import { mapSpanStatus } from "./map-span-status";
 
 describe("mapSpanStatus", () => {
   it("should return 'success' for SpanStatusCode.OK", () => {

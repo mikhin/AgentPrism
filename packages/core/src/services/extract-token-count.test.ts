@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { extractTokenCount } from "./extract-token-count";
+
 import { LLM_ATTRIBUTES } from "../constants";
 import { createMockSpan } from "../utils/tests/create-mock-span";
+import { extractTokenCount } from "./extract-token-count";
 
 describe("extractTokenCount", () => {
   it("should return total tokens when available as number", () => {

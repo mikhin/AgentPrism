@@ -31,6 +31,7 @@ interface SpanCardProps {
   level?: number;
   selectedCardId?: string;
   onSelectionChange?: (cardId: string, isSelected: boolean) => void;
+  expandButton: "inside" | "outside";
 }
 
 interface LayoutCalculations {
@@ -210,6 +211,7 @@ const SpanCardChildren: FC<{
         <ul role="group">
           {data.children.map((child) => (
             <SpanCard
+              expandButton="inside"
               key={child.id}
               data={child}
               level={level + 1}
@@ -228,6 +230,7 @@ export const SpanCard: FC<SpanCardProps> = ({
   level = 0,
   selectedCardId,
   onSelectionChange,
+  expandButton,
 }) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -238,6 +241,7 @@ export const SpanCard: FC<SpanCardProps> = ({
   };
 
   const layout = calculateLayout(level, state.hasChildren);
+
   const eventHandlers = useSpanCardEventHandlers(
     data,
     state.isSelected,
@@ -275,23 +279,37 @@ export const SpanCard: FC<SpanCardProps> = ({
             horizontalLineWidth={layout.horizontalLineWidth}
           />
 
-          {state.hasChildren ? (
-            <SpanCardToggle
-              isExpanded={state.isExpanded}
-              title={data.title}
-              onToggleClick={eventHandlers.handleToggleClick}
-            />
-          ) : (
-            <div className="w-3" aria-hidden="true" />
-          )}
+          {expandButton == "inside" &&
+            (state.hasChildren ? (
+              <SpanCardToggle
+                isExpanded={state.isExpanded}
+                title={data.title}
+                onToggleClick={eventHandlers.handleToggleClick}
+              />
+            ) : (
+              <div className="w-3" aria-hidden="true" />
+            ))}
 
           <Avatar size="xs" rounded="full" />
 
           <SpanCardContent data={data} />
 
+          {expandButton == "outside" && <SpanCardStatus status={data.status} />}
+
           <SpanCardTimeline duration={data.duration} />
 
-          <SpanCardStatus status={data.status} />
+          {expandButton == "outside" &&
+            (state.hasChildren ? (
+              <SpanCardToggle
+                isExpanded={state.isExpanded}
+                title={data.title}
+                onToggleClick={eventHandlers.handleToggleClick}
+              />
+            ) : (
+              <div className="w-3" aria-hidden="true" />
+            ))}
+
+          {expandButton == "inside" && <SpanCardStatus status={data.status} />}
         </div>
 
         <SpanCardChildren

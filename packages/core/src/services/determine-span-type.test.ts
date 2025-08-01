@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { determineSpanType } from "./determine-span-type";
+
 import { createMockSpan } from "../utils/tests/create-mock-span";
+import { determineSpanType } from "./determine-span-type";
 
 describe("determineSpanType", () => {
   it("should return 'TOOL' for spans with tool keywords in name", () => {

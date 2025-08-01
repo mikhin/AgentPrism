@@ -63,6 +63,7 @@ export const TreeView: FC<TreeViewProps> = ({
         <SpanCardsList>
           {spans.map((span) => (
             <SpanCard
+              expandButton="inside"
               key={span.id}
               data={span}
               level={0}

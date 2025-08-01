@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { extractCost } from "./extract-cost";
+
 import { LLM_ATTRIBUTES } from "../constants";
 import { createMockSpan } from "../utils/tests/create-mock-span";
+import { extractCost } from "./extract-cost";
 
 describe("extractCost", () => {
   describe("valid number costs", () => {

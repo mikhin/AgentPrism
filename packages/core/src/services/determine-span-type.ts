@@ -1,6 +1,7 @@
 import type { ReadableSpan } from "@opentelemetry/sdk-trace-base";
-import { getAttributeValue } from "./get-attribute-value.ts";
+
 import { LLM_ATTRIBUTES, VECTOR_DB_ATTRIBUTES } from "../constants.ts";
+import { getAttributeValue } from "./get-attribute-value.ts";
 
 export const determineSpanType = (
   span: ReadableSpan,

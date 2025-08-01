@@ -1,13 +1,14 @@
 import { type ReadableSpan } from "@opentelemetry/sdk-trace-base";
 
 import type { Span } from "../types/span";
+
 import { calculateDuration } from "./calculate-duration.ts";
-import { mapSpanStatus } from "./map-span-status.ts";
-import { determineSpanType } from "./determine-span-type.ts";
-import { generateTitle } from "./generate-title.ts";
-import { extractTokenCount } from "./extract-token-count.ts";
-import { extractCost } from "./extract-cost.ts";
 import { convertTimestamp } from "./convert-timestamp.ts";
+import { determineSpanType } from "./determine-span-type.ts";
+import { extractCost } from "./extract-cost.ts";
+import { extractTokenCount } from "./extract-token-count.ts";
+import { generateTitle } from "./generate-title.ts";
+import { mapSpanStatus } from "./map-span-status.ts";
 
 export const convertOTelSpanToSpanCard = (
   span: ReadableSpan,

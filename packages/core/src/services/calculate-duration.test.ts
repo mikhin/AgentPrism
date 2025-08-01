@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { calculateDuration } from "./calculate-duration";
+
 import { createMockSpan } from "../utils/tests/create-mock-span";
+import { calculateDuration } from "./calculate-duration";
 
 describe("calculateDuration", () => {
   describe("basic duration calculations", () => {
