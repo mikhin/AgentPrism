@@ -1,9 +1,9 @@
-import type { ReadableSpan } from "@opentelemetry/sdk-trace-base";
+import type { Span } from "../types/open-telemetry";
 
 import { LLM_ATTRIBUTES, VECTOR_DB_ATTRIBUTES } from "../constants.ts";
 import { getAttributeValue } from "./get-attribute-value.ts";
 
-export const generateTitle = (span: ReadableSpan): string => {
+export const generateTitle = (span: Span): string => {
   const { name } = span;
 
   // For LLM operations, use model name

@@ -1,12 +1,11 @@
-import type { ReadableSpan } from "@opentelemetry/sdk-trace-base";
-
-import type { Span } from "../types/span.ts";
+import type { Span } from "../types/open-telemetry";
+import type { SpanCardType } from "../types/span";
 
 import { convertOTelSpanToSpanCard } from "./convert-o-tel-span-to-span-card.ts";
 
-export const convertOTelTraceToSpanTree = (spans: ReadableSpan[]): Span[] => {
-  const spanMap = new Map<string, Span>();
-  const rootSpans: Span[] = [];
+export const convertOTelTraceToSpanTree = (spans: Span[]): SpanCardType[] => {
+  const spanMap = new Map<string, SpanCardType>();
+  const rootSpans: SpanCardType[] = [];
 
   // First pass: create all span objects
   spans.forEach((span) => {
@@ -16,8 +15,8 @@ export const convertOTelTraceToSpanTree = (spans: ReadableSpan[]): Span[] => {
 
   // Second pass: build parent-child relationships
   spans.forEach((span) => {
-    const convertedSpan = spanMap.get(span.spanContext().spanId)!;
-    const parentSpanId = span.parentSpanContext?.spanId;
+    const convertedSpan = spanMap.get(span.spanId)!;
+    const parentSpanId = span.parentSpanId;
 
     if (parentSpanId) {
       const parent = spanMap.get(parentSpanId);

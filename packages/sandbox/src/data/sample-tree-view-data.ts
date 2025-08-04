@@ -1,6 +1,6 @@
-import type { Span } from "ai-agent-trace-ui-core";
+import type { SpanCardType } from "ai-agent-trace-ui-core";
 
-export const sampleTreeViewData: Span[] = [
+export const sampleTreeViewData: SpanCardType[] = [
   {
     id: "1",
     title: "main",

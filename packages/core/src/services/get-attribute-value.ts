@@ -1,27 +1,27 @@
-import type { ReadableSpan } from "@opentelemetry/sdk-trace-base";
+import type { Span } from "../types/open-telemetry";
 
 export const getAttributeValue = (
-  span: ReadableSpan,
+  span: Span,
   key: string,
 ): string | number | boolean | undefined => {
-  const value = span.attributes[key];
+  const attr = span.attributes.find((a) => a.key === key);
 
-  // Handle OpenTelemetry AttributeValue type which can be string, number, boolean, array, or null
-  if (value === null || value === undefined) {
+  if (!attr) {
     return undefined;
   }
 
-  if (Array.isArray(value)) {
-    // Convert array to string representation
-    return value.join(", ");
+  const { value } = attr;
+
+  if (value.stringValue !== undefined) {
+    return value.stringValue;
   }
 
-  if (
-    typeof value === "string" ||
-    typeof value === "number" ||
-    typeof value === "boolean"
-  ) {
-    return value;
+  if (value.intValue !== undefined) {
+    return parseFloat(value.intValue);
+  }
+
+  if (value.boolValue !== undefined) {
+    return value.boolValue;
   }
 
   return undefined;

@@ -8,7 +8,7 @@ import {
   type MouseEvent,
 } from "react";
 
-import type { Span } from "../types/span";
+import type { SpanCardType } from "../types/span";
 
 import { Avatar } from "./Avatar";
 import { Badge } from "./Badge";
@@ -27,7 +27,7 @@ const STATUS_COLORS = {
 } as const;
 
 interface SpanCardProps {
-  data: Span;
+  data: SpanCardType;
   level?: number;
   selectedCardId?: string;
   onSelectionChange?: (cardId: string, isSelected: boolean) => void;
@@ -66,7 +66,7 @@ const getStatusColor = (status: keyof typeof STATUS_COLORS): string => {
 };
 
 const useSpanCardEventHandlers = (
-  data: Span,
+  data: SpanCardType,
   isSelected: boolean,
   onSelectionChange?: (cardId: string, isSelected: boolean) => void,
 ) => {
@@ -129,7 +129,7 @@ const SpanCardToggle: FC<{
 );
 
 const SpanCardContent: FC<{
-  data: Span;
+  data: SpanCardType;
 }> = ({ data }) => (
   <div className="flex items-center">
     <h3 className="mr-3 max-w-32 overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-5">
@@ -197,7 +197,7 @@ const SpanCardConnector: FC<{
 
 const SpanCardChildren: FC<{
   expandButton: "inside" | "outside";
-  data: Span;
+  data: SpanCardType;
   level: number;
   selectedCardId?: string;
   onChildSelectionChange: (childId: string, childIsSelected: boolean) => void;

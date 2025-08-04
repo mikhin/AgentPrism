@@ -267,21 +267,6 @@ describe("generateTitle", () => {
 
       expect(result).toBe("");
     });
-
-    it("should handle null and undefined attribute values", () => {
-      const span = createMockSpan({
-        name: "test_span",
-        attributes: {
-          [LLM_ATTRIBUTES.MODEL]: null,
-          [VECTOR_DB_ATTRIBUTES.COLLECTION]: undefined,
-          "http.method": null,
-        },
-      });
-
-      const result = generateTitle(span);
-
-      expect(result).toBe("test_span");
-    });
   });
 
   describe("real-world scenarios", () => {
@@ -393,19 +378,6 @@ describe("generateTitle", () => {
   });
 
   describe("edge cases with attribute types", () => {
-    it("should handle array values for model", () => {
-      const span = createMockSpan({
-        name: "completion",
-        attributes: {
-          [LLM_ATTRIBUTES.MODEL]: ["gpt-4", "fallback-model"], // array
-        },
-      });
-
-      const result = generateTitle(span);
-
-      expect(result).toBe("gpt-4, fallback-model - completion");
-    });
-
     it("should handle boolean values", () => {
       const span = createMockSpan({
         name: "test",

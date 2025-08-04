@@ -1,12 +1,12 @@
-import { SpanStatusCode } from "@opentelemetry/api";
+import { type StatusCode } from "../types/open-telemetry";
 
 export const mapSpanStatus = (
-  statusCode: SpanStatusCode,
+  statusCode?: StatusCode,
 ): "success" | "error" | "running" | "warning" => {
   switch (statusCode) {
-    case SpanStatusCode.OK:
+    case "STATUS_CODE_OK":
       return "success";
-    case SpanStatusCode.ERROR:
+    case "STATUS_CODE_ERROR":
       return "error";
     default:
       return "warning";

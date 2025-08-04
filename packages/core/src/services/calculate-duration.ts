@@ -1,7 +1,13 @@
-import type { ReadableSpan } from "@opentelemetry/sdk-trace-base";
+import type { Span } from "../types/open-telemetry";
 
-export const calculateDuration = (span: ReadableSpan): number => {
-  const durationHrTime = span.duration;
-  // Convert HrTime [seconds, nanoseconds] to milliseconds
-  return durationHrTime[0] * 1000 + durationHrTime[1] / 1_000_000;
+export const calculateDuration = (span: Span): number => {
+  // Convert string nanosecond timestamps to BigInt for precise arithmetic
+  const startNano = BigInt(span.startTimeUnixNano);
+  const endNano = BigInt(span.endTimeUnixNano);
+
+  // Calculate duration in nanoseconds
+  const durationNano = endNano - startNano;
+
+  // Divide by 1_000_000 to get milliseconds
+  return Number(durationNano / BigInt(1_000_000));
 };

@@ -1,402 +1,307 @@
 import {
   convertOTelTraceToSpanTree,
-  type ReadableSpan,
   TreeView,
-  SpanKind,
-  SpanStatusCode,
+  type Span,
 } from "ai-agent-trace-ui-core";
 import { type ReactElement, useState } from "react";
 
 import { SandboxItem } from "../components/SandboxItem.tsx";
 import { SandboxSection } from "../components/SandboxSection";
 
-// Mock ReadableSpan objects that match the actual OpenTelemetry format
-const createMockReadableSpan = (data: Partial<ReadableSpan>): ReadableSpan => ({
+// Mock Span objects that match the actual OpenTelemetry format
+const createMockSpan = (data: Partial<Span>): Span => ({
+  traceId: "trace-123",
+  spanId: "span-123",
   name: "default-span",
-  kind: SpanKind.INTERNAL,
-  spanContext: () => ({
-    traceId: "trace-123",
-    spanId: "span-123",
-    traceFlags: 1,
-    isRemote: false,
-  }),
-  startTime: [1640995200, 0] as const,
-  endTime: [1640995202, 500000000] as const,
-  duration: [2, 500000000] as const,
-  status: { code: SpanStatusCode.OK },
-  attributes: {},
-  links: [],
+  kind: "SPAN_KIND_INTERNAL",
+  startTimeUnixNano: "1640995200000000000",
+  endTimeUnixNano: "1640995202500000000",
+  attributes: [],
+  status: { code: "STATUS_CODE_OK" },
+  flags: 1,
   events: [],
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  resource: {} as any,
-  instrumentationScope: { name: "test", version: "1.0.0" },
-  ended: true,
+  links: [],
   droppedAttributesCount: 0,
   droppedEventsCount: 0,
   droppedLinksCount: 0,
-  parentSpanContext: undefined,
   ...data,
 });
 
 // Complex nested AI application trace
-const mockAIWorkflowSpans: ReadableSpan[] = [
-  createMockReadableSpan({
+const mockAIWorkflowSpans: Span[] = [
+  createMockSpan({
+    traceId: "trace-ai-workflow",
+    spanId: "root-agent",
     name: "ai_assistant.process_query",
-    kind: SpanKind.INTERNAL,
-    spanContext: () => ({
-      traceId: "trace-ai-workflow",
-      spanId: "root-agent",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    duration: [8, 500000000] as const,
-    attributes: {
-      "agent.name": "AI Research Assistant",
-      query: "What are the latest developments in quantum computing?",
-      "user.id": "user-123",
-    },
+    kind: "SPAN_KIND_INTERNAL",
+    startTimeUnixNano: "1640995200000000000",
+    endTimeUnixNano: "1640995208500000000",
+    attributes: [
+      { key: "agent.name", value: { stringValue: "AI Research Assistant" } },
+      {
+        key: "query",
+        value: {
+          stringValue: "What are the latest developments in quantum computing?",
+        },
+      },
+      { key: "user.id", value: { stringValue: "user-123" } },
+    ],
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-ai-workflow",
+    spanId: "chain-understanding",
+    parentSpanId: "root-agent",
     name: "query_understanding_chain",
-    kind: SpanKind.INTERNAL,
-    spanContext: () => ({
-      traceId: "trace-ai-workflow",
-      spanId: "chain-understanding",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-nested",
-      spanId: "root-agent",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [2, 100000000] as const,
-    attributes: {
-      "langchain.chain": "QueryUnderstandingChain",
-      "langchain.chain.type": "sequential",
-    },
+    kind: "SPAN_KIND_INTERNAL",
+    startTimeUnixNano: "1640995200000000000",
+    endTimeUnixNano: "1640995202100000000",
+    attributes: [
+      {
+        key: "langchain.chain",
+        value: { stringValue: "QueryUnderstandingChain" },
+      },
+      { key: "langchain.chain.type", value: { stringValue: "sequential" } },
+    ],
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-ai-workflow",
+    spanId: "llm-query-analysis",
+    parentSpanId: "chain-understanding",
     name: "openai.chat.completions",
-    kind: SpanKind.CLIENT,
-    spanContext: () => ({
-      traceId: "trace-ai-workflow",
-      spanId: "llm-query-analysis",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    duration: [1, 800000000] as const,
-    attributes: {
-      "gen_ai.request.model": "gpt-4",
-      "gen_ai.usage.input_tokens": 85,
-      "gen_ai.usage.output_tokens": 45,
-      "gen_ai.usage.total_tokens": 130,
-      "gen_ai.usage.cost": 0.0052,
-      "gen_ai.request.temperature": 0.3,
-    },
+    kind: "SPAN_KIND_CLIENT",
+    startTimeUnixNano: "1640995200000000000",
+    endTimeUnixNano: "1640995201800000000",
+    attributes: [
+      { key: "gen_ai.request.model", value: { stringValue: "gpt-4" } },
+      { key: "gen_ai.usage.input_tokens", value: { intValue: "85" } },
+      { key: "gen_ai.usage.output_tokens", value: { intValue: "45" } },
+      { key: "gen_ai.usage.total_tokens", value: { intValue: "130" } },
+      { key: "gen_ai.usage.cost", value: { intValue: "0.0052" } },
+      { key: "gen_ai.request.temperature", value: { intValue: "0.3" } },
+    ],
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-ai-workflow",
+    spanId: "vector-search",
+    parentSpanId: "root-agent",
     name: "vector_search_retrieval",
-    kind: SpanKind.CLIENT,
-    spanContext: () => ({
-      traceId: "trace-ai-workflow",
-      spanId: "vector-search",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-nested",
-      spanId: "root-agent",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [1, 200000000] as const,
-    attributes: {
-      "db.operation.name": "similarity_search",
-      "db.collection.name": "research_papers",
-      "db.query.text": "quantum computing developments 2024",
-      "vector.top_k": 5,
-    },
+    kind: "SPAN_KIND_CLIENT",
+    startTimeUnixNano: "1640995202100000000",
+    endTimeUnixNano: "1640995203300000000",
+    attributes: [
+      { key: "db.operation.name", value: { stringValue: "similarity_search" } },
+      { key: "db.collection.name", value: { stringValue: "research_papers" } },
+      {
+        key: "db.query.text",
+        value: { stringValue: "quantum computing developments 2024" },
+      },
+      { key: "vector.top_k", value: { intValue: "5" } },
+    ],
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-ai-workflow",
+    spanId: "chain-synthesis",
+    parentSpanId: "root-agent",
     name: "content_synthesis_chain",
-    kind: SpanKind.INTERNAL,
-    spanContext: () => ({
-      traceId: "trace-ai-workflow",
-      spanId: "chain-synthesis",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-ai-workflow",
-      spanId: "root-agent",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [3, 800000000] as const,
-    attributes: {
-      "langchain.chain": "ContentSynthesisChain",
-      retrieved_docs_count: 5,
-    },
+    kind: "SPAN_KIND_INTERNAL",
+    startTimeUnixNano: "1640995203300000000",
+    endTimeUnixNano: "1640995207100000000",
+    attributes: [
+      {
+        key: "langchain.chain",
+        value: { stringValue: "ContentSynthesisChain" },
+      },
+      { key: "retrieved_docs_count", value: { intValue: "5" } },
+    ],
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-ai-workflow",
+    spanId: "llm-synthesis",
+    parentSpanId: "chain-synthesis",
     name: "anthropic.messages.create",
-    kind: SpanKind.CLIENT,
-    spanContext: () => ({
-      traceId: "trace-ai-workflow",
-      spanId: "llm-synthesis",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-ai-workflow",
-      spanId: "chain-synthesis",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [3, 200000000] as const,
-    attributes: {
-      "gen_ai.request.model": "claude-3-sonnet",
-      "gen_ai.usage.input_tokens": 1250,
-      "gen_ai.usage.output_tokens": 380,
-      "gen_ai.usage.total_tokens": 1630,
-      "gen_ai.usage.cost": 0.0245,
-      "gen_ai.request.temperature": 0.7,
-    },
+    kind: "SPAN_KIND_CLIENT",
+    startTimeUnixNano: "1640995203300000000",
+    endTimeUnixNano: "1640995206500000000",
+    attributes: [
+      {
+        key: "gen_ai.request.model",
+        value: { stringValue: "claude-3-sonnet" },
+      },
+      { key: "gen_ai.usage.input_tokens", value: { intValue: "1250" } },
+      { key: "gen_ai.usage.output_tokens", value: { intValue: "380" } },
+      { key: "gen_ai.usage.total_tokens", value: { intValue: "1630" } },
+      { key: "gen_ai.usage.cost", value: { intValue: "0.0245" } },
+      { key: "gen_ai.request.temperature", value: { intValue: "0.7" } },
+    ],
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-ai-workflow",
+    spanId: "fact-checker",
+    parentSpanId: "chain-synthesis",
     name: "fact_checking_tool",
-    kind: SpanKind.CLIENT,
-    spanContext: () => ({
-      traceId: "trace-ai-workflow",
-      spanId: "fact-checker",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-ai-workflow",
-      spanId: "chain-synthesis",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [0, 800000000] as const,
-    attributes: {
-      "function.name": "verify_claims",
-      "http.method": "POST",
-      "http.url": "https://api.factcheck.com/v1/verify",
-      claims_checked: 3,
-    },
+    kind: "SPAN_KIND_CLIENT",
+    startTimeUnixNano: "1640995206500000000",
+    endTimeUnixNano: "1640995207300000000",
+    attributes: [
+      { key: "function.name", value: { stringValue: "verify_claims" } },
+      { key: "http.method", value: { stringValue: "POST" } },
+      {
+        key: "http.url",
+        value: { stringValue: "https://api.factcheck.com/v1/verify" },
+      },
+      { key: "claims_checked", value: { intValue: "3" } },
+    ],
   }),
 ];
 
 // Multi-agent conversation trace
-const mockMultiAgentSpans: ReadableSpan[] = [
-  createMockReadableSpan({
+const mockMultiAgentSpans: Span[] = [
+  createMockSpan({
+    traceId: "trace-multi-agent",
+    spanId: "conversation-root",
     name: "multi_agent_conversation",
-    kind: SpanKind.INTERNAL,
-    spanContext: () => ({
-      traceId: "trace-multi-agent",
-      spanId: "conversation-root",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    duration: [12, 0] as const,
-    attributes: {
-      "conversation.id": "conv-456",
-      "agents.count": 3,
-      "conversation.topic": "Code review for React component",
-    },
+    kind: "SPAN_KIND_INTERNAL",
+    startTimeUnixNano: "1640995200000000000",
+    endTimeUnixNano: "1640995212000000000",
+    attributes: [
+      { key: "conversation.id", value: { stringValue: "conv-456" } },
+      { key: "agents.count", value: { intValue: "3" } },
+      {
+        key: "conversation.topic",
+        value: { stringValue: "Code review for React component" },
+      },
+    ],
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-multi-agent",
+    spanId: "agent-architect",
+    parentSpanId: "conversation-root",
     name: "architect_agent.analyze",
-    kind: SpanKind.INTERNAL,
-    spanContext: () => ({
-      traceId: "trace-multi-agent",
-      spanId: "agent-architect",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-multi-agent",
-      spanId: "conversation-root",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [4, 200000000] as const,
-    attributes: {
-      "agent.name": "Software Architect",
-      "agent.role": "architecture_review",
-    },
+    kind: "SPAN_KIND_INTERNAL",
+    startTimeUnixNano: "1640995200000000000",
+    endTimeUnixNano: "1640995204200000000",
+    attributes: [
+      { key: "agent.name", value: { stringValue: "Software Architect" } },
+      { key: "agent.role", value: { stringValue: "architecture_review" } },
+    ],
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-multi-agent",
+    spanId: "llm-architect-analysis",
+    parentSpanId: "agent-architect",
     name: "openai.chat.completions",
-    kind: SpanKind.CLIENT,
-    spanContext: () => ({
-      traceId: "trace-multi-agent",
-      spanId: "llm-architect-analysis",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-multi-agent",
-      spanId: "agent-architect",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [3, 800000000] as const,
-    attributes: {
-      "gen_ai.request.model": "gpt-4",
-      "gen_ai.usage.total_tokens": 890,
-      "gen_ai.usage.cost": 0.0178,
-    },
+    kind: "SPAN_KIND_CLIENT",
+    startTimeUnixNano: "1640995200000000000",
+    endTimeUnixNano: "1640995203800000000",
+    attributes: [
+      { key: "gen_ai.request.model", value: { stringValue: "gpt-4" } },
+      { key: "gen_ai.usage.total_tokens", value: { intValue: "890" } },
+      { key: "gen_ai.usage.cost", value: { intValue: "0.0178" } },
+    ],
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-multi-agent",
+    spanId: "agent-security",
+    parentSpanId: "conversation-root",
     name: "security_agent.scan",
-    kind: SpanKind.INTERNAL,
-    spanContext: () => ({
-      traceId: "trace-multi-agent",
-      spanId: "agent-security",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-multi-agent",
-      spanId: "conversation-root",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [2, 800000000] as const,
-    attributes: {
-      "agent.name": "Security Specialist",
-      "agent.role": "security_audit",
-      vulnerabilities_found: 2,
-    },
-    status: { code: SpanStatusCode.ERROR },
+    kind: "SPAN_KIND_INTERNAL",
+    startTimeUnixNano: "1640995204200000000",
+    endTimeUnixNano: "1640995207000000000",
+    attributes: [
+      { key: "agent.name", value: { stringValue: "Security Specialist" } },
+      { key: "agent.role", value: { stringValue: "security_audit" } },
+      { key: "vulnerabilities_found", value: { intValue: "2" } },
+    ],
+    status: { code: "STATUS_CODE_ERROR" },
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-multi-agent",
+    spanId: "agent-performance",
+    parentSpanId: "conversation-root",
     name: "performance_agent.benchmark",
-    kind: SpanKind.INTERNAL,
-    spanContext: () => ({
-      traceId: "trace-multi-agent",
-      spanId: "agent-performance",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-multi-agent",
-      spanId: "conversation-root",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [5, 100000000] as const,
-    attributes: {
-      "agent.name": "Performance Expert",
-      "agent.role": "performance_analysis",
-      "benchmark.score": 85,
-    },
+    kind: "SPAN_KIND_INTERNAL",
+    startTimeUnixNano: "1640995207000000000",
+    endTimeUnixNano: "1640995212100000000",
+    attributes: [
+      { key: "agent.name", value: { stringValue: "Performance Expert" } },
+      { key: "agent.role", value: { stringValue: "performance_analysis" } },
+      { key: "benchmark.score", value: { intValue: "85" } },
+    ],
   }),
 ];
 
 // Error handling and retry trace
-const mockErrorRetrySpans: ReadableSpan[] = [
-  createMockReadableSpan({
+const mockErrorRetrySpans: Span[] = [
+  createMockSpan({
+    traceId: "trace-error-retry",
+    spanId: "retry-root",
     name: "llm_request_with_retry",
-    kind: SpanKind.INTERNAL,
-    spanContext: () => ({
-      traceId: "trace-error-retry",
-      spanId: "retry-root",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    duration: [8, 500000000] as const,
-    attributes: {
-      "retry.max_attempts": 3,
-      "retry.final_attempt": 3,
-    },
-    status: { code: SpanStatusCode.OK },
+    kind: "SPAN_KIND_INTERNAL",
+    startTimeUnixNano: "1640995200000000000",
+    endTimeUnixNano: "1640995208500000000",
+    attributes: [
+      { key: "retry.max_attempts", value: { intValue: "3" } },
+      { key: "retry.final_attempt", value: { intValue: "3" } },
+    ],
+    status: { code: "STATUS_CODE_OK" },
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-error-retry",
+    spanId: "llm-attempt-1",
+    parentSpanId: "retry-root",
     name: "openai.chat.completions",
-    kind: SpanKind.CLIENT,
-    spanContext: () => ({
-      traceId: "trace-error-retry",
-      spanId: "llm-attempt-1",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-error-retry",
-      spanId: "retry-root",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [1, 0] as const,
-    attributes: {
-      "gen_ai.request.model": "gpt-4",
-      "retry.attempt": 1,
-      "error.type": "rate_limit_exceeded",
-    },
-    status: { code: SpanStatusCode.ERROR },
+    kind: "SPAN_KIND_CLIENT",
+    startTimeUnixNano: "1640995200000000000",
+    endTimeUnixNano: "1640995201000000000",
+    attributes: [
+      { key: "gen_ai.request.model", value: { stringValue: "gpt-4" } },
+      { key: "retry.attempt", value: { intValue: "1" } },
+      { key: "error.type", value: { stringValue: "rate_limit_exceeded" } },
+    ],
+    status: { code: "STATUS_CODE_ERROR" },
   }),
 
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-error-retry",
+    spanId: "llm-attempt-2",
+    parentSpanId: "retry-root",
     name: "openai.chat.completions",
-    kind: SpanKind.CLIENT,
-    spanContext: () => ({
-      traceId: "trace-error-retry",
-      spanId: "llm-attempt-2",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-error-retry",
-      spanId: "retry-root",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [2, 0] as const,
-    attributes: {
-      "gen_ai.request.model": "gpt-4",
-      "retry.attempt": 2,
-      "error.type": "timeout",
-    },
-    status: { code: SpanStatusCode.ERROR },
+    kind: "SPAN_KIND_CLIENT",
+    startTimeUnixNano: "1640995201000000000",
+    endTimeUnixNano: "1640995203000000000",
+    attributes: [
+      { key: "gen_ai.request.model", value: { stringValue: "gpt-4" } },
+      { key: "retry.attempt", value: { intValue: "2" } },
+      { key: "error.type", value: { stringValue: "timeout" } },
+    ],
+    status: { code: "STATUS_CODE_ERROR" },
   }),
-  createMockReadableSpan({
+  createMockSpan({
+    traceId: "trace-error-retry",
+    spanId: "llm-attempt-3",
+    parentSpanId: "retry-root",
     name: "openai.chat.completions",
-    kind: SpanKind.CLIENT,
-    spanContext: () => ({
-      traceId: "trace-error-retry",
-      spanId: "llm-attempt-3",
-      traceFlags: 1,
-      isRemote: false,
-    }),
-    parentSpanContext: {
-      traceId: "trace-error-retry",
-      spanId: "retry-root",
-      traceFlags: 1,
-      isRemote: false,
-    },
-    duration: [3, 200000000] as const,
-    attributes: {
-      "gen_ai.request.model": "gpt-4",
-      "gen_ai.usage.total_tokens": 420,
-      "gen_ai.usage.cost": 0.0084,
-      "retry.attempt": 3,
-    },
-    status: { code: SpanStatusCode.OK },
+    kind: "SPAN_KIND_CLIENT",
+    startTimeUnixNano: "1640995203000000000",
+    endTimeUnixNano: "1640995206200000000",
+    attributes: [
+      { key: "gen_ai.request.model", value: { stringValue: "gpt-4" } },
+      { key: "gen_ai.usage.total_tokens", value: { intValue: "420" } },
+      { key: "gen_ai.usage.cost", value: { intValue: "0.0084" } },
+      { key: "retry.attempt", value: { intValue: "3" } },
+    ],
+    status: { code: "STATUS_CODE_OK" },
   }),
 ];
 
@@ -420,7 +325,7 @@ export const OpenTelemetryAdaptersPage = (): ReactElement => {
     <div className="p-8">
       <SandboxSection
         title="OpenTelemetry AI Workflow Traces"
-        description="Complex AI application traces converted from ReadableSpan format using TreeView component for hierarchical visualization"
+        description="Complex AI application traces converted from Span format using TreeView component for hierarchical visualization"
       >
         <SandboxItem title="AI Research Assistant Workflow" pattern="dots">
           <TreeView

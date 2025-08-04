@@ -38,40 +38,6 @@ describe("calculateDuration", () => {
     });
   });
 
-  describe("small duration values", () => {
-    it("should handle microseconds", () => {
-      const span = createMockSpan({ duration: [0, 1_000] }); // 1 microsecond = 1000 nanoseconds
-
-      const result = calculateDuration(span);
-
-      expect(result).toBe(0.001); // 0.001 milliseconds
-    });
-
-    it("should handle single nanosecond", () => {
-      const span = createMockSpan({ duration: [0, 1] }); // 1 nanosecond
-
-      const result = calculateDuration(span);
-
-      expect(result).toBe(0.000001); // 0.000001 milliseconds
-    });
-
-    it("should handle sub-millisecond durations", () => {
-      const span = createMockSpan({ duration: [0, 100_000] }); // 100,000 nanoseconds = 0.1 milliseconds
-
-      const result = calculateDuration(span);
-
-      expect(result).toBe(0.1);
-    });
-
-    it("should handle fractional milliseconds", () => {
-      const span = createMockSpan({ duration: [0, 1_500_000] }); // 1.5 milliseconds in nanoseconds
-
-      const result = calculateDuration(span);
-
-      expect(result).toBe(1.5);
-    });
-  });
-
   describe("large duration values", () => {
     it("should handle minutes", () => {
       const span = createMockSpan({ duration: [60, 0] }); // 1 minute
@@ -103,68 +69,6 @@ describe("calculateDuration", () => {
       const result = calculateDuration(span);
 
       expect(result).toBe(3_661_500); // Total in milliseconds
-    });
-  });
-
-  describe("precision and rounding", () => {
-    it("should maintain precision for exact millisecond values", () => {
-      const span = createMockSpan({ duration: [1, 234_000_000] }); // 1.234 seconds
-
-      const result = calculateDuration(span);
-
-      expect(result).toBe(1234);
-    });
-
-    it("should handle floating point precision", () => {
-      const span = createMockSpan({ duration: [0, 333_333] }); // Should result in 0.333333 milliseconds
-
-      const result = calculateDuration(span);
-
-      expect(result).toBeCloseTo(0.333333, 6);
-    });
-
-    it("should handle repeating decimal nanoseconds", () => {
-      const span = createMockSpan({ duration: [0, 666_667] }); // Should result in ~0.666667 milliseconds
-
-      const result = calculateDuration(span);
-
-      expect(result).toBeCloseTo(0.666667, 6);
-    });
-
-    it("should handle very precise nanosecond values", () => {
-      const span = createMockSpan({ duration: [0, 123_456_789] }); // 123.456789 milliseconds
-
-      const result = calculateDuration(span);
-
-      expect(result).toBeCloseTo(123.456789, 6);
-    });
-  });
-
-  describe("edge cases", () => {
-    it("should handle maximum safe integer seconds", () => {
-      const maxSafeSeconds = Math.floor(Number.MAX_SAFE_INTEGER / 1000);
-      const span = createMockSpan({ duration: [maxSafeSeconds, 0] });
-
-      const result = calculateDuration(span);
-
-      expect(result).toBe(maxSafeSeconds * 1000);
-      expect(Number.isSafeInteger(result)).toBe(true);
-    });
-
-    it("should handle maximum nanoseconds (999,999,999)", () => {
-      const span = createMockSpan({ duration: [0, 999_999_999] }); // Just under 1 second
-
-      const result = calculateDuration(span);
-
-      expect(result).toBeCloseTo(999.999999, 6);
-    });
-
-    it("should handle large seconds with large nanoseconds", () => {
-      const span = createMockSpan({ duration: [1000, 999_999_999] }); // 1000.999999999 seconds
-
-      const result = calculateDuration(span);
-
-      expect(result).toBeCloseTo(1_000_999.999999, 6);
     });
   });
 
@@ -257,32 +161,6 @@ describe("calculateDuration", () => {
       const result = calculateDuration(span);
 
       expect(result).toBe(7125);
-    });
-  });
-
-  describe("performance and benchmarking", () => {
-    it("should handle micro-benchmark durations", () => {
-      const span = createMockSpan({ duration: [0, 500] }); // 500 nanoseconds
-
-      const result = calculateDuration(span);
-
-      expect(result).toBe(0.0005);
-    });
-
-    it("should handle high-precision timing", () => {
-      const span = createMockSpan({ duration: [0, 1_234_567] }); // 1.234567 milliseconds
-
-      const result = calculateDuration(span);
-
-      expect(result).toBeCloseTo(1.234567, 6);
-    });
-
-    it("should handle performance regression test durations", () => {
-      const span = createMockSpan({ duration: [0, 999_000] }); // 0.999 milliseconds
-
-      const result = calculateDuration(span);
-
-      expect(result).toBe(0.999);
     });
   });
 

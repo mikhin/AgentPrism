@@ -1,13 +1,13 @@
 import { useState, useCallback, type FC } from "react";
 
-import type { Span } from "../types/span";
+import type { SpanCardType } from "../types/span";
 
 import { Badge } from "./Badge.tsx";
 import { SpanCard } from "./SpanCard";
 import { SpanCardsList } from "./SpanCardsList";
 
 interface TreeViewProps {
-  spans: Span[];
+  spans: SpanCardType[];
   onSelectionChange?: (selectedId: string | undefined) => void;
   className?: string;
   initialSelectedId?: string;
@@ -25,7 +25,7 @@ export const TreeView: FC<TreeViewProps> = ({
     initialSelectedId,
   );
 
-  const countTotalSpans = (items: Span[]): number => {
+  const countTotalSpans = (items: SpanCardType[]): number => {
     return items.reduce((count, item) => {
       return count + 1 + (item.children ? countTotalSpans(item.children) : 0);
     }, 0);

@@ -1,5 +1,6 @@
-export const convertTimestamp = (hrTime: readonly [number, number]): Date => {
-  const milliseconds = hrTime[0] * 1000 + hrTime[1] / 1_000_000;
+export const convertTimestamp = (nanoString: string): Date => {
+  const nanoseconds = BigInt(nanoString);
+  const milliseconds = Number(nanoseconds / 1_000_000n);
 
   return new Date(milliseconds);
 };

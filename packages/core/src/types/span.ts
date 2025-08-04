@@ -1,4 +1,4 @@
-export type Span = {
+export type SpanCardType = {
   id: string;
   title: string;
   startTime: Date;
@@ -6,7 +6,7 @@ export type Span = {
   duration: number;
   cost: number;
   type: "LLM" | "TOOL" | "CHAIN" | "AGENT";
-  children?: Span[];
+  children?: SpanCardType[];
   tokensCount: number;
   status: "success" | "error" | "running" | "warning";
 };

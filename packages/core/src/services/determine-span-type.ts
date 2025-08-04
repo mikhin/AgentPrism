@@ -1,10 +1,10 @@
-import type { ReadableSpan } from "@opentelemetry/sdk-trace-base";
+import type { Span } from "../types/open-telemetry";
 
 import { LLM_ATTRIBUTES, VECTOR_DB_ATTRIBUTES } from "../constants.ts";
 import { getAttributeValue } from "./get-attribute-value.ts";
 
 export const determineSpanType = (
-  span: ReadableSpan,
+  span: Span,
 ): "LLM" | "TOOL" | "CHAIN" | "AGENT" => {
   const { name } = span;
 

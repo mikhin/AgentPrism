@@ -258,46 +258,6 @@ describe("getAttributeValue", () => {
     });
   });
 
-  describe("unsupported types", () => {
-    it("should return undefined for object values", () => {
-      const span = createMockSpan({
-        attributes: {
-          "object.field": { key: "value", nested: { count: 42 } },
-          "date.field": new Date("2023-01-01"),
-          "regex.field": /pattern/g,
-        },
-      });
-
-      expect(getAttributeValue(span, "object.field")).toBeUndefined();
-      expect(getAttributeValue(span, "date.field")).toBeUndefined();
-      expect(getAttributeValue(span, "regex.field")).toBeUndefined();
-    });
-
-    it("should return undefined for function values", () => {
-      const span = createMockSpan({
-        attributes: {
-          "function.field": () => "test",
-        },
-      });
-
-      const result = getAttributeValue(span, "function.field");
-
-      expect(result).toBeUndefined();
-    });
-
-    it("should return undefined for symbol values", () => {
-      const span = createMockSpan({
-        attributes: {
-          "symbol.field": Symbol("test"),
-        },
-      });
-
-      const result = getAttributeValue(span, "symbol.field");
-
-      expect(result).toBeUndefined();
-    });
-  });
-
   describe("real-world OpenTelemetry scenarios", () => {
     it("should handle typical LLM span attributes", () => {
       const span = createMockSpan({

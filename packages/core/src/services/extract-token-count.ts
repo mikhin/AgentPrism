@@ -1,9 +1,9 @@
-import type { ReadableSpan } from "@opentelemetry/sdk-trace-base";
+import type { Span } from "../types/open-telemetry";
 
 import { LLM_ATTRIBUTES } from "../constants.ts";
 import { getAttributeValue } from "./get-attribute-value.ts";
 
-export const extractTokenCount = (span: ReadableSpan): number => {
+export const extractTokenCount = (span: Span): number => {
   const totalTokens = getAttributeValue(span, LLM_ATTRIBUTES.TOKENS_TOTAL);
   const inputTokens = getAttributeValue(span, LLM_ATTRIBUTES.TOKENS_INPUT);
   const outputTokens = getAttributeValue(span, LLM_ATTRIBUTES.TOKENS_OUTPUT);

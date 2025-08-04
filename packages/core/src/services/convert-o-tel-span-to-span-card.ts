@@ -1,7 +1,5 @@
-import { type ReadableSpan } from "@opentelemetry/sdk-trace-base";
-
-import type { Span } from "../types/span";
-
+import type { Span } from "../types/open-telemetry.ts";
+import type { SpanCardType } from "../types/span.ts";
 import { calculateDuration } from "./calculate-duration.ts";
 import { convertTimestamp } from "./convert-timestamp.ts";
 import { determineSpanType } from "./determine-span-type.ts";
@@ -11,9 +9,9 @@ import { generateTitle } from "./generate-title.ts";
 import { mapSpanStatus } from "./map-span-status.ts";
 
 export const convertOTelSpanToSpanCard = (
-  span: ReadableSpan,
-  children: Span[] = [],
-): Span => {
+  span: Span,
+  children: SpanCardType[] = [],
+): SpanCardType => {
   const duration = calculateDuration(span);
   const status = mapSpanStatus(span.status.code);
   const spanType = determineSpanType(span);
@@ -21,15 +19,15 @@ export const convertOTelSpanToSpanCard = (
   const cost = extractCost(span);
 
   return {
-    id: span.spanContext().spanId,
+    id: span.spanId,
     title: generateTitle(span),
     type: spanType,
     status,
     duration,
     tokensCount,
     cost,
-    startTime: convertTimestamp(span.startTime),
-    endTime: convertTimestamp(span.endTime),
+    startTime: convertTimestamp(span.startTimeUnixNano),
+    endTime: convertTimestamp(span.endTimeUnixNano),
     children,
   };
 };
