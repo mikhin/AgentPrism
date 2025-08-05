@@ -1,3 +1,7 @@
+export type OpenTelemetryDocument = {
+  resourceSpans: ResourceSpan[];
+};
+
 export type ResourceSpan = {
   resource: Resource;
   scopeSpans: ScopeSpan[];
