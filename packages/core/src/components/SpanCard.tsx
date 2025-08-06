@@ -10,6 +10,8 @@ import {
 
 import type { SpanCardType } from "../types/span";
 
+import { getSpanCategoryLabel } from "../services/get-span-category-label.ts";
+import { getSpanCategoryTheme } from "../services/get-span-category-theme.ts";
 import { Avatar } from "./Avatar";
 import { Badge } from "./Badge";
 
@@ -135,16 +137,13 @@ const SpanCardContent: FC<{
     <h3 className="mr-3 max-w-32 overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-5">
       {data.title}
     </h3>
-
     <div className="flex items-center justify-start space-x-1">
-      <Badge theme="cyan" size="xs">
-        {data.type}
+      <Badge theme={getSpanCategoryTheme(data.type)} size="xs">
+        {getSpanCategoryLabel(data.type)}
       </Badge>
-
       <Badge iconStart={<Coins className="size-2.5" />} theme="gray" size="xs">
         {data.tokensCount}
       </Badge>
-
       <Badge theme="gray" size="xs">
         $ {data.cost}
       </Badge>

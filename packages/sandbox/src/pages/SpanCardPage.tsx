@@ -24,7 +24,7 @@ export const SpanCardPage = (): ReactElement => {
     startTime: new Date("2023-01-01T00:10:00Z"),
     endTime: new Date("2023-01-01T00:10:30Z"),
     tokensCount: 100,
-    type: "LLM",
+    type: "llm_call",
     duration: 30,
     status: "success",
     cost: 5,
