@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 
-type AvatarProps = {
+export type AvatarProps = {
   /**
    * The image source for the avatar
    */

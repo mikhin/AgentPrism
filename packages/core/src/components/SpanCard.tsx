@@ -12,7 +12,7 @@ import type { SpanCardType } from "../types/span";
 
 import { getSpanCategoryLabel } from "../services/get-span-category-label.ts";
 import { getSpanCategoryTheme } from "../services/get-span-category-theme.ts";
-import { Avatar } from "./Avatar";
+import { Avatar, type AvatarProps } from "./Avatar";
 import { Badge } from "./Badge";
 
 const LAYOUT_CONSTANTS = {
@@ -32,6 +32,7 @@ interface SpanCardProps {
   data: SpanCardType;
   level?: number;
   selectedCardId?: string;
+  avatar?: AvatarProps;
   onSelectionChange?: (cardId: string, isSelected: boolean) => void;
   expandButton: "inside" | "outside";
 }
@@ -237,6 +238,7 @@ export const SpanCard: FC<SpanCardProps> = ({
   selectedCardId,
   onSelectionChange,
   expandButton,
+  avatar,
 }) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -256,8 +258,8 @@ export const SpanCard: FC<SpanCardProps> = ({
 
   const gridTemplateColumns =
     expandButton === "inside"
-      ? `12px 16px ${layout.contentWidth}px auto 50px 6px`
-      : `16px ${layout.contentWidth}px 6px auto 50px 12px`;
+      ? `12px ${avatar ? "16px" : ""} ${layout.contentWidth}px auto 50px 6px`
+      : `${avatar ? "16px" : ""} ${layout.contentWidth}px 6px auto 50px 12px`;
 
   return (
     <li
@@ -301,7 +303,7 @@ export const SpanCard: FC<SpanCardProps> = ({
               <div className="w-3" aria-hidden="true" />
             ))}
 
-          <Avatar size="xs" rounded="full" />
+          {avatar && <Avatar {...avatar} />}
 
           <SpanCardContent data={data} />
 
