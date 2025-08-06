@@ -11,6 +11,7 @@ import {
 import type { SpanCardType } from "../types/span";
 import type { ColorVariant } from "../types/ui.ts";
 
+import { formatDuration } from "../services/calculate-duration.ts";
 import {
   getSpanCategoryIcon,
   getSpanCategoryLabel,
@@ -194,7 +195,9 @@ const SpanCardTimeline: FC<{
       <span className={`h-1.5 w-full rounded-sm ${timelineBgColors[theme]}`} />
     </span>
 
-    <span className="justify-self-end text-xs leading-3">{duration}</span>
+    <span className="justify-self-end text-xs leading-3">
+      {formatDuration(duration)}
+    </span>
   </>
 );
 
