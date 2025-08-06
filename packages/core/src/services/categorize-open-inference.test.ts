@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { createMockSpan } from "../utils/tests/create-mock-span";
 import { OPENINFERENCE_ATTRIBUTES } from "../constants/span-mappings";
+import { createMockSpan } from "../utils/tests/create-mock-span";
 import { categorizeOpenInference } from "./categorize-open-inference";
 
 describe("categorizeOpenInference", () => {

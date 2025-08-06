@@ -1,4 +1,3 @@
-// Standard OpenTelemetry fallback detection functions
 import type { Span } from "../types/open-telemetry.ts";
 
 import {

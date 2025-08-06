@@ -4,7 +4,6 @@ import {
   OPENTELEMETRY_GENAI_ATTRIBUTES,
   STANDARD_OPENTELEMETRY_ATTRIBUTES,
 } from "../constants/span-mappings.ts";
-
 import { getAttributeValue } from "./get-attribute-value.ts";
 
 export const generateTitle = (span: Span): string => {

@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
+import { STANDARD_OPENTELEMETRY_ATTRIBUTES } from "../constants/span-mappings";
 import { createMockSpan } from "../utils/tests/create-mock-span";
 import { categorizeStandardOpenTelemetry } from "./categorize-standard-open-telemetry";
-import { STANDARD_OPENTELEMETRY_ATTRIBUTES } from "../constants/span-mappings";
 
 describe("categorizeStandardOpenTelemetry", () => {
   describe("priority order detection", () => {

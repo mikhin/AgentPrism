@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 
+import { OPENTELEMETRY_GENAI_ATTRIBUTES } from "../constants/span-mappings.ts";
 import { createMockSpan } from "../utils/tests/create-mock-span";
 import { extractTokenCount } from "./extract-token-count";
-import { OPENTELEMETRY_GENAI_ATTRIBUTES } from "../constants/span-mappings.ts";
 
 describe("extractTokenCount", () => {
   it("should return total tokens when available as number", () => {

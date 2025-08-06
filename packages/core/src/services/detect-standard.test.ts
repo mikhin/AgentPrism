@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 
-import { createMockSpan } from "../utils/tests/create-mock-span";
-import { detectStandard } from "./detect-standard";
 import {
   OPENTELEMETRY_GENAI_ATTRIBUTES,
   OPENINFERENCE_ATTRIBUTES,
 } from "../constants/span-mappings";
+import { createMockSpan } from "../utils/tests/create-mock-span";
+import { detectStandard } from "./detect-standard";
 
 describe("detectStandard", () => {
   describe("OpenTelemetry GenAI detection", () => {

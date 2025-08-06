@@ -1,12 +1,12 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 
-import { createMockSpan } from "../utils/tests/create-mock-span";
-import { determineSpanCategory } from "./determine-span-category";
 import {
   OPENTELEMETRY_GENAI_ATTRIBUTES,
   OPENINFERENCE_ATTRIBUTES,
   STANDARD_OPENTELEMETRY_ATTRIBUTES,
 } from "../constants/span-mappings";
+import { createMockSpan } from "../utils/tests/create-mock-span";
+import { determineSpanCategory } from "./determine-span-category";
 
 vi.mock("../services/categorize-open-inference", () => ({
   categorizeOpenInference: vi.fn(),

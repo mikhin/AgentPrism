@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
+import { OPENTELEMETRY_GENAI_ATTRIBUTES } from "../constants/span-mappings";
 import { createMockSpan } from "../utils/tests/create-mock-span";
 import { categorizeOpenTelemetryGenAI } from "./categorize-open-telemetry-gen-ai.ts";
-import { OPENTELEMETRY_GENAI_ATTRIBUTES } from "../constants/span-mappings";
 
 describe("categorizeOpenTelemetryGenAI", () => {
   describe("OpenTelemetry GenAI operation name mappings", () => {
