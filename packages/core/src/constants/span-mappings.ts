@@ -1,12 +1,24 @@
 import type { SpanCategory } from "../types/span";
 
-// Attribute key constants for different standards
+// OpenTelemetry GenAI attribute constants
 export const OPENTELEMETRY_GENAI_ATTRIBUTES = {
   OPERATION_NAME: "gen_ai.operation.name",
   SYSTEM: "gen_ai.system",
   MODEL: "gen_ai.request.model",
   AGENT_NAME: "gen_ai.agent.name",
   TOOL_NAME: "gen_ai.tool.name",
+  // Usage and cost attributes
+  USAGE_INPUT_TOKENS: "gen_ai.usage.input_tokens",
+  USAGE_OUTPUT_TOKENS: "gen_ai.usage.output_tokens",
+  USAGE_TOTAL_TOKENS: "gen_ai.usage.total_tokens",
+  USAGE_COST: "gen_ai.usage.cost",
+  USAGE_INPUT_COST: "gen_ai.usage.input_cost",
+  USAGE_OUTPUT_COST: "gen_ai.usage.output_cost",
+  // Request attributes
+  REQUEST_TEMPERATURE: "gen_ai.request.temperature",
+  REQUEST_PROMPT: "gen_ai.request.prompt",
+  // Response attributes
+  RESPONSE_TEXT: "gen_ai.response.text",
 } as const;
 
 export const OPENINFERENCE_ATTRIBUTES = {
@@ -19,8 +31,11 @@ export const OPENINFERENCE_ATTRIBUTES = {
 
 export const STANDARD_OPENTELEMETRY_ATTRIBUTES = {
   HTTP_METHOD: "http.method",
+  HTTP_URL: "http.url",
   DB_SYSTEM: "db.system",
   DB_OPERATION: "db.operation.name",
+  DB_COLLECTION: "db.collection.name",
+  DB_QUERY_TEXT: "db.query.text",
   FUNCTION_NAME: "function.name",
 } as const;
 

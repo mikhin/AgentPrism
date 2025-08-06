@@ -15,20 +15,3 @@ export const badgeThemeClasses = {
   red: "bg-red-100 text-red-600 dark:bg-red-950/60 dark:text-red-300",
   gray: "bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-300",
 } as const;
-
-export const LLM_ATTRIBUTES = {
-  MODEL: "gen_ai.request.model",
-  TOKENS_INPUT: "gen_ai.usage.input_tokens",
-  TOKENS_OUTPUT: "gen_ai.usage.output_tokens",
-  TOKENS_TOTAL: "gen_ai.usage.total_tokens",
-  COST: "gen_ai.usage.cost",
-  TEMPERATURE: "gen_ai.request.temperature",
-  PROMPT: "gen_ai.request.prompt",
-  RESPONSE: "gen_ai.response.text",
-} as const;
-
-export const VECTOR_DB_ATTRIBUTES = {
-  OPERATION: "db.operation.name",
-  COLLECTION: "db.collection.name",
-  QUERY: "db.query.text",
-} as const;

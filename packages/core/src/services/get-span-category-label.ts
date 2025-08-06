@@ -5,14 +5,14 @@ import type { SpanCategory } from "../types/span.ts";
  */
 export function getSpanCategoryLabel(category: SpanCategory): string {
   const labels: Record<SpanCategory, string> = {
-    llm_call: "LLM Call",
-    tool_execution: "Tool Execution",
-    agent_invocation: "Agent Invocation",
-    chain_operation: "Chain Operation",
-    retrieval: "Retrieval",
-    embedding: "Embedding",
-    create_agent: "Create Agent",
-    unknown: "Unknown",
+    llm_call: "LLM",
+    tool_execution: "TOOL",
+    agent_invocation: "AGENT INVOCATION",
+    chain_operation: "CHAIN",
+    retrieval: "RETRIEVAL",
+    embedding: "EMBEDDING",
+    create_agent: "CREATE AGENT",
+    unknown: "UNKNOWN",
   };
 
   return labels[category];
