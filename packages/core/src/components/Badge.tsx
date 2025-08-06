@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import type { ColorVariant } from "../types/ui.ts";
 
-import { getBadgeThemeClasses } from "../utils/ui.ts";
+import { colorThemeClasses } from "../constants/ui.ts";
 
 const sizeClasses = {
   xs: "px-1.5 py-1 h-3.5",
@@ -59,9 +59,11 @@ export const Badge = ({
   iconEnd,
   className = "",
 }: BadgeProps): ReactElement => {
+  const { bg, darkBg, text, darkText } = colorThemeClasses[theme];
+
   return (
     <span
-      className={`inline-flex min-w-fit items-center overflow-hidden text-ellipsis whitespace-nowrap rounded font-medium ${getBadgeThemeClasses(theme)} ${sizeClasses[size]} ${className}`}
+      className={`inline-flex min-w-fit items-center overflow-hidden text-ellipsis whitespace-nowrap rounded font-medium ${bg} ${text} ${darkBg} ${darkText} ${sizeClasses[size]} ${className}`}
     >
       {iconStart && <span className="mr-1 flex-shrink-0">{iconStart}</span>}
 

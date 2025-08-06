@@ -9,12 +9,6 @@ export function getBgColorClass(color: ColorVariant): string {
   return colorThemeClasses[color].bg;
 }
 
-export function getBadgeThemeClasses(theme: ColorVariant): string {
-  const { bg, darkBg, text, darkText } = colorThemeClasses[theme];
-
-  return `${bg} ${text} ${darkBg} ${darkText}`;
-}
-
 export function getSpanCategoryTheme(category: SpanCategory): ColorVariant {
   return spanCategoryConfig[category].theme;
 }

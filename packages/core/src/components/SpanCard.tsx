@@ -9,6 +9,7 @@ import {
 } from "react";
 
 import type { SpanCardType } from "../types/span";
+import type { ColorVariant } from "../types/ui.ts";
 
 import {
   getSpanCategoryIcon,
@@ -30,6 +31,19 @@ const STATUS_COLORS = {
   running: "bg-violet-500 dark:bg-violet-700",
   warning: "bg-yellow-500 dark:bg-yellow-700",
 } as const;
+
+const timelineBgColors: Record<ColorVariant, string> = {
+  purple: "bg-purple-400 dark:bg-purple-600",
+  indigo: "bg-indigo-400 dark:bg-indigo-600",
+  orange: "bg-orange-400 dark:bg-orange-600",
+  teal: "bg-teal-400 dark:bg-teal-600",
+  cyan: "bg-cyan-400 dark:bg-cyan-600",
+  sky: "bg-sky-400 dark:bg-sky-600",
+  yellow: "bg-yellow-400 dark:bg-yellow-600",
+  emerald: "bg-emerald-400 dark:bg-emerald-600",
+  red: "bg-red-400 dark:bg-red-600",
+  gray: "bg-gray-400 dark:bg-gray-600",
+};
 
 interface SpanCardProps {
   data: SpanCardType;
@@ -170,13 +184,14 @@ const SpanCardContent: FC<{
 
 const SpanCardTimeline: FC<{
   duration: number;
-}> = ({ duration }) => (
+  theme: ColorVariant;
+}> = ({ duration, theme }) => (
   <>
     <span
       aria-hidden="true"
       className="flex h-3.5 w-full items-center justify-self-start rounded bg-gray-100 px-1 py-1"
     >
-      <span className="h-1.5 w-full rounded-sm bg-purple-400" />
+      <span className={`h-1.5 w-full rounded-sm ${timelineBgColors[theme]}`} />
     </span>
 
     <span className="justify-self-end text-xs leading-3">{duration}</span>
@@ -325,7 +340,10 @@ export const SpanCard: FC<SpanCardProps> = ({
 
           {expandButton == "outside" && <SpanCardStatus status={data.status} />}
 
-          <SpanCardTimeline duration={data.duration} />
+          <SpanCardTimeline
+            theme={getSpanCategoryTheme(data.type)}
+            duration={data.duration}
+          />
 
           {expandButton == "outside" &&
             (state.hasChildren ? (
