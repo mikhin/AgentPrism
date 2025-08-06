@@ -192,7 +192,6 @@ const SpanCardTimeline: FC<{
   maxEnd: number;
   theme: ColorVariant;
 }> = ({ startTime, endTime, minStart, maxEnd, theme }) => {
-  //
   const startMs = +startTime;
   const endMs = +endTime;
   const totalRange = maxEnd - minStart;
@@ -201,16 +200,16 @@ const SpanCardTimeline: FC<{
 
   return (
     <span className="flex w-full items-center">
-      <span className="relative h-3.5 w-full rounded bg-gray-100">
-        <span
-          className={`absolute h-1.5 rounded-sm ${timelineBgColors[theme]}`}
-          style={{
-            left: `${startPercent}%`,
-            width: `${widthPercent}%`,
-            top: "50%",
-            transform: "translateY(-50%)",
-          }}
-        />
+      <span className="relative h-3.5 w-full rounded bg-gray-100 px-1">
+        <span className="pointer-events-none absolute inset-x-1 top-1/2 h-1.5 -translate-y-1/2">
+          <span
+            className={`absolute h-full rounded-sm ${timelineBgColors[theme]}`}
+            style={{
+              left: `${startPercent}%`,
+              width: `${widthPercent}%`,
+            }}
+          />
+        </span>
       </span>
       <span className="ml-2 text-xs">{formatDuration(endMs - startMs)}</span>
     </span>
