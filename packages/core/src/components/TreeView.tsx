@@ -2,6 +2,7 @@ import { useState, useCallback, type FC } from "react";
 
 import type { SpanCardType } from "../types/span";
 
+import { flattenSpans } from "../services/flatten-span-cards.ts";
 import { Badge } from "./Badge.tsx";
 import { SpanCard } from "./SpanCard";
 import { SpanCardsList } from "./SpanCardsList";
@@ -32,6 +33,11 @@ export const TreeView: FC<TreeViewProps> = ({
   };
 
   const totalSpans = countTotalSpans(spans);
+
+  const allCards = flattenSpans(spans);
+
+  const minStart = Math.min(...allCards.map((c) => +new Date(c.startTime)));
+  const maxEnd = Math.max(...allCards.map((c) => +new Date(c.endTime)));
 
   const handleCardSelectionChange = useCallback(
     (cardId: string, isSelected: boolean) => {
@@ -71,6 +77,8 @@ export const TreeView: FC<TreeViewProps> = ({
               level={0}
               selectedCardId={selectedCardId}
               onSelectionChange={handleCardSelectionChange}
+              minStart={minStart}
+              maxEnd={maxEnd}
             />
           ))}
         </SpanCardsList>

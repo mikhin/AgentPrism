@@ -19,6 +19,8 @@ export const SpanCardsListPage = (): ReactElement => {
         <SpanCardsList>
           {sampleTreeViewData.map((span) => (
             <SpanCard
+              minStart={0}
+              maxEnd={100}
               expandButton="inside"
               key={span.id}
               data={span}

@@ -53,6 +53,8 @@ interface SpanCardProps {
   avatar?: AvatarProps;
   onSelectionChange?: (cardId: string, isSelected: boolean) => void;
   expandButton: "inside" | "outside";
+  minStart: number;
+  maxEnd: number;
 }
 
 interface LayoutCalculations {
@@ -184,22 +186,36 @@ const SpanCardContent: FC<{
 };
 
 const SpanCardTimeline: FC<{
-  duration: number;
+  startTime: Date;
+  endTime: Date;
+  minStart: number;
+  maxEnd: number;
   theme: ColorVariant;
-}> = ({ duration, theme }) => (
-  <>
-    <span
-      aria-hidden="true"
-      className="flex h-3.5 w-full items-center justify-self-start rounded bg-gray-100 px-1 py-1"
-    >
-      <span className={`h-1.5 w-full rounded-sm ${timelineBgColors[theme]}`} />
-    </span>
+}> = ({ startTime, endTime, minStart, maxEnd, theme }) => {
+  //
+  const startMs = +startTime;
+  const endMs = +endTime;
+  const totalRange = maxEnd - minStart;
+  const startPercent = ((startMs - minStart) / totalRange) * 100;
+  const widthPercent = ((endMs - startMs) / totalRange) * 100;
 
-    <span className="justify-self-end text-xs leading-3">
-      {formatDuration(duration)}
+  return (
+    <span className="flex w-full items-center">
+      <span className="relative h-3.5 w-full rounded bg-gray-100">
+        <span
+          className={`absolute h-1.5 rounded-sm ${timelineBgColors[theme]}`}
+          style={{
+            left: `${startPercent}%`,
+            width: `${widthPercent}%`,
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}
+        />
+      </span>
+      <span className="ml-2 text-xs">{formatDuration(endMs - startMs)}</span>
     </span>
-  </>
-);
+  );
+};
 
 const SpanCardStatus: FC<{
   status: keyof typeof STATUS_COLORS;
@@ -235,12 +251,16 @@ const SpanCardChildren: FC<{
   level: number;
   selectedCardId?: string;
   onChildSelectionChange: (childId: string, childIsSelected: boolean) => void;
+  minStart: number;
+  maxEnd: number;
 }> = ({
   data,
   level,
   selectedCardId,
   onChildSelectionChange,
   expandButton,
+  minStart,
+  maxEnd,
 }) => {
   if (!data.children?.length) return null;
 
@@ -255,6 +275,8 @@ const SpanCardChildren: FC<{
               expandButton={expandButton}
               key={child.id}
               data={child}
+              minStart={minStart}
+              maxEnd={maxEnd}
               level={level + 1}
               selectedCardId={selectedCardId}
               onSelectionChange={onChildSelectionChange}
@@ -273,6 +295,8 @@ export const SpanCard: FC<SpanCardProps> = ({
   onSelectionChange,
   expandButton,
   avatar,
+  minStart,
+  maxEnd,
 }) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -345,7 +369,10 @@ export const SpanCard: FC<SpanCardProps> = ({
 
           <SpanCardTimeline
             theme={getSpanCategoryTheme(data.type)}
-            duration={data.duration}
+            startTime={data.startTime}
+            endTime={data.endTime}
+            minStart={minStart}
+            maxEnd={maxEnd}
           />
 
           {expandButton == "outside" &&
@@ -363,6 +390,8 @@ export const SpanCard: FC<SpanCardProps> = ({
         </div>
 
         <SpanCardChildren
+          minStart={minStart}
+          maxEnd={maxEnd}
           expandButton={expandButton}
           data={data}
           level={level}
