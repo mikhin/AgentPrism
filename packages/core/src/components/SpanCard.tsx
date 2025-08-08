@@ -84,6 +84,32 @@ const calculateLayout = (
   return { marginLeft, horizontalLineWidth, contentWidth };
 };
 
+const getGridConfig = (
+  expandButton: "inside" | "outside",
+  hasAvatar: boolean,
+  contentWidth: number,
+) => {
+  if (expandButton === "inside") {
+    return {
+      gridTemplateAreas: hasAvatar
+        ? "'toggle avatar content status'"
+        : "'toggle content timeline status'",
+      gridTemplateColumns: hasAvatar
+        ? `12px 16px ${contentWidth}px auto`
+        : `12px ${contentWidth}px auto 6px`,
+    };
+  }
+
+  return {
+    gridTemplateAreas: hasAvatar
+      ? "'avatar content status timeline expand'"
+      : "'content status timeline expand'",
+    gridTemplateColumns: hasAvatar
+      ? `16px ${contentWidth}px 6px auto 12px`
+      : `${contentWidth}px 6px auto 12px`,
+  };
+};
+
 const getStatusColor = (status: keyof typeof STATUS_COLORS): string => {
   return STATUS_COLORS[status] || "bg-gray-500";
 };
@@ -211,7 +237,9 @@ const SpanCardTimeline: FC<{
           />
         </span>
       </span>
-      <span className="ml-2 text-xs">{formatDuration(endMs - startMs)}</span>
+      <span className="ml-2 whitespace-nowrap text-xs">
+        {formatDuration(endMs - startMs)}
+      </span>
     </span>
   );
 };
@@ -223,7 +251,7 @@ const SpanCardStatus: FC<{
 
   return (
     <span
-      className={`size-1.5 rounded-full ${statusColor}`}
+      className={`block size-1.5 rounded-full ${statusColor}`}
       aria-label={`Status: ${status}`}
       title={`Status: ${status}`}
     />
@@ -306,17 +334,17 @@ export const SpanCard: FC<SpanCardProps> = ({
   };
 
   const layout = calculateLayout(level, state.hasChildren);
+  const gridConfig = getGridConfig(
+    expandButton,
+    Boolean(avatar),
+    layout.contentWidth,
+  );
 
   const eventHandlers = useSpanCardEventHandlers(
     data,
     state.isSelected,
     onSelectionChange,
   );
-
-  const gridTemplateColumns =
-    expandButton === "inside"
-      ? `12px ${avatar ? "16px" : ""} ${layout.contentWidth}px auto 50px 6px`
-      : `${avatar ? "16px" : ""} ${layout.contentWidth}px 6px auto 50px 12px`;
 
   return (
     <li
@@ -330,10 +358,10 @@ export const SpanCard: FC<SpanCardProps> = ({
         style={{ marginLeft: `${layout.marginLeft}px` }}
       >
         <div
-          className="relative box-content grid h-5 w-full cursor-pointer items-center pb-3"
+          className="relative box-content grid h-5 w-full cursor-pointer items-center gap-2 pb-3"
           style={{
-            gridTemplateColumns,
-            gap: "8px",
+            gridTemplateAreas: gridConfig.gridTemplateAreas,
+            gridTemplateColumns: gridConfig.gridTemplateColumns,
           }}
           onClick={eventHandlers.handleCardClick}
           onKeyDown={eventHandlers.handleKeyDown}
@@ -349,43 +377,71 @@ export const SpanCard: FC<SpanCardProps> = ({
             horizontalLineWidth={layout.horizontalLineWidth}
           />
 
-          {expandButton == "inside" &&
+          {expandButton === "inside" &&
             (state.hasChildren ? (
-              <SpanCardToggle
-                isExpanded={state.isExpanded}
-                title={data.title}
-                onToggleClick={eventHandlers.handleToggleClick}
-              />
+              <div style={{ gridArea: "toggle" }}>
+                <SpanCardToggle
+                  isExpanded={state.isExpanded}
+                  title={data.title}
+                  onToggleClick={eventHandlers.handleToggleClick}
+                />
+              </div>
             ) : (
-              <div className="w-3" aria-hidden="true" />
+              <div
+                className="w-3"
+                style={{ gridArea: "toggle" }}
+                aria-hidden="true"
+              />
             ))}
 
-          {avatar && <Avatar {...avatar} />}
+          {avatar && (
+            <div style={{ gridArea: "avatar" }}>
+              <Avatar {...avatar} />
+            </div>
+          )}
 
-          <SpanCardContent data={data} />
+          <div style={{ gridArea: "content" }}>
+            <SpanCardContent data={data} />
+          </div>
 
-          {expandButton == "outside" && <SpanCardStatus status={data.status} />}
+          {expandButton === "outside" && (
+            <div style={{ gridArea: "status" }}>
+              <SpanCardStatus status={data.status} />
+            </div>
+          )}
 
-          <SpanCardTimeline
-            theme={getSpanCategoryTheme(data.type)}
-            startTime={data.startTime}
-            endTime={data.endTime}
-            minStart={minStart}
-            maxEnd={maxEnd}
-          />
+          <div style={{ gridArea: "timeline" }}>
+            <SpanCardTimeline
+              theme={getSpanCategoryTheme(data.type)}
+              startTime={data.startTime}
+              endTime={data.endTime}
+              minStart={minStart}
+              maxEnd={maxEnd}
+            />
+          </div>
 
-          {expandButton == "outside" &&
+          {expandButton === "inside" && (
+            <div style={{ gridArea: "status" }}>
+              <SpanCardStatus status={data.status} />
+            </div>
+          )}
+
+          {expandButton === "outside" &&
             (state.hasChildren ? (
-              <SpanCardToggle
-                isExpanded={state.isExpanded}
-                title={data.title}
-                onToggleClick={eventHandlers.handleToggleClick}
-              />
+              <div style={{ gridArea: "expand" }}>
+                <SpanCardToggle
+                  isExpanded={state.isExpanded}
+                  title={data.title}
+                  onToggleClick={eventHandlers.handleToggleClick}
+                />
+              </div>
             ) : (
-              <div className="w-3" aria-hidden="true" />
+              <div
+                className="w-3"
+                style={{ gridArea: "expand" }}
+                aria-hidden="true"
+              />
             ))}
-
-          {expandButton == "inside" && <SpanCardStatus status={data.status} />}
         </div>
 
         <SpanCardChildren
