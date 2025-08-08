@@ -3,7 +3,6 @@ import { useState, useCallback, type FC } from "react";
 import type { SpanCardType } from "../types/span";
 
 import { flattenSpans } from "../services/flatten-span-cards.ts";
-
 import { SpanCard } from "./SpanCard";
 import { SpanCardsList } from "./SpanCardsList";
 
