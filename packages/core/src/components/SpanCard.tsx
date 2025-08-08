@@ -226,7 +226,7 @@ const SpanCardTimeline: FC<{
 
   return (
     <span className="flex w-full items-center">
-      <span className="relative h-3.5 w-full rounded bg-gray-100 px-1">
+      <span className="relative h-3.5 flex-1 rounded bg-gray-100 px-1">
         <span className="pointer-events-none absolute inset-x-1 top-1/2 h-1.5 -translate-y-1/2">
           <span
             className={`absolute h-full rounded-sm ${timelineBgColors[theme]}`}
@@ -237,7 +237,7 @@ const SpanCardTimeline: FC<{
           />
         </span>
       </span>
-      <span className="ml-2 whitespace-nowrap text-xs">
+      <span className="ml-2 w-10 whitespace-nowrap text-right text-xs">
         {formatDuration(endMs - startMs)}
       </span>
     </span>
