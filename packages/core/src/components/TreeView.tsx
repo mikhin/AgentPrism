@@ -4,7 +4,6 @@ import type { SpanCardType } from "../types/span";
 
 import { flattenSpans } from "../services/flatten-span-cards.ts";
 import { SpanCard } from "./SpanCard";
-import { SpanCardsList } from "./SpanCardsList";
 
 interface TreeViewProps {
   spans: SpanCardType[];
@@ -51,7 +50,11 @@ export const TreeView: FC<TreeViewProps> = ({
       </div>
 
       <div className="p-2">
-        <SpanCardsList>
+        <ul
+          className={className}
+          role="tree"
+          aria-label="Hierarchical card list"
+        >
           {spans.map((span) => (
             <SpanCard
               expandButton={expandButton}
@@ -64,7 +67,7 @@ export const TreeView: FC<TreeViewProps> = ({
               maxEnd={maxEnd}
             />
           ))}
-        </SpanCardsList>
+        </ul>
       </div>
     </div>
   );
