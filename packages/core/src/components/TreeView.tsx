@@ -2,6 +2,7 @@ import { useState, useCallback, type FC } from "react";
 
 import type { SpanCardType } from "../types/span";
 
+import { findTimeRange } from "../services/find-time-range.ts";
 import { flattenSpans } from "../services/flatten-span-cards.ts";
 import { SpanCard } from "./SpanCard";
 
@@ -26,8 +27,7 @@ export const TreeView: FC<TreeViewProps> = ({
 
   const allCards = flattenSpans(spans);
 
-  const minStart = Math.min(...allCards.map((c) => +new Date(c.startTime)));
-  const maxEnd = Math.max(...allCards.map((c) => +new Date(c.endTime)));
+  const { minStart, maxEnd } = findTimeRange(allCards);
 
   const handleCardSelectionChange = useCallback(
     (cardId: string, isSelected: boolean) => {
