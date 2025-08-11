@@ -2,7 +2,7 @@ import { useState, useCallback, type FC } from "react";
 
 import type { Span } from "../types/span";
 
-import { Badge } from "./Badge.tsx";
+import { Badge } from "./Badge";
 import { SpanCard } from "./SpanCard";
 import { SpanCardsList } from "./SpanCardsList";
 

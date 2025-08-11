@@ -6,14 +6,23 @@
     "pnpm": ">=8.0.0"
   },
   "scripts": {
-    "dev": "pnpm run --parallel dev",
+    "preinstall": "npx --yes corepack@latest enable && corepack prepare pnpm@10.14.0 --activate || true",
+    "predev": "pnpm install",
+    "dev": "pnpm install && pnpm -r run --parallel dev",
     "build": "pnpm run --parallel build",
+    "postinstall": "pnpm -F ai-agent-trace-ui-core build",
     "format": "pnpm exec prettier . --write",
     "format:check": "pnpm exec prettier .",
     "eslint": "pnpm dlx eslint . --fix",
     "eslint:check": "pnpm dlx eslint .",
     "tsc": "pnpm run --parallel tsc",
     "test": "pnpm run --parallel test"
+  },
+  "packageManager": "pnpm@10.14.0",
+  "pnpm": {
+    "allowedBuiltDependencies": [
+      "esbuild"
+    ]
   },
   "devDependencies": {
     "@eslint/js": "^9.31.0",
