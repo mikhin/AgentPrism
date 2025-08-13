@@ -11,7 +11,7 @@
   "dependencies": {
     "@nanostores/react": "^1.0.0",
     "@nanostores/router": "^1.0.0",
-    "ai-agent-trace-ui-core": "workspace:^",
+    "ai-agent-trace-ui-core": "file:../core",
     "autoprefixer": "^10.4.21",
     "lucide-react": "^0.534.0",
     "nanostores": "^1.0.1",
