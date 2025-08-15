@@ -1,4 +1,4 @@
-import { type Span, SpanCard } from "ai-agent-trace-ui-core";
+import { type SpanCardType, SpanCard } from "ai-agent-trace-ui-core";
 import { type ReactElement, useState } from "react";
 
 import { SandboxItem } from "../components/SandboxItem.tsx";
@@ -18,13 +18,13 @@ export const SpanCardPage = (): ReactElement => {
   const rootSpan = sampleTreeViewData[0];
   const childSpan = rootSpan.children?.[0] || rootSpan;
 
-  const noChildrenSpan: Span = {
+  const noChildrenSpan: SpanCardType = {
     id: "no-children-span",
     title: "Span With No Children",
     startTime: new Date("2023-01-01T00:10:00Z"),
     endTime: new Date("2023-01-01T00:10:30Z"),
     tokensCount: 100,
-    type: "LLM",
+    type: "llm_call",
     duration: 30,
     status: "success",
     cost: 5,
@@ -38,11 +38,23 @@ export const SpanCardPage = (): ReactElement => {
         description="Different levels and spans displayed with SpanCard component"
       >
         <SandboxItem title="Root Span (Level 0)" pattern="grid">
-          <SpanCard data={rootSpan} level={0} />
+          <SpanCard
+            minStart={0}
+            maxEnd={10}
+            expandButton="inside"
+            data={rootSpan}
+            level={0}
+          />
         </SandboxItem>
 
         <SandboxItem title="Child Span (Level 1)">
-          <SpanCard data={childSpan} level={1} />
+          <SpanCard
+            minStart={5}
+            maxEnd={20}
+            expandButton="inside"
+            data={childSpan}
+            level={1}
+          />
         </SandboxItem>
       </SandboxSection>
 
@@ -55,6 +67,9 @@ export const SpanCardPage = (): ReactElement => {
           pattern="grid"
         >
           <SpanCard
+            minStart={0}
+            maxEnd={10}
+            expandButton="inside"
             data={rootSpan}
             level={0}
             selectedCardId={selectedCardId}
@@ -62,6 +77,9 @@ export const SpanCardPage = (): ReactElement => {
           />
 
           <SpanCard
+            minStart={5}
+            maxEnd={20}
+            expandButton="inside"
             data={childSpan}
             level={0}
             selectedCardId={selectedCardId}
@@ -70,7 +88,14 @@ export const SpanCardPage = (): ReactElement => {
         </SandboxItem>
 
         <SandboxItem title="Pre-selected Card">
-          <SpanCard data={childSpan} level={1} selectedCardId={childSpan.id} />
+          <SpanCard
+            minStart={0}
+            maxEnd={10}
+            expandButton="inside"
+            data={childSpan}
+            level={1}
+            selectedCardId={childSpan.id}
+          />
         </SandboxItem>
       </SandboxSection>
 
@@ -80,6 +105,9 @@ export const SpanCardPage = (): ReactElement => {
       >
         <SandboxItem title="Span With No Children" pattern="dots">
           <SpanCard
+            minStart={0}
+            maxEnd={10}
+            expandButton="inside"
             data={noChildrenSpan}
             level={0}
             selectedCardId={selectedCardId}

@@ -1,16 +1,17 @@
 import { useState, useCallback, type FC } from "react";
 
-import type { Span } from "../types/span";
+import type { SpanCardType } from "../types/span";
 
-import { Badge } from "./Badge";
+import { findTimeRange } from "../services/find-time-range.ts";
+import { flattenSpans } from "../services/flatten-span-cards.ts";
 import { SpanCard } from "./SpanCard";
-import { SpanCardsList } from "./SpanCardsList";
 
 interface TreeViewProps {
-  spans: Span[];
+  spans: SpanCardType[];
   onSelectionChange?: (selectedId: string | undefined) => void;
   className?: string;
   initialSelectedId?: string;
+  expandButton: "inside" | "outside";
 }
 
 export const TreeView: FC<TreeViewProps> = ({
@@ -18,18 +19,15 @@ export const TreeView: FC<TreeViewProps> = ({
   onSelectionChange,
   className = "",
   initialSelectedId,
+  expandButton,
 }) => {
   const [selectedCardId, setSelectedCardId] = useState<string | undefined>(
     initialSelectedId,
   );
 
-  const countTotalSpans = (items: Span[]): number => {
-    return items.reduce((count, item) => {
-      return count + 1 + (item.children ? countTotalSpans(item.children) : 0);
-    }, 0);
-  };
+  const allCards = flattenSpans(spans);
 
-  const totalSpans = countTotalSpans(spans);
+  const { minStart, maxEnd } = findTimeRange(allCards);
 
   const handleCardSelectionChange = useCallback(
     (cardId: string, isSelected: boolean) => {
@@ -44,14 +42,6 @@ export const TreeView: FC<TreeViewProps> = ({
     <div className={`border bg-white ${className}`}>
       <div className="flex items-center justify-between border-b p-3">
         <div className="flex w-full items-center gap-2">
-          <h3>Span Tree</h3>
-
-          <Badge theme="yellow">
-            {totalSpans} {totalSpans === 1 ? "Span" : "Spans"}
-          </Badge>
-
-          <Badge theme="gray">{spans.length} Top-Level Spans</Badge>
-
           <div className="ml-auto flex items-center gap-3">
             <button type="button">Expand all</button>
             <button type="button">Collapse all</button>
@@ -60,17 +50,24 @@ export const TreeView: FC<TreeViewProps> = ({
       </div>
 
       <div className="p-2">
-        <SpanCardsList>
+        <ul
+          className={className}
+          role="tree"
+          aria-label="Hierarchical card list"
+        >
           {spans.map((span) => (
             <SpanCard
+              expandButton={expandButton}
               key={span.id}
               data={span}
               level={0}
               selectedCardId={selectedCardId}
               onSelectionChange={handleCardSelectionChange}
+              minStart={minStart}
+              maxEnd={maxEnd}
             />
           ))}
-        </SpanCardsList>
+        </ul>
       </div>
     </div>
   );
