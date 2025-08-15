@@ -5,6 +5,10 @@ import type { SpanCardType } from "../types/span";
 import { findTimeRange } from "../services/find-time-range.ts";
 import { flattenSpans } from "../services/flatten-span-cards.ts";
 import { SpanCard } from "./SpanCard";
+import {
+  CollapseAllButton,
+  ExpandAllButton,
+} from "./SpanCard/components/Controls.tsx";
 
 interface TreeViewProps {
   spans: SpanCardType[];
@@ -43,8 +47,8 @@ export const TreeView: FC<TreeViewProps> = ({
       <div className="flex items-center justify-between border-b p-3">
         <div className="flex w-full items-center gap-2">
           <div className="ml-auto flex items-center gap-3">
-            <button type="button">Expand all</button>
-            <button type="button">Collapse all</button>
+            <ExpandAllButton onExpandAll={() => {}} />
+            <CollapseAllButton onCollapseAll={() => {}} />
           </div>
         </div>
       </div>
