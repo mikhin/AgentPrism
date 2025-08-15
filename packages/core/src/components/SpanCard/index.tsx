@@ -18,18 +18,12 @@ import {
 import { Avatar, type AvatarProps } from "../Avatar";
 import { Badge } from "../Badge";
 import { SpanCardTimeline } from "./components/Timeline";
+import { SpanCardStatus } from "./components/Status";
 
 const LAYOUT_CONSTANTS = {
   MARGIN_LEVEL_STEP: 20,
   BASE_HORIZONTAL_LINE_WIDTH: 8,
   CONTENT_BASE_WIDTH: 300,
-} as const;
-
-const STATUS_COLORS = {
-  success: "bg-green-500 dark:bg-green-700",
-  error: "bg-red-500 dark:bg-red-700",
-  running: "bg-violet-500 dark:bg-violet-700",
-  warning: "bg-yellow-500 dark:bg-yellow-700",
 } as const;
 
 interface SpanCardProps {
@@ -94,10 +88,6 @@ const getGridConfig = (
       ? `16px ${contentWidth}px 6px auto 12px`
       : `${contentWidth}px 6px auto 12px`,
   };
-};
-
-const getStatusColor = (status: keyof typeof STATUS_COLORS): string => {
-  return STATUS_COLORS[status] || "bg-gray-500";
 };
 
 const useSpanCardEventHandlers = (
@@ -194,20 +184,6 @@ const SpanCardContent: FC<{
         </Badge>
       </div>
     </div>
-  );
-};
-
-const SpanCardStatus: FC<{
-  status: keyof typeof STATUS_COLORS;
-}> = ({ status }) => {
-  const statusColor = getStatusColor(status);
-
-  return (
-    <span
-      className={`block size-1.5 rounded-full ${statusColor}`}
-      aria-label={`Status: ${status}`}
-      title={`Status: ${status}`}
-    />
   );
 };
 
