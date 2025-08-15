@@ -1,5 +1,4 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
-import { ChevronDown, ChevronRight } from "lucide-react";
 import {
   useState,
   type FC,
@@ -15,6 +14,7 @@ import { Avatar, type AvatarProps } from "../Avatar";
 import { SpanCardTimeline } from "./components/Timeline";
 import { SpanCardStatus } from "./components/Status";
 import { SpanCardContent } from "./components/Content";
+import { SpanCardToggle } from "./components/Toggle";
 
 const LAYOUT_CONSTANTS = {
   MARGIN_LEVEL_STEP: 20,
@@ -126,28 +126,6 @@ const useSpanCardEventHandlers = (
     handleToggleClick,
   };
 };
-
-const SpanCardToggle: FC<{
-  isExpanded: boolean;
-  title: string;
-  onToggleClick: (e: MouseEvent | KeyboardEvent) => void;
-}> = ({ isExpanded, title, onToggleClick }) => (
-  <Collapsible.Trigger asChild>
-    <button
-      className="flex size-3 items-center justify-center"
-      onClick={onToggleClick}
-      onKeyDown={onToggleClick}
-      aria-label={`${isExpanded ? "Collapse" : "Expand"} ${title} children`}
-      aria-expanded={isExpanded}
-    >
-      {isExpanded ? (
-        <ChevronDown aria-hidden="true" className="text-gray-500" />
-      ) : (
-        <ChevronRight aria-hidden="true" className="text-gray-500" />
-      )}
-    </button>
-  </Collapsible.Trigger>
-);
 
 const SpanCardConnector: FC<{
   level: number;
