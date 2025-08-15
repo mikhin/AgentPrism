@@ -9,6 +9,7 @@ import {
   CollapseAllButton,
   ExpandAllButton,
 } from "./SpanCard/components/Controls.tsx";
+import { SearchInput } from "./SpanCard/components/Search.tsx";
 
 interface TreeViewProps {
   spans: SpanCardType[];
@@ -43,8 +44,10 @@ export const TreeView: FC<TreeViewProps> = ({
   );
 
   return (
-    <div className={`border bg-white ${className}`}>
+    <div className={`border bg-white dark:bg-gray-950 ${className}`}>
       <div className="flex items-center justify-between border-b p-3">
+        <SearchInput onSearch={() => {}} />
+
         <div className="flex w-full items-center gap-2">
           <div className="ml-auto flex items-center gap-3">
             <ExpandAllButton onExpandAll={() => {}} />
