@@ -15,6 +15,10 @@ import { SpanCardTimeline } from "./components/Timeline";
 import { SpanCardStatus } from "./components/Status";
 import { SpanCardContent } from "./components/Content";
 import { SpanCardToggle } from "./components/Toggle";
+import {
+  SpanCardHorizaontalConnector,
+  SpanCardVerticalConnector,
+} from "./components/Connectors";
 
 const LAYOUT_CONSTANTS = {
   MARGIN_LEVEL_STEP: 20,
@@ -127,20 +131,6 @@ const useSpanCardEventHandlers = (
   };
 };
 
-const SpanCardConnector: FC<{
-  level: number;
-  horizontalLineWidth: number;
-}> = ({ level, horizontalLineWidth }) => {
-  if (level === 0) return null;
-
-  return (
-    <div
-      className="absolute -left-[15px] top-2.5 h-0.5 bg-gray-100 dark:bg-gray-800"
-      style={{ width: `${horizontalLineWidth}px` }}
-    />
-  );
-};
-
 const SpanCardChildren: FC<{
   expandButton: "inside" | "outside";
   data: SpanCardType;
@@ -162,7 +152,7 @@ const SpanCardChildren: FC<{
 
   return (
     <div className="relative">
-      <div className="absolute -top-3 ml-1 h-[calc(100%-9px)] w-0.5 translate-x-1/2 transform bg-gray-100 dark:bg-gray-800" />
+      <SpanCardVerticalConnector />
 
       <Collapsible.Content>
         <ul role="group">
@@ -241,7 +231,7 @@ export const SpanCard: FC<SpanCardProps> = ({
           aria-expanded={state.hasChildren ? state.isExpanded : undefined}
           aria-label={`${state.isSelected ? "Selected" : "Not selected"} span card for ${data.title} at level ${level}`}
         >
-          <SpanCardConnector
+          <SpanCardHorizaontalConnector
             level={level}
             horizontalLineWidth={layout.horizontalLineWidth}
           />
