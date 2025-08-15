@@ -1,5 +1,5 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
-import { ChevronDown, ChevronRight, Coins } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import {
   useState,
   type FC,
@@ -10,15 +10,11 @@ import {
 
 import type { SpanCardType } from "../../types/span";
 
-import {
-  getSpanCategoryIcon,
-  getSpanCategoryLabel,
-  getSpanCategoryTheme,
-} from "../../utils/ui";
+import { getSpanCategoryTheme } from "../../utils/ui";
 import { Avatar, type AvatarProps } from "../Avatar";
-import { Badge } from "../Badge";
 import { SpanCardTimeline } from "./components/Timeline";
 import { SpanCardStatus } from "./components/Status";
+import { SpanCardContent } from "./components/Content";
 
 const LAYOUT_CONSTANTS = {
   MARGIN_LEVEL_STEP: 20,
@@ -152,40 +148,6 @@ const SpanCardToggle: FC<{
     </button>
   </Collapsible.Trigger>
 );
-
-const SpanCardContent: FC<{
-  data: SpanCardType;
-}> = ({ data }) => {
-  const Icon = getSpanCategoryIcon(data.type);
-
-  return (
-    <div className="flex items-center">
-      <h3 className="mr-3 max-w-32 overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-5 text-gray-900 dark:text-gray-200">
-        {data.title}
-      </h3>
-
-      <div className="flex items-center justify-start space-x-1">
-        <Badge
-          iconStart={<Icon className="size-2.5" />}
-          theme={getSpanCategoryTheme(data.type)}
-          size="xs"
-        >
-          {getSpanCategoryLabel(data.type)}
-        </Badge>
-        <Badge
-          iconStart={<Coins className="size-2.5" />}
-          theme="gray"
-          size="xs"
-        >
-          {data.tokensCount}
-        </Badge>
-        <Badge theme="gray" size="xs">
-          $ {data.cost}
-        </Badge>
-      </div>
-    </div>
-  );
-};
 
 const SpanCardConnector: FC<{
   level: number;
