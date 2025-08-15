@@ -9,7 +9,7 @@
     "pnpm": ">=8.0.0"
   },
   "scripts": {
-    "dev": "npm -w packages/core run dev & npm -w packages/sandbox run dev",
+    "dev": "npm -w packages/core run build && (npm -w packages/core run dev & npm -w packages/sandbox run dev)",
     "build": "npm -w packages/core run build && npm -w packages/sandbox run build",
     "format": "pnpm exec prettier . --write",
     "format:check": "pnpm exec prettier .",
