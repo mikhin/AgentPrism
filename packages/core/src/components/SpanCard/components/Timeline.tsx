@@ -32,12 +32,13 @@ export const SpanCardTimeline = ({
   const startMs = +startTime;
   const endMs = +endTime;
   const totalRange = maxEnd - minStart;
+  const durationMs = endMs - startMs;
   const startPercent = ((startMs - minStart) / totalRange) * 100;
-  const widthPercent = ((endMs - startMs) / totalRange) * 100;
+  const widthPercent = (durationMs / totalRange) * 100;
 
   return (
     <span className="flex w-full items-center">
-      <span className="relative h-3.5 flex-1 rounded bg-gray-100 px-1">
+      <span className="relative h-4 flex-1 rounded bg-gray-200 px-1 dark:bg-gray-900">
         <span className="pointer-events-none absolute inset-x-1 top-1/2 h-1.5 -translate-y-1/2">
           <span
             className={`absolute h-full rounded-sm ${timelineBgColors[theme]}`}
@@ -48,8 +49,8 @@ export const SpanCardTimeline = ({
           />
         </span>
       </span>
-      <span className="ml-2 w-10 whitespace-nowrap text-right text-xs">
-        {formatDuration(endMs - startMs)}
+      <span className="ml-2 w-10 whitespace-nowrap text-right text-xs text-black dark:text-white">
+        {formatDuration(durationMs)}
       </span>
     </span>
   );
