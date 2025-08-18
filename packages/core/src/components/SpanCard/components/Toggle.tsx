@@ -20,6 +20,7 @@ export const SpanCardToggle = ({
       onKeyDown={onToggleClick}
       aria-label={`${isExpanded ? "Collapse" : "Expand"} ${title} children`}
       aria-expanded={isExpanded}
+      type="button"
     >
       {isExpanded ? (
         <ChevronDown aria-hidden="true" className="text-gray-500" />

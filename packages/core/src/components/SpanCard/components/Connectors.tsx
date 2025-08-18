@@ -1,4 +1,4 @@
-interface SpanCardHorizaontalConnectorProps {
+interface SpanCardHorizontalConnectorProps {
   level: number;
   horizontalLineWidth: number;
 }
@@ -6,7 +6,7 @@ interface SpanCardHorizaontalConnectorProps {
 export const SpanCardHorizaontalConnector = ({
   level,
   horizontalLineWidth,
-}: SpanCardHorizaontalConnectorProps) => {
+}: SpanCardHorizontalConnectorProps) => {
   if (level === 0) return null;
 
   return (

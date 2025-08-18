@@ -15,10 +15,12 @@ export const IconButton = ({
   children,
   className,
   size = "md",
+  type = "button",
   ...props
 }: IconButtonProps) => {
   return (
     <button
+      type={type}
       {...props}
       className={cn(
         className,

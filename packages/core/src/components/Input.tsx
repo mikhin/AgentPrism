@@ -75,6 +75,7 @@ export const Input = ({
           className={cn(iconBaseClassName, "right-2")}
           aria-label="Clear input value"
           onClick={handleClear}
+          type="button"
         >
           <X className="size-4" />
         </button>
