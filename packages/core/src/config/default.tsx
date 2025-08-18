@@ -8,9 +8,9 @@ import {
   Plus,
   HelpCircle,
 } from "lucide-react";
-import type { AgentTraceConfig } from "../types/config";
+import type { AgentTraceConfig, BadgesConfig } from "../types/config";
 
-const defaultBadges: AgentTraceConfig["badges"] = {
+const defaultBadges: BadgesConfig = {
   llm_call: {
     label: "LLM",
     theme: "purple",
