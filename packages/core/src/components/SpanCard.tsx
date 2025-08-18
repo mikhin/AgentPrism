@@ -9,7 +9,6 @@ import {
 
 import type { SpanCardType } from "../types/span";
 
-import { getSpanCategoryTheme } from "../utils/ui";
 import { Avatar, type AvatarProps } from "./Avatar";
 import { SpanCardTimeline } from "./SpanCardTimeline";
 import { SpanCardStatus } from "./SpanCardStatus";
@@ -19,6 +18,7 @@ import {
   SpanCardHorizaontalConnector,
   SpanCardVerticalConnector,
 } from "./SpanCardConnectors";
+import { useAgentTraceContext } from "../context/useAgentTraceContext";
 
 const LAYOUT_CONSTANTS = {
   MARGIN_LEVEL_STEP: 20,
@@ -184,6 +184,8 @@ export const SpanCard: FC<SpanCardProps> = ({
   minStart,
   maxEnd,
 }) => {
+  const { config } = useAgentTraceContext();
+
   const [isExpanded, setIsExpanded] = useState(true);
 
   const state: SpanCardState = {
@@ -271,7 +273,7 @@ export const SpanCard: FC<SpanCardProps> = ({
 
           <div style={{ gridArea: "timeline" }}>
             <SpanCardTimeline
-              theme={getSpanCategoryTheme(data.type)}
+              theme={config.badges[data.type].theme}
               startTime={data.startTime}
               endTime={data.endTime}
               minStart={minStart}

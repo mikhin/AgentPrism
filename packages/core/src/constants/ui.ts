@@ -1,16 +1,3 @@
-import {
-  Zap,
-  Wrench,
-  Bot,
-  Link,
-  Search,
-  BarChart2,
-  Plus,
-  HelpCircle,
-  type LucideIcon,
-} from "lucide-react";
-
-import type { SpanCategory } from "../types/span.ts";
 import type { ColorVariant } from "../types/ui.ts";
 
 export const roundedClasses = {
@@ -92,58 +79,5 @@ export const colorThemeClasses: Record<
     darkBg: "dark:bg-gray-900",
     text: "text-gray-600",
     darkText: "dark:text-gray-300",
-  },
-};
-
-/**
- * Shared configuration for span categories containing label, theme, and icon
- */
-export const spanCategoryConfig: Record<
-  SpanCategory,
-  {
-    label: string;
-    theme: ColorVariant;
-    icon: LucideIcon;
-  }
-> = {
-  llm_call: {
-    label: "LLM",
-    theme: "purple",
-    icon: Zap,
-  },
-  tool_execution: {
-    label: "TOOL",
-    theme: "orange",
-    icon: Wrench,
-  },
-  agent_invocation: {
-    label: "AGENT INVOCATION",
-    theme: "indigo",
-    icon: Bot,
-  },
-  chain_operation: {
-    label: "CHAIN",
-    theme: "teal",
-    icon: Link,
-  },
-  retrieval: {
-    label: "RETRIEVAL",
-    theme: "cyan",
-    icon: Search,
-  },
-  embedding: {
-    label: "EMBEDDING",
-    theme: "emerald",
-    icon: BarChart2,
-  },
-  create_agent: {
-    label: "CREATE AGENT",
-    theme: "sky",
-    icon: Plus,
-  },
-  unknown: {
-    label: "UNKNOWN",
-    theme: "gray",
-    icon: HelpCircle,
   },
 };

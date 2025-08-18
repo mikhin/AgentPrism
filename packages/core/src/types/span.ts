@@ -1,3 +1,6 @@
+import type { ColorVariant } from "./ui";
+import type { LucideIcon } from "lucide-react";
+
 export type SpanStatus = "success" | "error" | "pending" | "warning";
 
 export type SpanCardType = {
@@ -22,3 +25,9 @@ export type SpanCategory =
   | "embedding"
   | "create_agent"
   | "unknown";
+
+export type SpanBadgeType = {
+  label: string;
+  theme: ColorVariant;
+  icon: LucideIcon;
+};

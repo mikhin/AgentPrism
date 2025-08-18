@@ -12,3 +12,5 @@ export type {
   StatusCode,
   OpenTelemetryDocument,
 } from "./types/open-telemetry.ts";
+
+export { AgentTraceProvider } from "./context/provider.tsx";

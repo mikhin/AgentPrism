@@ -1,18 +1,18 @@
 import { Coins } from "lucide-react";
 import type { SpanCardType } from "../types/span";
-import {
-  getSpanCategoryIcon,
-  getSpanCategoryLabel,
-  getSpanCategoryTheme,
-} from "../utils/ui";
 import { Badge } from "./Badge";
+import { useAgentTraceContext } from "../context/useAgentTraceContext";
 
 interface SpanCardContentProps {
   data: SpanCardType;
 }
 
 export const SpanCardContent = ({ data }: SpanCardContentProps) => {
-  const Icon = getSpanCategoryIcon(data.type);
+  const { config } = useAgentTraceContext();
+
+  const Icon = config.badges[data.type].icon;
+  const theme = config.badges[data.type].theme;
+  const label = config.badges[data.type].label;
 
   return (
     <div className="flex items-center">
@@ -23,10 +23,10 @@ export const SpanCardContent = ({ data }: SpanCardContentProps) => {
       <div className="flex items-center justify-start space-x-1">
         <Badge
           iconStart={<Icon className="size-2.5" />}
-          theme={getSpanCategoryTheme(data.type)}
+          theme={theme}
           size="xs"
         >
-          {getSpanCategoryLabel(data.type)}
+          {label}
         </Badge>
 
         <Badge
