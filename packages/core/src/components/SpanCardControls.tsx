@@ -1,15 +1,17 @@
 import { ChevronsUpDown, ChevronsDownUp } from "lucide-react";
-import { IconButton } from "../../IconButton";
+import { IconButton } from "./IconButton";
 
-interface ExpandAllButtonProps {
+interface SpanCardExpandAllButtonProps {
   onExpandAll: () => void;
 }
 
-interface CollapseAllButtonProps {
+interface SpanCardCollapseAllButtonProps {
   onCollapseAll: () => void;
 }
 
-export const ExpandAllButton = ({ onExpandAll }: ExpandAllButtonProps) => {
+export const SpanCardExpandAllButton = ({
+  onExpandAll,
+}: SpanCardExpandAllButtonProps) => {
   return (
     <IconButton onClick={onExpandAll} aria-label="Expand all">
       <ChevronsUpDown className="size-3.5" />
@@ -17,9 +19,9 @@ export const ExpandAllButton = ({ onExpandAll }: ExpandAllButtonProps) => {
   );
 };
 
-export const CollapseAllButton = ({
+export const SpanCardCollapseAllButton = ({
   onCollapseAll,
-}: CollapseAllButtonProps) => {
+}: SpanCardCollapseAllButtonProps) => {
   return (
     <IconButton onClick={onCollapseAll} aria-label="Collapse all">
       <ChevronsDownUp className="size-3.5" />

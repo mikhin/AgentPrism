@@ -1,5 +1,5 @@
-import { formatDuration } from "../../../services/calculate-duration";
-import type { ColorVariant } from "../../../types/ui";
+import { formatDuration } from "../services/calculate-duration";
+import type { ColorVariant } from "../types/ui";
 
 interface SpanCardTimelineProps {
   startTime: Date;

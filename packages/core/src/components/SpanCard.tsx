@@ -7,18 +7,18 @@ import {
   type MouseEvent,
 } from "react";
 
-import type { SpanCardType } from "../../types/span";
+import type { SpanCardType } from "../types/span";
 
-import { getSpanCategoryTheme } from "../../utils/ui";
-import { Avatar, type AvatarProps } from "../Avatar";
-import { SpanCardTimeline } from "./components/Timeline";
-import { SpanCardStatus } from "./components/Status";
-import { SpanCardContent } from "./components/Content";
-import { SpanCardToggle } from "./components/Toggle";
+import { getSpanCategoryTheme } from "../utils/ui";
+import { Avatar, type AvatarProps } from "./Avatar";
+import { SpanCardTimeline } from "./SpanCardTimeline";
+import { SpanCardStatus } from "./SpanCardStatus";
+import { SpanCardContent } from "./SpanCardContent";
+import { SpanCardToggle } from "./SpanCardToggle";
 import {
   SpanCardHorizaontalConnector,
   SpanCardVerticalConnector,
-} from "./components/Connectors";
+} from "./SpanCardConnectors";
 
 const LAYOUT_CONSTANTS = {
   MARGIN_LEVEL_STEP: 20,

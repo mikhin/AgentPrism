@@ -1,11 +1,11 @@
 import { Coins } from "lucide-react";
-import type { SpanCardType } from "../../../types/span";
+import type { SpanCardType } from "../types/span";
 import {
   getSpanCategoryIcon,
   getSpanCategoryLabel,
   getSpanCategoryTheme,
-} from "../../../utils/ui";
-import { Badge } from "../../Badge";
+} from "../utils/ui";
+import { Badge } from "./Badge";
 
 interface SpanCardContentProps {
   data: SpanCardType;

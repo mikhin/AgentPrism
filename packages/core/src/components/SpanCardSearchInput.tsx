@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Input } from "../../Input";
+import { Input } from "./Input";
 import { Search } from "lucide-react";
 
-interface SearchInputProps {
+interface SpanCardSearchInputProps {
   onSearch: (value: string) => void;
 }
 
-export const SearchInput = ({ onSearch }: SearchInputProps) => {
+export const SpanCardSearchInput = ({ onSearch }: SpanCardSearchInputProps) => {
   const [value, setValue] = useState("");
 
   useEffect(() => {
