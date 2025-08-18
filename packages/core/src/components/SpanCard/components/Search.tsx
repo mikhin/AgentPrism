@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useDebounce } from "../../../hooks/useDebounce";
 import { Input } from "../../Input";
 import { Search } from "lucide-react";
 
@@ -10,11 +9,9 @@ interface SearchInputProps {
 export const SearchInput = ({ onSearch }: SearchInputProps) => {
   const [value, setValue] = useState("");
 
-  const debouncedValue = useDebounce(value, 300);
-
   useEffect(() => {
-    onSearch(debouncedValue);
-  }, [debouncedValue, onSearch]);
+    onSearch(value);
+  }, [value, onSearch]);
 
   return (
     <Input
