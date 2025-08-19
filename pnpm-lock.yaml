@@ -51,6 +51,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.6)
+      classnames:
+        specifier: 2.5.1
+        version: 2.5.1
       lucide-react:
         specifier: ^0.534.0
         version: 0.534.0(react@19.1.0)
