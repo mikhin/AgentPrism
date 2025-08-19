@@ -63,6 +63,7 @@ export function Layout({ children }: LayoutProps) {
             className="absolute right-4 top-4 z-10 text-gray-500 hover:text-gray-700 md:hidden"
             onClick={() => setSidebarOpen(false)}
             aria-label="Close navigation menu"
+            type="button"
           >
             <span aria-hidden="true">✕</span>
           </button>
@@ -79,6 +80,7 @@ export function Layout({ children }: LayoutProps) {
           aria-label="Open navigation menu"
           aria-expanded={sidebarOpen}
           aria-controls="sidebar"
+          type="button"
         >
           <span aria-hidden="true">☰</span> Menu
         </button>
