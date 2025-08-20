@@ -2,6 +2,7 @@ import { createRouter } from "@nanostores/router";
 
 import { AgentTracesTestPage } from "../pages/AgentTracesTestPage";
 import { BadgePage } from "../pages/BadgePage";
+import { CollapsibleSectionPage } from "../pages/CollapsibleSectionPage";
 import { DetailsViewPage } from "../pages/DetailsViewPage";
 import { HomePage } from "../pages/HomePage";
 import { OpenTelemetryAdaptersPage } from "../pages/OpenTelemetryAdaptersPage";
@@ -45,6 +46,11 @@ export const ROUTES = {
     path: "/details-view",
     component: DetailsViewPage,
     label: "Details View",
+  },
+  collapsibleSection: {
+    path: "/collapsible-section",
+    component: CollapsibleSectionPage,
+    label: "Collapsible Section",
   },
 } as const;
 
