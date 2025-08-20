@@ -30,6 +30,8 @@ export const TreeView: FC<TreeViewProps> = ({
     initialSelectedId,
   );
 
+  const [searchValue, setSearchValue] = useState("");
+
   const allCards = flattenSpans(spans);
 
   const { minStart, maxEnd } = findTimeRange(allCards);
@@ -45,10 +47,17 @@ export const TreeView: FC<TreeViewProps> = ({
 
   return (
     <div className={`border bg-white dark:bg-gray-950 ${className}`}>
-      <div className="flex items-center justify-between border-b p-3">
-        <SpanCardSearchInput onSearch={() => {}} />
+      <div className="flex items-center justify-between gap-2 border-b p-3">
+        <SpanCardSearchInput
+          name="search"
+          clearable
+          onClear={() => setSearchValue("")}
+          value={searchValue}
+          onValueChange={setSearchValue}
+          className="max-w-60 grow"
+        />
 
-        <div className="flex w-full items-center gap-2">
+        <div className="flex items-center gap-2">
           <div className="ml-auto flex items-center gap-3">
             <SpanCardExpandAllButton onExpandAll={() => {}} />
             <SpanCardCollapseAllButton onCollapseAll={() => {}} />
