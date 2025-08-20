@@ -31,16 +31,35 @@ export const SpanCardStatus = ({
 }: SpanCardStatusProps) => {
   const title = `Status: ${status}`;
 
-  if (variant === "dot") {
-    return (
-      <span
-        className={cn("block size-1.5 rounded-full", STATUS_COLORS_DOT[status])}
-        aria-label={title}
-        title={title}
-      />
-    );
-  }
+  return (
+    <div className="flex size-5 items-center justify-center">
+      {variant === "dot" ? (
+        <SpanCardStatusDot status={status} title={title} />
+      ) : (
+        <SpanCardStatusBadge status={status} title={title} />
+      )}
+    </div>
+  );
+};
 
+interface SpanCardStatusWithTitleProps extends SpanCardStatusProps {
+  title: string;
+}
+
+const SpanCardStatusDot = ({ status, title }: SpanCardStatusWithTitleProps) => {
+  return (
+    <span
+      className={cn("block size-1.5 rounded-full", STATUS_COLORS_DOT[status])}
+      aria-label={title}
+      title={title}
+    />
+  );
+};
+
+const SpanCardStatusBadge = ({
+  status,
+  title,
+}: SpanCardStatusWithTitleProps) => {
   return (
     <span
       className={cn(
