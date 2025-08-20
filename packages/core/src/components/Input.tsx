@@ -1,3 +1,5 @@
+import cn from "classnames";
+import { X } from "lucide-react";
 import {
   useRef,
   type ChangeEvent,
@@ -5,8 +7,6 @@ import {
   type ReactNode,
   type RefObject,
 } from "react";
-import cn from "classnames";
-import { X } from "lucide-react";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   onValueChange?: (value: string) => void;

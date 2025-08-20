@@ -1,15 +1,19 @@
 import type { ButtonHTMLAttributes } from "react";
+
 import cn from "classnames";
 
-type IconButtonSize = "md";
+type IconButtonSize = "sm" | "md";
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: IconButtonSize;
 }
 
 const sizeClasses: Record<IconButtonSize, string> = {
+  sm: "h-5 min-h-5",
   md: "h-7 min-h-7",
 };
+
+// TODO: Remake to call Icon component directly instead of passing children
 
 export const IconButton = ({
   children,

@@ -1,5 +1,6 @@
 import cn from "classnames";
 import { Check, Ellipsis, Info, TriangleAlert } from "lucide-react";
+
 import type { SpanStatus } from "../types/span";
 
 type StatusVariant = "dot" | "badge";

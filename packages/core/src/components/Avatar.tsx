@@ -7,10 +7,18 @@ import { getBgColorClass } from "../utils/ui";
 
 const sizeClasses = {
   xs: "w-4 h-4 text-xs",
-  sm: "w-6 h-6 text-sm",
+  sm: "w-5 h-5 text-sm",
   md: "w-8 h-8 text-base",
   lg: "w-10 h-10 text-lg",
   xl: "w-12 h-12 text-xl",
+};
+
+const textSizeClasses = {
+  xs: "text-xs",
+  sm: "text-xs",
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
 };
 
 export type AvatarProps = {
@@ -69,7 +77,7 @@ export const Avatar = ({
 
   return (
     <div
-      className={`overflow-hidden ${sizeClasses[size]} ${roundedClasses[rounded]} ${className}`}
+      className={`overflow-hidden ${sizeClasses[size]} ${textSizeClasses[size]} ${roundedClasses[rounded]} ${className}`}
     >
       {src ? (
         <img src={src} alt={alt} className="h-full w-full object-cover" />

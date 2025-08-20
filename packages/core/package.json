@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.1.11",
+    "@radix-ui/react-tabs": "^1.1.13",
     "autoprefixer": "^10.4.21",
     "classnames": "2.5.1",
     "lucide-react": "^0.534.0",

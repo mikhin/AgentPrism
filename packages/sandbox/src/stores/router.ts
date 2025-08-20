@@ -2,6 +2,7 @@ import { createRouter } from "@nanostores/router";
 
 import { AgentTracesTestPage } from "../pages/AgentTracesTestPage";
 import { BadgePage } from "../pages/BadgePage";
+import { DetailsViewPage } from "../pages/DetailsViewPage";
 import { HomePage } from "../pages/HomePage";
 import { OpenTelemetryAdaptersPage } from "../pages/OpenTelemetryAdaptersPage";
 import { SpanCardPage } from "../pages/SpanCardPage";
@@ -39,6 +40,11 @@ export const ROUTES = {
     path: "/agent-traces-test",
     component: AgentTracesTestPage,
     label: "Agent Traces Test",
+  },
+  detailsView: {
+    path: "/details-view",
+    component: DetailsViewPage,
+    label: "Details View",
   },
 } as const;
 
