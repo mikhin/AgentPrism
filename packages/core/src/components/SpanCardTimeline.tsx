@@ -35,7 +35,7 @@ export const SpanCardTimeline = ({
   });
 
   return (
-    <span className="relative h-4 min-w-16 flex-1 rounded bg-gray-200 dark:bg-gray-900">
+    <span className="relative flex h-4 min-w-16 flex-1 rounded bg-gray-200 dark:bg-gray-900">
       <span className="pointer-events-none absolute inset-x-1 top-1/2 h-1.5 -translate-y-1/2">
         <span
           className={`absolute h-full rounded-sm ${timelineBgColors[theme]}`}

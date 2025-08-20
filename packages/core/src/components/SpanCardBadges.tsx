@@ -7,19 +7,15 @@ import {
 } from "../utils/ui";
 import { Badge } from "./Badge";
 
-interface SpanCardContentProps {
+interface SpanCardBagdesProps {
   data: SpanCardType;
 }
 
-export const SpanCardContent = ({ data }: SpanCardContentProps) => {
+export const SpanCardBadges = ({ data }: SpanCardBagdesProps) => {
   const Icon = getSpanCategoryIcon(data.type);
 
   return (
     <div className="flex flex-wrap items-center justify-start gap-1">
-      <h3 className="mr-3 max-w-32 truncate text-sm leading-5 text-gray-900 dark:text-gray-200">
-        {data.title}
-      </h3>
-
       <Badge
         iconStart={<Icon className="size-2.5" />}
         theme={getSpanCategoryTheme(data.type)}

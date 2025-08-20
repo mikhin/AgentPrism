@@ -13,17 +13,19 @@ import { getSpanCategoryTheme } from "../utils/ui";
 import { Avatar, type AvatarProps } from "./Avatar";
 import { SpanCardTimeline } from "./SpanCardTimeline";
 import { SpanCardStatus } from "./SpanCardStatus";
-import { SpanCardContent } from "./SpanCardContent";
+import { SpanCardBadges } from "./SpanCardBadges";
 import { SpanCardToggle } from "./SpanCardToggle";
-import {
-  SpanCardHorizaontalConnector,
-  SpanCardVerticalConnector,
-} from "./SpanCardConnectors";
+import { SpanCardHorizontalConnector } from "./SpanCardConnectors";
+import { getTimelineData } from "../services/get-timeline-data";
+import { formatDuration } from "../services/calculate-duration";
+import cn from "classnames";
 
 const LAYOUT_CONSTANTS = {
-  MARGIN_LEVEL_STEP: 20,
+  MARGIN_LEVEL_ZERO: 5,
+  MARGIN_LEVEL_NON_ZERO: 9,
+  MARGIN_STEP: 20,
+  CONTENT_BASE_WIDTH: 320,
   BASE_HORIZONTAL_LINE_WIDTH: 8,
-  CONTENT_BASE_WIDTH: 300,
 } as const;
 
 interface SpanCardProps {
@@ -53,41 +55,24 @@ const calculateLayout = (
   level: number,
   hasChildren: boolean,
 ): LayoutCalculations => {
-  const marginLeft = level !== 0 ? LAYOUT_CONSTANTS.MARGIN_LEVEL_STEP : 0;
+  const marginLeft = level !== 0 ? LAYOUT_CONSTANTS.MARGIN_STEP / 2 : 0;
   const horizontalLineWidth =
     LAYOUT_CONSTANTS.BASE_HORIZONTAL_LINE_WIDTH +
-    (hasChildren ? 0 : LAYOUT_CONSTANTS.MARGIN_LEVEL_STEP);
+    (hasChildren ? 0 : LAYOUT_CONSTANTS.MARGIN_STEP);
   const contentWidth =
-    LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH -
-    level * LAYOUT_CONSTANTS.MARGIN_LEVEL_STEP;
+    LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH - level * LAYOUT_CONSTANTS.MARGIN_STEP;
 
   return { marginLeft, horizontalLineWidth, contentWidth };
 };
 
-const getGridConfig = (
-  expandButton: "inside" | "outside",
-  hasAvatar: boolean,
-  contentWidth: number,
-) => {
-  if (expandButton === "inside") {
-    return {
-      gridTemplateAreas: hasAvatar
-        ? "'toggle avatar content status'"
-        : "'toggle content timeline status'",
-      gridTemplateColumns: hasAvatar
-        ? `12px 16px ${contentWidth}px auto`
-        : `12px ${contentWidth}px auto 6px`,
-    };
+const getContentWidth = (level: number) => {
+  if (level === 0) {
+    return LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH - 4;
   }
 
-  return {
-    gridTemplateAreas: hasAvatar
-      ? "'avatar content status timeline expand'"
-      : "'content status timeline expand'",
-    gridTemplateColumns: hasAvatar
-      ? `16px ${contentWidth}px 6px auto 12px`
-      : `${contentWidth}px 6px auto 12px`,
-  };
+  return (
+    LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH - level * LAYOUT_CONSTANTS.MARGIN_STEP
+  );
 };
 
 const useSpanCardEventHandlers = (
@@ -152,9 +137,15 @@ const SpanCardChildren: FC<{
 
   return (
     <div className="relative">
-      <SpanCardVerticalConnector />
-
-      <Collapsible.Content>
+      <Collapsible.Content
+        className="border-l-2 border-gray-100 dark:border-gray-800"
+        style={{
+          marginLeft:
+            level === 0
+              ? LAYOUT_CONSTANTS.MARGIN_LEVEL_ZERO
+              : LAYOUT_CONSTANTS.MARGIN_LEVEL_NON_ZERO,
+        }}
+      >
         <ul role="group">
           {data.children.map((child) => (
             <SpanCard
@@ -193,17 +184,23 @@ export const SpanCard: FC<SpanCardProps> = ({
   };
 
   const layout = calculateLayout(level, state.hasChildren);
-  const gridConfig = getGridConfig(
-    expandButton,
-    Boolean(avatar),
-    layout.contentWidth,
-  );
 
   const eventHandlers = useSpanCardEventHandlers(
     data,
     state.isSelected,
     onSelectionChange,
   );
+
+  const { durationMs } = getTimelineData({
+    spanCard: data,
+    minStart,
+    maxEnd,
+  });
+
+  const hasExpandButtonAsFirstChild =
+    expandButton === "inside" && state.hasChildren;
+
+  const contentWidth = getContentWidth(level);
 
   return (
     <li
@@ -217,11 +214,11 @@ export const SpanCard: FC<SpanCardProps> = ({
         style={{ marginLeft: `${layout.marginLeft}px` }}
       >
         <div
-          className="relative box-content grid h-5 w-full cursor-pointer items-center gap-2 pb-3"
-          style={{
-            gridTemplateAreas: gridConfig.gridTemplateAreas,
-            gridTemplateColumns: gridConfig.gridTemplateColumns,
-          }}
+          className={cn(
+            "relative",
+            "flex flex-wrap items-start gap-x-2 gap-y-1",
+            "mb-3 min-h-5 w-full cursor-pointer",
+          )}
           onClick={eventHandlers.handleCardClick}
           onKeyDown={eventHandlers.handleKeyDown}
           tabIndex={0}
@@ -231,59 +228,81 @@ export const SpanCard: FC<SpanCardProps> = ({
           aria-expanded={state.hasChildren ? state.isExpanded : undefined}
           aria-label={`${state.isSelected ? "Selected" : "Not selected"} span card for ${data.title} at level ${level}`}
         >
-          <SpanCardHorizaontalConnector
-            level={level}
-            horizontalLineWidth={layout.horizontalLineWidth}
-          />
+          {state.isExpanded && hasExpandButtonAsFirstChild && (
+            <div
+              className="absolute -bottom-3 h-[calc(100%-8px)] w-0.5 transform bg-gray-100 dark:bg-gray-800"
+              style={{
+                left:
+                  level === 0
+                    ? LAYOUT_CONSTANTS.MARGIN_LEVEL_ZERO
+                    : LAYOUT_CONSTANTS.MARGIN_LEVEL_NON_ZERO,
+              }}
+            />
+          )}
 
-          {expandButton === "inside" &&
-            (state.hasChildren ? (
-              <div style={{ gridArea: "toggle" }}>
+          <div
+            className={cn(
+              "relative flex min-h-4 shrink-0 flex-wrap items-start gap-1",
+              level !== 0 && !hasExpandButtonAsFirstChild && "pl-2",
+              level !== 0 && hasExpandButtonAsFirstChild && "pl-1",
+            )}
+            style={{
+              width: `min(${contentWidth}px, 100%)`,
+            }}
+          >
+            {level !== 0 && (
+              <SpanCardHorizontalConnector
+                level={level}
+                hasCollapseButton={hasExpandButtonAsFirstChild}
+                stepLength={LAYOUT_CONSTANTS.MARGIN_STEP}
+              />
+            )}
+
+            {hasExpandButtonAsFirstChild && (
+              <div className="flex h-4 items-center">
                 <SpanCardToggle
                   isExpanded={state.isExpanded}
                   title={data.title}
                   onToggleClick={eventHandlers.handleToggleClick}
                 />
               </div>
-            ) : (
-              <div
-                className="w-3"
-                style={{ gridArea: "toggle" }}
-                aria-hidden="true"
-              />
-            ))}
+            )}
 
-          {avatar && (
-            <div style={{ gridArea: "avatar" }}>
-              <Avatar {...avatar} />
-            </div>
-          )}
+            {avatar && <Avatar {...avatar} />}
 
-          <div style={{ gridArea: "content" }}>
-            <SpanCardContent data={data} />
+            <h3 className="mr-3 h-4 max-w-28 truncate text-sm leading-[14px] text-gray-900 dark:text-gray-200">
+              {data.title}
+            </h3>
+
+            <SpanCardBadges data={data} />
           </div>
 
-          {expandButton === "outside" && (
-            <div style={{ gridArea: "status" }}>
-              <SpanCardStatus status={data.status} />
-            </div>
-          )}
+          <div className="shrink-1 flex grow flex-wrap items-center justify-end gap-1">
+            {expandButton === "outside" && (
+              <div>
+                <SpanCardStatus status={data.status} />
+              </div>
+            )}
 
-          <div style={{ gridArea: "timeline" }}>
             <SpanCardTimeline
               theme={getSpanCategoryTheme(data.type)}
-              startTime={data.startTime}
-              endTime={data.endTime}
               minStart={minStart}
               maxEnd={maxEnd}
+              spanCard={data}
             />
-          </div>
 
-          {expandButton === "inside" && (
-            <div style={{ gridArea: "status" }}>
-              <SpanCardStatus status={data.status} />
+            <div className="flex items-center gap-2">
+              <span className="inline-block w-14 flex-1 shrink-0 whitespace-nowrap px-1 text-right text-xs text-black dark:text-white">
+                {formatDuration(durationMs)}
+              </span>
+
+              {expandButton === "inside" && (
+                <div>
+                  <SpanCardStatus status={data.status} />
+                </div>
+              )}
             </div>
-          )}
+          </div>
 
           {expandButton === "outside" &&
             (state.hasChildren ? (
