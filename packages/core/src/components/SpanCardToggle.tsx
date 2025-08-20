@@ -15,7 +15,7 @@ export const SpanCardToggle = ({
 }: SpanCardToggleProps) => (
   <Collapsible.Trigger asChild>
     <button
-      className="flex size-3 items-center justify-center"
+      className="flex size-3 shrink-0 items-center justify-center"
       onClick={onToggleClick}
       onKeyDown={onToggleClick}
       aria-label={`${isExpanded ? "Collapse" : "Expand"} ${title} children`}
@@ -23,9 +23,9 @@ export const SpanCardToggle = ({
       type="button"
     >
       {isExpanded ? (
-        <ChevronDown aria-hidden="true" className="text-gray-500" />
+        <ChevronDown aria-hidden="true" className="size-3 text-gray-500" />
       ) : (
-        <ChevronRight aria-hidden="true" className="text-gray-500" />
+        <ChevronRight aria-hidden="true" className="size-3 text-gray-500" />
       )}
     </button>
   </Collapsible.Trigger>
