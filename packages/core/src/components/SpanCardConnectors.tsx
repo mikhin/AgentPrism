@@ -3,7 +3,7 @@ interface SpanCardHorizontalConnectorProps {
   horizontalLineWidth: number;
 }
 
-export const SpanCardHorizaontalConnector = ({
+export const SpanCardHorizontalConnector = ({
   level,
   horizontalLineWidth,
 }: SpanCardHorizontalConnectorProps) => {
