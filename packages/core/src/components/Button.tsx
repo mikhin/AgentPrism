@@ -3,74 +3,46 @@ import type { FC, PropsWithChildren, ReactElement } from "react";
 import type { ColorVariant } from "../types/ui";
 
 import { roundedClasses } from "../constants/ui";
-import { getBgColorClass } from "../utils/ui";
+
+const BASE_CLASSES =
+  "inline-flex items-center justify-center font-medium transition-all duration-200";
 
 const sizeClasses = {
   xs: "px-2 py-1 text-xs",
 };
 
+const filledThemeClasses: Record<ColorVariant, string> = {
+  purple: "text-white bg-purple-500 dark:bg-purple-600",
+  indigo: "text-white bg-indigo-500 dark:bg-indigo-600",
+  orange: "text-white bg-orange-500 dark:bg-orange-600",
+  teal: "text-white bg-teal-500 dark:bg-teal-600",
+  cyan: "text-white bg-cyan-500 dark:bg-cyan-600",
+  sky: "text-white bg-sky-500 dark:bg-sky-600",
+  yellow: "text-white bg-yellow-500 dark:bg-yellow-600",
+  emerald: "text-white bg-emerald-500 dark:bg-emerald-600",
+  red: "text-white bg-red-500 dark:bg-red-600",
+  gray: "text-white bg-gray-500 dark:bg-gray-600",
+};
+
 const variantClasses = {
-  filled: "text-white",
-  outlined: "border border-2 bg-transparent",
-  ghost: "bg-transparent",
+  filled: "",
+  outlined:
+    "border border-2 bg-transparent text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-600",
+  ghost: "bg-transparent text-gray-600 dark:text-gray-300",
 };
 
 export type ButtonProps = {
-  /**
-   * The content of the button
-   */
   children: React.ReactNode;
-  /**
-   * The size of the button
-   * @default "md"
-   */
   size?: "xs";
-  /**
-   * The color theme for the button
-   * Uses the unified color theme system
-   * @default "gray"
-   */
   theme?: ColorVariant;
-  /**
-   * The border radius of the button
-   * @default "md"
-   */
   rounded?: "none" | "sm" | "md" | "lg" | "full";
-  /**
-   * The variant style of the button
-   * @default "filled"
-   */
   variant?: "filled" | "outlined" | "ghost";
-  /**
-   * Is the button full width
-   * @default false
-   */
   fullWidth?: boolean;
-  /**
-   * Is the button disabled
-   * @default false
-   */
   disabled?: boolean;
-  /**
-   * Icon to display at the start of the button
-   */
   iconStart?: ReactElement;
-  /**
-   * Icon to display at the end of the button
-   */
   iconEnd?: ReactElement;
-  /**
-   * The type of the button
-   * @default "button"
-   */
   type?: "button" | "submit" | "reset";
-  /**
-   * Callback when the button is clicked
-   */
   onClick?: () => void;
-  /**
-   * Optional className for additional styling
-   */
   className?: string;
 };
 
@@ -88,16 +60,13 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   onClick,
   className = "",
 }) => {
-  const bgClass = variant === "filled" ? getBgColorClass(theme) : "";
-
-  // For outlined and ghost variants, use text color matching the theme
-  const textClass =
-    variant !== "filled" ? `text-${theme}-500 dark:text-${theme}-400` : "";
-
-  // Border color for outlined variant
-  const borderClass =
-    variant === "outlined"
-      ? `border-${theme}-500 dark:border-${theme}-400`
+  const widthClass = fullWidth ? "w-full" : "";
+  const stateClasses = disabled
+    ? "cursor-not-allowed opacity-50"
+    : "hover:opacity-90";
+  const filledThemeClass =
+    variant === "filled"
+      ? filledThemeClasses[theme] || filledThemeClasses.gray
       : "";
 
   return (
@@ -105,7 +74,7 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex items-center justify-center font-medium ${sizeClasses[size]} ${roundedClasses[rounded]} ${variantClasses[variant]} ${bgClass} ${textClass} ${borderClass} ${fullWidth ? "w-full" : ""} ${disabled ? "cursor-not-allowed opacity-50" : "hover:opacity-90"} transition-all duration-200 ${className} `}
+      className={`${BASE_CLASSES} ${sizeClasses[size]} ${roundedClasses[rounded]} ${variantClasses[variant]} ${filledThemeClass} ${widthClass} ${stateClasses} ${className}`}
     >
       {iconStart && <span className="mr-1">{iconStart}</span>}
       {children}
