@@ -71,7 +71,7 @@ export const TreeView: FC<TreeViewProps> = ({
           role="tree"
           aria-label="Hierarchical card list"
         >
-          {spans.map((span) => (
+          {spans.map((span, idx) => (
             <SpanCard
               expandButton={expandButton}
               key={span.id}
@@ -81,6 +81,7 @@ export const TreeView: FC<TreeViewProps> = ({
               onSelectionChange={handleCardSelectionChange}
               minStart={minStart}
               maxEnd={maxEnd}
+              isLastChild={idx === spans.length - 1}
             />
           ))}
         </ul>
