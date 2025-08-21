@@ -33,6 +33,7 @@ export const DetailsViewPage = (): ReactElement => {
         <SandboxItem title="Basic Details View" pattern="dots">
           <DetailsView
             data={testData}
+            showCopyButton
             avatar={{
               letter: "A",
               bgColor: "purple",

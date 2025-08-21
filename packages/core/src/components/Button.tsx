@@ -12,16 +12,17 @@ const sizeClasses = {
 };
 
 const filledThemeClasses: Record<ColorVariant, string> = {
-  purple: "text-white bg-purple-500 dark:bg-purple-600",
-  indigo: "text-white bg-indigo-500 dark:bg-indigo-600",
-  orange: "text-white bg-orange-500 dark:bg-orange-600",
-  teal: "text-white bg-teal-500 dark:bg-teal-600",
-  cyan: "text-white bg-cyan-500 dark:bg-cyan-600",
-  sky: "text-white bg-sky-500 dark:bg-sky-600",
-  yellow: "text-white bg-yellow-500 dark:bg-yellow-600",
-  emerald: "text-white bg-emerald-500 dark:bg-emerald-600",
-  red: "text-white bg-red-500 dark:bg-red-600",
-  gray: "text-white bg-gray-500 dark:bg-gray-600",
+  gray: "text-gray-900 bg-gray-100 dark:bg-gray-600 dark:text-gray-200",
+  purple: "text-gray-900 bg-purple-100 dark:bg-purple-600 dark:text-gray-200",
+  indigo: "text-gray-900 bg-indigo-100 dark:bg-indigo-600 dark:text-gray-200",
+  orange: "text-gray-900 bg-orange-100 dark:bg-orange-600 dark:text-gray-200",
+  teal: "text-gray-900 bg-teal-100 dark:bg-teal-600 dark:text-gray-200",
+  cyan: "text-gray-900 bg-cyan-100 dark:bg-cyan-600 dark:text-gray-200",
+  sky: "text-gray-900 bg-sky-100 dark:bg-sky-600 dark:text-gray-200",
+  yellow: "text-gray-900 bg-yellow-100 dark:bg-yellow-600 dark:text-gray-200",
+  emerald:
+    "text-gray-900 bg-emerald-100 dark:bg-emerald-600 dark:text-gray-200",
+  red: "text-gray-900 bg-red-100 dark:bg-red-600 dark:text-gray-200",
 };
 
 const variantClasses = {
@@ -63,7 +64,7 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   const widthClass = fullWidth ? "w-full" : "";
   const stateClasses = disabled
     ? "cursor-not-allowed opacity-50"
-    : "hover:opacity-90";
+    : "hover:opacity-70";
   const filledThemeClass =
     variant === "filled"
       ? filledThemeClasses[theme] || filledThemeClasses.gray

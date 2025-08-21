@@ -5,8 +5,9 @@ import {
   Coins,
   Tags,
   SquareTerminal,
+  Check,
 } from "lucide-react";
-import { type ReactElement } from "react";
+import { useState, type ReactElement } from "react";
 
 import type { SpanCardType } from "../types/span.ts";
 
@@ -28,8 +29,10 @@ interface DetailsViewProps {
   avatar?: AvatarProps;
   defaultTab?: string;
   className?: string;
-  showCopyButton?: boolean;
-  onCopy?: (data: SpanCardType) => void;
+  copyButton?: {
+    isEnabled?: boolean;
+    onCopy?: (data: SpanCardType) => void;
+  };
   onTabChange?: (tabValue: string) => void;
 }
 
@@ -38,15 +41,17 @@ export const DetailsView = ({
   avatar,
   defaultTab,
   className,
-  showCopyButton,
-  onCopy,
+  copyButton,
   onTabChange,
 }: DetailsViewProps): ReactElement => {
   const Icon = getSpanCategoryIcon(data.type);
+  const [hasCopied, setHasCopied] = useState(false);
 
   const handleCopy = () => {
-    if (onCopy) {
-      onCopy(data);
+    if (copyButton?.onCopy) {
+      copyButton?.onCopy(data);
+      setHasCopied(true);
+      setTimeout(() => setHasCopied(false), 2000);
     }
   };
 
@@ -115,23 +120,31 @@ export const DetailsView = ({
             <SpanCardStatus status={data.status} />
           </div>
 
-          {showCopyButton && (
-            <IconButton size="sm" onClick={handleCopy}>
-              <Copy className="size-3 text-gray-500" />
+          {copyButton && (
+            <IconButton variant="ghost" size="sm" onClick={handleCopy}>
+              {hasCopied ? (
+                <Check className="size-3 text-gray-500" />
+              ) : (
+                <Copy className="size-3 text-gray-500" />
+              )}
             </IconButton>
           )}
         </div>
 
         <div className="ml-auto flex items-center gap-2">
           <Button size="xs" iconStart={<Plus className="size-4" />}>
-            Action
+            Primary
           </Button>
 
-          <Button size="xs" iconStart={<Plus className="size-4" />}>
-            Action
+          <Button
+            variant="ghost"
+            size="xs"
+            iconStart={<Plus className="size-4" />}
+          >
+            Secondary
           </Button>
 
-          <IconButton size="sm">
+          <IconButton size="md">
             <MessageSquare className="size-3 text-gray-500" />
           </IconButton>
         </div>
