@@ -12,16 +12,16 @@ export interface TabItem {
 export type TabTheme = "underline" | "pill";
 
 const BASE_TRIGGER =
-  "text-sm font-medium text-gray-600 hover:text-gray-900 disabled:opacity-50 data-[state=active]:text-gray-900";
+  "text-sm font-medium text-gray-600 hover:text-gray-900 disabled:opacity-50 data-[state=active]:text-gray-900 dark:text-gray-500 dark:hover:text-white dark:data-[state=active]:text-white";
 
 const THEMES = {
   underline: {
-    list: "flex gap-1 border-b border-gray-300",
-    trigger: `w-full justify-center px-4 py-2 ${BASE_TRIGGER} border-b-2 border-transparent data-[state=active]:border-gray-900 -mb-[2px]`,
+    list: "flex border-b border-gray-300 dark:border-gray-600",
+    trigger: `w-full justify-center px-4 py-2 ${BASE_TRIGGER} border-b-2 border-transparent data-[state=active]:border-gray-900 -mb-[2px] dark:border-gray-600 dark:data-[state=active]:border-gray-400`,
   },
   pill: {
     list: "inline-flex gap-1 p-1 bg-gray-100 rounded-lg",
-    trigger: `px-4 py-1.5 ${BASE_TRIGGER} rounded-md data-[state=active]:bg-white data-[state=active]:shadow-sm`,
+    trigger: `px-4 py-1.5 ${BASE_TRIGGER} rounded-md data-[state=active]:bg-white data-[state=active]:shadow-sm dark:bg-gray-800 dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:shadow-none`,
   },
 } as const;
 

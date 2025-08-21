@@ -11,10 +11,10 @@ interface SpanCardStatusProps {
 }
 
 const STATUS_COLORS_DOT: Record<SpanStatus, string> = {
-  success: "bg-green-500 dark:bg-green-700",
-  error: "bg-red-500 dark:bg-red-700",
-  pending: "bg-violet-500 dark:bg-violet-700",
-  warning: "bg-yellow-500 dark:bg-yellow-700",
+  success: "bg-green-500 dark:bg-green-500",
+  error: "bg-red-500 dark:bg-red-500",
+  pending: "bg-violet-500 dark:bg-violet-500",
+  warning: "bg-yellow-500 dark:bg-yellow-500",
 };
 
 const STATUS_COLORS_BADGE: Record<SpanStatus, string> = {

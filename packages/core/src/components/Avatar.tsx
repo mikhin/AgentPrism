@@ -3,7 +3,6 @@ import type { ReactElement } from "react";
 import type { ColorVariant } from "../types/ui";
 
 import { roundedClasses } from "../constants/ui";
-import { getBgColorClass } from "../utils/ui";
 
 const sizeClasses = {
   xs: "w-4 h-4 text-xs",
@@ -19,6 +18,19 @@ const textSizeClasses = {
   md: "text-base",
   lg: "text-lg",
   xl: "text-xl",
+};
+
+const bgColorClasses: Record<ColorVariant, string> = {
+  gray: "bg-gray-600",
+  red: "bg-red-600",
+  orange: "bg-orange-600",
+  yellow: "bg-yellow-600",
+  teal: "bg-teal-600",
+  indigo: "bg-indigo-600",
+  purple: "bg-purple-600",
+  sky: "bg-sky-600",
+  cyan: "bg-cyan-600",
+  emerald: "bg-emerald-600",
 };
 
 export type AvatarProps = {
@@ -83,7 +95,7 @@ export const Avatar = ({
         <img src={src} alt={alt} className="h-full w-full object-cover" />
       ) : (
         <div
-          className={`flex h-full w-full items-center justify-center ${getBgColorClass(bgColor)} ${actualTextColor} font-medium`}
+          className={`flex h-full w-full items-center justify-center ${bgColorClasses[bgColor]} ${actualTextColor} font-medium`}
         >
           {displayLetter}
         </div>

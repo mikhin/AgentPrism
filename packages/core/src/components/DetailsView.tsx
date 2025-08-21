@@ -102,7 +102,7 @@ export const DetailsView = ({
 
   return (
     <div
-      className={`max-w-[480px] rounded border border-gray-200 bg-white p-4 ${className}`}
+      className={`max-w-[480px] rounded border border-gray-200 bg-white p-4 dark:border-gray-600 dark:bg-gray-950 ${className}`}
     >
       <div className="mb-4 flex items-center gap-4">
         <div className="flex items-center gap-1.5">
