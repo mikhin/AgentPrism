@@ -24,6 +24,7 @@ export const convertOTelSpanToSpanCard = (
     title: generateTitle(span),
     type: spanType,
     status,
+    attributes: span.attributes,
     duration,
     tokensCount,
     cost,

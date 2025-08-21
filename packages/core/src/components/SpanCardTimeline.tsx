@@ -1,6 +1,7 @@
-import { getTimelineData } from "../services/get-timeline-data";
 import type { SpanCardType } from "../types/span";
 import type { ColorVariant } from "../types/ui";
+
+import { getTimelineData } from "../services/get-timeline-data";
 
 interface SpanCardTimelineProps {
   spanCard: SpanCardType;

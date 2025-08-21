@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 
 import type { SpanCardType } from "../types/span";
+
 import { getTimelineData } from "./get-timeline-data";
 
 describe("getTimelineData", () => {
@@ -14,6 +15,10 @@ describe("getTimelineData", () => {
         duration: 30000,
         cost: 0.002,
         type: "llm_call",
+        attributes: [
+          { key: "model", value: { stringValue: "gpt-4" } },
+          { key: "provider", value: { stringValue: "openai" } },
+        ],
         tokensCount: 150,
         status: "success",
       };
@@ -37,6 +42,10 @@ describe("getTimelineData", () => {
         duration: 15000,
         cost: 0.001,
         type: "tool_execution",
+        attributes: [
+          { key: "tool_name", value: { stringValue: "search" } },
+          { key: "parameters", value: { stringValue: "{'query': 'test'}" } },
+        ],
         tokensCount: 50,
         status: "success",
       };
@@ -60,6 +69,10 @@ describe("getTimelineData", () => {
         duration: 20000,
         cost: 0.003,
         type: "agent_invocation",
+        attributes: [
+          { key: "agent_id", value: { stringValue: "agent-123" } },
+          { key: "task", value: { stringValue: "analysis" } },
+        ],
         tokensCount: 200,
         status: "success",
       };
@@ -85,6 +98,14 @@ describe("getTimelineData", () => {
         duration: 1,
         cost: 0.0001,
         type: "chain_operation",
+        attributes: [
+          {
+            key: "operation_type",
+            value: {
+              stringValue: "quick",
+            },
+          },
+        ],
         tokensCount: 10,
         status: "success",
       };
@@ -108,6 +129,10 @@ describe("getTimelineData", () => {
         duration: 59000,
         cost: 0.005,
         type: "retrieval",
+        attributes: [
+          { key: "source", value: { stringValue: "database" } },
+          { key: "query_type", value: { stringValue: "semantic_search" } },
+        ],
         tokensCount: 500,
         status: "success",
       };
@@ -131,6 +156,13 @@ describe("getTimelineData", () => {
         duration: 60000,
         cost: 0.01,
         type: "embedding",
+        attributes: [
+          {
+            key: "embedding_model",
+            value: { stringValue: "text-embedding-3-small" },
+          },
+          { key: "dimensions", value: { stringValue: "1536" } },
+        ],
         tokensCount: 1000,
         status: "success",
       };
@@ -154,6 +186,7 @@ describe("getTimelineData", () => {
         duration: 0,
         cost: 0,
         type: "unknown",
+        attributes: [],
         tokensCount: 0,
         status: "success",
       };
@@ -183,6 +216,14 @@ describe("getTimelineData", () => {
         duration: 5000,
         cost: 0.001,
         type: "llm_call",
+        attributes: [
+          {
+            key: "position",
+            value: {
+              stringValue: "25%",
+            },
+          },
+        ],
         tokensCount: 100,
         status: "success",
       };
@@ -203,6 +244,14 @@ describe("getTimelineData", () => {
         duration: 5000,
         cost: 0.001,
         type: "tool_execution",
+        attributes: [
+          {
+            key: "position",
+            value: {
+              stringValue: "75%",
+            },
+          },
+        ],
         tokensCount: 100,
         status: "success",
       };
@@ -228,6 +277,14 @@ describe("getTimelineData", () => {
         duration: 6000,
         cost: 0.001,
         type: "chain_operation",
+        attributes: [
+          {
+            key: "width_percent",
+            value: {
+              stringValue: "10%",
+            },
+          },
+        ],
         tokensCount: 100,
         status: "success",
       };
@@ -248,6 +305,14 @@ describe("getTimelineData", () => {
         duration: 12000,
         cost: 0.002,
         type: "retrieval",
+        attributes: [
+          {
+            key: "width_percent",
+            value: {
+              stringValue: "20%",
+            },
+          },
+        ],
         tokensCount: 200,
         status: "success",
       };
@@ -271,6 +336,14 @@ describe("getTimelineData", () => {
         duration: 100,
         cost: 0.00001,
         type: "chain_operation",
+        attributes: [
+          {
+            key: "scale",
+            value: {
+              stringValue: "micro",
+            },
+          },
+        ],
         tokensCount: 5,
         status: "success",
       };
@@ -305,6 +378,10 @@ describe("getTimelineData", () => {
         duration: 300000,
         cost: 0.05,
         type: "embedding",
+        attributes: [
+          { key: "process_type", value: { stringValue: "long_running" } },
+          { key: "batch_size", value: { stringValue: "1000" } },
+        ],
         tokensCount: 5000,
         status: "success",
       };
@@ -331,6 +408,14 @@ describe("getTimelineData", () => {
         duration: 1,
         cost: 0.000001,
         type: "unknown",
+        attributes: [
+          {
+            key: "precision",
+            value: {
+              stringValue: "high",
+            },
+          },
+        ],
         tokensCount: 1,
         status: "success",
       };
@@ -354,6 +439,10 @@ describe("getTimelineData", () => {
         duration: 1000,
         cost: 0.001,
         type: "llm_call",
+        attributes: [
+          { key: "range", value: { stringValue: "full" } },
+          { key: "test_case", value: { stringValue: "edge_case" } },
+        ],
         tokensCount: 100,
         status: "success",
       };

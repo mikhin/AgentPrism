@@ -1,4 +1,5 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
+import cn from "classnames";
 import {
   useState,
   type FC,
@@ -9,19 +10,18 @@ import {
 
 import type { SpanCardType } from "../types/span";
 
+import { formatDuration } from "../services/calculate-duration";
+import { getTimelineData } from "../services/get-timeline-data";
 import { getSpanCategoryTheme } from "../utils/ui";
 import { Avatar, type AvatarProps } from "./Avatar";
-import { SpanCardTimeline } from "./SpanCardTimeline";
-import { SpanCardStatus } from "./SpanCardStatus";
 import { SpanCardBadges } from "./SpanCardBadges";
-import { SpanCardToggle } from "./SpanCardToggle";
 import {
   type SpanCardConnectorType,
   SpanCardConnector,
 } from "./SpanCardConnector";
-import { getTimelineData } from "../services/get-timeline-data";
-import { formatDuration } from "../services/calculate-duration";
-import cn from "classnames";
+import { SpanCardStatus } from "./SpanCardStatus";
+import { SpanCardTimeline } from "./SpanCardTimeline";
+import { SpanCardToggle } from "./SpanCardToggle";
 
 const LAYOUT_CONSTANTS = {
   CONNECTOR_WIDTH: 20,

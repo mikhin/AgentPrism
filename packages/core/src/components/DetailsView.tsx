@@ -18,6 +18,7 @@ import {
 import { Avatar, type AvatarProps } from "./Avatar.tsx";
 import { Badge } from "./Badge.tsx";
 import { Button } from "./Button.tsx";
+import { CollapsibleSection } from "./CollapsibleSection.tsx";
 import { IconButton } from "./IconButton.tsx";
 import { SpanCardStatus } from "./SpanCardStatus.tsx";
 import { Tabs, type TabItem } from "./Tabs.tsx";
@@ -27,43 +28,56 @@ interface DetailsViewProps {
   avatar?: AvatarProps;
 }
 
-const tabItems: TabItem[] = [
-  {
-    value: "attributes",
-    label: "Attributes",
-    icon: <Tags className="size-4" />,
-    content: (
-      <div className="p-4">
-        <h3 className="mb-2 text-lg font-semibold">Attributes</h3>
-        <p className="text-gray-600">
-          Manage attributes and metadata for your items.
-        </p>
-      </div>
-    ),
-  },
-  {
-    value: "raw",
-    label: "RAW",
-    icon: <SquareTerminal className="size-4" />,
-    content: (
-      <div className="p-4">
-        <h3 className="mb-2 text-lg font-semibold">Raw Data</h3>
-        <pre className="overflow-auto rounded bg-gray-100 p-3 text-sm">
-          {`{
-  "data": "raw content",
-  "format": "unprocessed"
-}`}
-        </pre>
-      </div>
-    ),
-  },
-];
-
 export const DetailsView = ({
   data,
   avatar,
 }: DetailsViewProps): ReactElement => {
   const Icon = getSpanCategoryIcon(data.type);
+
+  const tabItems: TabItem[] = [
+    {
+      value: "attributes",
+      label: "Attributes",
+      icon: <Tags className="size-4" />,
+      content: (
+        <div className="space-y-6">
+          {data.attributes.map((attribute, index) => {
+            const value =
+              attribute.value.stringValue ||
+              attribute.value.intValue ||
+              attribute.value.boolValue?.toString() ||
+              "N/A";
+
+            return (
+              <CollapsibleSection
+                key={`${attribute.key}-${index}`}
+                title={attribute.key}
+                defaultOpen
+              >
+                <div className="font-mono text-xs">{value}</div>
+              </CollapsibleSection>
+            );
+          })}
+        </div>
+      ),
+    },
+    {
+      value: "raw",
+      label: "RAW",
+      icon: <SquareTerminal className="size-4" />,
+      content: (
+        <div className="p-4">
+          <h3 className="mb-2 text-lg font-semibold">Raw Data</h3>
+          <pre className="overflow-auto rounded bg-gray-100 p-3 text-sm">
+            {`{
+  "data": "raw content",
+  "format": "unprocessed"
+}`}
+          </pre>
+        </div>
+      ),
+    },
+  ];
 
   return (
     <div className="max-w-[480px] rounded border border-gray-200 bg-white p-4">

@@ -28,10 +28,10 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
       className={`rounded-lg ${className}`}
     >
       <Collapsible.Trigger
-        className={`flex w-full items-center gap-2 rounded-lg px-4 py-3 text-left text-sm font-medium text-gray-700 ${triggerClassName}`}
+        className={`mb-1 flex w-full items-center gap-2 rounded-lg px-1 py-3 text-left text-sm font-medium text-gray-700 ${triggerClassName}`}
       >
         <ChevronDown
-          className={`h-4 w-4 text-gray-500 transition-transform duration-200 ${
+          className={`h-3 w-3 text-gray-500 transition-transform duration-200 ${
             open ? "rotate-180" : ""
           }`}
         />
@@ -41,7 +41,9 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
       <Collapsible.Content
         className={`data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown ${contentClassName}`}
       >
-        <div className="px-4 pb-3 pt-0 text-sm text-gray-600">{children}</div>
+        <div className="rounded border border-gray-200 p-4 text-sm text-gray-600">
+          {children}
+        </div>
       </Collapsible.Content>
     </Collapsible.Root>
   );

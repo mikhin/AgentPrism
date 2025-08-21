@@ -1,3 +1,5 @@
+import type { SpanAttribute } from "./open-telemetry";
+
 export type SpanStatus = "success" | "error" | "pending" | "warning";
 
 export type SpanCardType = {
@@ -8,6 +10,7 @@ export type SpanCardType = {
   duration: number;
   cost: number;
   type: SpanCategory;
+  attributes: SpanAttribute[];
   children?: SpanCardType[];
   tokensCount: number;
   status: SpanStatus;

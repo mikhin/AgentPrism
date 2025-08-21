@@ -21,6 +21,11 @@ export const SpanCardPage = (): ReactElement => {
   const noChildrenSpan: SpanCardType = {
     id: "no-children-span",
     title: "Span With No Children",
+    attributes: [
+      { key: "attribute1", value: { stringValue: "value1" } },
+      { key: "attribute2", value: { intValue: "42" } },
+      { key: "attribute3", value: { boolValue: true } },
+    ],
     startTime: new Date("2023-01-01T00:10:00Z"),
     endTime: new Date("2023-01-01T00:10:30Z"),
     tokensCount: 100,
