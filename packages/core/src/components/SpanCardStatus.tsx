@@ -32,7 +32,7 @@ export const SpanCardStatus = ({
   const title = `Status: ${status}`;
 
   return (
-    <div className="flex size-5 items-center justify-center">
+    <div className="flex size-4 items-center justify-center">
       {variant === "dot" ? (
         <SpanCardStatusDot status={status} title={title} />
       ) : (

@@ -28,13 +28,15 @@ const LAYOUT_CONSTANTS = {
   CONTENT_BASE_WIDTH: 320,
 } as const;
 
+type ExpandButtonPlacement = "inside" | "outside";
+
 interface SpanCardProps {
   data: SpanCardType;
   level?: number;
   selectedCardId?: string;
   avatar?: AvatarProps;
   onSelectionChange?: (cardId: string, isSelected: boolean) => void;
-  expandButton: "inside" | "outside";
+  expandButton: ExpandButtonPlacement;
   minStart: number;
   maxEnd: number;
   isLastChild: boolean;
@@ -49,42 +51,70 @@ interface SpanCardState {
 
 const getContentWidth = ({
   level,
-  hasCollapseButton,
+  hasExpandButton,
   contentPadding,
+  expandButton,
 }: {
   level: number;
-  hasCollapseButton: boolean;
+  hasExpandButton: boolean;
   contentPadding: number;
+  expandButton: ExpandButtonPlacement;
 }) => {
   let width =
     LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH -
     level * LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
 
-  if (hasCollapseButton) {
+  if (hasExpandButton && expandButton === "inside") {
+    width -= LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
+  }
+
+  if (expandButton === "outside" && level === 0) {
     width -= LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
   }
 
   return width - contentPadding;
 };
 
-const getContentPadding = (level: number, hasCollapseButton: boolean) => {
+const getGridTemplateColumns = ({
+  connectorsColumnWidth,
+  expandButton,
+}: {
+  connectorsColumnWidth: number;
+  expandButton: ExpandButtonPlacement;
+}) => {
+  if (expandButton === "inside") {
+    return `${connectorsColumnWidth}px 1fr`;
+  }
+
+  return `${connectorsColumnWidth}px 1fr ${LAYOUT_CONSTANTS.CONNECTOR_WIDTH}px`;
+};
+
+const getContentPadding = ({
+  level,
+  hasExpandButton,
+}: {
+  level: number;
+  hasExpandButton: boolean;
+}) => {
   if (level === 0) return 0;
 
-  if (hasCollapseButton) return 4;
+  if (hasExpandButton) return 4;
 
   return 8;
 };
 
 const getConnectorsLayout = ({
   level,
-  hasCollapseButton,
+  hasExpandButton,
   isLastChild,
   prevConnectors,
+  expandButton,
 }: {
-  hasCollapseButton: boolean;
+  hasExpandButton: boolean;
   isLastChild: boolean;
   level: number;
   prevConnectors: SpanCardConnectorType[];
+  expandButton: ExpandButtonPlacement;
 }): {
   connectors: SpanCardConnectorType[];
   connectorsColumnWidth: number;
@@ -93,7 +123,7 @@ const getConnectorsLayout = ({
 
   if (level === 0) {
     return {
-      connectors: [],
+      connectors: expandButton === "inside" ? [] : ["vertical"],
       connectorsColumnWidth: 20,
     };
   }
@@ -113,7 +143,7 @@ const getConnectorsLayout = ({
   let connectorsColumnWidth =
     connectors.length * LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
 
-  if (hasCollapseButton) {
+  if (hasExpandButton) {
     connectorsColumnWidth += LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
   }
 
@@ -253,19 +283,29 @@ export const SpanCard: FC<SpanCardProps> = ({
   const hasExpandButtonAsFirstChild =
     expandButton === "inside" && state.hasChildren;
 
-  const contentPadding = getContentPadding(level, hasExpandButtonAsFirstChild);
+  const contentPadding = getContentPadding({
+    level,
+    hasExpandButton: hasExpandButtonAsFirstChild,
+  });
 
   const contentWidth = getContentWidth({
     level,
-    hasCollapseButton: hasExpandButtonAsFirstChild,
+    hasExpandButton: hasExpandButtonAsFirstChild,
     contentPadding,
+    expandButton,
   });
 
   const { connectors, connectorsColumnWidth } = getConnectorsLayout({
     level,
-    hasCollapseButton: hasExpandButtonAsFirstChild,
+    hasExpandButton: hasExpandButtonAsFirstChild,
     isLastChild,
     prevConnectors: prevLevelConnectors,
+    expandButton,
+  });
+
+  const gridTemplateColumns = getGridTemplateColumns({
+    connectorsColumnWidth,
+    expandButton,
   });
 
   return (
@@ -278,7 +318,7 @@ export const SpanCard: FC<SpanCardProps> = ({
         <div
           className="grid w-full"
           style={{
-            gridTemplateColumns: `${connectorsColumnWidth}px 1fr`,
+            gridTemplateColumns,
           }}
           onClick={eventHandlers.handleCardClick}
           onKeyDown={eventHandlers.handleKeyDown}
@@ -356,24 +396,18 @@ export const SpanCard: FC<SpanCardProps> = ({
                 )}
               </div>
             </div>
-
-            {expandButton === "outside" &&
-              (state.hasChildren ? (
-                <div style={{ gridArea: "expand" }}>
-                  <SpanCardToggle
-                    isExpanded={state.isExpanded}
-                    title={data.title}
-                    onToggleClick={eventHandlers.handleToggleClick}
-                  />
-                </div>
-              ) : (
-                <div
-                  className="w-3"
-                  style={{ gridArea: "expand" }}
-                  aria-hidden="true"
-                />
-              ))}
           </div>
+
+          {expandButton === "outside" &&
+            (state.hasChildren ? (
+              <SpanCardToggle
+                isExpanded={state.isExpanded}
+                title={data.title}
+                onToggleClick={eventHandlers.handleToggleClick}
+              />
+            ) : (
+              <div />
+            ))}
         </div>
 
         <SpanCardChildren
