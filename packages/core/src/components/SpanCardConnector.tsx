@@ -2,13 +2,16 @@ export type SpanCardConnectorType =
   | "horizontal"
   | "vertical"
   | "t-right"
-  | "corner-top-right";
+  | "corner-top-right"
+  | "empty";
 
 interface SpanCardConnectorProps {
   type: SpanCardConnectorType;
 }
 
 export const SpanCardConnector = ({ type }: SpanCardConnectorProps) => {
+  if (type === "empty") return <div className="w-5 shrink-0 grow" />;
+
   return (
     <div className="relative w-5 shrink-0 grow">
       {(type === "vertical" || type === "t-right") && (

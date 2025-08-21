@@ -11,6 +11,8 @@ import {
 } from "./SpanCardControls.tsx";
 import { SpanCardSearchInput } from "./SpanCardSearchInput.tsx";
 
+import cn from "classnames";
+
 interface TreeViewProps {
   spans: SpanCardType[];
   onSelectionChange?: (selectedId: string | undefined) => void;
@@ -67,7 +69,7 @@ export const TreeView: FC<TreeViewProps> = ({
 
       <div className="p-2">
         <ul
-          className={className}
+          className={cn(className, "overflow-x-auto")}
           role="tree"
           aria-label="Hierarchical card list"
         >

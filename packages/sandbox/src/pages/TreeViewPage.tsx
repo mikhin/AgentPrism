@@ -4,6 +4,7 @@ import { type ReactElement } from "react";
 import { SandboxItem } from "../components/SandboxItem";
 import { SandboxSection } from "../components/SandboxSection";
 import { sampleTreeViewData } from "../data/sample-tree-view-data.ts";
+import { sampleTreeViewDataDeepNesting } from "../data/sample-tree-view-data-deep-nesting.ts";
 
 export const TreeViewPage = (): ReactElement => {
   return (
@@ -28,6 +29,14 @@ export const TreeViewPage = (): ReactElement => {
             onSelectionChange={(id) =>
               console.log(`Selection changed to: ${id}`)
             }
+          />
+        </SandboxItem>
+
+        <SandboxItem title="Tree View with deep nesting" pattern="dots">
+          <TreeView
+            expandButton="inside"
+            spans={sampleTreeViewDataDeepNesting}
+            onSelectionChange={(id) => console.log(`Selected span: ${id}`)}
           />
         </SandboxItem>
       </SandboxSection>

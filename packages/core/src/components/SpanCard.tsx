@@ -38,6 +38,7 @@ interface SpanCardProps {
   minStart: number;
   maxEnd: number;
   isLastChild: boolean;
+  prevLevelConnectors?: SpanCardConnectorType[];
 }
 
 interface SpanCardState {
@@ -78,10 +79,12 @@ const getConnectorsLayout = ({
   level,
   hasCollapseButton,
   isLastChild,
+  prevConnectors,
 }: {
   hasCollapseButton: boolean;
   isLastChild: boolean;
   level: number;
+  prevConnectors: SpanCardConnectorType[];
 }): {
   connectors: SpanCardConnectorType[];
   connectorsColumnWidth: number;
@@ -112,6 +115,15 @@ const getConnectorsLayout = ({
 
   if (hasCollapseButton) {
     connectorsColumnWidth += LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
+  }
+
+  for (let i = 0; i < prevConnectors.length; i++) {
+    if (
+      prevConnectors[i] === "empty" ||
+      prevConnectors[i] === "corner-top-right"
+    ) {
+      connectors[i] = "empty";
+    }
   }
 
   return {
@@ -169,6 +181,7 @@ const SpanCardChildren: FC<{
   onChildSelectionChange: (childId: string, childIsSelected: boolean) => void;
   minStart: number;
   maxEnd: number;
+  prevLevelConnectors: SpanCardConnectorType[];
 }> = ({
   data,
   level,
@@ -177,6 +190,7 @@ const SpanCardChildren: FC<{
   expandButton,
   minStart,
   maxEnd,
+  prevLevelConnectors,
 }) => {
   if (!data.children?.length) return null;
 
@@ -195,6 +209,7 @@ const SpanCardChildren: FC<{
               selectedCardId={selectedCardId}
               onSelectionChange={onChildSelectionChange}
               isLastChild={idx === (data.children || []).length - 1}
+              prevLevelConnectors={prevLevelConnectors}
             />
           ))}
         </ul>
@@ -213,6 +228,7 @@ export const SpanCard: FC<SpanCardProps> = ({
   minStart,
   maxEnd,
   isLastChild,
+  prevLevelConnectors = [],
 }) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -249,6 +265,7 @@ export const SpanCard: FC<SpanCardProps> = ({
     level,
     hasCollapseButton: hasExpandButtonAsFirstChild,
     isLastChild,
+    prevConnectors: prevLevelConnectors,
   });
 
   return (
@@ -301,6 +318,7 @@ export const SpanCard: FC<SpanCardProps> = ({
               className="relative flex min-h-4 shrink-0 flex-wrap items-start gap-1"
               style={{
                 width: `min(${contentWidth}px, 100%)`,
+                minWidth: 140,
               }}
             >
               {avatar && <Avatar {...avatar} />}
@@ -366,6 +384,7 @@ export const SpanCard: FC<SpanCardProps> = ({
           level={level}
           selectedCardId={selectedCardId}
           onChildSelectionChange={eventHandlers.handleChildSelectionChange}
+          prevLevelConnectors={connectors}
         />
       </Collapsible.Root>
     </li>
