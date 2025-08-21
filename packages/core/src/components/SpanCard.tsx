@@ -24,11 +24,8 @@ import { formatDuration } from "../services/calculate-duration";
 import cn from "classnames";
 
 const LAYOUT_CONSTANTS = {
-  MARGIN_LEVEL_ZERO: 5,
-  MARGIN_LEVEL_NON_ZERO: 9,
-  MARGIN_STEP: 20,
+  CONNECTOR_WIDTH: 20,
   CONTENT_BASE_WIDTH: 320,
-  BASE_HORIZONTAL_LINE_WIDTH: 8,
 } as const;
 
 interface SpanCardProps {
@@ -49,14 +46,32 @@ interface SpanCardState {
   isSelected: boolean;
 }
 
-const getContentWidth = (level: number) => {
-  if (level === 0) {
-    return LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH - 4;
+const getContentWidth = ({
+  level,
+  hasCollapseButton,
+  contentPadding,
+}: {
+  level: number;
+  hasCollapseButton: boolean;
+  contentPadding: number;
+}) => {
+  let width =
+    LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH -
+    level * LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
+
+  if (hasCollapseButton) {
+    width -= LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
   }
 
-  return (
-    LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH - level * LAYOUT_CONSTANTS.MARGIN_STEP
-  );
+  return width - contentPadding;
+};
+
+const getContentPadding = (level: number, hasCollapseButton: boolean) => {
+  if (level === 0) return 0;
+
+  if (hasCollapseButton) return 4;
+
+  return 8;
 };
 
 const getConnectorsLayout = ({
@@ -92,10 +107,11 @@ const getConnectorsLayout = ({
     connectors.push("corner-top-right");
   }
 
-  let connectorsColumnWidth = connectors.length * LAYOUT_CONSTANTS.MARGIN_STEP;
+  let connectorsColumnWidth =
+    connectors.length * LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
 
   if (hasCollapseButton) {
-    connectorsColumnWidth += LAYOUT_CONSTANTS.MARGIN_STEP;
+    connectorsColumnWidth += LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
   }
 
   return {
@@ -221,7 +237,13 @@ export const SpanCard: FC<SpanCardProps> = ({
   const hasExpandButtonAsFirstChild =
     expandButton === "inside" && state.hasChildren;
 
-  const contentWidth = getContentWidth(level);
+  const contentPadding = getContentPadding(level, hasExpandButtonAsFirstChild);
+
+  const contentWidth = getContentWidth({
+    level,
+    hasCollapseButton: hasExpandButtonAsFirstChild,
+    contentPadding,
+  });
 
   const { connectors, connectorsColumnWidth } = getConnectorsLayout({
     level,
