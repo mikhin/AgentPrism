@@ -1,18 +1,27 @@
 interface SpanCardHorizontalConnectorProps {
   level: number;
-  horizontalLineWidth: number;
+  hasCollapseButton: boolean;
+  stepLength: number;
 }
 
-export const SpanCardHorizaontalConnector = ({
+export const SpanCardHorizontalConnector = ({
   level,
-  horizontalLineWidth,
+  hasCollapseButton,
+  stepLength,
 }: SpanCardHorizontalConnectorProps) => {
   if (level === 0) return null;
 
+  const horizontalLineWidth = hasCollapseButton
+    ? stepLength * 0.5
+    : stepLength * 0.5;
+
   return (
     <div
-      className="absolute -left-[15px] top-2.5 h-0.5 bg-gray-100 dark:bg-gray-800"
-      style={{ width: `${horizontalLineWidth}px` }}
+      className="absolute top-1.5 h-0.5 bg-gray-100 dark:bg-gray-800"
+      style={{
+        width: `${horizontalLineWidth}px`,
+        left: `-${horizontalLineWidth}px`,
+      }}
     />
   );
 };
