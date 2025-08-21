@@ -64,7 +64,7 @@ export const Badge = ({
 
   return (
     <span
-      className={`inline-flex min-w-fit items-center truncate rounded font-medium ${bg} ${text} ${darkBg} ${darkText} ${sizeClasses[size]} ${className}`}
+      className={`max-w-112 inline-flex min-w-fit items-center truncate rounded font-medium ${bg} ${text} ${darkBg} ${darkText} ${sizeClasses[size]} ${className}`}
     >
       {iconStart && <span className="shrink-0">{iconStart}</span>}
 
