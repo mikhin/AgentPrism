@@ -26,13 +26,29 @@ import { Tabs, type TabItem } from "./Tabs.tsx";
 interface DetailsViewProps {
   data: SpanCardType;
   avatar?: AvatarProps;
+  defaultTab?: string;
+  className?: string;
+  showCopyButton?: boolean;
+  onCopy?: (data: SpanCardType) => void;
+  onTabChange?: (tabValue: string) => void;
 }
 
 export const DetailsView = ({
   data,
   avatar,
+  defaultTab,
+  className,
+  showCopyButton,
+  onCopy,
+  onTabChange,
 }: DetailsViewProps): ReactElement => {
   const Icon = getSpanCategoryIcon(data.type);
+
+  const handleCopy = () => {
+    if (onCopy) {
+      onCopy(data);
+    }
+  };
 
   const tabItems: TabItem[] = [
     {
@@ -80,7 +96,9 @@ export const DetailsView = ({
   ];
 
   return (
-    <div className="max-w-[480px] rounded border border-gray-200 bg-white p-4">
+    <div
+      className={`max-w-[480px] rounded border border-gray-200 bg-white p-4 ${className}`}
+    >
       <div className="mb-4 flex items-center gap-4">
         <div className="flex items-center gap-1.5">
           {avatar && (
@@ -97,9 +115,11 @@ export const DetailsView = ({
             <SpanCardStatus status={data.status} />
           </div>
 
-          <IconButton size="sm">
-            <Copy className="size-3 text-gray-500" />
-          </IconButton>
+          {showCopyButton && (
+            <IconButton size="sm" onClick={handleCopy}>
+              <Copy className="size-3 text-gray-500" />
+            </IconButton>
+          )}
         </div>
 
         <div className="ml-auto flex items-center gap-2">
@@ -143,7 +163,12 @@ export const DetailsView = ({
         </Badge>
       </div>
 
-      <Tabs items={tabItems} theme="underline" defaultValue="attributes" />
+      <Tabs
+        items={tabItems}
+        onValueChange={onTabChange}
+        theme="underline"
+        defaultValue={defaultTab}
+      />
     </div>
   );
 };
