@@ -8,6 +8,7 @@ import { HomePage } from "../pages/HomePage";
 import { OpenTelemetryAdaptersPage } from "../pages/OpenTelemetryAdaptersPage";
 import { SpanCardPage } from "../pages/SpanCardPage";
 import { TreeViewPage } from "../pages/TreeViewPage";
+import { TraceListPage } from "../pages/TraceListPage";
 
 export type RouteKey = keyof typeof ROUTES;
 
@@ -31,6 +32,11 @@ export const ROUTES = {
     path: "/tree-view",
     component: TreeViewPage,
     label: "Tree View",
+  },
+  traceList: {
+    path: "/trace-list",
+    component: TraceListPage,
+    label: "Trace List",
   },
   data: {
     path: "/open-telemetry-adapters-page",
