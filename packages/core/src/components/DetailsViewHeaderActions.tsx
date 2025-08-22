@@ -4,7 +4,7 @@ import { Button } from "./Button.tsx";
 import { IconButton } from "./IconButton.tsx";
 
 export const DetailsViewHeaderActions = () => (
-  <div className="ml-auto flex items-center gap-2">
+  <div className="flex items-center gap-2">
     <Button size="xs" iconStart={<Plus className="size-4" />}>
       Primary
     </Button>
