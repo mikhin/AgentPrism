@@ -11,6 +11,8 @@ import {
 } from "./SpanCardControls.tsx";
 import { SpanCardSearchInput } from "./SpanCardSearchInput.tsx";
 
+import cn from "classnames";
+
 interface TreeViewProps {
   spans: SpanCardType[];
   onSelectionChange?: (selectedId: string | undefined) => void;
@@ -46,8 +48,13 @@ export const TreeView: FC<TreeViewProps> = ({
   );
 
   return (
-    <div className={`border bg-white dark:bg-gray-950 ${className}`}>
-      <div className="flex items-center justify-between gap-2 border-b p-3">
+    <div
+      className={cn(
+        "border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-950",
+        className,
+      )}
+    >
+      <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-600">
         <SpanCardSearchInput
           name="search"
           clearable
@@ -65,13 +72,13 @@ export const TreeView: FC<TreeViewProps> = ({
         </div>
       </div>
 
-      <div className="p-2">
+      <div className="p-2 pt-4">
         <ul
-          className={className}
+          className={cn(className, "overflow-x-auto")}
           role="tree"
           aria-label="Hierarchical card list"
         >
-          {spans.map((span) => (
+          {spans.map((span, idx) => (
             <SpanCard
               expandButton={expandButton}
               key={span.id}
@@ -81,6 +88,7 @@ export const TreeView: FC<TreeViewProps> = ({
               onSelectionChange={handleCardSelectionChange}
               minStart={minStart}
               maxEnd={maxEnd}
+              isLastChild={idx === spans.length - 1}
             />
           ))}
         </ul>

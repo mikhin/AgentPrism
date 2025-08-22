@@ -44,6 +44,7 @@ export const SpanCardPage = (): ReactElement => {
             expandButton="inside"
             data={rootSpan}
             level={0}
+            isLastChild={false}
           />
         </SandboxItem>
 
@@ -54,6 +55,7 @@ export const SpanCardPage = (): ReactElement => {
             expandButton="inside"
             data={childSpan}
             level={1}
+            isLastChild
           />
         </SandboxItem>
       </SandboxSection>
@@ -74,6 +76,7 @@ export const SpanCardPage = (): ReactElement => {
             level={0}
             selectedCardId={selectedCardId}
             onSelectionChange={handleSelectionChange}
+            isLastChild={false}
           />
 
           <SpanCard
@@ -84,6 +87,7 @@ export const SpanCardPage = (): ReactElement => {
             level={0}
             selectedCardId={selectedCardId}
             onSelectionChange={handleSelectionChange}
+            isLastChild={false}
           />
         </SandboxItem>
 
@@ -95,6 +99,7 @@ export const SpanCardPage = (): ReactElement => {
             data={childSpan}
             level={1}
             selectedCardId={childSpan.id}
+            isLastChild
           />
         </SandboxItem>
       </SandboxSection>
@@ -112,6 +117,7 @@ export const SpanCardPage = (): ReactElement => {
             level={0}
             selectedCardId={selectedCardId}
             onSelectionChange={handleSelectionChange}
+            isLastChild={false}
           />
         </SandboxItem>
       </SandboxSection>

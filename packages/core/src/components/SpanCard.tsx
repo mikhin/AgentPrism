@@ -15,18 +15,20 @@ import { SpanCardTimeline } from "./SpanCardTimeline";
 import { SpanCardStatus } from "./SpanCardStatus";
 import { SpanCardBadges } from "./SpanCardBadges";
 import { SpanCardToggle } from "./SpanCardToggle";
-import { SpanCardHorizontalConnector } from "./SpanCardConnectors";
+import {
+  type SpanCardConnectorType,
+  SpanCardConnector,
+} from "./SpanCardConnector";
 import { getTimelineData } from "../services/get-timeline-data";
 import { formatDuration } from "../services/calculate-duration";
 import cn from "classnames";
 
 const LAYOUT_CONSTANTS = {
-  MARGIN_LEVEL_ZERO: 5,
-  MARGIN_LEVEL_NON_ZERO: 9,
-  MARGIN_STEP: 20,
+  CONNECTOR_WIDTH: 20,
   CONTENT_BASE_WIDTH: 320,
-  BASE_HORIZONTAL_LINE_WIDTH: 8,
 } as const;
+
+type ExpandButtonPlacement = "inside" | "outside";
 
 interface SpanCardProps {
   data: SpanCardType;
@@ -34,15 +36,11 @@ interface SpanCardProps {
   selectedCardId?: string;
   avatar?: AvatarProps;
   onSelectionChange?: (cardId: string, isSelected: boolean) => void;
-  expandButton: "inside" | "outside";
+  expandButton: ExpandButtonPlacement;
   minStart: number;
   maxEnd: number;
-}
-
-interface LayoutCalculations {
-  marginLeft: number;
-  horizontalLineWidth: number;
-  contentWidth: number;
+  isLastChild: boolean;
+  prevLevelConnectors?: SpanCardConnectorType[];
 }
 
 interface SpanCardState {
@@ -51,28 +49,117 @@ interface SpanCardState {
   isSelected: boolean;
 }
 
-const calculateLayout = (
-  level: number,
-  hasChildren: boolean,
-): LayoutCalculations => {
-  const marginLeft = level !== 0 ? LAYOUT_CONSTANTS.MARGIN_STEP / 2 : 0;
-  const horizontalLineWidth =
-    LAYOUT_CONSTANTS.BASE_HORIZONTAL_LINE_WIDTH +
-    (hasChildren ? 0 : LAYOUT_CONSTANTS.MARGIN_STEP);
-  const contentWidth =
-    LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH - level * LAYOUT_CONSTANTS.MARGIN_STEP;
+const getContentWidth = ({
+  level,
+  hasExpandButton,
+  contentPadding,
+  expandButton,
+}: {
+  level: number;
+  hasExpandButton: boolean;
+  contentPadding: number;
+  expandButton: ExpandButtonPlacement;
+}) => {
+  let width =
+    LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH -
+    level * LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
 
-  return { marginLeft, horizontalLineWidth, contentWidth };
-};
-
-const getContentWidth = (level: number) => {
-  if (level === 0) {
-    return LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH - 4;
+  if (hasExpandButton && expandButton === "inside") {
+    width -= LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
   }
 
-  return (
-    LAYOUT_CONSTANTS.CONTENT_BASE_WIDTH - level * LAYOUT_CONSTANTS.MARGIN_STEP
-  );
+  if (expandButton === "outside" && level === 0) {
+    width -= LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
+  }
+
+  return width - contentPadding;
+};
+
+const getGridTemplateColumns = ({
+  connectorsColumnWidth,
+  expandButton,
+}: {
+  connectorsColumnWidth: number;
+  expandButton: ExpandButtonPlacement;
+}) => {
+  if (expandButton === "inside") {
+    return `${connectorsColumnWidth}px 1fr`;
+  }
+
+  return `${connectorsColumnWidth}px 1fr ${LAYOUT_CONSTANTS.CONNECTOR_WIDTH}px`;
+};
+
+const getContentPadding = ({
+  level,
+  hasExpandButton,
+}: {
+  level: number;
+  hasExpandButton: boolean;
+}) => {
+  if (level === 0) return 0;
+
+  if (hasExpandButton) return 4;
+
+  return 8;
+};
+
+const getConnectorsLayout = ({
+  level,
+  hasExpandButton,
+  isLastChild,
+  prevConnectors,
+  expandButton,
+}: {
+  hasExpandButton: boolean;
+  isLastChild: boolean;
+  level: number;
+  prevConnectors: SpanCardConnectorType[];
+  expandButton: ExpandButtonPlacement;
+}): {
+  connectors: SpanCardConnectorType[];
+  connectorsColumnWidth: number;
+} => {
+  const connectors: SpanCardConnectorType[] = [];
+
+  if (level === 0) {
+    return {
+      connectors: expandButton === "inside" ? [] : ["vertical"],
+      connectorsColumnWidth: 20,
+    };
+  }
+
+  for (let i = 0; i < level - 1; i++) {
+    connectors.push("vertical");
+  }
+
+  if (!isLastChild) {
+    connectors.push("t-right");
+  }
+
+  if (isLastChild) {
+    connectors.push("corner-top-right");
+  }
+
+  let connectorsColumnWidth =
+    connectors.length * LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
+
+  if (hasExpandButton) {
+    connectorsColumnWidth += LAYOUT_CONSTANTS.CONNECTOR_WIDTH;
+  }
+
+  for (let i = 0; i < prevConnectors.length; i++) {
+    if (
+      prevConnectors[i] === "empty" ||
+      prevConnectors[i] === "corner-top-right"
+    ) {
+      connectors[i] = "empty";
+    }
+  }
+
+  return {
+    connectors,
+    connectorsColumnWidth,
+  };
 };
 
 const useSpanCardEventHandlers = (
@@ -124,6 +211,7 @@ const SpanCardChildren: FC<{
   onChildSelectionChange: (childId: string, childIsSelected: boolean) => void;
   minStart: number;
   maxEnd: number;
+  prevLevelConnectors: SpanCardConnectorType[];
 }> = ({
   data,
   level,
@@ -132,22 +220,15 @@ const SpanCardChildren: FC<{
   expandButton,
   minStart,
   maxEnd,
+  prevLevelConnectors,
 }) => {
   if (!data.children?.length) return null;
 
   return (
     <div className="relative">
-      <Collapsible.Content
-        className="border-l-2 border-gray-100 dark:border-gray-800"
-        style={{
-          marginLeft:
-            level === 0
-              ? LAYOUT_CONSTANTS.MARGIN_LEVEL_ZERO
-              : LAYOUT_CONSTANTS.MARGIN_LEVEL_NON_ZERO,
-        }}
-      >
+      <Collapsible.Content>
         <ul role="group">
-          {data.children.map((child) => (
+          {data.children.map((child, idx) => (
             <SpanCard
               expandButton={expandButton}
               key={child.id}
@@ -157,6 +238,8 @@ const SpanCardChildren: FC<{
               level={level + 1}
               selectedCardId={selectedCardId}
               onSelectionChange={onChildSelectionChange}
+              isLastChild={idx === (data.children || []).length - 1}
+              prevLevelConnectors={prevLevelConnectors}
             />
           ))}
         </ul>
@@ -174,6 +257,8 @@ export const SpanCard: FC<SpanCardProps> = ({
   avatar,
   minStart,
   maxEnd,
+  isLastChild,
+  prevLevelConnectors = [],
 }) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -182,8 +267,6 @@ export const SpanCard: FC<SpanCardProps> = ({
     hasChildren: Boolean(data.children?.length),
     isSelected: selectedCardId === data.id,
   };
-
-  const layout = calculateLayout(level, state.hasChildren);
 
   const eventHandlers = useSpanCardEventHandlers(
     data,
@@ -200,7 +283,30 @@ export const SpanCard: FC<SpanCardProps> = ({
   const hasExpandButtonAsFirstChild =
     expandButton === "inside" && state.hasChildren;
 
-  const contentWidth = getContentWidth(level);
+  const contentPadding = getContentPadding({
+    level,
+    hasExpandButton: hasExpandButtonAsFirstChild,
+  });
+
+  const contentWidth = getContentWidth({
+    level,
+    hasExpandButton: hasExpandButtonAsFirstChild,
+    contentPadding,
+    expandButton,
+  });
+
+  const { connectors, connectorsColumnWidth } = getConnectorsLayout({
+    level,
+    hasExpandButton: hasExpandButtonAsFirstChild,
+    isLastChild,
+    prevConnectors: prevLevelConnectors,
+    expandButton,
+  });
+
+  const gridTemplateColumns = getGridTemplateColumns({
+    connectorsColumnWidth,
+    expandButton,
+  });
 
   return (
     <li
@@ -208,17 +314,12 @@ export const SpanCard: FC<SpanCardProps> = ({
       aria-expanded={state.hasChildren ? state.isExpanded : undefined}
       className="list-none"
     >
-      <Collapsible.Root
-        open={state.isExpanded}
-        onOpenChange={setIsExpanded}
-        style={{ marginLeft: `${layout.marginLeft}px` }}
-      >
+      <Collapsible.Root open={state.isExpanded} onOpenChange={setIsExpanded}>
         <div
-          className={cn(
-            "relative",
-            "flex flex-wrap items-start gap-x-2 gap-y-1",
-            "mb-3 min-h-5 w-full cursor-pointer",
-          )}
+          className="grid w-full"
+          style={{
+            gridTemplateColumns,
+          }}
           onClick={eventHandlers.handleCardClick}
           onKeyDown={eventHandlers.handleKeyDown}
           tabIndex={0}
@@ -228,97 +329,84 @@ export const SpanCard: FC<SpanCardProps> = ({
           aria-expanded={state.hasChildren ? state.isExpanded : undefined}
           aria-label={`${state.isSelected ? "Selected" : "Not selected"} span card for ${data.title} at level ${level}`}
         >
-          {state.isExpanded && hasExpandButtonAsFirstChild && (
-            <div
-              className="absolute -bottom-3 h-[calc(100%-8px)] w-0.5 transform bg-gray-100 dark:bg-gray-800"
-              style={{
-                left:
-                  level === 0
-                    ? LAYOUT_CONSTANTS.MARGIN_LEVEL_ZERO
-                    : LAYOUT_CONSTANTS.MARGIN_LEVEL_NON_ZERO,
-              }}
-            />
-          )}
-
-          <div
-            className={cn(
-              "relative flex min-h-4 shrink-0 flex-wrap items-start gap-1",
-              level !== 0 && !hasExpandButtonAsFirstChild && "pl-2",
-              level !== 0 && hasExpandButtonAsFirstChild && "pl-1",
-            )}
-            style={{
-              width: `min(${contentWidth}px, 100%)`,
-            }}
-          >
-            {level !== 0 && (
-              <SpanCardHorizontalConnector
-                level={level}
-                hasCollapseButton={hasExpandButtonAsFirstChild}
-                stepLength={LAYOUT_CONSTANTS.MARGIN_STEP}
-              />
-            )}
+          <div className="flex flex-nowrap">
+            {connectors.map((connector, idx) => (
+              <SpanCardConnector key={`${connector}-${idx}`} type={connector} />
+            ))}
 
             {hasExpandButtonAsFirstChild && (
-              <div className="flex h-4 items-center">
+              <div className="flex w-5 flex-col items-center">
                 <SpanCardToggle
                   isExpanded={state.isExpanded}
                   title={data.title}
                   onToggleClick={eventHandlers.handleToggleClick}
                 />
+
+                {state.isExpanded && <SpanCardConnector type="vertical" />}
               </div>
             )}
-
-            {avatar && <Avatar {...avatar} />}
-
-            <h3 className="mr-3 h-4 max-w-28 truncate text-sm leading-[14px] text-gray-900 dark:text-gray-200">
-              {data.title}
-            </h3>
-
-            <SpanCardBadges data={data} />
           </div>
-
-          <div className="shrink-1 flex grow flex-wrap items-center justify-end gap-1">
-            {expandButton === "outside" && (
-              <div>
-                <SpanCardStatus status={data.status} />
-              </div>
+          <div
+            className={cn(
+              "flex flex-wrap items-start gap-x-2 gap-y-1",
+              "mb-3 min-h-5 w-full cursor-pointer",
+              level !== 0 && !hasExpandButtonAsFirstChild && "pl-2",
+              level !== 0 && hasExpandButtonAsFirstChild && "pl-1",
             )}
+          >
+            <div
+              className="relative flex min-h-4 shrink-0 flex-wrap items-start gap-1"
+              style={{
+                width: `min(${contentWidth}px, 100%)`,
+                minWidth: 140,
+              }}
+            >
+              {avatar && <Avatar {...avatar} />}
 
-            <SpanCardTimeline
-              theme={getSpanCategoryTheme(data.type)}
-              minStart={minStart}
-              maxEnd={maxEnd}
-              spanCard={data}
-            />
+              <h3 className="mr-3 h-4 max-w-28 truncate text-sm leading-[14px] text-gray-900 dark:text-gray-200">
+                {data.title}
+              </h3>
 
-            <div className="flex items-center gap-2">
-              <span className="inline-block w-14 flex-1 shrink-0 whitespace-nowrap px-1 text-right text-xs text-black dark:text-white">
-                {formatDuration(durationMs)}
-              </span>
+              <SpanCardBadges data={data} />
+            </div>
 
-              {expandButton === "inside" && (
+            <div className="shrink-1 flex grow flex-wrap items-center justify-end gap-1">
+              {expandButton === "outside" && (
                 <div>
                   <SpanCardStatus status={data.status} />
                 </div>
               )}
+
+              <SpanCardTimeline
+                theme={getSpanCategoryTheme(data.type)}
+                minStart={minStart}
+                maxEnd={maxEnd}
+                spanCard={data}
+              />
+
+              <div className="flex items-center gap-2">
+                <span className="inline-block w-14 flex-1 shrink-0 whitespace-nowrap px-1 text-right text-xs text-black dark:text-white">
+                  {formatDuration(durationMs)}
+                </span>
+
+                {expandButton === "inside" && (
+                  <div>
+                    <SpanCardStatus status={data.status} />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
           {expandButton === "outside" &&
             (state.hasChildren ? (
-              <div style={{ gridArea: "expand" }}>
-                <SpanCardToggle
-                  isExpanded={state.isExpanded}
-                  title={data.title}
-                  onToggleClick={eventHandlers.handleToggleClick}
-                />
-              </div>
-            ) : (
-              <div
-                className="w-3"
-                style={{ gridArea: "expand" }}
-                aria-hidden="true"
+              <SpanCardToggle
+                isExpanded={state.isExpanded}
+                title={data.title}
+                onToggleClick={eventHandlers.handleToggleClick}
               />
+            ) : (
+              <div />
             ))}
         </div>
 
@@ -330,6 +418,7 @@ export const SpanCard: FC<SpanCardProps> = ({
           level={level}
           selectedCardId={selectedCardId}
           onChildSelectionChange={eventHandlers.handleChildSelectionChange}
+          prevLevelConnectors={connectors}
         />
       </Collapsible.Root>
     </li>
