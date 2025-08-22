@@ -1,0 +1,69 @@
+import { Check, Copy } from "lucide-react";
+import { useState } from "react";
+
+import type { SpanCardType } from "../types/span.ts";
+
+import { Avatar, type AvatarProps } from "./Avatar.tsx";
+import { DetailsViewHeaderActions } from "./DetailsViewHeaderActions.tsx";
+import { IconButton } from "./IconButton.tsx";
+import { SpanCardStatus } from "./SpanCardStatus.tsx";
+
+interface DetailsViewHeaderProps {
+  data: SpanCardType;
+  avatar?: AvatarProps;
+  copyButton?: {
+    isEnabled?: boolean;
+    onCopy?: (data: SpanCardType) => void;
+  };
+}
+
+export const DetailsViewHeader = ({
+  data,
+  avatar,
+  copyButton,
+}: DetailsViewHeaderProps) => {
+  const [hasCopied, setHasCopied] = useState(false);
+
+  const handleCopy = () => {
+    if (copyButton?.onCopy) {
+      copyButton.onCopy(data);
+      setHasCopied(true);
+      setTimeout(() => setHasCopied(false), 2000);
+    }
+  };
+
+  return (
+    <div className="mb-4 flex items-center gap-4">
+      <div className="flex items-center gap-1.5">
+        {avatar && <Avatar {...avatar} />}
+
+        <span className="text-base tracking-wide text-gray-900 dark:text-gray-200">
+          {data.title}
+        </span>
+
+        <div className="flex size-5 items-center justify-center">
+          <SpanCardStatus status={data.status} />
+        </div>
+
+        {copyButton && (
+          <IconButton
+            aria-label={
+              copyButton.isEnabled ? "Copy span details" : "Copy disabled"
+            }
+            variant="ghost"
+            size="sm"
+            onClick={handleCopy}
+          >
+            {hasCopied ? (
+              <Check className="size-3 text-gray-500" />
+            ) : (
+              <Copy className="size-3 text-gray-500" />
+            )}
+          </IconButton>
+        )}
+      </div>
+
+      <DetailsViewHeaderActions />
+    </div>
+  );
+};
