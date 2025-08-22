@@ -19,6 +19,10 @@ export const SpanCardPage = (): ReactElement => {
   const childSpan = rootSpan.children?.[0] || rootSpan;
 
   const noChildrenSpan: SpanCardType = {
+    raw: JSON.stringify({
+      id: "no-children-span",
+      title: "Span With No Children",
+    }),
     id: "no-children-span",
     title: "Span With No Children",
     attributes: [

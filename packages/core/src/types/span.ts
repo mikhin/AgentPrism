@@ -10,6 +10,7 @@ export type SpanCardType = {
   duration: number;
   cost: number;
   type: SpanCategory;
+  raw: string;
   attributes: SpanAttribute[];
   children?: SpanCardType[];
   tokensCount: number;

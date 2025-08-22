@@ -27,6 +27,7 @@ export const convertOTelSpanToSpanCard = (
     attributes: span.attributes,
     duration,
     tokensCount,
+    raw: JSON.stringify(span, null, 2),
     cost,
     startTime: convertTimestamp(span.startTimeUnixNano),
     endTime: convertTimestamp(span.endTimeUnixNano),

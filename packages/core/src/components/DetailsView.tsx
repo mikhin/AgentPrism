@@ -8,6 +8,8 @@ import {
   Check,
 } from "lucide-react";
 import { useState, type ReactElement } from "react";
+import JSONPretty from "react-json-pretty";
+import colors from "tailwindcss/colors";
 
 import type { SpanCardType } from "../types/span.ts";
 
@@ -101,14 +103,19 @@ export const DetailsView = ({
       label: "RAW",
       icon: <SquareTerminal className="size-4" />,
       content: (
-        <div className="p-4">
-          <h3 className="mb-2 text-lg font-semibold">Raw Data</h3>
-          <pre className="overflow-auto rounded bg-gray-100 p-3 text-sm">
-            {`{
-  "data": "raw content",
-  "format": "unprocessed"
-}`}
-          </pre>
+        <div className="pt-4">
+          <div className="rounded border border-gray-200 bg-transparent dark:border-gray-600">
+            <JSONPretty
+              booleanStyle={`color: ${colors.blue[400]};`}
+              className="rounded-xl p-4"
+              data={data.raw}
+              id={`json-pretty-${data.id || "span-details"}`}
+              keyStyle={`color: ${colors.blue[400]};`}
+              mainStyle={`color: ${colors.gray[400]}; font-size: 12px;`}
+              stringStyle={`color: ${colors.red[600]};`}
+              valueStyle={`color: ${colors.red[600]};`}
+            />
+          </div>
         </div>
       ),
     },

@@ -8,6 +8,28 @@ export const DetailsViewPage = (): ReactElement => {
   const testData: SpanCardType = {
     id: "test-span",
     title: "ChatCompletion",
+    raw: JSON.stringify(
+      {
+        id: "test-span",
+        title: "ChatCompletion",
+        attributes: {
+          Input: "gpt-4",
+          prompt_tokens: 1000,
+          completion_tokens: 500,
+          total_tokens: 1500,
+          user_id: "user123",
+        },
+        startTimeUnixNano: "1704067200000000000",
+        endTimeUnixNano: "1704067500000000000",
+        tokensCount: 500,
+        type: "llm_call",
+        duration: 300,
+        status: "success",
+        cost: 10,
+      },
+      null,
+      2,
+    ),
     attributes: [
       { key: "Input", value: { stringValue: "gpt-4" } },
       { key: "prompt_tokens", value: { intValue: "1000" } },

@@ -10,6 +10,12 @@ describe("getTimelineData", () => {
       const spanCard: SpanCardType = {
         id: "1",
         title: "LLM Call",
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         startTime: new Date("2023-10-01T10:00:00.000Z"),
         endTime: new Date("2023-10-01T10:00:30.000Z"),
         duration: 30000,
@@ -37,6 +43,12 @@ describe("getTimelineData", () => {
       const spanCard: SpanCardType = {
         id: "2",
         title: "Tool Execution",
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         startTime: new Date("2023-10-01T10:00:30.000Z"),
         endTime: new Date("2023-10-01T10:00:45.000Z"),
         duration: 15000,
@@ -64,6 +76,12 @@ describe("getTimelineData", () => {
       const spanCard: SpanCardType = {
         id: "3",
         title: "Agent Invocation",
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         startTime: new Date("2023-10-01T10:00:00.000Z"),
         endTime: new Date("2023-10-01T10:00:20.000Z"),
         duration: 20000,
@@ -92,6 +110,12 @@ describe("getTimelineData", () => {
     it("should handle very short duration spans", () => {
       const spanCard: SpanCardType = {
         id: "4",
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         title: "Quick Operation",
         startTime: new Date("2023-10-01T10:00:00.000Z"),
         endTime: new Date("2023-10-01T10:00:00.001Z"),
@@ -128,6 +152,12 @@ describe("getTimelineData", () => {
         endTime: new Date("2023-10-01T10:00:59.000Z"),
         duration: 59000,
         cost: 0.005,
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         type: "retrieval",
         attributes: [
           { key: "source", value: { stringValue: "database" } },
@@ -155,6 +185,12 @@ describe("getTimelineData", () => {
         endTime: new Date("2023-10-01T10:01:00.000Z"),
         duration: 60000,
         cost: 0.01,
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         type: "embedding",
         attributes: [
           {
@@ -185,6 +221,12 @@ describe("getTimelineData", () => {
         endTime: new Date("2023-10-01T10:00:00.000Z"),
         duration: 0,
         cost: 0,
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         type: "unknown",
         attributes: [],
         tokensCount: 0,
@@ -210,6 +252,12 @@ describe("getTimelineData", () => {
       // Test at 25% of the timeline
       const spanCard1: SpanCardType = {
         id: "8",
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         title: "25% Position",
         startTime: new Date("2023-10-01T10:00:15.000Z"),
         endTime: new Date("2023-10-01T10:00:20.000Z"),
@@ -238,6 +286,12 @@ describe("getTimelineData", () => {
       // Test at 75% of the timeline
       const spanCard2: SpanCardType = {
         id: "9",
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         title: "75% Position",
         startTime: new Date("2023-10-01T10:00:45.000Z"),
         endTime: new Date("2023-10-01T10:00:50.000Z"),
@@ -271,6 +325,12 @@ describe("getTimelineData", () => {
       // Test 10% width
       const spanCard1: SpanCardType = {
         id: "10",
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         title: "10% Width",
         startTime: new Date("2023-10-01T10:00:00.000Z"),
         endTime: new Date("2023-10-01T10:00:06.000Z"),
@@ -303,6 +363,12 @@ describe("getTimelineData", () => {
         startTime: new Date("2023-10-01T10:00:00.000Z"),
         endTime: new Date("2023-10-01T10:00:12.000Z"),
         duration: 12000,
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         cost: 0.002,
         type: "retrieval",
         attributes: [
@@ -331,6 +397,12 @@ describe("getTimelineData", () => {
       const spanCard: SpanCardType = {
         id: "15",
         title: "Micro Operation",
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         startTime: new Date("2023-10-01T10:00:00.000Z"),
         endTime: new Date("2023-10-01T10:00:00.100Z"),
         duration: 100,
@@ -372,6 +444,12 @@ describe("getTimelineData", () => {
     it("should handle very large time ranges", () => {
       const spanCard: SpanCardType = {
         id: "16",
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         title: "Long Running Process",
         startTime: new Date("2023-10-01T10:00:00.000Z"),
         endTime: new Date("2023-10-01T10:05:00.000Z"),
@@ -406,6 +484,12 @@ describe("getTimelineData", () => {
         startTime: new Date("2023-10-01T10:00:00.000Z"),
         endTime: new Date("2023-10-01T10:00:00.001Z"),
         duration: 1,
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         cost: 0.000001,
         type: "unknown",
         attributes: [
@@ -438,6 +522,12 @@ describe("getTimelineData", () => {
         endTime: new Date("2023-10-01T10:00:01.000Z"),
         duration: 1000,
         cost: 0.001,
+        raw: JSON.stringify({
+          id: "1",
+          title: "LLM Call",
+          startTimeUnixNano: "1704067200000000000",
+          endTimeUnixNano: "1704067230000000000",
+        }),
         type: "llm_call",
         attributes: [
           { key: "range", value: { stringValue: "full" } },

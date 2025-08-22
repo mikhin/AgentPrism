@@ -11,6 +11,7 @@ export const sampleTreeViewData: SpanCardType[] = [
     type: "chain_operation",
     tokensCount: 1000,
     status: "success",
+    raw: `{"span_id": "main-001", "status": "SUCCESS", "duration_ms": 37220}`,
     attributes: [
       { key: "app.name", value: { stringValue: "ai-research-agent" } },
       { key: "app.environment", value: { stringValue: "production" } },
@@ -29,6 +30,7 @@ export const sampleTreeViewData: SpanCardType[] = [
         cost: 150,
         type: "llm_call",
         status: "success",
+        raw: `{"span_id": "chat-completions-001", "model": "gpt-4", "tokens": 500}`,
         attributes: [
           { key: "gen_ai.request.model", value: { stringValue: "gpt-4" } },
           { key: "gen_ai.usage.input_tokens", value: { intValue: "300" } },
@@ -48,6 +50,7 @@ export const sampleTreeViewData: SpanCardType[] = [
             cost: 75,
             status: "pending",
             type: "llm_call",
+            raw: `{"span_id": "chat-completion-001", "status": "PENDING", "retry": true}`,
             attributes: [
               { key: "gen_ai.request.model", value: { stringValue: "gpt-4" } },
               { key: "gen_ai.usage.input_tokens", value: { intValue: "150" } },
@@ -68,6 +71,7 @@ export const sampleTreeViewData: SpanCardType[] = [
             tokensCount: 250,
             status: "error",
             type: "llm_call",
+            raw: `{"span_id": "chat-completion-002", "error": "rate_limit_exceeded", "retry_count": 3}`,
             attributes: [
               { key: "gen_ai.request.model", value: { stringValue: "gpt-4" } },
               { key: "gen_ai.usage.input_tokens", value: { intValue: "150" } },
@@ -96,6 +100,7 @@ export const sampleTreeViewData: SpanCardType[] = [
         tokensCount: 200,
         status: "success",
         type: "chain_operation",
+        raw: `{"span_id": "sequence-001", "chain": "DocumentProcessingChain", "docs": 5}`,
         attributes: [
           {
             key: "langchain.chain",
@@ -117,6 +122,7 @@ export const sampleTreeViewData: SpanCardType[] = [
         status: "success",
         tokensCount: 100,
         type: "tool_execution",
+        raw: `{"span_id": "tavily-search-001", "query": "AI trends 2024", "results": 10}`,
         attributes: [
           { key: "function.name", value: { stringValue: "tavily_search" } },
           {
@@ -142,6 +148,7 @@ export const sampleTreeViewData: SpanCardType[] = [
         cost: 90,
         tokensCount: 300,
         type: "chain_operation",
+        raw: `{"span_id": "sequence-002", "chain": "ContentSynthesisChain", "status": "PENDING"}`,
         attributes: [
           {
             key: "langchain.chain",
@@ -162,6 +169,7 @@ export const sampleTreeViewData: SpanCardType[] = [
             tokensCount: 50,
             status: "error",
             type: "chain_operation",
+            raw: `{"span_id": "assign-001", "error": "validation_error", "field": "temperature"}`,
             attributes: [
               {
                 key: "langchain.runnable",
@@ -182,6 +190,7 @@ export const sampleTreeViewData: SpanCardType[] = [
             status: "error",
             cost: 5,
             type: "llm_call",
+            raw: `{"span_id": "template-001", "error": "template_error", "missing": "context"}`,
             attributes: [
               {
                 key: "llm.prompt_template.template",
@@ -211,6 +220,7 @@ export const sampleTreeViewData: SpanCardType[] = [
         tokensCount: 150,
         cost: 20,
         type: "tool_execution",
+        raw: `{"span_id": "extract-001", "urls": 2, "status": "PENDING", "progress": 50}`,
         attributes: [
           { key: "function.name", value: { stringValue: "tavily_extract" } },
           {
@@ -233,6 +243,7 @@ export const sampleTreeViewData: SpanCardType[] = [
         duration: 7840,
         cost: 15,
         type: "chain_operation",
+        raw: `{"span_id": "assign-002", "operation": "SummaryAssigner", "compression": 0.15}`,
         attributes: [
           {
             key: "langchain.runnable",
@@ -254,6 +265,7 @@ export const sampleTreeViewData: SpanCardType[] = [
         status: "success",
         cost: 5,
         type: "llm_call",
+        raw: `{"span_id": "template-002", "template": "summary_report", "format": "markdown"}`,
         attributes: [
           {
             key: "llm.prompt_template.template",
