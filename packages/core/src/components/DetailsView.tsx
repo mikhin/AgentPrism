@@ -11,6 +11,7 @@ import { useState, type ReactElement } from "react";
 
 import type { SpanCardType } from "../types/span.ts";
 
+import { formatDuration } from "../services/calculate-duration.ts";
 import {
   getSpanCategoryIcon,
   getSpanCategoryLabel,
@@ -54,6 +55,10 @@ export const DetailsView = ({
       setTimeout(() => setHasCopied(false), 2000);
     }
   };
+
+  const startMs = +data.startTime;
+  const endMs = +data.endTime;
+  const durationMs = endMs - startMs;
 
   const tabItems: TabItem[] = [
     {
@@ -150,7 +155,7 @@ export const DetailsView = ({
         </div>
       </div>
 
-      <div className="mb-4 flex items-center justify-start space-x-1">
+      <div className="mb-4 flex items-center justify-start space-x-2">
         <Badge
           iconStart={<Icon className="size-2.5" />}
           theme={getSpanCategoryTheme(data.type)}
@@ -171,9 +176,9 @@ export const DetailsView = ({
           $ {data.cost}
         </Badge>
 
-        <Badge theme="gray" size="xs">
-          {data.duration}
-        </Badge>
+        <span className="dark: text-xs text-gray-500 dark:text-gray-600">
+          LATENCY: {formatDuration(durationMs)}
+        </span>
       </div>
 
       <Tabs
