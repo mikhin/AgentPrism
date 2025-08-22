@@ -22,6 +22,7 @@ import { Badge } from "./Badge.tsx";
 import { Button } from "./Button.tsx";
 import { CollapsibleSection } from "./CollapsibleSection.tsx";
 import { IconButton } from "./IconButton.tsx";
+import { Input } from "./Input.tsx";
 import { SpanCardStatus } from "./SpanCardStatus.tsx";
 import { Tabs, type TabItem } from "./Tabs.tsx";
 
@@ -80,7 +81,15 @@ export const DetailsView = ({
                 title={attribute.key}
                 defaultOpen
               >
-                <div className="font-mono text-xs">{value}</div>
+                <Input
+                  id={`${data.id}-attribute-${index}`}
+                  value={value}
+                  disabled
+                  readOnly
+                  clearable={false}
+                  inputClassName="font-mono text-xs"
+                  className="w-full"
+                />
               </CollapsibleSection>
             );
           })}
@@ -126,7 +135,14 @@ export const DetailsView = ({
           </div>
 
           {copyButton && (
-            <IconButton variant="ghost" size="sm" onClick={handleCopy}>
+            <IconButton
+              aria-label={
+                copyButton.isEnabled ? "Copy span details" : "Copy disabled"
+              }
+              variant="ghost"
+              size="sm"
+              onClick={handleCopy}
+            >
               {hasCopied ? (
                 <Check className="size-3 text-gray-500" />
               ) : (
@@ -149,7 +165,10 @@ export const DetailsView = ({
             Secondary
           </Button>
 
-          <IconButton size="md">
+          <IconButton
+            aria-label={"Open chat with AI assistant (feature coming soon)"}
+            size="md"
+          >
             <MessageSquare className="size-3 text-gray-500" />
           </IconButton>
         </div>

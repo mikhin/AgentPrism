@@ -41,9 +41,7 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
       <Collapsible.Content
         className={`data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown ${contentClassName}`}
       >
-        <div className="rounded border border-gray-200 p-4 text-sm text-gray-600 dark:border-gray-600">
-          {children}
-        </div>
+        {children}
       </Collapsible.Content>
     </Collapsible.Root>
   );

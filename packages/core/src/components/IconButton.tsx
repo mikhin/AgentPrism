@@ -8,6 +8,11 @@ type IconButtonVariant = "default" | "ghost";
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: IconButtonSize;
   variant?: IconButtonVariant;
+  /**
+   * Accessible label for screen readers
+   * Required for accessibility compliance
+   */
+  "aria-label": string;
 }
 
 const sizeClasses: Record<IconButtonSize, string> = {
@@ -28,11 +33,13 @@ export const IconButton = ({
   size = "md",
   variant = "default",
   type = "button",
+  "aria-label": ariaLabel,
   ...props
 }: IconButtonProps) => {
   return (
     <button
       type={type}
+      aria-label={ariaLabel}
       {...props}
       className={cn(
         className,
