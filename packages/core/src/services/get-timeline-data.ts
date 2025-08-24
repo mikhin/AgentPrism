@@ -1,5 +1,7 @@
 import type { SpanCardType } from "../types/span";
 
+import { getDurationMs } from "./get-duration-ms.ts";
+
 export const getTimelineData = ({
   spanCard,
   minStart,
@@ -10,9 +12,8 @@ export const getTimelineData = ({
   maxEnd: number;
 }) => {
   const startMs = +spanCard.startTime;
-  const endMs = +spanCard.endTime;
   const totalRange = maxEnd - minStart;
-  const durationMs = endMs - startMs;
+  const durationMs = getDurationMs(spanCard);
   const startPercent = ((startMs - minStart) / totalRange) * 100;
   const widthPercent = (durationMs / totalRange) * 100;
 

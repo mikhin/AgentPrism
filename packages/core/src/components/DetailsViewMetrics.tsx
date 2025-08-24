@@ -3,6 +3,7 @@ import { Coins } from "lucide-react";
 import type { SpanCardType } from "../types/span.ts";
 
 import { formatDuration } from "../services/calculate-duration.ts";
+import { getDurationMs } from "../services/get-duration-ms.ts";
 import {
   getSpanCategoryIcon,
   getSpanCategoryLabel,
@@ -16,9 +17,7 @@ interface DetailsViewMetricsProps {
 
 export const DetailsViewMetrics = ({ data }: DetailsViewMetricsProps) => {
   const Icon = getSpanCategoryIcon(data.type);
-  const startMs = +data.startTime;
-  const endMs = +data.endTime;
-  const durationMs = endMs - startMs;
+  const durationMs = getDurationMs(data);
 
   return (
     <div className="mb-4 flex items-center justify-start space-x-2">
