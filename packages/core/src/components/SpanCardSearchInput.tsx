@@ -1,5 +1,6 @@
-import { Input, type InputProps } from "./Input";
 import { Search } from "lucide-react";
+
+import { Input, type InputProps } from "./Input";
 
 export const SpanCardSearchInput = ({ ...props }: InputProps) => {
   return (

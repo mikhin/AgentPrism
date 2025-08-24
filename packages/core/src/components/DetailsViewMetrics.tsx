@@ -1,23 +1,26 @@
 import { Coins } from "lucide-react";
 
-import type { SpanCardType } from "../types/span";
+import type { SpanCardType } from "../types/span.ts";
 
+import { formatDuration } from "../services/calculate-duration.ts";
+import { getDurationMs } from "../services/get-duration-ms.ts";
 import {
   getSpanCategoryIcon,
   getSpanCategoryLabel,
   getSpanCategoryTheme,
-} from "../utils/ui";
-import { Badge } from "./Badge";
+} from "../utils/ui.ts";
+import { Badge } from "./Badge.tsx";
 
-interface SpanCardBagdesProps {
+interface DetailsViewMetricsProps {
   data: SpanCardType;
 }
 
-export const SpanCardBadges = ({ data }: SpanCardBagdesProps) => {
+export const DetailsViewMetrics = ({ data }: DetailsViewMetricsProps) => {
   const Icon = getSpanCategoryIcon(data.type);
+  const durationMs = getDurationMs(data);
 
   return (
-    <div className="flex flex-wrap items-center justify-start gap-1">
+    <div className="mb-4 flex items-center justify-start space-x-2">
       <Badge
         iconStart={<Icon className="size-2.5" />}
         theme={getSpanCategoryTheme(data.type)}
@@ -33,6 +36,10 @@ export const SpanCardBadges = ({ data }: SpanCardBagdesProps) => {
       <Badge theme="gray" size="xs">
         $ {data.cost}
       </Badge>
+
+      <span className="text-xs text-gray-500 dark:text-gray-600">
+        LATENCY: {formatDuration(durationMs)}
+      </span>
     </div>
   );
 };

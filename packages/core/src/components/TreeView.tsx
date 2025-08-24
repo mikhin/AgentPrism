@@ -1,3 +1,4 @@
+import cn from "classnames";
 import { useState, useCallback, type FC } from "react";
 
 import type { SpanCardType } from "../types/span";
@@ -10,8 +11,6 @@ import {
   SpanCardExpandAllButton,
 } from "./SpanCardControls.tsx";
 import { SpanCardSearchInput } from "./SpanCardSearchInput.tsx";
-
-import cn from "classnames";
 
 interface TreeViewProps {
   spans: SpanCardType[];
@@ -56,6 +55,7 @@ export const TreeView: FC<TreeViewProps> = ({
     >
       <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-600">
         <SpanCardSearchInput
+          id="span-search"
           name="search"
           clearable
           onClear={() => setSearchValue("")}

@@ -3,8 +3,8 @@ import { type ReactElement } from "react";
 
 import { SandboxItem } from "../components/SandboxItem";
 import { SandboxSection } from "../components/SandboxSection";
-import { sampleTreeViewData } from "../data/sample-tree-view-data.ts";
 import { sampleTreeViewDataDeepNesting } from "../data/sample-tree-view-data-deep-nesting.ts";
+import { sampleTreeViewData } from "../data/sample-tree-view-data.ts";
 
 export const TreeViewPage = (): ReactElement => {
   return (

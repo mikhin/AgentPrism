@@ -31,6 +31,12 @@ export type BadgeProps = {
   theme: ColorVariant;
 
   /**
+   * The visual variant of the badge
+   * @default "solid"
+   */
+  variant?: "solid" | "outline";
+
+  /**
    * The size of the badge
    * @default "md"
    */
@@ -55,6 +61,7 @@ export type BadgeProps = {
 export const Badge = ({
   children,
   theme = "gray",
+  variant = "solid",
   size = "md",
   iconStart,
   iconEnd,
@@ -62,9 +69,14 @@ export const Badge = ({
 }: BadgeProps): ReactElement => {
   const { bg, darkBg, text, darkText } = colorThemeClasses[theme];
 
+  const variantClasses =
+    variant === "outline"
+      ? `border ${text} ${darkText} bg-transparent dark:bg-transparent`
+      : `${bg} ${text} ${darkBg} ${darkText}`;
+
   return (
     <span
-      className={`max-w-112 inline-flex min-w-fit items-center truncate rounded font-medium ${bg} ${text} ${darkBg} ${darkText} ${sizeClasses[size]} ${className}`}
+      className={`max-w-112 inline-flex min-w-fit items-center truncate rounded font-medium ${variantClasses} ${sizeClasses[size]} ${className}`}
     >
       {iconStart && <span className="shrink-0">{iconStart}</span>}
 

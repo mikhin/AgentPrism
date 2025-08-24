@@ -1,6 +1,8 @@
 export { Badge } from "./components/Badge";
 export { SpanCard } from "./components/SpanCard.tsx";
 export { TreeView } from "./components/TreeView";
+export { DetailsView } from "./components/DetailsView";
+export { CollapsibleSection } from "./components/CollapsibleSection";
 export { type SpanCardType } from "./types/span";
 export { convertOTelTraceToSpanTree } from "./services/convert-o-tel-trace-to-span-tree.ts";
 export { convertOTelSpanToSpanCard } from "./services/convert-o-tel-span-to-span-card.ts";
