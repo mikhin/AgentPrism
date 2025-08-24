@@ -48,7 +48,6 @@ export const IconButton = ({
         variantClasses[variant],
         "text-gray-500 dark:text-gray-400",
         "hover:bg-gray-200 dark:hover:bg-gray-800",
-        "outline-none outline-offset-0 focus-visible:outline-1 focus-visible:outline-blue-600 dark:focus-visible:outline-blue-300",
       )}
     >
       {children}
