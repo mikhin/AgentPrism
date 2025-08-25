@@ -80,14 +80,12 @@ ${ButtonSource}
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Basic button
 export const Default: Story = {
   args: {
     children: "Button",
   },
 };
 
-// Theme prop
 export const Theme: Story = {
   args: {
     children: "Purple",
@@ -95,7 +93,6 @@ export const Theme: Story = {
   },
 };
 
-// Variant prop
 export const Variant: Story = {
   args: {
     children: "Outlined",
@@ -103,7 +100,6 @@ export const Variant: Story = {
   },
 };
 
-// Rounded prop
 export const Rounded: Story = {
   args: {
     children: "Full Rounded",
@@ -111,7 +107,6 @@ export const Rounded: Story = {
   },
 };
 
-// FullWidth prop
 export const FullWidth: Story = {
   args: {
     children: "Full Width Button",
@@ -122,7 +117,6 @@ export const FullWidth: Story = {
   },
 };
 
-// Disabled prop
 export const Disabled: Story = {
   args: {
     children: "Disabled",
@@ -130,7 +124,6 @@ export const Disabled: Story = {
   },
 };
 
-// IconStart prop
 export const IconStart: Story = {
   args: {
     children: "With Icon",
@@ -139,7 +132,6 @@ export const IconStart: Story = {
   },
 };
 
-// IconEnd prop
 export const IconEnd: Story = {
   args: {
     children: "With Icon",

@@ -58,7 +58,6 @@ ${BadgeSource}
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Basic badge
 export const Default: Story = {
   args: {
     children: "Badge",
@@ -66,7 +65,6 @@ export const Default: Story = {
   },
 };
 
-// Size prop
 export const Size: Story = {
   args: {
     children: "Small",
@@ -75,7 +73,6 @@ export const Size: Story = {
   },
 };
 
-// Variant prop
 export const Variant: Story = {
   args: {
     children: "Outline",
@@ -84,7 +81,6 @@ export const Variant: Story = {
   },
 };
 
-// Theme prop
 export const Theme: Story = {
   args: {
     children: "Red",
@@ -92,7 +88,6 @@ export const Theme: Story = {
   },
 };
 
-// IconStart prop
 export const IconStart: Story = {
   args: {
     children: "Start",
@@ -101,7 +96,6 @@ export const IconStart: Story = {
   },
 };
 
-// IconEnd prop
 export const IconEnd: Story = {
   args: {
     children: "End",

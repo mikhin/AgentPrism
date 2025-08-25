@@ -73,7 +73,6 @@ ${AvatarSource}
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Basic avatar with image
 export const Default: Story = {
   args: {
     src: "https://i.pravatar.cc/150?img=3",
@@ -81,7 +80,6 @@ export const Default: Story = {
   },
 };
 
-// Size prop
 export const Size: Story = {
   args: {
     alt: "Large",
@@ -90,7 +88,6 @@ export const Size: Story = {
   },
 };
 
-// Letter prop
 export const Letter: Story = {
   args: {
     letter: "JD",
@@ -99,7 +96,6 @@ export const Letter: Story = {
   },
 };
 
-// BgColor prop
 export const BgColor: Story = {
   args: {
     alt: "Red Avatar",
@@ -107,7 +103,6 @@ export const BgColor: Story = {
   },
 };
 
-// TextColor prop
 export const TextColor: Story = {
   args: {
     alt: "Black Text",
@@ -116,7 +111,6 @@ export const TextColor: Story = {
   },
 };
 
-// Rounded prop
 export const Rounded: Story = {
   args: {
     alt: "Square",
