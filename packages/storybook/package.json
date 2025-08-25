@@ -10,8 +10,6 @@
     "tsc": "tsc -p tsconfig.app.json --noEmit --skipLibCheck"
   },
   "dependencies": {
-    "@storybook/blocks": "^8.6.14",
-    "@storybook/theming": "^8.6.14",
     "ai-agent-trace-ui-core": "workspace:^",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
