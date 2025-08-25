@@ -2,6 +2,8 @@ export { Avatar } from "./components/Avatar";
 export { default as AvatarSource } from "./components/Avatar.tsx?raw";
 export { Badge } from "./components/Badge";
 export { default as BadgeSource } from "./components/Badge.tsx?raw";
+export { Button } from "./components/Button";
+export { default as ButtonSource } from "./components/Button.tsx?raw";
 export { SpanCard } from "./components/SpanCard.tsx";
 export { TreeView } from "./components/TreeView";
 export { TraceList, type Trace } from "./components/TraceList";
