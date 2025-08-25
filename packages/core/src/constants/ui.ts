@@ -91,7 +91,7 @@ export const colorThemeClasses: Record<
     bg: "bg-gray-100",
     darkBg: "dark:bg-gray-900",
     text: "text-gray-600",
-    darkText: "dark:text-gray-300",
+    darkText: "dark:text-gray-400",
   },
 };
 

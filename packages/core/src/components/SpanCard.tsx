@@ -385,7 +385,7 @@ export const SpanCard: FC<SpanCardProps> = ({
               />
 
               <div className="flex items-center gap-2">
-                <span className="inline-block w-14 flex-1 shrink-0 whitespace-nowrap px-1 text-right text-xs text-black dark:text-white">
+                <span className="inline-block w-14 flex-1 shrink-0 whitespace-nowrap px-1 text-right text-xs text-gray-900 dark:text-gray-200">
                   {formatDuration(durationMs)}
                 </span>
 

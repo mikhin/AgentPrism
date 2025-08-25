@@ -46,7 +46,7 @@ export const TraceListItem = ({
         <div className="flex min-w-0 items-center gap-1.5 overflow-hidden">
           {avatar && <Avatar {...avatar} />}
 
-          <h3 className="font-regular max-w-full truncate text-sm text-gray-950 dark:text-gray-200">
+          <h3 className="font-regular max-w-full truncate text-sm text-gray-900 dark:text-gray-200">
             {name}
           </h3>
         </div>

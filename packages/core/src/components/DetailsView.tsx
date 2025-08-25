@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 
-import { SquareTerminal, Tags } from "lucide-react";
+import { SquareCode, Tags } from "lucide-react";
 
 import type { SpanCardType } from "../types/span";
 import type { AvatarProps } from "./Avatar";
@@ -41,7 +41,7 @@ export const DetailsView = ({
     {
       value: "raw",
       label: "RAW",
-      icon: <SquareTerminal className="size-4" />,
+      icon: <SquareCode className="size-4" />,
       content: <DetailsViewRawDataTab data={data} />,
     },
   ];
