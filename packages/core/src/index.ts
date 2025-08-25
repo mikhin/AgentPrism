@@ -15,6 +15,8 @@ export { TreeView } from "./components/TreeView";
 export { TraceList, type Trace } from "./components/TraceList";
 export { DetailsView } from "./components/DetailsView/DetailsView.tsx";
 export { default as DetailsViewSource } from "./components/DetailsView/DetailsView.tsx?raw";
+export { Tabs } from "./components/Tabs.tsx";
+export { default as TabsSource } from "./components/Tabs.tsx?raw";
 export { type SpanCardType } from "./types/span";
 export { convertOTelTraceToSpanTree } from "./services/convert-o-tel-trace-to-span-tree.ts";
 export { convertOTelSpanToSpanCard } from "./services/convert-o-tel-span-to-span-card.ts";
