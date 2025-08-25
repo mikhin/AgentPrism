@@ -5,6 +5,8 @@ export { default as BadgeSource } from "./components/Badge.tsx?raw";
 export { Button } from "./components/Button";
 export { default as ButtonSource } from "./components/Button.tsx?raw";
 export { CollapsibleSection } from "./components/CollapsibleSection";
+export { IconButton } from "./components/IconButton";
+export { default as IconButtonSource } from "./components/IconButton.tsx?raw";
 export { default as CollapsibleSectionSource } from "./components/CollapsibleSection.tsx?raw";
 export { SpanCard } from "./components/SpanCard.tsx";
 export { TreeView } from "./components/TreeView";
