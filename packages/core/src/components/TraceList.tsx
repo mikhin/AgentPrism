@@ -41,7 +41,7 @@ export const TraceList = ({
           </h2>
 
           <Badge
-            size="md"
+            size="sm"
             theme="gray"
             aria-label={`Total number of traces: ${traces.length}`}
           >
@@ -66,7 +66,7 @@ export const TraceList = ({
       {expanded && (
         <ul className="flex flex-col items-center rounded border border-gray-200 dark:border-gray-800">
           {traces.map((trace, idx) => (
-            <li className="list-none" key={trace.id}>
+            <li className="w-full list-none" key={trace.id}>
               <TraceListItem {...trace} />
 
               {idx < traces.length - 1 && (

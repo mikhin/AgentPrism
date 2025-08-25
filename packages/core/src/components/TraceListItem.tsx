@@ -57,11 +57,11 @@ export const TraceListItem = ({
         </div>
 
         <div className="flex items-center gap-2">
-          <Badge theme="gray" variant="outline">
+          <Badge size="sm" theme="gray" variant="outline">
             {spansCount === 1 ? "1 span" : `${spansCount} spans`}
           </Badge>
 
-          <Badge theme="gray" variant="outline">
+          <Badge size="sm" theme="gray" variant="outline">
             {formatDuration(durationMs)}
           </Badge>
         </div>
