@@ -4,7 +4,6 @@ import { useState, type ReactElement } from "react";
 import { SandboxItem } from "../components/SandboxItem";
 import { SandboxSection } from "../components/SandboxSection";
 
-
 const traces: Trace[] = [
   {
     id: "1",
@@ -83,15 +82,23 @@ const traces: Trace[] = [
 
 export const TraceListPage = (): ReactElement => {
   const [expanded, setExpanded] = useState(true);
-  
+
   return (
     <div className="p-8">
       <SandboxSection
         title="Trace List Component"
         description="A list of traces with a toggle to expand/collapse the list."
       >
-        <SandboxItem title="Default view" pattern="none" className="bg-white dark:bg-gray-900">
-          <TraceList traces={traces} expanded={expanded} onExpandStateChange={setExpanded} />
+        <SandboxItem
+          title="Default view"
+          pattern="none"
+          className="bg-white dark:bg-gray-900"
+        >
+          <TraceList
+            traces={traces}
+            expanded={expanded}
+            onExpandStateChange={setExpanded}
+          />
         </SandboxItem>
       </SandboxSection>
     </div>

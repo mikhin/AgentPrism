@@ -1,11 +1,12 @@
+import cn from "classnames";
 import { useCallback, type KeyboardEvent } from "react";
+
+import type { Trace } from "./TraceList";
+
 import { formatDuration } from "../services/calculate-duration";
 import { Avatar } from "./Avatar";
 import { Badge } from "./Badge";
-import type { Trace } from "./TraceList";
 import { TraceListItemBadge } from "./TraceListItemBadge";
-
-import cn from "classnames";
 
 export const TraceListItem = ({
   name,

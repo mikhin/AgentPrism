@@ -1,11 +1,13 @@
-import type { AvatarProps } from "./Avatar";
 import cn from "classnames";
+import { ArrowLeft } from "lucide-react";
+import { Fragment } from "react/jsx-runtime";
+
+import type { ColorVariant } from "../types/ui";
+import type { AvatarProps } from "./Avatar";
+
 import { Badge } from "./Badge";
 import { IconButton } from "./IconButton";
-import { ArrowLeft } from "lucide-react";
 import { TraceListItem } from "./TraceListItem";
-import type { ColorVariant } from "../types/ui";
-import { Fragment } from "react/jsx-runtime";
 
 export type TraceListBadge = {
   label: string;

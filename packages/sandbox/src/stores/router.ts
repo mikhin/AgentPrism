@@ -7,8 +7,8 @@ import { DetailsViewPage } from "../pages/DetailsViewPage";
 import { HomePage } from "../pages/HomePage";
 import { OpenTelemetryAdaptersPage } from "../pages/OpenTelemetryAdaptersPage";
 import { SpanCardPage } from "../pages/SpanCardPage";
-import { TreeViewPage } from "../pages/TreeViewPage";
 import { TraceListPage } from "../pages/TraceListPage";
+import { TreeViewPage } from "../pages/TreeViewPage";
 
 export type RouteKey = keyof typeof ROUTES;
 
