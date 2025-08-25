@@ -6,7 +6,6 @@ import type { Trace } from "./TraceList";
 import { formatDuration } from "../services/calculate-duration";
 import { Avatar } from "./Avatar";
 import { Badge } from "./Badge";
-import { TraceListItemBadge } from "./TraceListItemBadge";
 
 export const TraceListItem = ({
   name,
@@ -52,11 +51,13 @@ export const TraceListItem = ({
         </div>
 
         <div className="flex items-center gap-2">
-          <TraceListItemBadge>
+          <Badge theme="gray" variant="outline">
             {spansCount === 1 ? "1 span" : `${spansCount} spans`}
-          </TraceListItemBadge>
+          </Badge>
 
-          <TraceListItemBadge>{formatDuration(durationMs)}</TraceListItemBadge>
+          <Badge theme="gray" variant="outline">
+            {formatDuration(durationMs)}
+          </Badge>
         </div>
       </header>
 
