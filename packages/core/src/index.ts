@@ -1,6 +1,7 @@
 export { Badge } from "./components/Badge";
 export { SpanCard } from "./components/SpanCard.tsx";
 export { TreeView } from "./components/TreeView";
+export { TraceList, type Trace } from "./components/TraceList";
 export { DetailsView } from "./components/DetailsView";
 export { CollapsibleSection } from "./components/CollapsibleSection";
 export { type SpanCardType } from "./types/span";
