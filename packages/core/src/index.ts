@@ -1,3 +1,4 @@
+export { Avatar } from "./components/Avatar";
 export { Badge } from "./components/Badge";
 export { SpanCard } from "./components/SpanCard.tsx";
 export { TreeView } from "./components/TreeView";
