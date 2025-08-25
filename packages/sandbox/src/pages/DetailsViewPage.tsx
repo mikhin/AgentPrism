@@ -31,7 +31,7 @@ export const DetailsViewPage = (): ReactElement => {
       2,
     ),
     attributes: [
-      { key: "Input", value: { stringValue: "gpt-4" } },
+      { key: "TextInput", value: { stringValue: "gpt-4" } },
       { key: "prompt_tokens", value: { intValue: "1000" } },
       { key: "completion_tokens", value: { intValue: "500" } },
       { key: "total_tokens", value: { intValue: "1500" } },

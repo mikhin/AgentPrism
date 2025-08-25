@@ -1,7 +1,7 @@
 import type { SpanCardType } from "../types/span.ts";
 
 import { CollapsibleSection } from "./CollapsibleSection.tsx";
-import { Input } from "./Input.tsx";
+import { TextInput } from "./TextInput.tsx";
 
 interface AttributesTabProps {
   data: SpanCardType;
@@ -22,7 +22,7 @@ export const DetailsViewAttributesTab = ({ data }: AttributesTabProps) => (
           title={attribute.key}
           defaultOpen
         >
-          <Input
+          <TextInput
             id={`${data.id}-attribute-${index}`}
             value={value}
             disabled
