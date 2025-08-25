@@ -73,74 +73,54 @@ ${AvatarSource}
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Basic usage with image
-export const WithImage: Story = {
+// Basic avatar with image
+export const Default: Story = {
   args: {
     src: "https://i.pravatar.cc/150?img=3",
     alt: "Sarah Johnson",
-    size: "md",
   },
 };
 
-// Letter avatar when no image is provided
-export const LetterAvatar: Story = {
+// Size prop
+export const Size: Story = {
+  args: {
+    alt: "Large",
+    bgColor: "indigo",
+    size: "lg",
+  },
+};
+
+// Letter prop
+export const Letter: Story = {
   args: {
     letter: "JD",
     alt: "John Doe",
     bgColor: "indigo",
-    size: "md",
   },
 };
 
-// Automatically uses first letter of alt when no letter is provided
-export const AutoLetter: Story = {
+// BgColor prop
+export const BgColor: Story = {
   args: {
-    alt: "Alice Cooper",
-    bgColor: "purple",
-    size: "md",
+    alt: "Red Avatar",
+    bgColor: "red",
   },
 };
 
-// All available sizes
-export const Sizes: Story = {
-  render: () => (
-    <div className="flex items-center gap-4">
-      <Avatar size="xs" alt="Extra Small" bgColor="gray" />
-      <Avatar size="sm" alt="Small" bgColor="red" />
-      <Avatar size="md" alt="Medium" bgColor="orange" />
-      <Avatar size="lg" alt="Large" bgColor="teal" />
-      <Avatar size="xl" alt="Extra Large" bgColor="indigo" />
-    </div>
-  ),
+// TextColor prop
+export const TextColor: Story = {
+  args: {
+    alt: "Black Text",
+    bgColor: "yellow",
+    textColor: "black",
+  },
 };
 
-// Different color variants for letter avatars
-export const ColorVariants: Story = {
-  render: () => (
-    <div className="flex flex-wrap items-center gap-4">
-      <Avatar alt="Gray" bgColor="gray" />
-      <Avatar alt="Red" bgColor="red" />
-      <Avatar alt="Orange" bgColor="orange" />
-      <Avatar alt="Yellow" bgColor="yellow" textColor="black" />
-      <Avatar alt="Teal" bgColor="teal" />
-      <Avatar alt="Indigo" bgColor="indigo" />
-      <Avatar alt="Purple" bgColor="purple" />
-      <Avatar alt="Sky" bgColor="sky" />
-      <Avatar alt="Cyan" bgColor="cyan" />
-      <Avatar alt="Emerald" bgColor="emerald" />
-    </div>
-  ),
-};
-
-// Different border radius options
-export const RoundedVariants: Story = {
-  render: () => (
-    <div className="flex items-center gap-4">
-      <Avatar alt="None" rounded="none" bgColor="gray" />
-      <Avatar alt="Small" rounded="sm" bgColor="red" />
-      <Avatar alt="Medium" rounded="md" bgColor="orange" />
-      <Avatar alt="Large" rounded="lg" bgColor="teal" />
-      <Avatar alt="Full" rounded="full" bgColor="indigo" />
-    </div>
-  ),
+// Rounded prop
+export const Rounded: Story = {
+  args: {
+    alt: "Square",
+    bgColor: "purple",
+    rounded: "none",
+  },
 };
