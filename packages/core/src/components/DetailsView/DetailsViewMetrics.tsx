@@ -1,6 +1,6 @@
 import { Coins } from "lucide-react";
 
-import type { SpanCardType } from "../../types/span";
+import type { TraceSpan } from "../../types";
 
 import { formatDuration } from "../../services/calculate-duration";
 import { getDurationMs } from "../../services/get-duration-ms";
@@ -12,7 +12,7 @@ import {
 import { Badge } from "../Badge";
 
 interface DetailsViewMetricsProps {
-  data: SpanCardType;
+  data: TraceSpan;
 }
 
 export const DetailsViewMetrics = ({ data }: DetailsViewMetricsProps) => {

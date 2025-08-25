@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   DetailsView,
-  type SpanCardType,
+  type TraceSpan,
   DetailsViewSource,
 } from "ai-agent-trace-ui-core";
 
-const mockSpanData: SpanCardType = {
+const mockSpanData: TraceSpan = {
   id: "span-llm-001",
   title: "GPT-4 Text Generation",
   startTime: new Date("2024-01-15T10:30:00Z"),

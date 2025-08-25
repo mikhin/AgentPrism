@@ -1,10 +1,10 @@
-import type { SpanCardType } from "../../types/span";
+import type { TraceSpan } from "../../types";
 
 import { CollapsibleSection } from "../CollapsibleSection";
 import { TextInput } from "../TextInput";
 
 interface AttributesTabProps {
-  data: SpanCardType;
+  data: TraceSpan;
 }
 
 export const DetailsViewAttributesTab = ({ data }: AttributesTabProps) => (

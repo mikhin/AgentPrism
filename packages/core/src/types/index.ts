@@ -1,23 +1,23 @@
 import type { SpanAttribute } from "./open-telemetry";
 
-export type SpanStatus = "success" | "error" | "pending" | "warning";
+export type TraceSpanStatus = "success" | "error" | "pending" | "warning";
 
-export type SpanCardType = {
+export type TraceSpan = {
   id: string;
   title: string;
   startTime: Date;
   endTime: Date;
   duration: number;
   cost: number;
-  type: SpanCategory;
+  type: TraceSpanCategory;
   raw: string;
   attributes: SpanAttribute[];
-  children?: SpanCardType[];
+  children?: TraceSpan[];
   tokensCount: number;
-  status: SpanStatus;
+  status: TraceSpanStatus;
 };
 
-export type SpanCategory =
+export type TraceSpanCategory =
   | "llm_call"
   | "tool_execution"
   | "agent_invocation"
@@ -26,3 +26,15 @@ export type SpanCategory =
   | "embedding"
   | "create_agent"
   | "unknown";
+
+export type ColorVariant =
+  | "purple"
+  | "indigo"
+  | "orange"
+  | "teal"
+  | "cyan"
+  | "sky"
+  | "yellow"
+  | "emerald"
+  | "red"
+  | "gray";

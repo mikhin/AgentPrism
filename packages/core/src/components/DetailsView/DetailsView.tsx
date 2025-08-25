@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 
 import { SquareTerminal, Tags } from "lucide-react";
 
-import type { SpanCardType } from "../../types/span";
+import type { TraceSpan } from "../../types";
 import type { AvatarProps } from "../Avatar";
 
 import { Tabs } from "../Tabs";
@@ -15,7 +15,7 @@ interface DetailsViewProps {
   /**
    * The span data to display in the details view
    */
-  data: SpanCardType;
+  data: TraceSpan;
 
   /**
    * Optional avatar configuration for the header
@@ -44,7 +44,7 @@ interface DetailsViewProps {
     /**
      * Callback fired when copy button is clicked
      */
-    onCopy?: (data: SpanCardType) => void;
+    onCopy?: (data: TraceSpan) => void;
   };
 
   /**

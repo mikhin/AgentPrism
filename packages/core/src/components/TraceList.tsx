@@ -2,7 +2,7 @@ import cn from "classnames";
 import { ArrowLeft } from "lucide-react";
 import { Fragment } from "react/jsx-runtime";
 
-import type { ColorVariant } from "../types/ui";
+import type { ColorVariant } from "../types";
 import type { AvatarProps } from "./Avatar";
 
 import { Badge } from "./Badge";

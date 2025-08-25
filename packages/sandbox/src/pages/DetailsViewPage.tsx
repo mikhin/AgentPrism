@@ -1,11 +1,11 @@
-import { DetailsView, type SpanCardType } from "ai-agent-trace-ui-core";
+import { DetailsView, type TraceSpan } from "ai-agent-trace-ui-core";
 import { type ReactElement } from "react";
 
 import { SandboxItem } from "../components/SandboxItem";
 import { SandboxSection } from "../components/SandboxSection";
 
 export const DetailsViewPage = (): ReactElement => {
-  const testData: SpanCardType = {
+  const testData: TraceSpan = {
     id: "test-span",
     title: "ChatCompletion",
     raw: JSON.stringify(
