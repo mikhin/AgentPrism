@@ -1,12 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Avatar } from "ai-agent-trace-ui-core";
+import { Avatar, AvatarSource } from "ai-agent-trace-ui-core";
 
 const meta = {
   title: "Components/Avatar",
   component: Avatar,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component: `
+\`\`\`tsx
+${AvatarSource}
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {

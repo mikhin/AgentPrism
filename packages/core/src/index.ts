@@ -1,4 +1,5 @@
 export { Avatar } from "./components/Avatar";
+export { default as AvatarSource } from "./components/Avatar.tsx?raw";
 export { Badge } from "./components/Badge";
 export { SpanCard } from "./components/SpanCard.tsx";
 export { TreeView } from "./components/TreeView";

@@ -1,10 +1,12 @@
 import type { Preview } from "@storybook/react-vite";
 
+import { themes } from "@storybook/theming";
 import "ai-agent-trace-ui-core/styles.css";
 
 const preview: Preview = {
   parameters: {
     docs: {
+      themes: themes.normal,
       codePanel: true,
     },
     controls: {
