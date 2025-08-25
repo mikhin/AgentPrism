@@ -1,5 +1,13 @@
 import type { SpanAttribute } from "./open-telemetry";
 
+export type TraceRecord = {
+  id: string;
+  name: string;
+  spansCount: number;
+  durationMs: number;
+  agentDescription: string;
+};
+
 export type TraceSpanStatus = "success" | "error" | "pending" | "warning";
 
 export type TraceSpan = {
