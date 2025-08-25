@@ -9,7 +9,7 @@ interface RawDataTabProps {
 
 export const DetailsViewRawDataTab = ({ data }: RawDataTabProps) => (
   <div className="pt-4">
-    <div className="rounded border border-gray-200 bg-transparent dark:border-gray-600">
+    <div className="rounded border border-gray-200 bg-transparent dark:border-gray-800">
       <JSONPretty
         booleanStyle={`color: ${colors.blue[400]};`}
         className="overflow-x-auto rounded-xl p-4"

@@ -49,11 +49,11 @@ export const TreeView: FC<TreeViewProps> = ({
   return (
     <div
       className={cn(
-        "border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-950",
+        "border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950",
         className,
       )}
     >
-      <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-600">
+              <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-800">
         <SpanCardSearchInput
           id="span-search"
           name="search"
