@@ -1,0 +1,646 @@
+[
+  {
+    "resourceSpans": [
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "telemetry.sdk.language",
+              "value": {
+                "stringValue": "python"
+              }
+            },
+            {
+              "key": "telemetry.sdk.name",
+              "value": {
+                "stringValue": "opentelemetry"
+              }
+            },
+            {
+              "key": "telemetry.sdk.version",
+              "value": {
+                "stringValue": "1.36.0"
+              }
+            },
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "unknown_service"
+              }
+            },
+            {
+              "key": "app.environment",
+              "value": {
+                "stringValue": "dev"
+              }
+            },
+            {
+              "key": "app.name",
+              "value": {
+                "stringValue": "mcp-eval-demo-app"
+              }
+            },
+            {
+              "key": "quotient.user",
+              "value": {
+                "stringValue": "1b3ad9f5-389f-49ee-b21b-76734aaf337a"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "mcp-eval-demo",
+              "version": "1.0.0"
+            },
+            "spans": [
+              {
+                "traceId": "b5984045368d9b2411a4b8c10cacadbf",
+                "spanId": "58afc13fb79f1e02",
+                "parentSpanId": "",
+                "name": "mcp-eval-demo",
+                "kind": "SPAN_KIND_INTERNAL",
+                "startTimeUnixNano": "1755102300173328000",
+                "endTimeUnixNano": "1755102302572667000",
+                "attributes": [
+                  {
+                    "key": "app.name",
+                    "value": {
+                      "stringValue": "mcp-eval-demo-app"
+                    }
+                  },
+                  {
+                    "key": "app.environment",
+                    "value": {
+                      "stringValue": "dev"
+                    }
+                  },
+                  {
+                    "key": "quotient.user",
+                    "value": {
+                      "stringValue": "1b3ad9f5-389f-49ee-b21b-76734aaf337a"
+                    }
+                  },
+                  {
+                    "key": "service.name",
+                    "value": {
+                      "stringValue": "unknown_service"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.language",
+                    "value": {
+                      "stringValue": "python"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.name",
+                    "value": {
+                      "stringValue": "opentelemetry"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.version",
+                    "value": {
+                      "stringValue": "1.36.0"
+                    }
+                  }
+                ]
+              },
+              {
+                "traceId": "b5984045368d9b2411a4b8c10cacadbf",
+                "spanId": "0da4668ec0b7a415",
+                "parentSpanId": "58afc13fb79f1e02",
+                "name": "mcp-eval: Correct tool call",
+                "kind": "SPAN_KIND_INTERNAL",
+                "startTimeUnixNano": "1755102300173617000",
+                "endTimeUnixNano": "1755102301366512000",
+                "attributes": [
+                  {
+                    "key": "app.name",
+                    "value": {
+                      "stringValue": "mcp-eval-demo-app"
+                    }
+                  },
+                  {
+                    "key": "app.environment",
+                    "value": {
+                      "stringValue": "dev"
+                    }
+                  },
+                  {
+                    "key": "quotient.user",
+                    "value": {
+                      "stringValue": "1b3ad9f5-389f-49ee-b21b-76734aaf337a"
+                    }
+                  },
+                  {
+                    "key": "service.name",
+                    "value": {
+                      "stringValue": "unknown_service"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.language",
+                    "value": {
+                      "stringValue": "python"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.name",
+                    "value": {
+                      "stringValue": "opentelemetry"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.version",
+                    "value": {
+                      "stringValue": "1.36.0"
+                    }
+                  },
+                  {
+                    "key": "mcp.eval.reason",
+                    "value": {
+                      "stringValue": "[]"
+                    }
+                  },
+                  {
+                    "key": "mcp.eval.score",
+                    "value": {
+                      "stringValue": "correct"
+                    }
+                  }
+                ]
+              },
+              {
+                "traceId": "b5984045368d9b2411a4b8c10cacadbf",
+                "spanId": "7228117f5224786f",
+                "parentSpanId": "58afc13fb79f1e02",
+                "name": "mcp-eval: Incorrect parameter name",
+                "kind": "SPAN_KIND_INTERNAL",
+                "startTimeUnixNano": "1755102301365189000",
+                "endTimeUnixNano": "1755102302573217000",
+                "attributes": [
+                  {
+                    "key": "app.name",
+                    "value": {
+                      "stringValue": "mcp-eval-demo-app"
+                    }
+                  },
+                  {
+                    "key": "app.environment",
+                    "value": {
+                      "stringValue": "dev"
+                    }
+                  },
+                  {
+                    "key": "quotient.user",
+                    "value": {
+                      "stringValue": "1b3ad9f5-389f-49ee-b21b-76734aaf337a"
+                    }
+                  },
+                  {
+                    "key": "service.name",
+                    "value": {
+                      "stringValue": "unknown_service"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.language",
+                    "value": {
+                      "stringValue": "python"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.name",
+                    "value": {
+                      "stringValue": "opentelemetry"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.version",
+                    "value": {
+                      "stringValue": "1.36.0"
+                    }
+                  },
+                  {
+                    "key": "mcp.eval.reason",
+                    "value": {
+                      "stringValue": "[]"
+                    }
+                  },
+                  {
+                    "key": "mcp.eval.score",
+                    "value": {
+                      "stringValue": "correct"
+                    }
+                  }
+                ]
+              },
+              {
+                "traceId": "b5984045368d9b2411a4b8c10cacadbf",
+                "spanId": "8384415b41409a36",
+                "parentSpanId": "58afc13fb79f1e02",
+                "name": "quotient.end_of_trace",
+                "kind": "SPAN_KIND_INTERNAL",
+                "startTimeUnixNano": "1755102302572644000",
+                "endTimeUnixNano": "1755102302572667000",
+                "attributes": [
+                  {
+                    "key": "app.name",
+                    "value": {
+                      "stringValue": "mcp-eval-demo-app"
+                    }
+                  },
+                  {
+                    "key": "app.environment",
+                    "value": {
+                      "stringValue": "dev"
+                    }
+                  },
+                  {
+                    "key": "quotient.user",
+                    "value": {
+                      "stringValue": "1b3ad9f5-389f-49ee-b21b-76734aaf337a"
+                    }
+                  },
+                  {
+                    "key": "service.name",
+                    "value": {
+                      "stringValue": "unknown_service"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.language",
+                    "value": {
+                      "stringValue": "python"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.name",
+                    "value": {
+                      "stringValue": "opentelemetry"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.version",
+                    "value": {
+                      "stringValue": "1.36.0"
+                    }
+                  },
+                  {
+                    "key": "quotient.marker.timestamp",
+                    "value": {
+                      "stringValue": "1755102302572667000"
+                    }
+                  },
+                  {
+                    "key": "quotient.trace.complete",
+                    "value": {
+                      "stringValue": "true"
+                    }
+                  },
+                  {
+                    "key": "quotient.trace.id",
+                    "value": {
+                      "stringValue": "b5984045368d9b2411a4b8c10cacadbf"
+                    }
+                  },
+                  {
+                    "key": "quotient.trace.marker",
+                    "value": {
+                      "stringValue": "true"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "resourceSpans": [
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "telemetry.sdk.language",
+              "value": {
+                "stringValue": "python"
+              }
+            },
+            {
+              "key": "telemetry.sdk.name",
+              "value": {
+                "stringValue": "opentelemetry"
+              }
+            },
+            {
+              "key": "telemetry.sdk.version",
+              "value": {
+                "stringValue": "1.36.0"
+              }
+            },
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "unknown_service"
+              }
+            },
+            {
+              "key": "app.environment",
+              "value": {
+                "stringValue": "dev"
+              }
+            },
+            {
+              "key": "app.name",
+              "value": {
+                "stringValue": "mcp-eval-demo-app"
+              }
+            },
+            {
+              "key": "quotient.user",
+              "value": {
+                "stringValue": "1b3ad9f5-389f-49ee-b21b-76734aaf337a"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "mcp-eval-demo",
+              "version": "1.0.0"
+            },
+            "spans": [
+              {
+                "traceId": "98dbd7227862cc2e076f76ddd26e8ff7",
+                "spanId": "cf61f268a86ed912",
+                "parentSpanId": "",
+                "name": "mcp-eval-demo",
+                "kind": "SPAN_KIND_INTERNAL",
+                "startTimeUnixNano": "1755548565527472000",
+                "endTimeUnixNano": "1755548568132592000",
+                "attributes": [
+                  {
+                    "key": "app.name",
+                    "value": {
+                      "stringValue": "mcp-eval-demo-app"
+                    }
+                  },
+                  {
+                    "key": "app.environment",
+                    "value": {
+                      "stringValue": "dev"
+                    }
+                  },
+                  {
+                    "key": "quotient.user",
+                    "value": {
+                      "stringValue": "1b3ad9f5-389f-49ee-b21b-76734aaf337a"
+                    }
+                  },
+                  {
+                    "key": "service.name",
+                    "value": {
+                      "stringValue": "unknown_service"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.language",
+                    "value": {
+                      "stringValue": "python"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.name",
+                    "value": {
+                      "stringValue": "opentelemetry"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.version",
+                    "value": {
+                      "stringValue": "1.36.0"
+                    }
+                  }
+                ]
+              },
+              {
+                "traceId": "98dbd7227862cc2e076f76ddd26e8ff7",
+                "spanId": "b3e96c03ac48cf48",
+                "parentSpanId": "cf61f268a86ed912",
+                "name": "mcp-eval: Correct tool call",
+                "kind": "SPAN_KIND_INTERNAL",
+                "startTimeUnixNano": "1755548565527743000",
+                "endTimeUnixNano": "1755548566907153000",
+                "attributes": [
+                  {
+                    "key": "app.name",
+                    "value": {
+                      "stringValue": "mcp-eval-demo-app"
+                    }
+                  },
+                  {
+                    "key": "app.environment",
+                    "value": {
+                      "stringValue": "dev"
+                    }
+                  },
+                  {
+                    "key": "quotient.user",
+                    "value": {
+                      "stringValue": "1b3ad9f5-389f-49ee-b21b-76734aaf337a"
+                    }
+                  },
+                  {
+                    "key": "service.name",
+                    "value": {
+                      "stringValue": "unknown_service"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.language",
+                    "value": {
+                      "stringValue": "python"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.name",
+                    "value": {
+                      "stringValue": "opentelemetry"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.version",
+                    "value": {
+                      "stringValue": "1.36.0"
+                    }
+                  },
+                  {
+                    "key": "mcp.eval.reason",
+                    "value": {
+                      "stringValue": "[]"
+                    }
+                  },
+                  {
+                    "key": "mcp.eval.score",
+                    "value": {
+                      "stringValue": "correct"
+                    }
+                  }
+                ]
+              },
+              {
+                "traceId": "98dbd7227862cc2e076f76ddd26e8ff7",
+                "spanId": "373b45c9189b5b31",
+                "parentSpanId": "cf61f268a86ed912",
+                "name": "mcp-eval: Incorrect parameter name",
+                "kind": "SPAN_KIND_INTERNAL",
+                "startTimeUnixNano": "1755548566907240000",
+                "endTimeUnixNano": "1755548568132592000",
+                "attributes": [
+                  {
+                    "key": "app.name",
+                    "value": {
+                      "stringValue": "mcp-eval-demo-app"
+                    }
+                  },
+                  {
+                    "key": "app.environment",
+                    "value": {
+                      "stringValue": "dev"
+                    }
+                  },
+                  {
+                    "key": "quotient.user",
+                    "value": {
+                      "stringValue": "1b3ad9f5-389f-49ee-b21b-76734aaf337a"
+                    }
+                  },
+                  {
+                    "key": "service.name",
+                    "value": {
+                      "stringValue": "unknown_service"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.language",
+                    "value": {
+                      "stringValue": "python"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.name",
+                    "value": {
+                      "stringValue": "opentelemetry"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.version",
+                    "value": {
+                      "stringValue": "1.36.0"
+                    }
+                  },
+                  {
+                    "key": "mcp.eval.reason",
+                    "value": {
+                      "stringValue": "[]"
+                    }
+                  },
+                  {
+                    "key": "mcp.eval.score",
+                    "value": {
+                      "stringValue": "correct"
+                    }
+                  }
+                ]
+              },
+              {
+                "traceId": "98dbd7227862cc2e076f76ddd26e8ff7",
+                "spanId": "3a2c4cf81550f6e2",
+                "parentSpanId": "cf61f268a86ed912",
+                "name": "quotient.end_of_trace",
+                "kind": "SPAN_KIND_INTERNAL",
+                "startTimeUnixNano": "1755548568132581000",
+                "endTimeUnixNano": "1755548568132592000",
+                "attributes": [
+                  {
+                    "key": "app.name",
+                    "value": {
+                      "stringValue": "mcp-eval-demo-app"
+                    }
+                  },
+                  {
+                    "key": "app.environment",
+                    "value": {
+                      "stringValue": "dev"
+                    }
+                  },
+                  {
+                    "key": "quotient.user",
+                    "value": {
+                      "stringValue": "1b3ad9f5-389f-49ee-b21b-76734aaf337a"
+                    }
+                  },
+                  {
+                    "key": "service.name",
+                    "value": {
+                      "stringValue": "unknown_service"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.language",
+                    "value": {
+                      "stringValue": "python"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.name",
+                    "value": {
+                      "stringValue": "opentelemetry"
+                    }
+                  },
+                  {
+                    "key": "telemetry.sdk.version",
+                    "value": {
+                      "stringValue": "1.36.0"
+                    }
+                  },
+                  {
+                    "key": "quotient.marker.timestamp",
+                    "value": {
+                      "stringValue": "1755548568132592000"
+                    }
+                  },
+                  {
+                    "key": "quotient.trace.complete",
+                    "value": {
+                      "stringValue": "true"
+                    }
+                  },
+                  {
+                    "key": "quotient.trace.id",
+                    "value": {
+                      "stringValue": "98dbd7227862cc2e076f76ddd26e8ff7"
+                    }
+                  },
+                  {
+                    "key": "quotient.trace.marker",
+                    "value": {
+                      "stringValue": "true"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
