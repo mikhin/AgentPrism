@@ -1,7 +1,7 @@
-import type { SpanCardType } from "../types/span.ts";
+import type { SpanCardType } from "../../types/span";
 
-import { CollapsibleSection } from "./CollapsibleSection.tsx";
-import { TextInput } from "./TextInput.tsx";
+import { CollapsibleSection } from "../CollapsibleSection";
+import { TextInput } from "../TextInput";
 
 interface AttributesTabProps {
   data: SpanCardType;

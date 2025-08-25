@@ -1,7 +1,7 @@
 import JSONPretty from "react-json-pretty";
 import colors from "tailwindcss/colors";
 
-import type { SpanCardType } from "../types/span.ts";
+import type { SpanCardType } from "../../types/span";
 
 interface RawDataTabProps {
   data: SpanCardType;
