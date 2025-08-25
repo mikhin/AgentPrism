@@ -7,10 +7,10 @@ import { type ReactElement, useState } from "react";
 
 import { SandboxItem } from "../components/SandboxItem";
 import { SandboxSection } from "../components/SandboxSection";
+import mcpEvalByIdRaw from "../data/mcp_eval_by_id.json";
 import quoTavAgentDataRaw from "../data/quo_tav_agent.json";
 import ragEarningsAgentDataRaw from "../data/rag_earnings_agent.json";
 import smolDeepResearchAgentDataRaw from "../data/smol_deep_research_agent.json";
-import mcpEvalByIdRaw from "../data/mcp_eval_by_id.json";
 
 const quoTavAgentData = quoTavAgentDataRaw as OpenTelemetryDocument[];
 const ragEarningsAgentData = ragEarningsAgentDataRaw as OpenTelemetryDocument[];
@@ -18,7 +18,6 @@ const smolDeepResearchAgentData =
   smolDeepResearchAgentDataRaw as OpenTelemetryDocument[];
 
 const mcpEvalById = mcpEvalByIdRaw as OpenTelemetryDocument[];
-
 
 export const AgentTracesTestPage = (): ReactElement => {
   const [, setSelectedSpanId] = useState<string | undefined>();
@@ -69,10 +68,7 @@ export const AgentTracesTestPage = (): ReactElement => {
         </SandboxItem>
       </SandboxSection>
 
-      <SandboxSection
-        title="MCP Eval by ID"
-        description="MCP eval by ID"
-      >
+      <SandboxSection title="MCP Eval by ID" description="MCP eval by ID">
         <SandboxItem title="MCP Eval by ID" pattern="dots">
           <TreeView
             expandButton="inside"

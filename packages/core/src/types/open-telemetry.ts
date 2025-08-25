@@ -43,7 +43,7 @@ export type Span = {
   startTimeUnixNano: string;
   endTimeUnixNano: string;
   attributes: SpanAttribute[];
-  status: Status;
+  status?: Status;
   flags: number;
   events?: Event[];
 
