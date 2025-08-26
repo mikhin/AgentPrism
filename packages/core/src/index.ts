@@ -20,6 +20,9 @@ export { TokensBadge } from "./components/TokensBadge";
 export { default as TokensBadgeSource } from "./components/TokensBadge.tsx?raw";
 
 export { SpanCard } from "./components/SpanCard.tsx";
+export { SpanCardCollapseAllButton } from "./components/SpanCardControls.tsx";
+export { SpanCardExpandAllButton } from "./components/SpanCardControls.tsx";
+export { SpanCardSearchInput } from "./components/SpanCardSearchInput.tsx";
 
 export { TextInput } from "./components/TextInput.tsx";
 export { default as TextInputSource } from "./components/TextInput.tsx?raw";
