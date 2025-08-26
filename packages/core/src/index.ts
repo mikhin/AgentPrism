@@ -34,6 +34,16 @@ export { default as DetailsViewSource } from "./components/DetailsView/DetailsVi
 export { Tabs } from "./components/Tabs.tsx";
 export { default as TabsSource } from "./components/Tabs.tsx?raw";
 
+export { Switch } from "./components/Switch.tsx";
+export { default as SwitchSource } from "./components/Switch.tsx?raw";
+
+export {
+  Filters,
+  type FiltersProps,
+  type FilterItem,
+} from "./components/Filters.tsx";
+export { default as FiltersSource } from "./components/Filters.tsx?raw";
+
 export { type TraceSpan, type TraceRecord } from "./types";
 
 export { convertOTelTraceToSpanTree } from "./services/convert-o-tel-trace-to-span-tree.ts";
