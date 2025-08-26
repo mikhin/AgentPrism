@@ -316,7 +316,12 @@ export const SpanCard: FC<SpanCardProps> = ({
     >
       <Collapsible.Root open={state.isExpanded} onOpenChange={setIsExpanded}>
         <div
-          className="grid w-full"
+          className={cn(
+            "relative grid w-full",
+            state.isSelected && "outline-t-2 bg-gray-100 dark:bg-gray-900",
+            state.isSelected &&
+              "before:absolute before:-top-2 before:h-3 before:w-full before:bg-gray-100 before:dark:bg-gray-900",
+          )}
           style={{
             gridTemplateColumns,
           }}
