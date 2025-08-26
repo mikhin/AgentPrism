@@ -28,6 +28,8 @@ export const AgentTracesTestPage = (): ReactElement => {
             expandButton="inside"
             spans={convertOTelDocumentToSpanCards(quoTavAgentData)}
             onSpanSelect={(span) => console.log(`Selected span: ${span.id}`)}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
       </SandboxSection>
@@ -41,6 +43,8 @@ export const AgentTracesTestPage = (): ReactElement => {
             expandButton="inside"
             spans={convertOTelDocumentToSpanCards(ragEarningsAgentData)}
             onSpanSelect={(span) => console.log(`Selected span: ${span.id}`)}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
       </SandboxSection>
@@ -54,6 +58,8 @@ export const AgentTracesTestPage = (): ReactElement => {
             expandButton="inside"
             spans={convertOTelDocumentToSpanCards(smolDeepResearchAgentData)}
             onSpanSelect={(span) => console.log(`Selected span: ${span.id}`)}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
       </SandboxSection>

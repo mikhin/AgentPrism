@@ -2,6 +2,7 @@ import {
   Button,
   convertOTelDocumentToSpanCards,
   DetailsView,
+  flattenSpans,
   SpanCardCollapseAllButton,
   SpanCardExpandAllButton,
   SpanCardSearchInput,
@@ -14,7 +15,7 @@ import {
 } from "ai-agent-trace-ui-core";
 import cn from "classnames";
 import { ArrowLeft } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import quoTavAgentDataRaw from "../agent-data/quo_tav_agent.json";
 import ragEarningsAgentDataRaw from "../agent-data/rag_earnings_agent.json";
@@ -123,6 +124,24 @@ const DesktopLayout = () => {
     return filterSpansRecursively(selectedTraceSpans, searchValue);
   }, [selectedTraceSpans, searchValue]);
 
+  const allIds = useMemo(() => {
+    return flattenSpans(selectedTraceSpans).map((span) => span.id);
+  }, [selectedTraceSpans]);
+
+  const [expandedSpansIds, setExpandedSpansIds] = useState<string[]>(allIds);
+
+  useEffect(() => {
+    setExpandedSpansIds(allIds);
+  }, [allIds]);
+
+  const handleExpandAll = useCallback(() => {
+    setExpandedSpansIds(allIds);
+  }, [allIds]);
+
+  const handleCollapseAll = useCallback(() => {
+    setExpandedSpansIds([]);
+  }, []);
+
   function handleTraceSelect(trace: TraceRecord) {
     setSelectedTrace(trace);
 
@@ -170,8 +189,10 @@ const DesktopLayout = () => {
 
               <div className="flex items-center gap-2">
                 <div className="ml-auto flex items-center gap-3">
-                  <SpanCardExpandAllButton onExpandAll={() => {}} />
-                  <SpanCardCollapseAllButton onCollapseAll={() => {}} />
+                  <SpanCardExpandAllButton onExpandAll={handleExpandAll} />
+                  <SpanCardCollapseAllButton
+                    onCollapseAll={handleCollapseAll}
+                  />
                 </div>
               </div>
             </div>
@@ -186,6 +207,8 @@ const DesktopLayout = () => {
                 expandButton="inside"
                 onSpanSelect={setSelectedSpan}
                 selectedSpan={selectedSpan}
+                expandedSpansIds={expandedSpansIds}
+                onExpandSpansIdsChange={setExpandedSpansIds}
               />
             )}
           </div>
@@ -217,6 +240,24 @@ const MobileLayout = () => {
 
     return filterSpansRecursively(selectedTraceSpans, searchValue);
   }, [selectedTraceSpans, searchValue]);
+
+  const allIds = useMemo(() => {
+    return flattenSpans(selectedTraceSpans).map((span) => span.id);
+  }, [selectedTraceSpans]);
+
+  const [expandedSpansIds, setExpandedSpansIds] = useState<string[]>(allIds);
+
+  useEffect(() => {
+    setExpandedSpansIds(allIds);
+  }, [allIds]);
+
+  const handleExpandAll = useCallback(() => {
+    setExpandedSpansIds(allIds);
+  }, [allIds]);
+
+  const handleCollapseAll = useCallback(() => {
+    setExpandedSpansIds([]);
+  }, []);
 
   function handleTraceSelect(trace: TraceRecord) {
     setSelectedTrace(trace);
@@ -273,8 +314,8 @@ const MobileLayout = () => {
 
             <div className="flex items-center gap-2">
               <div className="ml-auto flex items-center gap-3">
-                <SpanCardExpandAllButton onExpandAll={() => {}} />
-                <SpanCardCollapseAllButton onCollapseAll={() => {}} />
+                <SpanCardExpandAllButton onExpandAll={handleExpandAll} />
+                <SpanCardCollapseAllButton onCollapseAll={handleCollapseAll} />
               </div>
             </div>
           </div>
@@ -289,6 +330,8 @@ const MobileLayout = () => {
               expandButton="inside"
               onSpanSelect={setSelectedSpan}
               selectedSpan={selectedSpan}
+              expandedSpansIds={expandedSpansIds}
+              onExpandSpansIdsChange={setExpandedSpansIds}
             />
           )}
         </div>

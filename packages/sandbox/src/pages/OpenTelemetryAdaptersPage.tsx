@@ -2,8 +2,9 @@ import {
   convertOTelTraceToSpanTree,
   TreeView,
   type Span,
+  type TraceSpan,
 } from "ai-agent-trace-ui-core";
-import { type ReactElement, useState } from "react";
+import { type ReactElement } from "react";
 
 import { SandboxItem } from "../components/SandboxItem.tsx";
 import { SandboxSection } from "../components/SandboxSection";
@@ -314,11 +315,8 @@ const errorRetrySpans = convertOTelTraceToSpanTree(mockErrorRetrySpans);
 const allTraces = [...aiWorkflowSpans, ...multiAgentSpans, ...errorRetrySpans];
 
 export const OpenTelemetryAdaptersPage = (): ReactElement => {
-  const [, setSelectedSpanId] = useState<string | undefined>();
-
-  const handleSelectionChange = (id: string | undefined) => {
-    setSelectedSpanId(id);
-    console.log(`OpenTelemetry Span selected: ${id}`);
+  const onSpanSelect = (span: TraceSpan) => {
+    console.log(`OpenTelemetry Span selected: ${span.id}`);
   };
 
   return (
@@ -331,7 +329,9 @@ export const OpenTelemetryAdaptersPage = (): ReactElement => {
           <TreeView
             expandButton="inside"
             spans={aiWorkflowSpans}
-            onSelectionChange={handleSelectionChange}
+            onSpanSelect={onSpanSelect}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
 
@@ -342,8 +342,9 @@ export const OpenTelemetryAdaptersPage = (): ReactElement => {
           <TreeView
             expandButton="inside"
             spans={multiAgentSpans}
-            initialSelectedId="agent-security"
-            onSelectionChange={handleSelectionChange}
+            onSpanSelect={onSpanSelect}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
 
@@ -351,7 +352,9 @@ export const OpenTelemetryAdaptersPage = (): ReactElement => {
           <TreeView
             expandButton="inside"
             spans={errorRetrySpans}
-            onSelectionChange={handleSelectionChange}
+            onSpanSelect={onSpanSelect}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
       </SandboxSection>
@@ -364,7 +367,9 @@ export const OpenTelemetryAdaptersPage = (): ReactElement => {
           <TreeView
             expandButton="inside"
             spans={allTraces}
-            onSelectionChange={handleSelectionChange}
+            onSpanSelect={onSpanSelect}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
       </SandboxSection>

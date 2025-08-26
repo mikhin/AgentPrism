@@ -18,6 +18,8 @@ export const TreeViewPage = (): ReactElement => {
             expandButton="inside"
             spans={sampleTreeViewData}
             onSpanSelect={(span) => console.log(`Selected span: ${span.id}`)}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
 
@@ -27,6 +29,8 @@ export const TreeViewPage = (): ReactElement => {
             spans={sampleTreeViewData}
             selectedSpan={sampleTreeViewData[1]}
             onSpanSelect={(span) => console.log(`Selected span: ${span.id}`)}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
 
@@ -35,6 +39,8 @@ export const TreeViewPage = (): ReactElement => {
             expandButton="inside"
             spans={sampleTreeViewDataDeepNesting}
             onSpanSelect={(span) => console.log(`Selected span: ${span.id}`)}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
       </SandboxSection>

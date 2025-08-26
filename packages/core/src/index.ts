@@ -42,6 +42,7 @@ export { type TraceSpan, type TraceRecord } from "./types";
 export { convertOTelTraceToSpanTree } from "./services/convert-o-tel-trace-to-span-tree.ts";
 export { convertOTelSpanToSpanCard } from "./services/convert-o-tel-span-to-span-card.ts";
 export { convertOTelDocumentToSpanCards } from "./services/convert-o-tel-document-to-span-cards.ts";
+export { flattenSpans } from "./services/flatten-span-cards.ts";
 
 export type {
   SpanKind,
