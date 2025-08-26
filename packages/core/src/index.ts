@@ -26,6 +26,7 @@ export { default as TextInputSource } from "./components/TextInput.tsx?raw";
 
 export { TreeView } from "./components/TreeView";
 export { TraceList } from "./components/TraceList";
+export { type TraceListItemProps } from "./components/TraceListItem";
 
 export { DetailsView } from "./components/DetailsView/DetailsView.tsx";
 export { default as DetailsViewSource } from "./components/DetailsView/DetailsView.tsx?raw";

@@ -1,10 +1,10 @@
-import { TraceList, type TraceRecord } from "ai-agent-trace-ui-core";
+import { TraceList, type TraceListItemProps } from "ai-agent-trace-ui-core";
 import { useState, type ReactElement } from "react";
 
 import { SandboxItem } from "../components/SandboxItem";
 import { SandboxSection } from "../components/SandboxSection";
 
-const traces: TraceRecord[] = [
+const traces: TraceListItemProps[] = [
   {
     id: "1",
     name: "Trace 1",
@@ -13,24 +13,24 @@ const traces: TraceRecord[] = [
     agentDescription: "research-agent",
     totalCost: 100,
     totalTokens: 1000,
-    // badges: [
-    //   {
-    //     children: "app:dev-chatbot",
-    //     theme: "indigo",
-    //   },
-    //   {
-    //     children: "end:dev",
-    //     theme: "emerald",
-    //   },
-    //   {
-    //     children: "gpt-4",
-    //     theme: "purple",
-    //   },
-    //   {
-    //     children: "5 tools",
-    //     theme: "orange",
-    //   },
-    // ],
+    badges: [
+      {
+        children: "app:dev-chatbot",
+        theme: "indigo",
+      },
+      {
+        children: "end:dev",
+        theme: "emerald",
+      },
+      {
+        children: "gpt-4",
+        theme: "purple",
+      },
+      {
+        children: "5 tools",
+        theme: "orange",
+      },
+    ],
   },
 
   {
@@ -41,24 +41,24 @@ const traces: TraceRecord[] = [
     agentDescription: "data-analysis-bot",
     totalCost: 1,
     totalTokens: 1000000,
-    // badges: [
-    //   {
-    //     children: "app: staging-assistant",
-    //     theme: "indigo",
-    //   },
-    //   {
-    //     children: "end: staging",
-    //     theme: "emerald",
-    //   },
-    //   {
-    //     children: "claude-3.5-sonnet",
-    //     theme: "purple",
-    //   },
-    //   {
-    //     children: "10 tools",
-    //     theme: "orange",
-    //   },
-    // ],
+    badges: [
+      {
+        children: "app: staging-assistant",
+        theme: "indigo",
+      },
+      {
+        children: "end: staging",
+        theme: "emerald",
+      },
+      {
+        children: "claude-3.5-sonnet",
+        theme: "purple",
+      },
+      {
+        children: "10 tools",
+        theme: "orange",
+      },
+    ],
   },
 
   {
@@ -67,20 +67,20 @@ const traces: TraceRecord[] = [
     spansCount: 250,
     durationMs: 1_000,
     agentDescription: "customer-support-ai",
-    // badges: [
-    //   {
-    //     children: "app: prod-analyzer",
-    //     theme: "indigo",
-    //   },
-    //   {
-    //     children: "end: prod",
-    //     theme: "emerald",
-    //   },
-    //   {
-    //     children: "gpt-4-turbo",
-    //     theme: "purple",
-    //   },
-    // ],
+    badges: [
+      {
+        children: "app: prod-analyzer",
+        theme: "indigo",
+      },
+      {
+        children: "end: prod",
+        theme: "emerald",
+      },
+      {
+        children: "gpt-4-turbo",
+        theme: "purple",
+      },
+    ],
   },
 ];
 
