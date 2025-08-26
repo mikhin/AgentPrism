@@ -14,7 +14,7 @@ import {
 } from "ai-agent-trace-ui-core";
 import cn from "classnames";
 import { ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import quoTavAgentDataRaw from "../agent-data/quo_tav_agent.json";
 import ragEarningsAgentDataRaw from "../agent-data/rag_earnings_agent.json";
@@ -54,6 +54,45 @@ const MOCK_TRACE_RECORDS: TraceRecord[] = [
   },
 ];
 
+// Recursive filtering function that preserves nested structure
+const filterSpansRecursively = (
+  spans: TraceSpan[],
+  searchValue: string,
+): TraceSpan[] => {
+  if (!searchValue.trim()) {
+    return spans;
+  }
+
+  return spans
+    .map((span) => {
+      // Check if current span matches
+      const currentSpanMatches = span.title
+        .toLowerCase()
+        .includes(searchValue.toLowerCase());
+
+      // Recursively filter children
+      const filteredChildren = span.children
+        ? filterSpansRecursively(span.children, searchValue)
+        : undefined;
+
+      // Check if any children match
+      const hasMatchingChildren =
+        filteredChildren && filteredChildren.length > 0;
+
+      // Keep span if it matches or has matching children
+      if (currentSpanMatches || hasMatchingChildren) {
+        return {
+          ...span,
+          children: filteredChildren,
+        };
+      }
+
+      // Filter out this span if neither it nor its children match
+      return null;
+    })
+    .filter((span): span is NonNullable<typeof span> => span !== null);
+};
+
 export const DemoPage = () => {
   return (
     <div className="h-full w-full p-4 lg:p-8">
@@ -75,6 +114,14 @@ const DesktopLayout = () => {
   const [searchValue, setSearchValue] = useState("");
 
   const [traceListExpanded, setTraceListExpanded] = useState(true);
+
+  const filteredSpans = useMemo(() => {
+    if (!searchValue.trim()) {
+      return selectedTraceSpans;
+    }
+
+    return filterSpansRecursively(selectedTraceSpans, searchValue);
+  }, [selectedTraceSpans, searchValue]);
 
   function handleTraceSelect(trace: TraceRecord) {
     setSelectedTrace(trace);
@@ -129,12 +176,18 @@ const DesktopLayout = () => {
               </div>
             </div>
 
-            <TreeView
-              spans={selectedTraceSpans}
-              expandButton="inside"
-              onSpanSelect={setSelectedSpan}
-              selectedSpan={selectedSpan}
-            />
+            {filteredSpans.length === 0 ? (
+              <div className="p-3 text-center text-gray-600 dark:text-gray-200">
+                No spans found
+              </div>
+            ) : (
+              <TreeView
+                spans={filteredSpans}
+                expandButton="inside"
+                onSpanSelect={setSelectedSpan}
+                selectedSpan={selectedSpan}
+              />
+            )}
           </div>
         </div>
       ) : (
@@ -156,6 +209,14 @@ const MobileLayout = () => {
   const [selectedSpan, setSelectedSpan] = useState<TraceSpan>();
   const [searchValue, setSearchValue] = useState("");
   const [traceListExpanded, setTraceListExpanded] = useState(true);
+
+  const filteredSpans = useMemo(() => {
+    if (!searchValue.trim()) {
+      return selectedTraceSpans;
+    }
+
+    return filterSpansRecursively(selectedTraceSpans, searchValue);
+  }, [selectedTraceSpans, searchValue]);
 
   function handleTraceSelect(trace: TraceRecord) {
     setSelectedTrace(trace);
@@ -218,12 +279,18 @@ const MobileLayout = () => {
             </div>
           </div>
 
-          <TreeView
-            spans={selectedTraceSpans}
-            expandButton="inside"
-            onSpanSelect={setSelectedSpan}
-            selectedSpan={selectedSpan}
-          />
+          {filteredSpans.length === 0 ? (
+            <div className="p-3 text-center text-gray-600 dark:text-gray-200">
+              No spans found
+            </div>
+          ) : (
+            <TreeView
+              spans={filteredSpans}
+              expandButton="inside"
+              onSpanSelect={setSelectedSpan}
+              selectedSpan={selectedSpan}
+            />
+          )}
         </div>
       </div>
     );
