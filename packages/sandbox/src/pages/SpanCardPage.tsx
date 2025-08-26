@@ -6,14 +6,9 @@ import { SandboxSection } from "../components/SandboxSection";
 import { sampleTreeViewData } from "../data/sample-tree-view-data.ts";
 
 export const SpanCardPage = (): ReactElement => {
-  const [selectedCardId, setSelectedCardId] = useState<string | undefined>(
+  const [selectedSpan, setSelectedSpan] = useState<TraceSpan | undefined>(
     undefined,
   );
-
-  const handleSelectionChange = (id: string, isSelected: boolean) => {
-    setSelectedCardId(isSelected ? id : undefined);
-    console.log(`Card ${id} selection changed to ${isSelected}`);
-  };
 
   const rootSpan = sampleTreeViewData[0];
   const childSpan = rootSpan.children?.[0] || rootSpan;
@@ -54,6 +49,8 @@ export const SpanCardPage = (): ReactElement => {
             data={rootSpan}
             level={0}
             isLastChild={false}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
 
@@ -65,6 +62,8 @@ export const SpanCardPage = (): ReactElement => {
             data={childSpan}
             level={1}
             isLastChild
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
           />
         </SandboxItem>
       </SandboxSection>
@@ -83,9 +82,11 @@ export const SpanCardPage = (): ReactElement => {
             expandButton="inside"
             data={rootSpan}
             level={0}
-            selectedCardId={selectedCardId}
-            onSelectionChange={handleSelectionChange}
             isLastChild={false}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
+            onSpanSelect={setSelectedSpan}
+            selectedSpan={selectedSpan}
           />
 
           <SpanCard
@@ -94,8 +95,10 @@ export const SpanCardPage = (): ReactElement => {
             expandButton="inside"
             data={childSpan}
             level={0}
-            selectedCardId={selectedCardId}
-            onSelectionChange={handleSelectionChange}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
+            onSpanSelect={setSelectedSpan}
+            selectedSpan={selectedSpan}
             isLastChild={false}
           />
         </SandboxItem>
@@ -107,7 +110,10 @@ export const SpanCardPage = (): ReactElement => {
             expandButton="inside"
             data={childSpan}
             level={1}
-            selectedCardId={childSpan.id}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
+            onSpanSelect={setSelectedSpan}
+            selectedSpan={selectedSpan}
             isLastChild
           />
         </SandboxItem>
@@ -124,8 +130,10 @@ export const SpanCardPage = (): ReactElement => {
             expandButton="inside"
             data={noChildrenSpan}
             level={0}
-            selectedCardId={selectedCardId}
-            onSelectionChange={handleSelectionChange}
+            expandedSpansIds={[]}
+            onExpandSpansIdsChange={() => {}}
+            onSpanSelect={setSelectedSpan}
+            selectedSpan={selectedSpan}
             isLastChild={false}
           />
         </SandboxItem>
