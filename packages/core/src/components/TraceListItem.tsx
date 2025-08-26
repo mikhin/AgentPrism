@@ -3,28 +3,26 @@ import { useCallback, type KeyboardEvent } from "react";
 
 import type { TraceRecord } from "../types";
 
-import { formatDuration } from "../services/calculate-duration";
-import { Avatar, type AvatarProps } from "./Avatar";
+import { type AvatarProps } from "./Avatar";
 import { Badge, type BadgeProps } from "./Badge";
 import { PriceBadge } from "./PriceBadge";
 import { TokensBadge } from "./TokensBadge";
+import { TraceListItemHeader } from "./TraceListItemHeader";
 
-interface TraceListItemProps extends TraceRecord {
+interface TraceListItemProps {
+  trace: TraceRecord;
   badges?: Array<BadgeProps>;
   avatar?: AvatarProps;
   onClick?: () => void;
+  isSelected?: boolean;
 }
 
 export const TraceListItem = ({
-  name,
-  spansCount,
-  durationMs,
-  agentDescription,
+  trace,
   avatar,
   onClick,
-  totalCost,
-  totalTokens,
   badges,
+  isSelected,
 }: TraceListItemProps) => {
   const handleKeyDown = useCallback(
     (e: KeyboardEvent): void => {
@@ -36,14 +34,16 @@ export const TraceListItem = ({
     [onClick],
   );
 
+  const { name, agentDescription, totalCost, totalTokens } = trace;
+
   return (
     <div
       className={cn(
         "group w-full",
         "flex flex-col gap-2.5 p-4",
-        "hover:bg-gray-100 dark:hover:bg-gray-900",
         "cursor-pointer rounded",
         "outline-none -outline-offset-2 focus-visible:outline-2 focus-visible:outline-blue-600 dark:focus-visible:outline-blue-300",
+        isSelected && "bg-gray-100 dark:bg-gray-900",
       )}
       role="button"
       tabIndex={0}
@@ -51,25 +51,7 @@ export const TraceListItem = ({
       onKeyDown={handleKeyDown}
       aria-label={`Select trace ${name}`}
     >
-      <header className="flex min-w-0 flex-wrap items-center justify-between gap-2">
-        <div className="flex min-w-0 items-center gap-1.5 overflow-hidden">
-          {avatar && <Avatar {...avatar} />}
-
-          <h3 className="font-regular max-w-full truncate text-sm text-gray-950 dark:text-gray-200">
-            {name}
-          </h3>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Badge size="sm" theme="gray" variant="outline">
-            {spansCount === 1 ? "1 span" : `${spansCount} spans`}
-          </Badge>
-
-          <Badge size="sm" theme="gray" variant="outline">
-            {formatDuration(durationMs)}
-          </Badge>
-        </div>
-      </header>
+      <TraceListItemHeader trace={trace} avatar={avatar} />
 
       <div className="flex flex-wrap items-center gap-2">
         <span className="mr-4 max-w-full truncate text-sm text-gray-600 dark:text-gray-400">

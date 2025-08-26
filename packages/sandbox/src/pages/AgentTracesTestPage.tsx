@@ -3,7 +3,7 @@ import {
   TreeView,
   type OpenTelemetryDocument,
 } from "ai-agent-trace-ui-core";
-import { type ReactElement, useState } from "react";
+import { type ReactElement } from "react";
 
 import { SandboxItem } from "../components/SandboxItem";
 import { SandboxSection } from "../components/SandboxSection";
@@ -17,13 +17,6 @@ const smolDeepResearchAgentData =
   smolDeepResearchAgentDataRaw as OpenTelemetryDocument[];
 
 export const AgentTracesTestPage = (): ReactElement => {
-  const [, setSelectedSpanId] = useState<string | undefined>();
-
-  const handleSelectionChange = (id: string | undefined) => {
-    setSelectedSpanId(id);
-    console.log(`Span selected: ${id}`);
-  };
-
   return (
     <div className="p-8">
       <SandboxSection
@@ -34,7 +27,7 @@ export const AgentTracesTestPage = (): ReactElement => {
           <TreeView
             expandButton="inside"
             spans={convertOTelDocumentToSpanCards(quoTavAgentData)}
-            onSelectionChange={handleSelectionChange}
+            onSpanSelect={(span) => console.log(`Selected span: ${span.id}`)}
           />
         </SandboxItem>
       </SandboxSection>
@@ -47,7 +40,7 @@ export const AgentTracesTestPage = (): ReactElement => {
           <TreeView
             expandButton="inside"
             spans={convertOTelDocumentToSpanCards(ragEarningsAgentData)}
-            onSelectionChange={handleSelectionChange}
+            onSpanSelect={(span) => console.log(`Selected span: ${span.id}`)}
           />
         </SandboxItem>
       </SandboxSection>
@@ -60,7 +53,7 @@ export const AgentTracesTestPage = (): ReactElement => {
           <TreeView
             expandButton="inside"
             spans={convertOTelDocumentToSpanCards(smolDeepResearchAgentData)}
-            onSelectionChange={handleSelectionChange}
+            onSpanSelect={(span) => console.log(`Selected span: ${span.id}`)}
           />
         </SandboxItem>
       </SandboxSection>

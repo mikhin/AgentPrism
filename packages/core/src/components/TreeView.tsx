@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { useState, useCallback, type FC } from "react";
+import { useState, type FC } from "react";
 
 import type { TraceSpan } from "../types";
 
@@ -14,37 +14,24 @@ import { SpanCardSearchInput } from "./SpanCardSearchInput.tsx";
 
 interface TreeViewProps {
   spans: TraceSpan[];
-  onSelectionChange?: (selectedId: string | undefined) => void;
   className?: string;
-  initialSelectedId?: string;
+  selectedSpan?: TraceSpan;
+  onSpanSelect?: (span: TraceSpan) => void;
   expandButton: "inside" | "outside";
 }
 
 export const TreeView: FC<TreeViewProps> = ({
   spans,
-  onSelectionChange,
+  onSpanSelect,
   className = "",
-  initialSelectedId,
+  selectedSpan,
   expandButton,
 }) => {
-  const [selectedCardId, setSelectedCardId] = useState<string | undefined>(
-    initialSelectedId,
-  );
-
   const [searchValue, setSearchValue] = useState("");
 
   const allCards = flattenSpans(spans);
 
   const { minStart, maxEnd } = findTimeRange(allCards);
-
-  const handleCardSelectionChange = useCallback(
-    (cardId: string, isSelected: boolean) => {
-      const newSelectedId = isSelected ? cardId : undefined;
-      setSelectedCardId(newSelectedId);
-      onSelectionChange?.(newSelectedId);
-    },
-    [onSelectionChange],
-  );
 
   return (
     <div
@@ -84,8 +71,8 @@ export const TreeView: FC<TreeViewProps> = ({
               key={span.id}
               data={span}
               level={0}
-              selectedCardId={selectedCardId}
-              onSelectionChange={handleCardSelectionChange}
+              selectedSpan={selectedSpan}
+              onSpanSelect={onSpanSelect}
               minStart={minStart}
               maxEnd={maxEnd}
               isLastChild={idx === spans.length - 1}
