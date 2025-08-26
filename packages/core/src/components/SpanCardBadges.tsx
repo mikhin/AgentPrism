@@ -26,9 +26,11 @@ export const SpanCardBadges = ({ data }: SpanCardBagdesProps) => {
         {getSpanCategoryLabel(data.type)}
       </Badge>
 
-      <TokensBadge tokensCount={data.tokensCount} />
+      {typeof data.tokensCount === "number" && (
+        <TokensBadge tokensCount={data.tokensCount} />
+      )}
 
-      <PriceBadge cost={data.cost} />
+      {typeof data.cost === "number" && <PriceBadge cost={data.cost} />}
     </div>
   );
 };
