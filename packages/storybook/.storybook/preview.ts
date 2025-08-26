@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react-vite";
 
+import "tailwindcss/tailwind.css";
 import "ai-agent-trace-ui-core/styles.css";
 
 const preview: Preview = {
