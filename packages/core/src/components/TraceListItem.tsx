@@ -6,6 +6,8 @@ import type { TraceRecord } from "../types";
 import { formatDuration } from "../services/calculate-duration";
 import { Avatar, type AvatarProps } from "./Avatar";
 import { Badge, type BadgeProps } from "./Badge";
+import { PriceBadge } from "./PriceBadge";
+import { TokensBadge } from "./TokensBadge";
 
 interface TraceListItemProps extends TraceRecord {
   badges?: Array<BadgeProps>;
@@ -20,6 +22,8 @@ export const TraceListItem = ({
   agentDescription,
   avatar,
   onClick,
+  totalCost,
+  totalTokens,
   badges,
 }: TraceListItemProps) => {
   const handleKeyDown = useCallback(
@@ -71,6 +75,12 @@ export const TraceListItem = ({
         <span className="mr-4 max-w-full truncate text-sm text-gray-600 dark:text-gray-400">
           {agentDescription}
         </span>
+
+        {typeof totalCost === "number" && <PriceBadge cost={totalCost} />}
+
+        {typeof totalTokens === "number" && (
+          <TokensBadge tokensCount={totalTokens} />
+        )}
 
         {badges?.map((badge, index) => (
           <Badge key={index} theme={badge.theme} size="xs">

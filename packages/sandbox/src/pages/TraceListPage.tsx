@@ -11,6 +11,8 @@ const traces: TraceRecord[] = [
     spansCount: 10,
     durationMs: 10_000,
     agentDescription: "research-agent",
+    totalCost: 100,
+    totalTokens: 1000,
     // badges: [
     //   {
     //     children: "app:dev-chatbot",
@@ -37,6 +39,8 @@ const traces: TraceRecord[] = [
     spansCount: 100,
     durationMs: 100_000,
     agentDescription: "data-analysis-bot",
+    totalCost: 1,
+    totalTokens: 1000000,
     // badges: [
     //   {
     //     children: "app: staging-assistant",
