@@ -9,7 +9,7 @@ import { Badge, type BadgeProps } from "./Badge";
 import { PriceBadge } from "./PriceBadge";
 import { TokensBadge } from "./TokensBadge";
 
-interface TraceListItemProps extends TraceRecord {
+export interface TraceListItemProps extends TraceRecord {
   badges?: Array<BadgeProps>;
   avatar?: AvatarProps;
   onClick?: () => void;

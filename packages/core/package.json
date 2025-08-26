@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.1.11",
+    "@radix-ui/react-popover": "^1.1.15",
+    "@radix-ui/react-switch": "^1.2.6",
     "@radix-ui/react-tabs": "^1.1.13",
     "autoprefixer": "^10.4.21",
     "classnames": "2.5.1",

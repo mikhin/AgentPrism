@@ -5,7 +5,8 @@ import cn from "classnames";
 type IconButtonSize = "sm" | "md" | "lg";
 type IconButtonVariant = "default" | "ghost";
 
-interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IconButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * The size of the icon button
    */

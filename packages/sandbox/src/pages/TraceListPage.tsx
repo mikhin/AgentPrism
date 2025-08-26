@@ -1,10 +1,10 @@
-import { TraceList, type TraceRecord } from "ai-agent-trace-ui-core";
+import { TraceList, type TraceListItemProps } from "ai-agent-trace-ui-core";
 import { useState, type ReactElement } from "react";
 
 import { SandboxItem } from "../components/SandboxItem";
 import { SandboxSection } from "../components/SandboxSection";
 
-const traces: TraceRecord[] = [
+const traces: TraceListItemProps[] = [
   {
     id: "1",
     name: "Trace 1",

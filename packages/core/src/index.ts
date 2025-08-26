@@ -10,7 +10,7 @@ export { default as ButtonSource } from "./components/Button.tsx?raw";
 export { CollapsibleSection } from "./components/CollapsibleSection";
 export { default as CollapsibleSectionSource } from "./components/CollapsibleSection.tsx?raw";
 
-export { IconButton } from "./components/IconButton";
+export { IconButton, type IconButtonProps } from "./components/IconButton";
 export { default as IconButtonSource } from "./components/IconButton.tsx?raw";
 
 export { PriceBadge } from "./components/PriceBadge";
@@ -26,12 +26,23 @@ export { default as TextInputSource } from "./components/TextInput.tsx?raw";
 
 export { TreeView } from "./components/TreeView";
 export { TraceList } from "./components/TraceList";
+export { type TraceListItemProps } from "./components/TraceListItem";
 
 export { DetailsView } from "./components/DetailsView/DetailsView.tsx";
 export { default as DetailsViewSource } from "./components/DetailsView/DetailsView.tsx?raw";
 
 export { Tabs } from "./components/Tabs.tsx";
 export { default as TabsSource } from "./components/Tabs.tsx?raw";
+
+export { Switch } from "./components/Switch.tsx";
+export { default as SwitchSource } from "./components/Switch.tsx?raw";
+
+export {
+  Filters,
+  type FiltersProps,
+  type FilterItem,
+} from "./components/Filters.tsx";
+export { default as FiltersSource } from "./components/Filters.tsx?raw";
 
 export { type TraceSpan, type TraceRecord } from "./types";
 
