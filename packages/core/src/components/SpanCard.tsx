@@ -355,7 +355,7 @@ export const SpanCard: FC<SpanCardProps> = ({
             )}
           >
             <div
-              className="relative flex min-h-4 shrink-0 flex-wrap items-start gap-1"
+              className="relative flex min-h-4 shrink-0 grow flex-wrap items-start gap-1"
               style={{
                 width: `min(${contentWidth}px, 100%)`,
                 minWidth: 140,
@@ -382,6 +382,7 @@ export const SpanCard: FC<SpanCardProps> = ({
                 minStart={minStart}
                 maxEnd={maxEnd}
                 spanCard={data}
+                className="max-w-48"
               />
 
               <div className="flex items-center gap-2">
