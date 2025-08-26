@@ -1,10 +1,7 @@
+import type { TraceSpan } from "@ai-agent-trace-ui/types";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import {
-  DetailsView,
-  type TraceSpan,
-  DetailsViewSource,
-} from "ai-agent-trace-ui-core";
+import { DetailsView, DetailsViewSource } from "@ai-agent-trace-ui/ui";
 
 const mockSpanData: TraceSpan = {
   id: "span-llm-001",

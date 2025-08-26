@@ -1,6 +1,6 @@
 import type { Preview } from "@storybook/react-vite";
 
-import "ai-agent-trace-ui-core/styles.css";
+import "@ai-agent-trace-ui-core/ui/styles.css";
 
 const preview: Preview = {
   parameters: {
