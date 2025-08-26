@@ -6,6 +6,8 @@ export type TraceRecord = {
   spansCount: number;
   durationMs: number;
   agentDescription: string;
+  totalCost?: number;
+  totalTokens?: number;
 };
 
 export type TraceSpanStatus = "success" | "error" | "pending" | "warning";
@@ -16,13 +18,13 @@ export type TraceSpan = {
   startTime: Date;
   endTime: Date;
   duration: number;
-  cost: number;
   type: TraceSpanCategory;
   raw: string;
   attributes: SpanAttribute[];
   children?: TraceSpan[];
-  tokensCount: number;
   status: TraceSpanStatus;
+  cost?: number;
+  tokensCount?: number;
 };
 
 export type TraceSpanCategory =

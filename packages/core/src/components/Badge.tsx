@@ -76,12 +76,12 @@ export const Badge = ({
 
   return (
     <span
-      className={`max-w-112 inline-flex min-w-fit items-center truncate rounded font-medium ${variantClasses} ${sizeClasses[size]} ${className}`}
+      className={`inline-flex min-w-0 items-center overflow-hidden rounded font-medium ${variantClasses} ${sizeClasses[size]} ${className}`}
     >
       {iconStart && <span className="shrink-0">{iconStart}</span>}
 
       <span
-        className={`${textSizes[size]} min-w-0 flex-shrink-0 tracking-normal`}
+        className={`${textSizes[size]} min-w-0 max-w-full flex-shrink-0 truncate tracking-normal`}
       >
         {children}
       </span>
