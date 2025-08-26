@@ -13,6 +13,12 @@ export { default as CollapsibleSectionSource } from "./components/CollapsibleSec
 export { IconButton } from "./components/IconButton";
 export { default as IconButtonSource } from "./components/IconButton.tsx?raw";
 
+export { PriceBadge } from "./components/PriceBadge";
+export { default as PriceBadgeSource } from "./components/PriceBadge.tsx?raw";
+
+export { TokensBadge } from "./components/TokensBadge";
+export { default as TokensBadgeSource } from "./components/TokensBadge.tsx?raw";
+
 export { SpanCard } from "./components/SpanCard.tsx";
 
 export { TextInput } from "./components/TextInput.tsx";
