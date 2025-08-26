@@ -78,7 +78,7 @@ export const DetailsView = ({
 
   return (
     <div
-      className={`max-w-[480px] rounded border border-gray-200 bg-white p-4 dark:border-gray-600 dark:bg-gray-950 ${className}`}
+      className={`rounded border border-gray-200 bg-white p-4 dark:border-gray-600 dark:bg-gray-950 ${className}`}
     >
       <DetailsViewHeader data={data} avatar={avatar} copyButton={copyButton} />
 

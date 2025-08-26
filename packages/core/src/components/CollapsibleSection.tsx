@@ -59,7 +59,7 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
             open ? "rotate-180" : ""
           }`}
         />
-        <span>{title}</span>
+        <span className="truncate">{title}</span>
       </Collapsible.Trigger>
 
       <Collapsible.Content
