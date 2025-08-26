@@ -1,5 +1,3 @@
-import { Coins } from "lucide-react";
-
 import type { TraceSpan } from "../types";
 
 import {
@@ -8,6 +6,8 @@ import {
   getSpanCategoryTheme,
 } from "../utils/ui";
 import { Badge } from "./Badge";
+import { PriceBadge } from "./PriceBadge";
+import { TokensBadge } from "./TokensBadge";
 
 interface SpanCardBagdesProps {
   data: TraceSpan;
@@ -26,13 +26,9 @@ export const SpanCardBadges = ({ data }: SpanCardBagdesProps) => {
         {getSpanCategoryLabel(data.type)}
       </Badge>
 
-      <Badge iconStart={<Coins className="size-2.5" />} theme="gray" size="xs">
-        {data.tokensCount}
-      </Badge>
+      <TokensBadge tokensCount={data.tokensCount} />
 
-      <Badge theme="gray" size="xs">
-        $ {data.cost}
-      </Badge>
+      <PriceBadge cost={data.cost} />
     </div>
   );
 };
