@@ -33,7 +33,7 @@ export const TraceList = ({
         className,
       )}
     >
-      <header className="flex items-center justify-between gap-2">
+      <header className="flex min-h-6 items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <h2
             className={cn(
