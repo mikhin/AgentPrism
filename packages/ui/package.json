@@ -18,6 +18,7 @@
   ],
   "scripts": {
     "tsc": "tsc -p tsconfig.app.json --noEmit --skipLibCheck",
+    "build": "tailwind -i ./src/index.css -o ./dist/styles.css --minify",
     "dev": "tailwind -i ./src/index.css -o ./dist/styles.css --watch"
   },
   "dependencies": {
