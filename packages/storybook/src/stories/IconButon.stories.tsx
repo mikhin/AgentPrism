@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconButton, IconButtonSource } from "ai-agent-trace-ui-core";
+import { IconButton, IconButtonSource } from "@ai-agent-trace-ui/ui";
 
 const meta = {
   title: "Components/IconButton",

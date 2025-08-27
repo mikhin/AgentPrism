@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Tabs, TabsSource } from "ai-agent-trace-ui-core";
+import { Tabs, TabsSource } from "@ai-agent-trace-ui/ui";
 
 const mockTabItems = [
   {

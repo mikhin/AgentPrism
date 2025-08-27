@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   CollapsibleSection,
   CollapsibleSectionSource,
-} from "ai-agent-trace-ui-core";
+} from "@ai-agent-trace-ui/ui";
 
 const meta = {
   title: "Components/CollapsibleSection",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Avatar, AvatarSource } from "ai-agent-trace-ui-core";
+import { Avatar, AvatarSource } from "@ai-agent-trace-ui/ui";
 
 const meta = {
   title: "Components/Avatar",
