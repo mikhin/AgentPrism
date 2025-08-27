@@ -52,8 +52,8 @@ const data = [
 ];
 
 export const TraceViewerStory: Story = {
-  args: {
-    data,
+  render: () => {
+    return <TraceViewer data={data} />;
   },
 };
 
