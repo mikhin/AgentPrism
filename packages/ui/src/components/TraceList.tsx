@@ -12,6 +12,8 @@ type TraceListProps = {
   expanded: boolean;
   onExpandStateChange: (expanded: boolean) => void;
   className?: string;
+  onTraceSelect?: (trace: TraceRecord) => void;
+  selectedTrace?: TraceRecord;
 };
 
 export const TraceList = ({
@@ -19,6 +21,8 @@ export const TraceList = ({
   expanded,
   onExpandStateChange,
   className,
+  onTraceSelect,
+  selectedTrace,
 }: TraceListProps) => {
   return (
     <div
@@ -67,7 +71,11 @@ export const TraceList = ({
         <ul className="flex flex-col items-center rounded border border-gray-200 dark:border-gray-800">
           {traces.map((trace, idx) => (
             <li className="w-full list-none" key={trace.id}>
-              <TraceListItem {...trace} />
+              <TraceListItem
+                trace={trace}
+                onClick={() => onTraceSelect?.(trace)}
+                isSelected={selectedTrace?.id === trace.id}
+              />
 
               {idx < traces.length - 1 && (
                 <div className="h-px w-[calc(100%_-_32px)] bg-gray-200 dark:bg-gray-900" />

@@ -32,9 +32,9 @@ type ExpandButtonPlacement = "inside" | "outside";
 interface SpanCardProps {
   data: TraceSpan;
   level?: number;
-  selectedCardId?: string;
+  selectedSpan?: TraceSpan;
   avatar?: AvatarProps;
-  onSelectionChange?: (cardId: string, isSelected: boolean) => void;
+  onSpanSelect?: (span: TraceSpan) => void;
   expandButton: ExpandButtonPlacement;
   minStart: number;
   maxEnd: number;
@@ -163,19 +163,11 @@ const getConnectorsLayout = ({
 
 const useSpanCardEventHandlers = (
   data: TraceSpan,
-  isSelected: boolean,
-  onSelectionChange?: (cardId: string, isSelected: boolean) => void,
+  onSpanSelect?: (span: TraceSpan) => void,
 ) => {
   const handleCardClick = useCallback((): void => {
-    onSelectionChange?.(data.id, !isSelected);
-  }, [data.id, isSelected, onSelectionChange]);
-
-  const handleChildSelectionChange = useCallback(
-    (childId: string, childIsSelected: boolean): void => {
-      onSelectionChange?.(childId, childIsSelected);
-    },
-    [onSelectionChange],
-  );
+    onSpanSelect?.(data);
+  }, [data, onSpanSelect]);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent): void => {
@@ -196,7 +188,6 @@ const useSpanCardEventHandlers = (
 
   return {
     handleCardClick,
-    handleChildSelectionChange,
     handleKeyDown,
     handleToggleClick,
   };
@@ -206,16 +197,16 @@ const SpanCardChildren: FC<{
   expandButton: "inside" | "outside";
   data: TraceSpan;
   level: number;
-  selectedCardId?: string;
-  onChildSelectionChange: (childId: string, childIsSelected: boolean) => void;
+  selectedSpan?: TraceSpan;
+  onSpanSelect?: (span: TraceSpan) => void;
   minStart: number;
   maxEnd: number;
   prevLevelConnectors: SpanCardConnectorType[];
 }> = ({
   data,
   level,
-  selectedCardId,
-  onChildSelectionChange,
+  selectedSpan,
+  onSpanSelect,
   expandButton,
   minStart,
   maxEnd,
@@ -235,8 +226,8 @@ const SpanCardChildren: FC<{
               minStart={minStart}
               maxEnd={maxEnd}
               level={level + 1}
-              selectedCardId={selectedCardId}
-              onSelectionChange={onChildSelectionChange}
+              selectedSpan={selectedSpan}
+              onSpanSelect={onSpanSelect}
               isLastChild={idx === (data.children || []).length - 1}
               prevLevelConnectors={prevLevelConnectors}
             />
@@ -250,8 +241,8 @@ const SpanCardChildren: FC<{
 export const SpanCard: FC<SpanCardProps> = ({
   data,
   level = 0,
-  selectedCardId,
-  onSelectionChange,
+  selectedSpan,
+  onSpanSelect,
   expandButton,
   avatar,
   minStart,
@@ -264,14 +255,10 @@ export const SpanCard: FC<SpanCardProps> = ({
   const state: SpanCardState = {
     isExpanded,
     hasChildren: Boolean(data.children?.length),
-    isSelected: selectedCardId === data.id,
+    isSelected: selectedSpan?.id === data.id,
   };
 
-  const eventHandlers = useSpanCardEventHandlers(
-    data,
-    state.isSelected,
-    onSelectionChange,
-  );
+  const eventHandlers = useSpanCardEventHandlers(data, onSpanSelect);
 
   const { durationMs } = getTimelineData({
     spanCard: data,
@@ -424,8 +411,8 @@ export const SpanCard: FC<SpanCardProps> = ({
           expandButton={expandButton}
           data={data}
           level={level}
-          selectedCardId={selectedCardId}
-          onChildSelectionChange={eventHandlers.handleChildSelectionChange}
+          selectedSpan={selectedSpan}
+          onSpanSelect={onSpanSelect}
           prevLevelConnectors={connectors}
         />
       </Collapsible.Root>
