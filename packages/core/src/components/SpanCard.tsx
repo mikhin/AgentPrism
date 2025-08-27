@@ -316,7 +316,12 @@ export const SpanCard: FC<SpanCardProps> = ({
     >
       <Collapsible.Root open={state.isExpanded} onOpenChange={setIsExpanded}>
         <div
-          className="grid w-full"
+          className={cn(
+            "relative grid w-full",
+            state.isSelected && "outline-t-2 bg-gray-100 dark:bg-gray-900",
+            state.isSelected &&
+              "before:absolute before:-top-2 before:h-3 before:w-full before:bg-gray-100 before:dark:bg-gray-900",
+          )}
           style={{
             gridTemplateColumns,
           }}
@@ -355,7 +360,7 @@ export const SpanCard: FC<SpanCardProps> = ({
             )}
           >
             <div
-              className="relative flex min-h-4 shrink-0 flex-wrap items-start gap-1"
+              className="relative flex min-h-4 shrink-0 grow flex-wrap items-start gap-1"
               style={{
                 width: `min(${contentWidth}px, 100%)`,
                 minWidth: 140,
@@ -363,7 +368,10 @@ export const SpanCard: FC<SpanCardProps> = ({
             >
               {avatar && <Avatar {...avatar} />}
 
-              <h3 className="mr-3 h-4 max-w-28 truncate text-sm leading-[14px] text-gray-900 dark:text-gray-200">
+              <h3
+                className="mr-3 h-4 max-w-32 grow truncate text-sm leading-[14px] text-gray-900 dark:text-gray-200"
+                title={data.title}
+              >
                 {data.title}
               </h3>
 
@@ -382,6 +390,7 @@ export const SpanCard: FC<SpanCardProps> = ({
                 minStart={minStart}
                 maxEnd={maxEnd}
                 spanCard={data}
+                className="max-w-48"
               />
 
               <div className="flex items-center gap-2">
