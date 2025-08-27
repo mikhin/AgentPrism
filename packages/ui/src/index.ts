@@ -37,3 +37,5 @@ export { default as DetailsViewSource } from "./components/DetailsView/DetailsVi
 
 export { Tabs } from "./components/Tabs.tsx";
 export { default as TabsSource } from "./components/Tabs.tsx?raw";
+
+export { TraceViewer } from "./components/TraceViewer";

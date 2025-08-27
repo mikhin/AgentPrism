@@ -1,12 +1,5 @@
-import {
-  convertOTelDocumentToSpanCards,
-  flattenSpans,
-} from "@ai-agent-trace-ui/data";
-import {
-  type OpenTelemetryDocument,
-  type TraceRecord,
-  type TraceSpan,
-} from "@ai-agent-trace-ui/types";
+import { flattenSpans } from "@ai-agent-trace-ui/data";
+import { type TraceRecord, type TraceSpan } from "@ai-agent-trace-ui/types";
 import {
   Button,
   DetailsView,
@@ -21,43 +14,12 @@ import cn from "classnames";
 import { ArrowLeft } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import quoTavAgentDataRaw from "../data/quo_tav_agent.json";
-import ragEarningsAgentDataRaw from "../data/rag_earnings_agent.json";
-import smolDeepResearchAgentDataRaw from "../data/smol_deep_research_agent.json";
-
-const quoTavAgentData = convertOTelDocumentToSpanCards(
-  quoTavAgentDataRaw as OpenTelemetryDocument[],
-);
-const ragEarningsAgentData = convertOTelDocumentToSpanCards(
-  ragEarningsAgentDataRaw as OpenTelemetryDocument[],
-);
-const smolDeepResearchAgentData = convertOTelDocumentToSpanCards(
-  smolDeepResearchAgentDataRaw as OpenTelemetryDocument[],
-);
-
-const MOCK_TRACE_RECORDS: TraceRecord[] = [
-  {
-    id: "quo-tav",
-    name: "7a8b9c1d",
-    spansCount: 24,
-    durationMs: 3200,
-    agentDescription: "research-agent",
-  },
-  {
-    id: "rag-earnings",
-    name: "f2e3d4c5",
-    spansCount: 156,
-    durationMs: 45670,
-    agentDescription: "data-analysis-bot",
-  },
-  {
-    id: "smol-deep-research",
-    name: "9b8a7c6d",
-    spansCount: 13,
-    durationMs: 2500,
-    agentDescription: "customer-support-ai",
-  },
-];
+interface TraceViewerProps {
+  data: Array<{
+    traceRecord: TraceRecord;
+    spans: TraceSpan[];
+  }>;
+}
 
 // Recursive filtering function that preserves nested structure
 const filterSpansRecursively = (
@@ -98,27 +60,17 @@ const filterSpansRecursively = (
     .filter((span): span is NonNullable<typeof span> => span !== null);
 };
 
-export const DemoPage = () => {
-  return (
-    <div className="h-full w-full p-4 lg:p-8">
-      <div className="hidden 2xl:!block">
-        <DesktopLayout />
-      </div>
-
-      <div className="2xl:hidden">
-        <MobileLayout />
-      </div>
-    </div>
-  );
-};
-
-const DesktopLayout = () => {
+export const TraceViewer = ({ data }: TraceViewerProps) => {
   const [selectedTrace, setSelectedTrace] = useState<TraceRecord>();
   const [selectedTraceSpans, setSelectedTraceSpans] = useState<TraceSpan[]>([]);
   const [selectedSpan, setSelectedSpan] = useState<TraceSpan>();
   const [searchValue, setSearchValue] = useState("");
 
   const [traceListExpanded, setTraceListExpanded] = useState(true);
+
+  const traceRecords = useMemo(() => {
+    return data.map((item) => item.traceRecord);
+  }, [data]);
 
   const filteredSpans = useMemo(() => {
     if (!searchValue.trim()) {
@@ -146,18 +98,85 @@ const DesktopLayout = () => {
     setExpandedSpansIds([]);
   }, []);
 
-  function handleTraceSelect(trace: TraceRecord) {
-    setSelectedTrace(trace);
+  const handleTraceSelect = useCallback(
+    (trace: TraceRecord) => {
+      setSelectedTrace(trace);
+      setSelectedTraceSpans(
+        data.find((item) => item.traceRecord.id === trace.id)?.spans ?? [],
+      );
+    },
+    [data],
+  );
 
-    if (trace.id === "quo-tav") {
-      setSelectedTraceSpans(quoTavAgentData);
-    } else if (trace.id === "rag-earnings") {
-      setSelectedTraceSpans(ragEarningsAgentData);
-    } else if (trace.id === "smol-deep-research") {
-      setSelectedTraceSpans(smolDeepResearchAgentData);
-    }
-  }
+  const props: LayoutProps = {
+    traceRecords,
+    traceListExpanded,
+    setTraceListExpanded,
+    selectedTrace,
+    setSelectedTrace,
+    selectedTraceSpans,
+    setSelectedTraceSpans,
+    selectedSpan,
+    setSelectedSpan,
+    searchValue,
+    setSearchValue,
+    filteredSpans,
+    expandedSpansIds,
+    setExpandedSpansIds,
+    handleExpandAll,
+    handleCollapseAll,
+    handleTraceSelect,
+  };
 
+  return (
+    <div className="h-full w-full p-4 lg:p-8">
+      <div className="hidden 2xl:block">
+        <DesktopLayout {...props} />
+      </div>
+
+      <div className="2xl:hidden">
+        <MobileLayout {...props} />
+      </div>
+    </div>
+  );
+};
+
+interface LayoutProps {
+  traceRecords: TraceRecord[];
+  traceListExpanded: boolean;
+  setTraceListExpanded: (expanded: boolean) => void;
+  selectedTrace: TraceRecord | undefined;
+  setSelectedTrace: (trace: TraceRecord | undefined) => void;
+  selectedTraceSpans: TraceSpan[];
+  setSelectedTraceSpans: (spans: TraceSpan[]) => void;
+  selectedSpan: TraceSpan | undefined;
+  setSelectedSpan: (span: TraceSpan | undefined) => void;
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+  filteredSpans: TraceSpan[];
+  expandedSpansIds: string[];
+  setExpandedSpansIds: (ids: string[]) => void;
+  handleExpandAll: () => void;
+  handleCollapseAll: () => void;
+  handleTraceSelect: (trace: TraceRecord) => void;
+}
+
+const DesktopLayout = ({
+  traceRecords,
+  traceListExpanded,
+  setTraceListExpanded,
+  selectedTrace,
+  selectedSpan,
+  setSelectedSpan,
+  searchValue,
+  setSearchValue,
+  filteredSpans,
+  expandedSpansIds,
+  setExpandedSpansIds,
+  handleExpandAll,
+  handleCollapseAll,
+  handleTraceSelect,
+}: LayoutProps) => {
   return (
     <div
       className={cn(
@@ -168,7 +187,7 @@ const DesktopLayout = () => {
       )}
     >
       <TraceList
-        traces={MOCK_TRACE_RECORDS}
+        traces={traceRecords}
         expanded={traceListExpanded}
         onExpandStateChange={setTraceListExpanded}
         onTraceSelect={handleTraceSelect}
@@ -230,55 +249,29 @@ const DesktopLayout = () => {
   );
 };
 
-const MobileLayout = () => {
-  const [selectedTrace, setSelectedTrace] = useState<TraceRecord>();
-  const [selectedTraceSpans, setSelectedTraceSpans] = useState<TraceSpan[]>([]);
-  const [selectedSpan, setSelectedSpan] = useState<TraceSpan>();
-  const [searchValue, setSearchValue] = useState("");
-  const [traceListExpanded, setTraceListExpanded] = useState(true);
-
-  const filteredSpans = useMemo(() => {
-    if (!searchValue.trim()) {
-      return selectedTraceSpans;
-    }
-
-    return filterSpansRecursively(selectedTraceSpans, searchValue);
-  }, [selectedTraceSpans, searchValue]);
-
-  const allIds = useMemo(() => {
-    return flattenSpans(selectedTraceSpans).map((span) => span.id);
-  }, [selectedTraceSpans]);
-
-  const [expandedSpansIds, setExpandedSpansIds] = useState<string[]>(allIds);
-
-  useEffect(() => {
-    setExpandedSpansIds(allIds);
-  }, [allIds]);
-
-  const handleExpandAll = useCallback(() => {
-    setExpandedSpansIds(allIds);
-  }, [allIds]);
-
-  const handleCollapseAll = useCallback(() => {
-    setExpandedSpansIds([]);
-  }, []);
-
-  function handleTraceSelect(trace: TraceRecord) {
-    setSelectedTrace(trace);
-
-    if (trace.id === "quo-tav") {
-      setSelectedTraceSpans(quoTavAgentData);
-    } else if (trace.id === "rag-earnings") {
-      setSelectedTraceSpans(ragEarningsAgentData);
-    } else if (trace.id === "smol-deep-research") {
-      setSelectedTraceSpans(smolDeepResearchAgentData);
-    }
-  }
-
+const MobileLayout = ({
+  traceRecords,
+  traceListExpanded,
+  setTraceListExpanded,
+  selectedTrace,
+  setSelectedTrace,
+  selectedTraceSpans,
+  setSelectedTraceSpans,
+  selectedSpan,
+  setSelectedSpan,
+  searchValue,
+  setSearchValue,
+  filteredSpans,
+  expandedSpansIds,
+  setExpandedSpansIds,
+  handleExpandAll,
+  handleCollapseAll,
+  handleTraceSelect,
+}: LayoutProps) => {
   if (!selectedTrace) {
     return (
       <TraceList
-        traces={MOCK_TRACE_RECORDS}
+        traces={traceRecords}
         expanded={traceListExpanded}
         onExpandStateChange={setTraceListExpanded}
         onTraceSelect={handleTraceSelect}
@@ -371,7 +364,7 @@ interface PlaceholderProps {
 
 const Placeholder = ({ title }: PlaceholderProps) => {
   return (
-    <p className="flex items-center justify-center rounded-lg bg-gray-100 p-4 text-center text-gray-600 dark:bg-gray-900 dark:text-gray-200">
+    <p className="hidden items-center justify-center rounded-lg bg-gray-100 p-4 text-center text-gray-600 2xl:flex dark:bg-gray-900 dark:text-gray-200">
       {title}
     </p>
   );
