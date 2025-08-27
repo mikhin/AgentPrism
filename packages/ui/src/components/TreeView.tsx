@@ -12,6 +12,8 @@ interface TreeViewProps {
   selectedSpan?: TraceSpan;
   onSpanSelect?: (span: TraceSpan) => void;
   expandButton: "inside" | "outside";
+  expandedSpansIds: string[];
+  onExpandSpansIdsChange: (ids: string[]) => void;
 }
 
 export const TreeView: FC<TreeViewProps> = ({
@@ -20,6 +22,8 @@ export const TreeView: FC<TreeViewProps> = ({
   className = "",
   selectedSpan,
   expandButton,
+  expandedSpansIds,
+  onExpandSpansIdsChange,
 }) => {
   const allCards = flattenSpans(spans);
 
@@ -43,6 +47,8 @@ export const TreeView: FC<TreeViewProps> = ({
             minStart={minStart}
             maxEnd={maxEnd}
             isLastChild={idx === spans.length - 1}
+            expandedSpansIds={expandedSpansIds}
+            onExpandSpansIdsChange={onExpandSpansIdsChange}
           />
         ))}
       </ul>

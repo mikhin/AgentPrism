@@ -4,7 +4,6 @@ import { formatDuration, getTimelineData } from "@ai-agent-trace-ui/data";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import cn from "classnames";
 import {
-  useState,
   type FC,
   useCallback,
   type KeyboardEvent,
@@ -40,6 +39,8 @@ interface SpanCardProps {
   maxEnd: number;
   isLastChild: boolean;
   prevLevelConnectors?: SpanCardConnectorType[];
+  expandedSpansIds: string[];
+  onExpandSpansIdsChange: (ids: string[]) => void;
 }
 
 interface SpanCardState {
@@ -202,6 +203,8 @@ const SpanCardChildren: FC<{
   minStart: number;
   maxEnd: number;
   prevLevelConnectors: SpanCardConnectorType[];
+  expandedSpansIds: string[];
+  onExpandSpansIdsChange: (ids: string[]) => void;
 }> = ({
   data,
   level,
@@ -211,6 +214,8 @@ const SpanCardChildren: FC<{
   minStart,
   maxEnd,
   prevLevelConnectors,
+  expandedSpansIds,
+  onExpandSpansIdsChange,
 }) => {
   if (!data.children?.length) return null;
 
@@ -230,6 +235,8 @@ const SpanCardChildren: FC<{
               onSpanSelect={onSpanSelect}
               isLastChild={idx === (data.children || []).length - 1}
               prevLevelConnectors={prevLevelConnectors}
+              expandedSpansIds={expandedSpansIds}
+              onExpandSpansIdsChange={onExpandSpansIdsChange}
             />
           ))}
         </ul>
@@ -249,8 +256,25 @@ export const SpanCard: FC<SpanCardProps> = ({
   maxEnd,
   isLastChild,
   prevLevelConnectors = [],
+  expandedSpansIds,
+  onExpandSpansIdsChange,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const isExpanded = expandedSpansIds.includes(data.id);
+
+  const handleToggleClick = useCallback(
+    (expanded: boolean) => {
+      const alreadyExpanded = expandedSpansIds.includes(data.id);
+
+      if (alreadyExpanded && !expanded) {
+        onExpandSpansIdsChange(expandedSpansIds.filter((id) => id !== data.id));
+      }
+
+      if (!alreadyExpanded && expanded) {
+        onExpandSpansIdsChange([...expandedSpansIds, data.id]);
+      }
+    },
+    [isExpanded, expandedSpansIds, data.id, onExpandSpansIdsChange],
+  );
 
   const state: SpanCardState = {
     isExpanded,
@@ -300,7 +324,10 @@ export const SpanCard: FC<SpanCardProps> = ({
       aria-expanded={state.hasChildren ? state.isExpanded : undefined}
       className="list-none"
     >
-      <Collapsible.Root open={state.isExpanded} onOpenChange={setIsExpanded}>
+      <Collapsible.Root
+        open={state.isExpanded}
+        onOpenChange={handleToggleClick}
+      >
         <div
           className={cn(
             "relative grid w-full",
@@ -414,6 +441,8 @@ export const SpanCard: FC<SpanCardProps> = ({
           selectedSpan={selectedSpan}
           onSpanSelect={onSpanSelect}
           prevLevelConnectors={connectors}
+          expandedSpansIds={expandedSpansIds}
+          onExpandSpansIdsChange={onExpandSpansIdsChange}
         />
       </Collapsible.Root>
     </li>
