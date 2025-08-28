@@ -9,12 +9,10 @@
     ".": {
       "import": "./src/index.ts",
       "types": "./src/index.ts"
-    },
-    "./styles.css": "./dist/styles.css"
+    }
   },
   "files": [
-    "src",
-    "dist/styles.css"
+    "src"
   ],
   "scripts": {
     "tsc": "tsc -p tsconfig.app.json --noEmit --skipLibCheck"
