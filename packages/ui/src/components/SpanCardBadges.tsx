@@ -4,7 +4,7 @@ import {
   getSpanCategoryIcon,
   getSpanCategoryLabel,
   getSpanCategoryTheme,
-} from "../utils/ui";
+} from "../utils";
 import { Badge } from "./Badge";
 import { PriceBadge } from "./PriceBadge";
 import { TokensBadge } from "./TokensBadge";

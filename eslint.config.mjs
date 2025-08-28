@@ -18,7 +18,11 @@ export default defineConfig([
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
-    ignores: ["packages/core/dist", "packages/sandbox/dist"],
+    ignores: [
+      "packages/core/dist",
+      "packages/sandbox/dist",
+      "packages/storybook/storybook-static",
+    ],
   },
   {
     plugins: {

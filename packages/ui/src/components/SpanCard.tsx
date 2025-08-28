@@ -10,7 +10,7 @@ import {
   type MouseEvent,
 } from "react";
 
-import { getSpanCategoryTheme } from "../utils/ui";
+import { getSpanCategoryTheme } from "../utils";
 import { Avatar, type AvatarProps } from "./Avatar";
 import { SpanCardBadges } from "./SpanCardBadges";
 import {

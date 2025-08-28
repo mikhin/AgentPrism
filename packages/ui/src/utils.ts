@@ -1,9 +1,9 @@
 import type { TraceSpanCategory } from "@ai-agent-trace-ui/types";
 import type { LucideIcon } from "lucide-react";
 
-import type { ColorVariant } from "../types";
+import type { ColorVariant } from "./types";
 
-import { SPAN_CATEGORY_CONFIG } from "../constants";
+import { SPAN_CATEGORY_CONFIG } from "./constants";
 
 export function getSpanCategoryTheme(
   category: TraceSpanCategory,
