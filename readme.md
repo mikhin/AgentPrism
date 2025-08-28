@@ -1,6 +1,6 @@
-# AI Agent Trace UI
+# AI Agent Trace UI Components
 
-React components for visualizing OpenTelemetry traces from AI agents. Display LLM calls, tool executions, and agent workflows in a hierarchical timeline.
+React components for visualizing traces from AI agents. Display LLM calls, tool executions, and agent workflows in a hierarchical timeline.
 
 **⚠️ Alpha Release:** This library is under active development. APIs may change.
 
@@ -40,6 +40,8 @@ Install required UI dependencies:
 ```
 
 ## Quick Start
+
+Here is a minimal example of rendering a trace tree view:
 
 ```tsx
 // UI components are copied to your project - you own them, customize as needed
@@ -127,9 +129,17 @@ function TraceExplorer() {
 
 ## Data Format
 
-This library accepts OpenTelemetry traces in [OTLP wire format](https://opentelemetry.io/docs/specs/otlp/).
+This UI library uses its own data format tailored for UI components. To integrate your data, you can use the provided data adapters from the `@ai-agent-trace-ui/data` package. Each adapter is designed to handle different input data formats and will transform the data into the UI-compatible structure.
 
-### Input Format (OTLP)
+### Data Adapters
+
+Currently, the library provides an adapter called `convertOTelDocumentToSpanCards` specifically for handling [OTLP data](https://opentelemetry.io/docs/specs/otel/protocol/file-exporter/). This adapter transforms OTLP input data into a format suitable for the UI components, like `TreeView`.
+
+However, this is just one example of a data adapter, and you can create or use other adapters to handle different formats as needed. Each adapter processes data and returns it in a way that the UI components can render.
+
+### Example OTLP Input Data Format
+
+For instance, if you're using the OTLP format, here's how the input data might look:
 
 ```typescript
 {
@@ -161,16 +171,18 @@ This library accepts OpenTelemetry traces in [OTLP wire format](https://opentele
 }
 ```
 
-### Supported Semantic Conventions
+#### Supported Semantic Conventions
 
 - **OpenTelemetry GenAI**: `gen_ai.*` attributes for LLM operations
 - **OpenInference**: `llm.*`, `retrieval.*` attributes
 - **Standard OpenTelemetry**: HTTP, database, and other standard spans
 
-### Custom Attributes
+#### Custom Attributes
 
-For cost tracking, add these custom attributes to your spans:
+If you need to track custom attributes, like AI usage costs, you can add them to your spans. Common attributes include:
 
-- `gen_ai.usage.input_cost` - Input token cost
-- `gen_ai.usage.output_cost` - Output token cost
-- `gen_ai.usage.cost` - Total cost (fallback)
+- `gen_ai.usage.input_cost` - Cost for input tokens.
+- `gen_ai.usage.output_cost` - Cost for output tokens.
+- `gen_ai.usage.cost` - Total cost (fallback value if individual costs aren't available).
+
+Once the data is processed by the appropriate adapter, the transformed data will be ready for use with the UI components like `TreeView` or DetailsView.
