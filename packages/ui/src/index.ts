@@ -20,15 +20,22 @@ export { TokensBadge } from "./components/TokensBadge";
 export { default as TokensBadgeSource } from "./components/TokensBadge.tsx?raw";
 
 export { SpanCard } from "./components/SpanCard.tsx";
+export { SpanCardCollapseAllButton } from "./components/SpanCardControls.tsx";
+export { SpanCardExpandAllButton } from "./components/SpanCardControls.tsx";
+export { SpanCardSearchInput } from "./components/SpanCardSearchInput.tsx";
 
 export { TextInput } from "./components/TextInput.tsx";
 export { default as TextInputSource } from "./components/TextInput.tsx?raw";
 
 export { TreeView } from "./components/TreeView";
+
 export { TraceList } from "./components/TraceList";
+export { TraceListItemHeader } from "./components/TraceListItemHeader";
 
 export { DetailsView } from "./components/DetailsView/DetailsView.tsx";
 export { default as DetailsViewSource } from "./components/DetailsView/DetailsView.tsx?raw";
 
 export { Tabs } from "./components/Tabs.tsx";
 export { default as TabsSource } from "./components/Tabs.tsx?raw";
+
+export { TraceViewer } from "./components/TraceViewer";

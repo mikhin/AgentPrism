@@ -19,7 +19,7 @@ export const DetailsViewMetrics = ({ data }: DetailsViewMetricsProps) => {
   const durationMs = getDurationMs(data);
 
   return (
-    <div className="mb-4 flex items-center justify-start space-x-2">
+    <div className="mb-4 flex flex-wrap items-center justify-start gap-1">
       <Badge
         iconStart={<Icon className="size-2.5" />}
         theme={getSpanCategoryTheme(data.type)}

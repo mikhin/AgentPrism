@@ -12,8 +12,10 @@
     "tsc": "tsc -p tsconfig.app.json --noEmit --skipLibCheck"
   },
   "dependencies": {
-    "@ai-agent-trace-ui/ui": "workspace:^",
+    "@ai-agent-trace-ui/data": "workspace:^",
     "@ai-agent-trace-ui/types": "workspace:^",
+    "@ai-agent-trace-ui/ui": "workspace:^",
+    "lucide-react": "^0.534.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
