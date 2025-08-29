@@ -4,6 +4,11 @@ import "@ai-agent-trace-ui/ui/styles.css";
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ["Main Components", "Atoms", "Demo"],
+      },
+    },
     docs: {
       codePanel: true,
     },

@@ -18,6 +18,12 @@ const smolDeepResearchAgentData = convertOTelDocumentToSpanCards(
   smolDeepResearchAgentDataRaw as OpenTelemetryDocument[],
 );
 
+const meta: Meta<typeof TraceViewer> = {
+  title: "Demo/TraceViewer",
+  component: TraceViewer,
+  parameters: {},
+};
+
 const data = [
   {
     traceRecord: {
@@ -55,12 +61,6 @@ export const TraceViewerStory: Story = {
   render: () => {
     return <TraceViewer data={data} />;
   },
-};
-
-const meta: Meta<typeof TraceViewer> = {
-  title: "Components/TraceViewer",
-  component: TraceViewer,
-  parameters: {},
 };
 
 export default meta;

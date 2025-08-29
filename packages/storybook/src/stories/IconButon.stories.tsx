@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconButton, IconButtonSource } from "@ai-agent-trace-ui/ui";
 
 const meta = {
-  title: "Components/IconButton",
+  title: "Atoms/IconButton",
   component: IconButton,
   parameters: {
     layout: "centered",

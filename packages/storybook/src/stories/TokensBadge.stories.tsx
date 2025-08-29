@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { TokensBadge, TokensBadgeSource } from "@ai-agent-trace-ui/ui";
 
 const meta = {
-  title: "Components/TokensBadge",
+  title: "Atoms/TokensBadge",
   component: TokensBadge,
   parameters: {
     layout: "centered",

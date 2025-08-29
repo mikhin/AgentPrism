@@ -3,6 +3,43 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { DetailsView, DetailsViewSource } from "@ai-agent-trace-ui/ui";
 
+const meta = {
+  title: "Main Components/DetailsView",
+  component: DetailsView,
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component: `
+\`\`\`tsx
+${DetailsViewSource}
+\`\`\`
+        `,
+      },
+    },
+  },
+  tags: ["autodocs"],
+  argTypes: {
+    data: {
+      description: "The span data to display in the details view",
+    },
+    avatar: {
+      description: "Optional avatar configuration for the header",
+    },
+    defaultTab: {
+      control: "text",
+      description: "The initially selected tab",
+    },
+    className: {
+      control: "text",
+      description: "Optional className for the root container",
+    },
+    copyButton: {
+      description: "Configuration for the copy button functionality",
+    },
+  },
+} satisfies Meta<typeof DetailsView>;
+
 const mockSpanData: TraceSpan = {
   id: "span-llm-001",
   title: "GPT-4 Text Generation",
@@ -38,43 +75,6 @@ const mockSpanData: TraceSpan = {
   tokensCount: 850,
   status: "success",
 };
-
-const meta = {
-  title: "Components/DetailsView",
-  component: DetailsView,
-  parameters: {
-    layout: "centered",
-    docs: {
-      description: {
-        component: `
-\`\`\`tsx
-${DetailsViewSource}
-\`\`\`
-        `,
-      },
-    },
-  },
-  tags: ["autodocs"],
-  argTypes: {
-    data: {
-      description: "The span data to display in the details view",
-    },
-    avatar: {
-      description: "Optional avatar configuration for the header",
-    },
-    defaultTab: {
-      control: "text",
-      description: "The initially selected tab",
-    },
-    className: {
-      control: "text",
-      description: "Optional className for the root container",
-    },
-    copyButton: {
-      description: "Configuration for the copy button functionality",
-    },
-  },
-} satisfies Meta<typeof DetailsView>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

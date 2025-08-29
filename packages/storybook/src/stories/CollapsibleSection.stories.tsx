@@ -6,7 +6,7 @@ import {
 } from "@ai-agent-trace-ui/ui";
 
 const meta = {
-  title: "Components/CollapsibleSection",
+  title: "Atoms/CollapsibleSection",
   component: CollapsibleSection,
   parameters: {
     layout: "centered",

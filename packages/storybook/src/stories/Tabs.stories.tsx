@@ -2,6 +2,38 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Tabs, TabsSource } from "@ai-agent-trace-ui/ui";
 
+const meta = {
+  title: "Atoms/Tabs",
+  component: Tabs,
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component: `
+\`\`\`tsx
+${TabsSource}
+\`\`\`
+        `,
+      },
+    },
+  },
+  tags: ["autodocs"],
+  argTypes: {
+    items: {
+      description: "Array of tab items to display",
+    },
+    defaultValue: {
+      control: "text",
+      description: "The initially selected tab value (uncontrolled)",
+    },
+    theme: {
+      control: { type: "select" },
+      options: ["underline", "pill"],
+      description: "Visual theme variant for the tabs",
+    },
+  },
+} satisfies Meta<typeof Tabs>;
+
 const mockTabItems = [
   {
     value: "tab1",
@@ -41,38 +73,6 @@ const tabItemsWithIcons = [
     disabled: true,
   },
 ];
-
-const meta = {
-  title: "Components/Tabs",
-  component: Tabs,
-  parameters: {
-    layout: "centered",
-    docs: {
-      description: {
-        component: `
-\`\`\`tsx
-${TabsSource}
-\`\`\`
-        `,
-      },
-    },
-  },
-  tags: ["autodocs"],
-  argTypes: {
-    items: {
-      description: "Array of tab items to display",
-    },
-    defaultValue: {
-      control: "text",
-      description: "The initially selected tab value (uncontrolled)",
-    },
-    theme: {
-      control: { type: "select" },
-      options: ["underline", "pill"],
-      description: "Visual theme variant for the tabs",
-    },
-  },
-} satisfies Meta<typeof Tabs>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

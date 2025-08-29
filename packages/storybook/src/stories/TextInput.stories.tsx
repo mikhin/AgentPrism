@@ -8,7 +8,7 @@ import {
 import { useState } from "react";
 
 const meta = {
-  title: "Components/TextInput",
+  title: "Atoms/TextInput",
   component: TextInput,
   parameters: {
     layout: "centered",
