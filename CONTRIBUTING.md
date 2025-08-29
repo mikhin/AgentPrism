@@ -5,7 +5,7 @@ Agent Trace UI is designed to be drop-in library for displaying agent traces. Ou
 ## Technologies
 
 - We use [pnpm](https://pnpm.io) as package manager and [`pnpm workspaces`](https://pnpm.io/workspaces) for separation of packages.
-- Our library is built for [React](https://react.dev/) and uses [Tailwind](https://tailwindcss.com/) for styling
+- Our library is built for [React](https://react.dev/) with [TypeScript](https://www.typescriptlang.org/) and uses [Tailwind](https://tailwindcss.com/) for styling
 
 Since our main idea is having drop-in components with as little extra steps as possible, we try to limit dependencies and only use what is necessary:
 
