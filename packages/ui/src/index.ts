@@ -24,7 +24,7 @@ export { SpanCardCollapseAllButton } from "./components/SpanCardControls.tsx";
 export { SpanCardExpandAllButton } from "./components/SpanCardControls.tsx";
 export { SearchInput } from "./components/SearchInput.tsx";
 
-export { TextInput } from "./components/TextInput.tsx";
+export { TextInput, type TextInputProps } from "./components/TextInput.tsx";
 export { default as TextInputSource } from "./components/TextInput.tsx?raw";
 
 export { TreeView } from "./components/TreeView";
