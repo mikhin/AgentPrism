@@ -5,7 +5,7 @@ import {
   DetailsView,
   SpanCardCollapseAllButton,
   SpanCardExpandAllButton,
-  SpanCardSearchInput,
+  SearchInput,
   TraceList,
   TraceListItemHeader,
   TreeView,
@@ -200,7 +200,7 @@ const DesktopLayout = ({
 
           <div className="border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-950">
             <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-600">
-              <SpanCardSearchInput
+              <SearchInput
                 id="span-search"
                 name="search"
                 onClear={() => setSearchValue("")}
@@ -298,7 +298,7 @@ const MobileLayout = ({
 
         <div className="border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-950">
           <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-600">
-            <SpanCardSearchInput
+            <SearchInput
               id="span-search"
               name="search"
               onClear={() => setSearchValue("")}
