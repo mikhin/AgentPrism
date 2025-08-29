@@ -42,11 +42,6 @@ ${TextInputSource}
         "Whether to visually hide the label while keeping it for screen readers",
       defaultValue: false,
     },
-    clearable: {
-      control: "boolean",
-      description: "Whether to show a clear button when input has value",
-      defaultValue: true,
-    },
     disabled: {
       control: "boolean",
       description: "Disables the input",
