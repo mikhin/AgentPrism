@@ -27,7 +27,6 @@ export const DetailsViewAttributesTab = ({ data }: AttributesTabProps) => (
             value={value}
             disabled
             readOnly
-            clearable={false}
             inputClassName="font-mono text-xs"
             className="w-full"
           />

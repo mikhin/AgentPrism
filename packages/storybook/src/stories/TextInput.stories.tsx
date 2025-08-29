@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { TextInput, TextInputSource } from "@ai-agent-trace-ui/ui";
+import {
+  TextInput,
+  TextInputSource,
+  type TextInputProps,
+} from "@ai-agent-trace-ui/ui";
+import { useState } from "react";
 
 const meta = {
   title: "Components/TextInput",
@@ -36,11 +41,6 @@ ${TextInputSource}
       description:
         "Whether to visually hide the label while keeping it for screen readers",
       defaultValue: false,
-    },
-    clearable: {
-      control: "boolean",
-      description: "Whether to show a clear button when input has value",
-      defaultValue: true,
     },
     disabled: {
       control: "boolean",
@@ -85,8 +85,18 @@ export const Clearable: Story = {
     id: "clearable-input",
     label: "Email",
     placeholder: "Enter email...",
-    clearable: true,
     defaultValue: "example@domain.com",
+  },
+  render: (args: TextInputProps) => {
+    const [value, setValue] = useState(args.defaultValue);
+    return (
+      <TextInput
+        {...args}
+        value={value}
+        onValueChange={setValue}
+        onClear={() => setValue("")}
+      />
+    );
   },
 };
 
