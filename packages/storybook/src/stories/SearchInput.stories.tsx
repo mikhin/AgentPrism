@@ -36,11 +36,6 @@ ${SearchInputSource}
       description: "Disables the input",
       defaultValue: false,
     },
-    clearable: {
-      control: "boolean",
-      description: "Whether to show a clear button when input has value",
-      defaultValue: true,
-    },
   },
 } satisfies Meta<typeof SearchInput>;
 
@@ -80,7 +75,6 @@ export const NonClearable: Story = {
   args: {
     id: "search-non-clearable",
     placeholder: "No clear button...",
-    clearable: false,
     defaultValue: "search term",
   },
 };
@@ -89,7 +83,6 @@ export const Clearable: Story = {
   args: {
     id: "search-clearable",
     placeholder: "Clearable input...",
-    clearable: true,
     onClear: () => console.log("Clear button clicked"),
     defaultValue: "search term",
   },

@@ -2,17 +2,18 @@ import { flattenSpans } from "@ai-agent-trace-ui/data";
 import { type TraceRecord, type TraceSpan } from "@ai-agent-trace-ui/types";
 import {
   Button,
+  CollapseAllButton,
   DetailsView,
-  SpanCardCollapseAllButton,
-  SpanCardExpandAllButton,
+  ExpandAllButton,
   SearchInput,
   TraceList,
-  TraceListItemHeader,
   TreeView,
 } from "@ai-agent-trace-ui/ui";
 import cn from "classnames";
 import { ArrowLeft } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
+
+import { TraceListItemHeader } from "./TraceList/TraceListItemHeader";
 
 interface TraceViewerProps {
   data: Array<{
@@ -211,10 +212,8 @@ const DesktopLayout = ({
 
               <div className="flex items-center gap-2">
                 <div className="ml-auto flex items-center gap-3">
-                  <SpanCardExpandAllButton onExpandAll={handleExpandAll} />
-                  <SpanCardCollapseAllButton
-                    onCollapseAll={handleCollapseAll}
-                  />
+                  <ExpandAllButton onExpandAll={handleExpandAll} />
+                  <CollapseAllButton onCollapseAll={handleCollapseAll} />
                 </div>
               </div>
             </div>
@@ -309,8 +308,8 @@ const MobileLayout = ({
 
             <div className="flex items-center gap-2">
               <div className="ml-auto flex items-center gap-3">
-                <SpanCardExpandAllButton onExpandAll={handleExpandAll} />
-                <SpanCardCollapseAllButton onCollapseAll={handleCollapseAll} />
+                <ExpandAllButton onExpandAll={handleExpandAll} />
+                <CollapseAllButton onCollapseAll={handleCollapseAll} />
               </div>
             </div>
           </div>
