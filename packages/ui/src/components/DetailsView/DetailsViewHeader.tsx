@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { Avatar, type AvatarProps } from "../Avatar";
 import { IconButton } from "../IconButton";
-import { Status } from "../Status.tsx";
+import { SpanStatus } from "../SpanStatus.tsx";
 import { DetailsViewHeaderActions } from "./DetailsViewHeaderActions";
 
 interface DetailsViewHeaderProps {
@@ -42,7 +42,7 @@ export const DetailsViewHeader = ({
         </span>
 
         <div className="flex size-5 items-center justify-center">
-          <Status status={data.status} />
+          <SpanStatus status={data.status} />
         </div>
 
         {copyButton && (

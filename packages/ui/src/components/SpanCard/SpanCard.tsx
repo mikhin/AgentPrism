@@ -12,7 +12,7 @@ import {
 
 import { Avatar, type AvatarProps } from "../Avatar.tsx";
 import { getSpanCategoryTheme } from "../shared.ts";
-import { Status } from "../Status.tsx";
+import { SpanStatus } from "../SpanStatus.tsx";
 import { SpanCardBadges } from "./SpanCardBadges.tsx";
 import {
   type SpanCardConnectorType,
@@ -394,7 +394,7 @@ export const SpanCard: FC<SpanCardProps> = ({
             <div className="shrink-1 flex grow flex-wrap items-center justify-end gap-1">
               {expandButton === "outside" && (
                 <div>
-                  <Status status={data.status} />
+                  <SpanStatus status={data.status} />
                 </div>
               )}
 
@@ -413,7 +413,7 @@ export const SpanCard: FC<SpanCardProps> = ({
 
                 {expandButton === "inside" && (
                   <div>
-                    <Status status={data.status} />
+                    <SpanStatus status={data.status} />
                   </div>
                 )}
               </div>

@@ -26,15 +26,15 @@ const STATUS_COLORS_BADGE: Record<TraceSpanStatus, string> = {
     "bg-yellow-100 dark:bg-yellow-950 text-yellow-600 dark:text-yellow-400",
 };
 
-export const Status = ({ status, variant = "dot" }: StatusProps) => {
+export const SpanStatus = ({ status, variant = "dot" }: StatusProps) => {
   const title = `Status: ${status}`;
 
   return (
     <div className="flex size-4 items-center justify-center">
       {variant === "dot" ? (
-        <StatusDot status={status} title={title} />
+        <SpanStatusDot status={status} title={title} />
       ) : (
-        <StatusBadge status={status} title={title} />
+        <SpanStatusBadge status={status} title={title} />
       )}
     </div>
   );
@@ -44,7 +44,7 @@ interface StatusWithTitleProps extends StatusProps {
   title: string;
 }
 
-const StatusDot = ({ status, title }: StatusWithTitleProps) => {
+const SpanStatusDot = ({ status, title }: StatusWithTitleProps) => {
   return (
     <span
       className={cn("block size-1.5 rounded-full", STATUS_COLORS_DOT[status])}
@@ -54,7 +54,7 @@ const StatusDot = ({ status, title }: StatusWithTitleProps) => {
   );
 };
 
-const StatusBadge = ({ status, title }: StatusWithTitleProps) => {
+const SpanStatusBadge = ({ status, title }: StatusWithTitleProps) => {
   return (
     <span
       className={cn(
