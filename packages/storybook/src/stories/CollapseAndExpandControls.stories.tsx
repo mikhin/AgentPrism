@@ -30,14 +30,12 @@ ${CollapseAndExpandControlsSource}
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ExpandAllButton component
 export const ExpandAll: Story = {
   render: () => (
     <ExpandAllButton onExpandAll={() => console.log("Expand all clicked")} />
   ),
 };
 
-// CollapseAllButton component
 export const CollapseAll: Story = {
   render: () => (
     <CollapseAllButton
@@ -46,7 +44,6 @@ export const CollapseAll: Story = {
   ),
 };
 
-// Both buttons together
 export const BothControls: Story = {
   render: () => (
     <div className="flex gap-2">
