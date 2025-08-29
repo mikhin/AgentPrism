@@ -203,7 +203,6 @@ const DesktopLayout = ({
               <SpanCardSearchInput
                 id="span-search"
                 name="search"
-                clearable
                 onClear={() => setSearchValue("")}
                 value={searchValue}
                 onValueChange={setSearchValue}
@@ -302,7 +301,6 @@ const MobileLayout = ({
             <SpanCardSearchInput
               id="span-search"
               name="search"
-              clearable
               onClear={() => setSearchValue("")}
               value={searchValue}
               onValueChange={setSearchValue}

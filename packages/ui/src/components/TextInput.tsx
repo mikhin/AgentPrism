@@ -20,15 +20,10 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   startIcon?: ReactNode;
 
   /**
-   * Callback fired when the clear button is clicked
+   * Callback fired when the clear button is clicked. If this callback is provided,
+   * the clear button will be shown.
    */
   onClear?: () => void;
-
-  /**
-   * Whether to show a clear button when input has value
-   * @default false
-   */
-  clearable?: boolean;
 
   /**
    * Ref to the input element
@@ -66,7 +61,6 @@ export const TextInput = ({
   onValueChange,
   startIcon,
   onClear,
-  clearable = true,
   ref,
   inputClassName,
   label,
@@ -133,7 +127,7 @@ export const TextInput = ({
             {startIcon}
           </div>
         )}
-        {onClear && clearable && (
+        {onClear && props.value && (
           <button
             className={cn(iconBaseClassName, "right-2")}
             aria-label="Clear input value"
