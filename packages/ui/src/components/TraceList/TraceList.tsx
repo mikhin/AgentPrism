@@ -3,9 +3,9 @@ import type { TraceRecord } from "@ai-agent-trace-ui/types";
 import cn from "classnames";
 import { ArrowLeft } from "lucide-react";
 
-import { Badge } from "./Badge";
-import { IconButton } from "./IconButton";
-import { TraceListItem } from "./TraceListItem";
+import { Badge } from "../Badge.tsx";
+import { IconButton } from "../IconButton.tsx";
+import { TraceListItem } from "../TraceList/TraceListItem.tsx";
 
 type TraceListProps = {
   traces: TraceRecord[];

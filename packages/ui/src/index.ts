@@ -41,8 +41,8 @@ export { default as TextInputSource } from "./components/TextInput.tsx?raw";
 
 export { TreeView } from "./components/TreeView";
 
-export { TraceList } from "./components/TraceList";
-export { TraceListItemHeader } from "./components/TraceListItemHeader";
+export { TraceList } from "./components/TraceList/TraceList.tsx";
+export { default as TraceListSource } from "./components/TraceList/TraceList.tsx?raw";
 
 export { DetailsView } from "./components/DetailsView/DetailsView.tsx";
 export { default as DetailsViewSource } from "./components/DetailsView/DetailsView.tsx?raw";

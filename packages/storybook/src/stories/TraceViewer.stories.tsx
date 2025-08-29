@@ -8,21 +8,22 @@ import quoTavAgentDataRaw from "../data/quo_tav_agent.json";
 import ragEarningsAgentDataRaw from "../data/rag_earnings_agent.json";
 import smolDeepResearchAgentDataRaw from "../data/smol_deep_research_agent.json";
 
+const meta: Meta<typeof TraceViewer> = {
+  title: "Demo/TraceViewer",
+  component: TraceViewer,
+  parameters: {},
+};
+
 const quoTavAgentData = convertOTelDocumentToSpanCards(
   quoTavAgentDataRaw as OpenTelemetryDocument[],
 );
 const ragEarningsAgentData = convertOTelDocumentToSpanCards(
   ragEarningsAgentDataRaw as OpenTelemetryDocument[],
 );
+
 const smolDeepResearchAgentData = convertOTelDocumentToSpanCards(
   smolDeepResearchAgentDataRaw as OpenTelemetryDocument[],
 );
-
-const meta: Meta<typeof TraceViewer> = {
-  title: "Demo/TraceViewer",
-  component: TraceViewer,
-  parameters: {},
-};
 
 const data = [
   {
