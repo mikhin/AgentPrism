@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { SpanStatus, SpanStatusSource } from "@ai-agent-trace-ui/ui";
+import {
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
 
 const meta = {
   title: "Atoms/SpanStatus",
@@ -8,13 +15,15 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      description: {
-        component: `
-\`\`\`tsx
-${SpanStatusSource}
-\`\`\`
-        `,
-      },
+      page: () => (
+        <>
+          <Description />
+          <Primary />
+          <Controls />
+          <Stories />
+          <Source code={SpanStatusSource} language="tsx" />
+        </>
+      ),
     },
   },
   tags: ["autodocs"],

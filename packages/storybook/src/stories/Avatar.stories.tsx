@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Avatar, AvatarSource } from "@ai-agent-trace-ui/ui";
+import {
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
 
 const meta = {
   title: "Atoms/Avatar",
@@ -8,13 +15,15 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      description: {
-        component: `
-\`\`\`tsx
-${AvatarSource}
-\`\`\`
-        `,
-      },
+      page: () => (
+        <>
+          <Description />
+          <Primary />
+          <Controls />
+          <Stories />
+          <Source code={AvatarSource} language="tsx" />
+        </>
+      ),
     },
   },
   tags: ["autodocs"],

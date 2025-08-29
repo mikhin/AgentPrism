@@ -4,6 +4,13 @@ import {
   CollapsibleSection,
   CollapsibleSectionSource,
 } from "@ai-agent-trace-ui/ui";
+import {
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
 
 const meta = {
   title: "Atoms/CollapsibleSection",
@@ -11,13 +18,15 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      description: {
-        component: `
-\`\`\`tsx
-${CollapsibleSectionSource}
-\`\`\`
-        `,
-      },
+      page: () => (
+        <>
+          <Description />
+          <Primary />
+          <Controls />
+          <Stories />
+          <Source code={CollapsibleSectionSource} language="tsx" />
+        </>
+      ),
     },
   },
   tags: ["autodocs"],

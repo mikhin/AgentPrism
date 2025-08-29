@@ -2,6 +2,13 @@ import type { TraceRecord } from "@ai-agent-trace-ui/types";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { TraceList, TraceListSource } from "@ai-agent-trace-ui/ui";
+import {
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
 
 const meta = {
   title: "Main Components/TraceList",
@@ -9,13 +16,15 @@ const meta = {
   parameters: {
     layout: "padded",
     docs: {
-      description: {
-        component: `
-\`\`\`tsx
-${TraceListSource}
-\`\`\`
-        `,
-      },
+      page: () => (
+        <>
+          <Description />
+          <Primary />
+          <Controls />
+          <Stories />
+          <Source code={TraceListSource} language="tsx" />
+        </>
+      ),
     },
   },
   tags: ["autodocs"],

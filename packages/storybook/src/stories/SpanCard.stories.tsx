@@ -2,6 +2,13 @@ import type { TraceSpan } from "@ai-agent-trace-ui/types";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { SpanCard, SpanCardSource } from "@ai-agent-trace-ui/ui";
+import {
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
 
 const meta = {
   title: "Main Components/SpanCard",
@@ -9,13 +16,15 @@ const meta = {
   parameters: {
     layout: "padded",
     docs: {
-      description: {
-        component: `
-\`\`\`tsx
-${SpanCardSource}
-\`\`\`
-        `,
-      },
+      page: () => (
+        <>
+          <Description />
+          <Primary />
+          <Controls />
+          <Stories />
+          <Source code={SpanCardSource} language="tsx" />
+        </>
+      ),
     },
   },
   tags: ["autodocs"],

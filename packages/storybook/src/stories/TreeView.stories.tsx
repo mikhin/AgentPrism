@@ -2,6 +2,13 @@ import type { TraceSpan } from "@ai-agent-trace-ui/types";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { TreeView, TreeViewSource } from "@ai-agent-trace-ui/ui";
+import {
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
 
 const meta = {
   title: "Main Components/TreeView",
@@ -9,13 +16,15 @@ const meta = {
   parameters: {
     layout: "padded",
     docs: {
-      description: {
-        component: `
-\`\`\`tsx
-${TreeViewSource}
-\`\`\`
-        `,
-      },
+      page: () => (
+        <>
+          <Description />
+          <Primary />
+          <Controls />
+          <Stories />
+          <Source code={TreeViewSource} language="tsx" />
+        </>
+      ),
     },
   },
   tags: ["autodocs"],

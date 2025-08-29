@@ -5,6 +5,13 @@ import {
   CollapseAllButton,
   CollapseAndExpandControlsSource,
 } from "@ai-agent-trace-ui/ui";
+import {
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
 
 // Create a wrapper component for the meta since we have two related components
 const ControlsWrapper = () => null;
@@ -15,13 +22,15 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      description: {
-        component: `
-\`\`\`tsx
-${CollapseAndExpandControlsSource}
-\`\`\`
-        `,
-      },
+      page: () => (
+        <>
+          <Description />
+          <Primary />
+          <Controls />
+          <Stories />
+          <Source code={CollapseAndExpandControlsSource} language="tsx" />
+        </>
+      ),
     },
   },
   tags: ["autodocs"],
