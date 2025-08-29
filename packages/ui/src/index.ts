@@ -40,6 +40,7 @@ export { TextInput, type TextInputProps } from "./components/TextInput.tsx";
 export { default as TextInputSource } from "./components/TextInput.tsx?raw";
 
 export { TreeView } from "./components/TreeView";
+export { default as TreeViewSource } from "./components/TreeView.tsx?raw";
 
 export { TraceList } from "./components/TraceList/TraceList.tsx";
 export { default as TraceListSource } from "./components/TraceList/TraceList.tsx?raw";
