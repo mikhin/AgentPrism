@@ -5,6 +5,13 @@ import {
   TextInputSource,
   type TextInputProps,
 } from "@ai-agent-trace-ui/ui";
+import {
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
 import { useState } from "react";
 
 const meta = {
@@ -13,13 +20,15 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      description: {
-        component: `
-\`\`\`tsx
-${TextInputSource}
-\`\`\`
-        `,
-      },
+      page: () => (
+        <>
+          <Description />
+          <Primary />
+          <Controls />
+          <Stories />
+          <Source code={TextInputSource} language="tsx" />
+        </>
+      ),
     },
   },
   tags: ["autodocs"],

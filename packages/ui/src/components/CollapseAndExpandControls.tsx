@@ -1,6 +1,6 @@
 import { ChevronsUpDown, ChevronsDownUp } from "lucide-react";
 
-import { IconButton } from "./IconButton";
+import { IconButton } from "./IconButton.tsx";
 
 interface SpanCardExpandAllButtonProps {
   onExpandAll: () => void;
@@ -10,7 +10,7 @@ interface SpanCardCollapseAllButtonProps {
   onCollapseAll: () => void;
 }
 
-export const SpanCardExpandAllButton = ({
+export const ExpandAllButton = ({
   onExpandAll,
 }: SpanCardExpandAllButtonProps) => {
   return (
@@ -20,7 +20,7 @@ export const SpanCardExpandAllButton = ({
   );
 };
 
-export const SpanCardCollapseAllButton = ({
+export const CollapseAllButton = ({
   onCollapseAll,
 }: SpanCardCollapseAllButtonProps) => {
   return (

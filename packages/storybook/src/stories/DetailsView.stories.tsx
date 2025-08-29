@@ -2,6 +2,13 @@ import type { TraceSpan } from "@ai-agent-trace-ui/types";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { DetailsView, DetailsViewSource } from "@ai-agent-trace-ui/ui";
+import {
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
 
 const meta = {
   title: "Main Components/DetailsView",
@@ -9,13 +16,15 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      description: {
-        component: `
-\`\`\`tsx
-${DetailsViewSource}
-\`\`\`
-        `,
-      },
+      page: () => (
+        <>
+          <Description />
+          <Primary />
+          <Controls />
+          <Stories />
+          <Source code={DetailsViewSource} language="tsx" />
+        </>
+      ),
     },
   },
   tags: ["autodocs"],

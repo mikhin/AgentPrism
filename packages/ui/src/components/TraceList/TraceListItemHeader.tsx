@@ -2,8 +2,8 @@ import type { TraceRecord } from "@ai-agent-trace-ui/types";
 
 import { formatDuration } from "@ai-agent-trace-ui/data";
 
-import { Avatar, type AvatarProps } from "./Avatar";
-import { Badge } from "./Badge";
+import { Avatar, type AvatarProps } from "../Avatar.tsx";
+import { Badge } from "../Badge.tsx";
 
 interface TraceListItemHeaderProps {
   trace: TraceRecord;

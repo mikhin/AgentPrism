@@ -1,6 +1,6 @@
 import { Search } from "lucide-react";
 
-import { TextInput, type TextInputProps } from "./TextInput.tsx";
+import { TextInput, type TextInputProps } from "./TextInput";
 
 /**
  * A simple wrapper around the TextInput component.

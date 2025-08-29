@@ -3,11 +3,11 @@ import type { TraceRecord } from "@ai-agent-trace-ui/types";
 import cn from "classnames";
 import { useCallback, type KeyboardEvent } from "react";
 
-import { type AvatarProps } from "./Avatar";
-import { Badge, type BadgeProps } from "./Badge";
-import { PriceBadge } from "./PriceBadge";
-import { TokensBadge } from "./TokensBadge";
-import { TraceListItemHeader } from "./TraceListItemHeader";
+import { type AvatarProps } from "../Avatar.tsx";
+import { Badge, type BadgeProps } from "../Badge.tsx";
+import { PriceBadge } from "../PriceBadge.tsx";
+import { TokensBadge } from "../TokensBadge.tsx";
+import { TraceListItemHeader } from "./TraceListItemHeader.tsx";
 
 interface TraceListItemProps {
   trace: TraceRecord;
