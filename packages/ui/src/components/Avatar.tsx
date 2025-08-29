@@ -1,8 +1,6 @@
 import type { ReactElement } from "react";
 
-import type { ColorVariant } from "../types";
-
-import { roundedClasses } from "../constants";
+import { ROUNDED_CLASSES, type ColorVariant } from "../shared.ts";
 
 const sizeClasses = {
   xs: "w-4 h-4 text-xs",
@@ -89,7 +87,7 @@ export const Avatar = ({
 
   return (
     <div
-      className={`overflow-hidden ${sizeClasses[size]} ${textSizeClasses[size]} ${roundedClasses[rounded]} ${className}`}
+      className={`overflow-hidden ${sizeClasses[size]} ${textSizeClasses[size]} ${ROUNDED_CLASSES[rounded]} ${className}`}
     >
       {src ? (
         <img src={src} alt={alt} className="h-full w-full object-cover" />

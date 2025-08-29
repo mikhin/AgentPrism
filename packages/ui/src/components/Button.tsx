@@ -1,8 +1,6 @@
 import type { FC, PropsWithChildren, ReactElement } from "react";
 
-import type { ColorVariant } from "../types";
-
-import { roundedClasses } from "../constants";
+import { ROUNDED_CLASSES, type ColorVariant } from "../shared.ts";
 
 const BASE_CLASSES =
   "inline-flex items-center justify-center font-medium transition-all duration-200";
@@ -129,7 +127,7 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${BASE_CLASSES} ${sizeClasses[size]} ${roundedClasses[rounded]} ${variantClasses[variant]} ${filledThemeClass} ${widthClass} ${stateClasses} ${className}`}
+      className={`${BASE_CLASSES} ${sizeClasses[size]} ${ROUNDED_CLASSES[rounded]} ${variantClasses[variant]} ${filledThemeClass} ${widthClass} ${stateClasses} ${className}`}
     >
       {iconStart && <span className="mr-1">{iconStart}</span>}
       {children}

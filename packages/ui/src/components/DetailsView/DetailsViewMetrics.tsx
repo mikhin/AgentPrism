@@ -7,7 +7,7 @@ import {
   getSpanCategoryIcon,
   getSpanCategoryLabel,
   getSpanCategoryTheme,
-} from "../../utils";
+} from "../../shared";
 import { Badge } from "../Badge";
 
 interface DetailsViewMetricsProps {

@@ -1,8 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
 
-import type { ColorVariant } from "../types";
-
-import { colorThemeClasses } from "../constants";
+import { COLOR_THEME_CLASSES, type ColorVariant } from "../shared.ts";
 
 const sizeClasses = {
   xs: "px-1 gap-1 h-4",
@@ -67,7 +65,7 @@ export const Badge = ({
   iconEnd,
   className = "",
 }: BadgeProps): ReactElement => {
-  const { bg, darkBg, text, darkText } = colorThemeClasses[theme];
+  const { bg, darkBg, text, darkText } = COLOR_THEME_CLASSES[theme];
 
   const variantClasses =
     variant === "outline"

@@ -3,7 +3,7 @@ import type { TraceSpan } from "@ai-agent-trace-ui/types";
 import { getTimelineData } from "@ai-agent-trace-ui/data";
 import cn from "classnames";
 
-import type { ColorVariant } from "../types";
+import type { ColorVariant } from "../shared";
 
 interface SpanCardTimelineProps {
   spanCard: TraceSpan;

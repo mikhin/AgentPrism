@@ -12,9 +12,23 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import type { ColorVariant } from "./types";
+// TYPES
 
-export const roundedClasses = {
+export type ColorVariant =
+  | "purple"
+  | "indigo"
+  | "orange"
+  | "teal"
+  | "cyan"
+  | "sky"
+  | "yellow"
+  | "emerald"
+  | "red"
+  | "gray";
+
+// CONSTANTS
+
+export const ROUNDED_CLASSES = {
   none: "rounded-none",
   sm: "rounded-sm",
   md: "rounded-md",
@@ -25,7 +39,7 @@ export const roundedClasses = {
 /**
  * Unified color theme classes for consistent styling across components
  */
-export const colorThemeClasses: Record<
+export const COLOR_THEME_CLASSES: Record<
   ColorVariant,
   {
     bg: string;
@@ -148,3 +162,19 @@ export const SPAN_CATEGORY_CONFIG: Record<
     icon: HelpCircle,
   },
 };
+
+// UTILS
+
+export function getSpanCategoryTheme(
+  category: TraceSpanCategory,
+): ColorVariant {
+  return SPAN_CATEGORY_CONFIG[category].theme;
+}
+
+export function getSpanCategoryLabel(category: TraceSpanCategory): string {
+  return SPAN_CATEGORY_CONFIG[category].label;
+}
+
+export function getSpanCategoryIcon(category: TraceSpanCategory): LucideIcon {
+  return SPAN_CATEGORY_CONFIG[category].icon;
+}

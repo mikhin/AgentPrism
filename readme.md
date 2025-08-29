@@ -12,6 +12,12 @@ React components for visualizing traces from AI agents. Display LLM calls, tool 
 
 ## Installation
 
+Copy the UI components to your project:
+
+```bash
+npx degit mikhin/ai-agent-trace-ui/packages/ui/src/components src/components/ai-trace-ui
+```
+
 Install the data and types packages:
 
 ```bash
@@ -19,24 +25,10 @@ npm install github:mikhin/ai-agent-trace-ui#main/packages/data
 npm install github:mikhin/ai-agent-trace-ui#main/packages/types
 ```
 
-Copy the UI components to your project:
-
-```bash
-npx degit mikhin/ai-agent-trace-ui/packages/ui/src/components src/components/ai-trace-ui
-```
-
 Install required UI dependencies:
 
-```json
-{
-  "dependencies": {
-    "@radix-ui/react-collapsible": "^1.1.11",
-    "@radix-ui/react-tabs": "^1.1.13",
-    "classnames": "2.5.1",
-    "lucide-react": "^0.534.0",
-    "react-json-pretty": "^2.2.0"
-  }
-}
+```bash
+npm install @radix-ui/react-collapsible @radix-ui/react-tabs classnames lucide-react react-json-pretty
 ```
 
 ## Quick Start
