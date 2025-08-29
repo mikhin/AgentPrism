@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 
-import { ROUNDED_CLASSES, type ColorVariant } from "../shared.ts";
+import { ROUNDED_CLASSES, type ColorVariant } from "./shared.ts";
 
 const sizeClasses = {
   xs: "w-4 h-4 text-xs",

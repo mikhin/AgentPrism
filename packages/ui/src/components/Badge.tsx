@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
 
-import { COLOR_THEME_CLASSES, type ColorVariant } from "../shared.ts";
+import { COLOR_THEME_CLASSES, type ColorVariant } from "./shared.ts";
 
 const sizeClasses = {
   xs: "px-1 gap-1 h-4",

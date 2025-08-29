@@ -1,6 +1,6 @@
 import type { FC, PropsWithChildren, ReactElement } from "react";
 
-import { ROUNDED_CLASSES, type ColorVariant } from "../shared.ts";
+import { ROUNDED_CLASSES, type ColorVariant } from "./shared.ts";
 
 const BASE_CLASSES =
   "inline-flex items-center justify-center font-medium transition-all duration-200";

@@ -3,12 +3,12 @@ import type { TraceSpan } from "@ai-agent-trace-ui/types";
 import { getDurationMs, formatDuration } from "@ai-agent-trace-ui/data";
 import { Coins } from "lucide-react";
 
+import { Badge } from "../Badge";
 import {
   getSpanCategoryIcon,
   getSpanCategoryLabel,
   getSpanCategoryTheme,
-} from "../../shared";
-import { Badge } from "../Badge";
+} from "../shared.ts";
 
 interface DetailsViewMetricsProps {
   data: TraceSpan;
