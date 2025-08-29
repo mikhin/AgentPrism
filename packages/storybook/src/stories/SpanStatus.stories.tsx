@@ -1,0 +1,68 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { SpanStatus, SpanStatusSource } from "@ai-agent-trace-ui/ui";
+
+const meta = {
+  title: "Atoms/SpanStatus",
+  component: SpanStatus,
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component: `
+\`\`\`tsx
+${SpanStatusSource}
+\`\`\`
+        `,
+      },
+    },
+  },
+  tags: ["autodocs"],
+  argTypes: {
+    status: {
+      control: { type: "select" },
+      options: ["success", "error", "pending", "warning"],
+      description: "The status type to display",
+    },
+    variant: {
+      control: { type: "select" },
+      options: ["dot", "badge"],
+      description: "Visual variant of the status indicator",
+      defaultValue: "dot",
+    },
+  },
+} satisfies Meta<typeof SpanStatus>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    status: "success",
+  },
+};
+
+export const Variant: Story = {
+  args: {
+    status: "success",
+    variant: "badge",
+  },
+};
+
+export const Error: Story = {
+  args: {
+    status: "error",
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    status: "warning",
+  },
+};
+
+export const Pending: Story = {
+  args: {
+    status: "pending",
+  },
+};

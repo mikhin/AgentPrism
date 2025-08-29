@@ -25,6 +25,9 @@ export { default as PriceBadgeSource } from "./components/PriceBadge.tsx?raw";
 export { SearchInput } from "./components/SearchInput";
 export { default as SearchInputSource } from "./components/SearchInput.tsx?raw";
 
+export { SpanStatus } from "./components/SpanStatus.tsx";
+export { default as SpanStatusSource } from "./components/SpanStatus.tsx?raw";
+
 export { TokensBadge } from "./components/TokensBadge";
 export { default as TokensBadgeSource } from "./components/TokensBadge.tsx?raw";
 
