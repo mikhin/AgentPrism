@@ -178,3 +178,7 @@ If you need to track custom attributes, like AI usage costs, you can add them to
 - `gen_ai.usage.cost` - Total cost (fallback value if individual costs aren't available).
 
 Once the data is processed by the appropriate adapter, the transformed data will be ready for use with the UI components like `TreeView` or DetailsView.
+
+## Contributing
+
+We welcome contributions to the AI Agent Trace UI library. Please see our [Contribution Guide](CONTRIBUTING.md) for more details on how to get involved.
