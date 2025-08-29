@@ -7,7 +7,7 @@ React components for visualizing traces from AI agents. Display LLM calls, tool 
 ## Prerequisites
 
 - React 19+
-- Tailwind CSS 3 (with default config)
+- Tailwind CSS 3
 - TypeScript
 
 ## Installation
