@@ -382,7 +382,7 @@ export const SpanCard: FC<SpanCardProps> = ({
               {avatar && <Avatar {...avatar} />}
 
               <h3
-                className="mr-3 h-4 max-w-32 grow truncate text-sm leading-[14px] text-gray-900 dark:text-gray-200"
+                className="mr-1 h-4 max-w-32 truncate text-sm leading-[14px] text-gray-900 dark:text-gray-200"
                 title={data.title}
               >
                 {data.title}
