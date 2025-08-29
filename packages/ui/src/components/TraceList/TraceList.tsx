@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 
 import { Badge } from "../Badge.tsx";
 import { IconButton } from "../IconButton.tsx";
-import { TraceListItem } from "../TraceList/TraceListItem.tsx";
+import { TraceListItem } from "./TraceListItem.tsx";
 
 type TraceListProps = {
   traces: TraceRecord[];

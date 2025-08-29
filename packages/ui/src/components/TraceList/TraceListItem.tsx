@@ -7,7 +7,7 @@ import { type AvatarProps } from "../Avatar.tsx";
 import { Badge, type BadgeProps } from "../Badge.tsx";
 import { PriceBadge } from "../PriceBadge.tsx";
 import { TokensBadge } from "../TokensBadge.tsx";
-import { TraceListItemHeader } from "../TraceList/TraceListItemHeader.tsx";
+import { TraceListItemHeader } from "./TraceListItemHeader.tsx";
 
 interface TraceListItemProps {
   trace: TraceRecord;
