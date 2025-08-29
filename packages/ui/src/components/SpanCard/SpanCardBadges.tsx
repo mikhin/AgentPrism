@@ -1,13 +1,13 @@
 import type { TraceSpan } from "@ai-agent-trace-ui/types";
 
-import { Badge } from "./Badge";
-import { PriceBadge } from "./PriceBadge";
+import { Badge } from "../Badge.tsx";
+import { PriceBadge } from "../PriceBadge.tsx";
 import {
   getSpanCategoryIcon,
   getSpanCategoryLabel,
   getSpanCategoryTheme,
-} from "./shared.ts";
-import { TokensBadge } from "./TokensBadge";
+} from "../shared.ts";
+import { TokensBadge } from "../TokensBadge.tsx";
 
 interface SpanCardBagdesProps {
   data: TraceSpan;

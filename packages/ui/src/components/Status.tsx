@@ -5,7 +5,7 @@ import { Check, Ellipsis, Info, TriangleAlert } from "lucide-react";
 
 type StatusVariant = "dot" | "badge";
 
-interface SpanCardStatusProps {
+interface StatusProps {
   status: TraceSpanStatus;
   variant?: StatusVariant;
 }
@@ -26,28 +26,25 @@ const STATUS_COLORS_BADGE: Record<TraceSpanStatus, string> = {
     "bg-yellow-100 dark:bg-yellow-950 text-yellow-600 dark:text-yellow-400",
 };
 
-export const SpanCardStatus = ({
-  status,
-  variant = "dot",
-}: SpanCardStatusProps) => {
+export const Status = ({ status, variant = "dot" }: StatusProps) => {
   const title = `Status: ${status}`;
 
   return (
     <div className="flex size-4 items-center justify-center">
       {variant === "dot" ? (
-        <SpanCardStatusDot status={status} title={title} />
+        <StatusDot status={status} title={title} />
       ) : (
-        <SpanCardStatusBadge status={status} title={title} />
+        <StatusBadge status={status} title={title} />
       )}
     </div>
   );
 };
 
-interface SpanCardStatusWithTitleProps extends SpanCardStatusProps {
+interface StatusWithTitleProps extends StatusProps {
   title: string;
 }
 
-const SpanCardStatusDot = ({ status, title }: SpanCardStatusWithTitleProps) => {
+const StatusDot = ({ status, title }: StatusWithTitleProps) => {
   return (
     <span
       className={cn("block size-1.5 rounded-full", STATUS_COLORS_DOT[status])}
@@ -57,10 +54,7 @@ const SpanCardStatusDot = ({ status, title }: SpanCardStatusWithTitleProps) => {
   );
 };
 
-const SpanCardStatusBadge = ({
-  status,
-  title,
-}: SpanCardStatusWithTitleProps) => {
+const StatusBadge = ({ status, title }: StatusWithTitleProps) => {
   return (
     <span
       className={cn(

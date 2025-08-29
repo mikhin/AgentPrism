@@ -10,16 +10,16 @@ import {
   type MouseEvent,
 } from "react";
 
-import { Avatar, type AvatarProps } from "./Avatar";
-import { getSpanCategoryTheme } from "./shared.ts";
-import { SpanCardBadges } from "./SpanCardBadges";
+import { Avatar, type AvatarProps } from "../Avatar.tsx";
+import { getSpanCategoryTheme } from "../shared.ts";
+import { Status } from "../Status.tsx";
+import { SpanCardBadges } from "./SpanCardBadges.tsx";
 import {
   type SpanCardConnectorType,
   SpanCardConnector,
-} from "./SpanCardConnector";
-import { SpanCardStatus } from "./SpanCardStatus";
-import { SpanCardTimeline } from "./SpanCardTimeline";
-import { SpanCardToggle } from "./SpanCardToggle";
+} from "./SpanCardConnector.tsx";
+import { SpanCardTimeline } from "./SpanCardTimeline.tsx";
+import { SpanCardToggle } from "./SpanCardToggle.tsx";
 
 const LAYOUT_CONSTANTS = {
   CONNECTOR_WIDTH: 20,
@@ -394,7 +394,7 @@ export const SpanCard: FC<SpanCardProps> = ({
             <div className="shrink-1 flex grow flex-wrap items-center justify-end gap-1">
               {expandButton === "outside" && (
                 <div>
-                  <SpanCardStatus status={data.status} />
+                  <Status status={data.status} />
                 </div>
               )}
 
@@ -413,7 +413,7 @@ export const SpanCard: FC<SpanCardProps> = ({
 
                 {expandButton === "inside" && (
                   <div>
-                    <SpanCardStatus status={data.status} />
+                    <Status status={data.status} />
                   </div>
                 )}
               </div>

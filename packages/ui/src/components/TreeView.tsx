@@ -4,7 +4,7 @@ import { findTimeRange, flattenSpans } from "@ai-agent-trace-ui/data";
 import cn from "classnames";
 import { type FC } from "react";
 
-import { SpanCard } from "./SpanCard.tsx";
+import { SpanCard } from "./SpanCard/SpanCard";
 
 interface TreeViewProps {
   spans: TraceSpan[];
