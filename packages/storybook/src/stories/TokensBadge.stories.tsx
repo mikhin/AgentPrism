@@ -41,24 +41,3 @@ export const Default: Story = {
     tokensCount: 1500,
   },
 };
-
-export const Small: Story = {
-  args: {
-    tokensCount: 2500,
-    size: "sm",
-  },
-};
-
-export const Medium: Story = {
-  args: {
-    tokensCount: 5000,
-    size: "md",
-  },
-};
-
-export const LargeTokenCount: Story = {
-  args: {
-    tokensCount: 15000,
-    size: "md",
-  },
-};

@@ -41,17 +41,3 @@ export const Default: Story = {
     cost: 0.5,
   },
 };
-
-export const Small: Story = {
-  args: {
-    cost: 1.25,
-    size: "sm",
-  },
-};
-
-export const Medium: Story = {
-  args: {
-    cost: 2.99,
-    size: "md",
-  },
-};
