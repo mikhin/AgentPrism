@@ -4,7 +4,7 @@ export const App = () => (
   <div className="flex h-screen flex-col bg-white text-gray-900">
     <div className="flex flex-1 overflow-hidden">
       {/* Sidebar */}
-      <div className="bg-gray-850 flex w-64 flex-col border-r border-gray-200">
+      <div className="flex w-64 flex-col bg-gray-100">
         <div className="p-4">
           <div className="mb-6 flex items-center space-x-2">
             <div className="h-8 w-8 rounded bg-gradient-to-br from-orange-500 to-red-500"></div>
