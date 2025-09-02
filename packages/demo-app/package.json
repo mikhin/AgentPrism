@@ -9,6 +9,8 @@
     "tsc": "tsc -p tsconfig.app.json --noEmit --skipLibCheck"
   },
   "dependencies": {
+    "@ai-agent-trace-ui/data": "github:mikhin/ai-agent-trace-ui#path:packages/data",
+    "@ai-agent-trace-ui/types": "github:mikhin/ai-agent-trace-ui#path:packages/types",
     "autoprefixer": "^10.4.21",
     "lucide-react": "^0.534.0",
     "postcss": "^8.4.49",

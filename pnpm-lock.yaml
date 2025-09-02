@@ -67,8 +67,14 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@vitest/browser@3.2.4)(jiti@1.21.7)(yaml@2.8.1)
 
-  packages/sandbox:
+  packages/demo-app:
     dependencies:
+      "@ai-agent-trace-ui/data":
+        specifier: github:mikhin/ai-agent-trace-ui#path:packages/data
+        version: https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5ba329ee87d808d31dd0dbc57baa09a65d8fc2e4#path:packages/data
+      "@ai-agent-trace-ui/types":
+        specifier: github:mikhin/ai-agent-trace-ui#path:packages/types
+        version: https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5ba329ee87d808d31dd0dbc57baa09a65d8fc2e4#path:packages/types
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.6)
@@ -313,6 +319,22 @@ packages:
       {
         integrity: sha512-Elp+iwUx5rN5+Y8xLt5/GRoG20WGoDCQ/1Fb+1LiGtvwbDavuSk0jhD/eZdckHAuzcDzccnkv+rEjyWfRx18gg==,
       }
+
+  "@ai-agent-trace-ui/data@https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5ba329ee87d808d31dd0dbc57baa09a65d8fc2e4#path:packages/data":
+    resolution:
+      {
+        path: packages/data,
+        tarball: https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5ba329ee87d808d31dd0dbc57baa09a65d8fc2e4,
+      }
+    version: 0.0.0
+
+  "@ai-agent-trace-ui/types@https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5ba329ee87d808d31dd0dbc57baa09a65d8fc2e4#path:packages/types":
+    resolution:
+      {
+        path: packages/types,
+        tarball: https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5ba329ee87d808d31dd0dbc57baa09a65d8fc2e4,
+      }
+    version: 0.0.0
 
   "@alloc/quick-lru@5.2.0":
     resolution:
@@ -4711,6 +4733,13 @@ packages:
 
 snapshots:
   "@adobe/css-tools@4.4.4": {}
+
+  "@ai-agent-trace-ui/data@https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5ba329ee87d808d31dd0dbc57baa09a65d8fc2e4#path:packages/data":
+    dependencies:
+      "@ai-agent-trace-ui/types": link:packages/types
+
+  "@ai-agent-trace-ui/types@https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5ba329ee87d808d31dd0dbc57baa09a65d8fc2e4#path:packages/types":
+    {}
 
   "@alloc/quick-lru@5.2.0": {}
 
