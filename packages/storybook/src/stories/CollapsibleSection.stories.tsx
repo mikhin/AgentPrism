@@ -29,6 +29,19 @@ const meta = {
       ),
     },
   },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          width: "360px",
+          maxWidth: "100%",
+          minHeight: "120px",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   tags: ["autodocs"],
   argTypes: {
     title: {
