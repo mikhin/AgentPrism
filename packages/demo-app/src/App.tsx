@@ -7,6 +7,7 @@ import type {
 import { convertOTelDocumentToSpanCards } from "@ai-agent-trace-ui/data";
 import { useEffect, useState } from "react";
 
+import { TraceViewer } from "./components/ai-trace-ui/TraceViewer.tsx";
 import quoTavAgentDataRaw from "./data/quo_tav_agent.json";
 import ragEarningsAgentDataRaw from "./data/rag_earnings_agent.json";
 import smolDeepResearchAgentDataRaw from "./data/smol_deep_research_agent.json";
@@ -63,8 +64,7 @@ export const App = () => {
 
   return (
     <Layout>
-      <h1 className="mb-4 text-2xl font-semibold">Traces</h1>
-      <div className="text-sm text-gray-600">Traces (1)</div>
+      <TraceViewer data={data} />
     </Layout>
   );
 };
