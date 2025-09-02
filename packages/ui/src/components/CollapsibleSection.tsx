@@ -1,4 +1,5 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
+import cn from "classnames";
 import { ChevronDown } from "lucide-react";
 import * as React from "react";
 
@@ -49,21 +50,28 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
     <Collapsible.Root
       open={open}
       onOpenChange={setOpen}
-      className={`rounded-lg ${className}`}
+      className={cn("rounded-lg", className)}
     >
       <Collapsible.Trigger
-        className={`mb-1 flex w-full items-center gap-2 rounded-lg px-1 py-3 text-left text-sm font-medium text-gray-700 dark:text-white ${triggerClassName}`}
+        className={cn(
+          "mb-1 flex w-full items-center gap-2 rounded-lg px-1 py-3 text-left text-sm font-medium text-gray-700 dark:text-white",
+          triggerClassName,
+        )}
       >
         <ChevronDown
-          className={`h-3 w-3 text-gray-500 transition-transform duration-200 ${
-            open ? "rotate-180" : ""
-          }`}
+          className={cn(
+            "h-3 w-3 text-gray-500 transition-transform duration-200",
+            open && "rotate-180",
+          )}
         />
         <span className="truncate">{title}</span>
       </Collapsible.Trigger>
 
       <Collapsible.Content
-        className={`data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown ${contentClassName}`}
+        className={cn(
+          "data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown",
+          contentClassName,
+        )}
       >
         {children}
       </Collapsible.Content>

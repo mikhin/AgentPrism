@@ -1,0 +1,11 @@
+.sb-show-main,
+.docs-story {
+  background-color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  .sb-show-main,
+  .docs-story {
+    background-color: black;
+  }
+}

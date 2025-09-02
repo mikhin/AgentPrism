@@ -1,11 +1,11 @@
-import type { ButtonHTMLAttributes } from "react";
+import type { ComponentPropsWithRef } from "react";
 
 import cn from "classnames";
 
 type IconButtonSize = "sm" | "md" | "lg";
 type IconButtonVariant = "default" | "ghost";
 
-interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export type IconButtonProps = ComponentPropsWithRef<"button"> & {
   /**
    * The size of the icon button
    */
@@ -21,7 +21,7 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * Required for accessibility compliance
    */
   "aria-label": string;
-}
+};
 
 const sizeClasses: Record<IconButtonSize, string> = {
   sm: "h-5 min-h-5",
@@ -42,13 +42,12 @@ export const IconButton = ({
   variant = "default",
   type = "button",
   "aria-label": ariaLabel,
-  ...props
+  ...rest
 }: IconButtonProps) => {
   return (
     <button
       type={type}
       aria-label={ariaLabel}
-      {...props}
       className={cn(
         className,
         sizeClasses[size],
@@ -57,6 +56,7 @@ export const IconButton = ({
         "text-gray-500 dark:text-gray-400",
         "hover:bg-gray-200 dark:hover:bg-gray-800",
       )}
+      {...rest}
     >
       {children}
     </button>

@@ -3,12 +3,12 @@ import { X } from "lucide-react";
 import {
   useRef,
   type ChangeEvent,
-  type InputHTMLAttributes,
+  type ComponentPropsWithRef,
   type ReactNode,
   type RefObject,
 } from "react";
 
-export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export type TextInputProps = ComponentPropsWithRef<"input"> & {
   /**
    * Callback fired when the input value changes
    */
@@ -50,7 +50,7 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
    * @default false
    */
   hideLabel?: boolean;
-}
+};
 
 const iconBaseClassName =
   "absolute top-1/2 -translate-y-1/2 flex items-center justify-center text-gray-700 dark:text-gray-500";
@@ -66,7 +66,7 @@ export const TextInput = ({
   label,
   hideLabel = false,
   id,
-  ...props
+  ...rest
 }: TextInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -106,7 +106,6 @@ export const TextInput = ({
         )}
       >
         <input
-          {...props}
           id={id}
           ref={ref || inputRef}
           onChange={handleChange}
@@ -121,13 +120,14 @@ export const TextInput = ({
             "hover:border-gray-300 dark:hover:border-gray-700",
             "outline-none outline-offset-0 focus-visible:outline-1 focus-visible:outline-blue-600 dark:focus-visible:outline-blue-300",
           )}
+          {...rest}
         />
         {startIcon && (
           <div className={cn(iconBaseClassName, "left-2")} aria-hidden>
             {startIcon}
           </div>
         )}
-        {onClear && props.value && (
+        {onClear && rest.value && (
           <button
             className={cn(iconBaseClassName, "right-2")}
             aria-label="Clear input value"

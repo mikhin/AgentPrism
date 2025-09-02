@@ -1,4 +1,6 @@
-import type { ReactElement, ReactNode } from "react";
+import type { ComponentPropsWithRef, ReactElement, ReactNode } from "react";
+
+import cn from "classnames";
 
 import { COLOR_THEME_CLASSES, type ColorVariant } from "./shared.ts";
 
@@ -15,7 +17,7 @@ const textSizes = {
   md: "text-sm font-medium",
 };
 
-export type BadgeProps = {
+export type BadgeProps = ComponentPropsWithRef<"span"> & {
   /**
    * The content of the badge
    */
@@ -64,6 +66,7 @@ export const Badge = ({
   iconStart,
   iconEnd,
   className = "",
+  ...rest
 }: BadgeProps): ReactElement => {
   const { bg, darkBg, text, darkText } = COLOR_THEME_CLASSES[theme];
 
@@ -74,12 +77,21 @@ export const Badge = ({
 
   return (
     <span
-      className={`inline-flex min-w-0 items-center overflow-hidden rounded font-medium ${variantClasses} ${sizeClasses[size]} ${className}`}
+      className={cn(
+        "inline-flex min-w-0 items-center overflow-hidden rounded font-medium",
+        variantClasses,
+        sizeClasses[size],
+        className,
+      )}
+      {...rest}
     >
       {iconStart && <span className="shrink-0">{iconStart}</span>}
 
       <span
-        className={`${textSizes[size]} min-w-0 max-w-full flex-shrink-0 truncate tracking-normal`}
+        className={cn(
+          textSizes[size],
+          "min-w-0 max-w-full flex-shrink-0 truncate tracking-normal",
+        )}
       >
         {children}
       </span>

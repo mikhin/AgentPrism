@@ -16,7 +16,7 @@ export { default as CollapseAndExpandControlsSource } from "./components/Collaps
 export { CollapsibleSection } from "./components/CollapsibleSection";
 export { default as CollapsibleSectionSource } from "./components/CollapsibleSection.tsx?raw";
 
-export { IconButton } from "./components/IconButton";
+export { IconButton, type IconButtonProps } from "./components/IconButton";
 export { default as IconButtonSource } from "./components/IconButton.tsx?raw";
 
 export { PriceBadge } from "./components/PriceBadge";

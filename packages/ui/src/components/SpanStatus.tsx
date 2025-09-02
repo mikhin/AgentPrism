@@ -1,14 +1,15 @@
 import type { TraceSpanStatus } from "@ai-agent-trace-ui/types";
+import type { ComponentPropsWithRef } from "react";
 
 import cn from "classnames";
 import { Check, Ellipsis, Info, TriangleAlert } from "lucide-react";
 
 type StatusVariant = "dot" | "badge";
 
-interface StatusProps {
+export type StatusProps = ComponentPropsWithRef<"div"> & {
   status: TraceSpanStatus;
   variant?: StatusVariant;
-}
+};
 
 const STATUS_COLORS_DOT: Record<TraceSpanStatus, string> = {
   success: "bg-green-500 dark:bg-green-500",
@@ -26,11 +27,15 @@ const STATUS_COLORS_BADGE: Record<TraceSpanStatus, string> = {
     "bg-yellow-100 dark:bg-yellow-950 text-yellow-600 dark:text-yellow-400",
 };
 
-export const SpanStatus = ({ status, variant = "dot" }: StatusProps) => {
+export const SpanStatus = ({
+  status,
+  variant = "dot",
+  ...rest
+}: StatusProps) => {
   const title = `Status: ${status}`;
 
   return (
-    <div className="flex size-4 items-center justify-center">
+    <div className="flex size-4 items-center justify-center" {...rest}>
       {variant === "dot" ? (
         <SpanStatusDot status={status} title={title} />
       ) : (

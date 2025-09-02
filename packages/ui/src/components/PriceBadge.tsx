@@ -1,13 +1,15 @@
+import type { ComponentPropsWithRef } from "react";
+
 import { Badge, type BadgeProps } from "./Badge";
 
-interface PriceBadgeProps {
+export type PriceBadgeProps = ComponentPropsWithRef<"span"> & {
   cost: number;
   size?: BadgeProps["size"];
-}
+};
 
-export const PriceBadge = ({ cost, size = "xs" }: PriceBadgeProps) => {
+export const PriceBadge = ({ cost, size = "xs", ...rest }: PriceBadgeProps) => {
   return (
-    <Badge theme="gray" size={size}>
+    <Badge theme="gray" size={size} {...rest}>
       $ {cost}
     </Badge>
   );

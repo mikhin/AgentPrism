@@ -1,4 +1,7 @@
+import type { ComponentPropsWithRef } from "react";
+
 import * as RadixTabs from "@radix-ui/react-tabs";
+import cn from "classnames";
 import * as React from "react";
 
 export interface TabItem {
@@ -25,7 +28,7 @@ const THEMES = {
   },
 } as const;
 
-export interface TabsProps {
+export type TabsProps = Omit<ComponentPropsWithRef<"div">, "dir"> & {
   /**
    * Array of tab items to display
    */
@@ -70,9 +73,14 @@ export interface TabsProps {
    * Optional className for the tab content area
    */
   contentClassName?: string;
-}
 
-export const Tabs: React.FC<TabsProps> = ({
+  /**
+   * The direction of the content of the tabs
+   */
+  dir?: "ltr" | "rtl";
+};
+
+export const Tabs = ({
   items,
   defaultValue,
   value,
@@ -82,22 +90,24 @@ export const Tabs: React.FC<TabsProps> = ({
   tabsListClassName = "",
   triggerClassName = "",
   contentClassName = "",
-  ...props
-}) => {
+  dir,
+  ...rest
+}: TabsProps) => {
   const defaultTab = defaultValue || items[0]?.value;
 
   const currentTheme = THEMES[theme];
 
   return (
     <RadixTabs.Root
-      className={`w-full ${className}`}
+      className={cn("w-full", className)}
       defaultValue={!value ? defaultTab : undefined}
       value={value}
       onValueChange={onValueChange}
-      {...props}
+      dir={dir}
+      {...rest}
     >
       <RadixTabs.List
-        className={`${currentTheme.list} ${tabsListClassName}`}
+        className={cn(currentTheme.list, tabsListClassName)}
         aria-label="Navigation tabs"
       >
         {items.map((item: TabItem) => (
@@ -105,10 +115,14 @@ export const Tabs: React.FC<TabsProps> = ({
             key={item.value}
             value={item.value}
             disabled={item.disabled}
-            className={`flex items-center ${currentTheme.trigger} ${triggerClassName}`}
+            className={cn(
+              "flex items-center overflow-hidden",
+              currentTheme.trigger,
+              triggerClassName,
+            )}
           >
             {item.icon && <span className="mr-2">{item.icon}</span>}
-            {item.label}
+            <span className="truncate">{item.label}</span>
           </RadixTabs.Trigger>
         ))}
       </RadixTabs.List>
