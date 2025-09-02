@@ -20,7 +20,7 @@ export default defineConfig([
   {
     ignores: [
       "packages/core/dist",
-      "packages/sandbox/dist",
+      "packages/demo-app/dist",
       "packages/storybook/storybook-static",
     ],
   },
