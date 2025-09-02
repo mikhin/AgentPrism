@@ -1,6 +1,6 @@
 import cn from "classnames";
 import { User } from "lucide-react";
-import { useState, type ReactElement } from "react";
+import { useState, type ComponentPropsWithRef, type ReactElement } from "react";
 
 import { ROUNDED_CLASSES, type ColorVariant } from "./shared.ts";
 
@@ -41,7 +41,7 @@ const bgColorClasses: Record<ColorVariant, string> = {
   emerald: "bg-emerald-600",
 };
 
-export type AvatarProps = {
+export type AvatarProps = ComponentPropsWithRef<"div"> & {
   /**
    * The image source for the avatar
    */
@@ -90,6 +90,7 @@ export const Avatar = ({
   textColor = "white",
   letter,
   className = "",
+  ...rest
 }: AvatarProps): ReactElement => {
   const [error, setError] = useState(false);
 
@@ -108,6 +109,7 @@ export const Avatar = ({
         ROUNDED_CLASSES[rounded],
         className,
       )}
+      {...rest}
     >
       {error ? (
         <User

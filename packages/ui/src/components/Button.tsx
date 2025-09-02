@@ -1,4 +1,6 @@
-import type { FC, PropsWithChildren, ReactElement } from "react";
+import type { ComponentPropsWithRef, ReactElement } from "react";
+
+import cn from "classnames";
 
 import { ROUNDED_CLASSES, type ColorVariant } from "./shared.ts";
 
@@ -30,12 +32,7 @@ const variantClasses = {
   ghost: "bg-transparent text-gray-600 dark:text-gray-300",
 };
 
-export type ButtonProps = {
-  /**
-   * The content of the button
-   */
-  children: React.ReactNode;
-
+export type ButtonProps = ComponentPropsWithRef<"button"> & {
   /**
    * The size of the button
    * @default "xs"
@@ -67,12 +64,6 @@ export type ButtonProps = {
   fullWidth?: boolean;
 
   /**
-   * Disables the button
-   * @default false
-   */
-  disabled?: boolean;
-
-  /**
    * Optional icon to display at the start of the button
    */
   iconStart?: ReactElement;
@@ -81,25 +72,9 @@ export type ButtonProps = {
    * Optional icon to display at the end of the button
    */
   iconEnd?: ReactElement;
-
-  /**
-   * The button type attribute
-   * @default "button"
-   */
-  type?: "button" | "submit" | "reset";
-
-  /**
-   * Click handler function
-   */
-  onClick?: () => void;
-
-  /**
-   * Optional className for additional styling
-   */
-  className?: string;
 };
 
-export const Button: FC<PropsWithChildren<ButtonProps>> = ({
+export const Button = ({
   children,
   size = "xs",
   theme = "gray",
@@ -112,7 +87,8 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   type = "button",
   onClick,
   className = "",
-}) => {
+  ...rest
+}: ButtonProps) => {
   const widthClass = fullWidth ? "w-full" : "";
   const stateClasses = disabled
     ? "cursor-not-allowed opacity-50"
@@ -127,7 +103,17 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${BASE_CLASSES} ${sizeClasses[size]} ${ROUNDED_CLASSES[rounded]} ${variantClasses[variant]} ${filledThemeClass} ${widthClass} ${stateClasses} ${className}`}
+      className={cn(
+        BASE_CLASSES,
+        sizeClasses[size],
+        ROUNDED_CLASSES[rounded],
+        variantClasses[variant],
+        filledThemeClass,
+        widthClass,
+        stateClasses,
+        className,
+      )}
+      {...rest}
     >
       {iconStart && <span className="mr-1">{iconStart}</span>}
       {children}

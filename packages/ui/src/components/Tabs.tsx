@@ -1,3 +1,5 @@
+import type { ComponentPropsWithRef } from "react";
+
 import * as RadixTabs from "@radix-ui/react-tabs";
 import cn from "classnames";
 import * as React from "react";
@@ -26,7 +28,7 @@ const THEMES = {
   },
 } as const;
 
-export interface TabsProps {
+export type TabsProps = Omit<ComponentPropsWithRef<"div">, "dir"> & {
   /**
    * Array of tab items to display
    */
@@ -71,9 +73,14 @@ export interface TabsProps {
    * Optional className for the tab content area
    */
   contentClassName?: string;
-}
 
-export const Tabs: React.FC<TabsProps> = ({
+  /**
+   * The direction of the content of the tabs
+   */
+  dir?: "ltr" | "rtl";
+};
+
+export const Tabs = ({
   items,
   defaultValue,
   value,
@@ -83,8 +90,9 @@ export const Tabs: React.FC<TabsProps> = ({
   tabsListClassName = "",
   triggerClassName = "",
   contentClassName = "",
-  ...props
-}) => {
+  dir,
+  ...rest
+}: TabsProps) => {
   const defaultTab = defaultValue || items[0]?.value;
 
   const currentTheme = THEMES[theme];
@@ -95,7 +103,8 @@ export const Tabs: React.FC<TabsProps> = ({
       defaultValue={!value ? defaultTab : undefined}
       value={value}
       onValueChange={onValueChange}
-      {...props}
+      dir={dir}
+      {...rest}
     >
       <RadixTabs.List
         className={cn(currentTheme.list, tabsListClassName)}
