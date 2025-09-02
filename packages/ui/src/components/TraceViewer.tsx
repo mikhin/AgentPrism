@@ -1,19 +1,19 @@
 import { flattenSpans } from "@ai-agent-trace-ui/data";
 import { type TraceRecord, type TraceSpan } from "@ai-agent-trace-ui/types";
-import {
-  Button,
-  CollapseAllButton,
-  DetailsView,
-  ExpandAllButton,
-  SearchInput,
-  TraceList,
-  TreeView,
-} from "@ai-agent-trace-ui/ui";
 import cn from "classnames";
 import { ArrowLeft } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
+import { Button } from "./Button";
+import {
+  CollapseAllButton,
+  ExpandAllButton,
+} from "./CollapseAndExpandControls";
+import { DetailsView } from "./DetailsView/DetailsView";
+import { SearchInput } from "./SearchInput";
+import { TraceList } from "./TraceList/TraceList";
 import { TraceListItemHeader } from "./TraceList/TraceListItemHeader";
+import { TreeView } from "./TreeView";
 
 interface TraceViewerProps {
   data: Array<{
