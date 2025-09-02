@@ -127,3 +127,10 @@ export const Rounded: Story = {
     rounded: "none",
   },
 };
+
+export const FailedToLoad: Story = {
+  args: {
+    alt: "Failed to load",
+    src: "that-does-not-exist.jpg",
+  },
+};
