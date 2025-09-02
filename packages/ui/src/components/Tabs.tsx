@@ -1,4 +1,5 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
+import cn from "classnames";
 import * as React from "react";
 
 export interface TabItem {
@@ -90,14 +91,14 @@ export const Tabs: React.FC<TabsProps> = ({
 
   return (
     <RadixTabs.Root
-      className={`w-full ${className}`}
+      className={cn("w-full", className)}
       defaultValue={!value ? defaultTab : undefined}
       value={value}
       onValueChange={onValueChange}
       {...props}
     >
       <RadixTabs.List
-        className={`${currentTheme.list} ${tabsListClassName}`}
+        className={cn(currentTheme.list, tabsListClassName)}
         aria-label="Navigation tabs"
       >
         {items.map((item: TabItem) => (
@@ -105,10 +106,14 @@ export const Tabs: React.FC<TabsProps> = ({
             key={item.value}
             value={item.value}
             disabled={item.disabled}
-            className={`flex items-center ${currentTheme.trigger} ${triggerClassName}`}
+            className={cn(
+              "flex items-center overflow-hidden",
+              currentTheme.trigger,
+              triggerClassName,
+            )}
           >
             {item.icon && <span className="mr-2">{item.icon}</span>}
-            {item.label}
+            <span className="truncate">{item.label}</span>
           </RadixTabs.Trigger>
         ))}
       </RadixTabs.List>
