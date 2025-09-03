@@ -35,7 +35,5 @@ export const convertOTelSpanToSpanCard = (
     children,
     input: ioData.input,
     output: ioData.output,
-    inputMimeType: ioData.inputMimeType,
-    outputMimeType: ioData.outputMimeType,
   };
 };

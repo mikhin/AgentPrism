@@ -81,6 +81,4 @@ export const STANDARD_OPENTELEMETRY_PATTERNS = {
 export const INPUT_OUTPUT_ATTRIBUTES = {
   INPUT_VALUE: "input.value",
   OUTPUT_VALUE: "output.value",
-  INPUT_MIME_TYPE: "input.mime_type",
-  OUTPUT_MIME_TYPE: "output.mime_type",
 } as const;

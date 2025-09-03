@@ -13,15 +13,10 @@ interface DetailsViewInputOutputTabProps {
 
 interface IOContentProps {
   content?: string;
-  mimeType?: string;
   sectionId: string;
 }
 
-const IOContent = ({
-  content,
-  mimeType,
-  sectionId,
-}: IOContentProps): ReactElement => {
+const IOContent = ({ content, sectionId }: IOContentProps): ReactElement => {
   if (!content) {
     return (
       <p className="p-3 text-sm italic text-gray-500 dark:text-gray-400">
@@ -30,19 +25,20 @@ const IOContent = ({
     );
   }
 
-  const isJson =
-    mimeType === "application/json" ||
-    content.trim().startsWith("{") ||
-    content.trim().startsWith("[");
+  if (!content) {
+    return (
+      <p className="p-3 text-sm italic text-gray-500 dark:text-gray-400">
+        No data available
+      </p>
+    );
+  }
 
   let parsedData = null;
 
-  if (isJson) {
-    try {
-      parsedData = JSON.parse(content);
-    } catch {
-      parsedData = null;
-    }
+  try {
+    parsedData = JSON.parse(content);
+  } catch {
+    parsedData = null;
   }
 
   const tabItems = [
@@ -114,21 +110,13 @@ export const DetailsViewInputOutputTab = ({
     <div className="space-y-3">
       {hasInput && (
         <CollapsibleSection title="Input" defaultOpen>
-          <IOContent
-            content={data.input}
-            mimeType={data.inputMimeType}
-            sectionId={`${data.id}-input`}
-          />
+          <IOContent content={data.input} sectionId={`${data.id}-input`} />
         </CollapsibleSection>
       )}
 
       {hasOutput && (
         <CollapsibleSection title="Output" defaultOpen>
-          <IOContent
-            content={data.output}
-            mimeType={data.outputMimeType}
-            sectionId={`${data.id}-output`}
-          />
+          <IOContent content={data.output} sectionId={`${data.id}-output`} />
         </CollapsibleSection>
       )}
     </div>

@@ -27,8 +27,6 @@ export type TraceSpan = {
   tokensCount?: number;
   input?: string;
   output?: string;
-  inputMimeType?: string;
-  outputMimeType?: string;
 };
 
 export type TraceSpanCategory =
