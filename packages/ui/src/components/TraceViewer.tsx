@@ -131,11 +131,11 @@ export const TraceViewer = ({ data }: TraceViewerProps) => {
 
   return (
     <div className="h-full w-full p-4 lg:p-8">
-      <div className="hidden 2xl:block">
+      <div className="hidden lg:block">
         <DesktopLayout {...props} />
       </div>
 
-      <div className="2xl:hidden">
+      <div className="lg:hidden">
         <MobileLayout {...props} />
       </div>
     </div>
@@ -199,7 +199,7 @@ const DesktopLayout = ({
         <div className="flex flex-col gap-4">
           <TraceListItemHeader trace={selectedTrace} />
 
-          <div className="border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-950">
+          <div className="rounded border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-950">
             <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-600">
               <SearchInput
                 id="span-search"
@@ -295,7 +295,7 @@ const MobileLayout = ({
 
         <TraceListItemHeader trace={selectedTrace} />
 
-        <div className="border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-950">
+        <div className="rounded border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-950">
           <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-600">
             <SearchInput
               id="span-search"
@@ -361,7 +361,7 @@ interface PlaceholderProps {
 
 const Placeholder = ({ title }: PlaceholderProps) => {
   return (
-    <p className="hidden items-center justify-center rounded-lg bg-gray-100 p-4 text-center text-gray-600 2xl:flex dark:bg-gray-900 dark:text-gray-200">
+    <p className="hidden items-center justify-center rounded-lg bg-gray-100 p-4 text-center text-gray-600 lg:flex dark:bg-gray-900 dark:text-gray-200">
       {title}
     </p>
   );
