@@ -25,6 +25,8 @@ export type TraceSpan = {
   status: TraceSpanStatus;
   cost?: number;
   tokensCount?: number;
+  input?: string;
+  output?: string;
 };
 
 export type TraceSpanCategory =

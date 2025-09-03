@@ -70,11 +70,14 @@ importers:
   packages/demo-app:
     dependencies:
       "@ai-agent-trace-ui/data":
-        specifier: github:mikhin/ai-agent-trace-ui#path:packages/data
-        version: https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5b6c46e63540e72b92e9bcee070e89f88ef9d51d#path:packages/data
+        specifier: workspace:^
+        version: link:../data
       "@ai-agent-trace-ui/types":
-        specifier: github:mikhin/ai-agent-trace-ui#path:packages/types
-        version: https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5b6c46e63540e72b92e9bcee070e89f88ef9d51d#path:packages/types
+        specifier: workspace:^
+        version: link:../types
+      "@ai-agent-trace-ui/ui":
+        specifier: workspace:^
+        version: link:../ui
       "@radix-ui/react-collapsible":
         specifier: ^1.1.12
         version: 1.1.12(@types/react-dom@19.1.8(@types/react@19.1.11))(@types/react@19.1.11)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -331,22 +334,6 @@ packages:
       {
         integrity: sha512-Elp+iwUx5rN5+Y8xLt5/GRoG20WGoDCQ/1Fb+1LiGtvwbDavuSk0jhD/eZdckHAuzcDzccnkv+rEjyWfRx18gg==,
       }
-
-  "@ai-agent-trace-ui/data@https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5b6c46e63540e72b92e9bcee070e89f88ef9d51d#path:packages/data":
-    resolution:
-      {
-        path: packages/data,
-        tarball: https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5b6c46e63540e72b92e9bcee070e89f88ef9d51d,
-      }
-    version: 0.0.0
-
-  "@ai-agent-trace-ui/types@https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5b6c46e63540e72b92e9bcee070e89f88ef9d51d#path:packages/types":
-    resolution:
-      {
-        path: packages/types,
-        tarball: https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5b6c46e63540e72b92e9bcee070e89f88ef9d51d,
-      }
-    version: 0.0.0
 
   "@alloc/quick-lru@5.2.0":
     resolution:
@@ -4745,13 +4732,6 @@ packages:
 
 snapshots:
   "@adobe/css-tools@4.4.4": {}
-
-  "@ai-agent-trace-ui/data@https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5b6c46e63540e72b92e9bcee070e89f88ef9d51d#path:packages/data":
-    dependencies:
-      "@ai-agent-trace-ui/types": link:packages/types
-
-  "@ai-agent-trace-ui/types@https://codeload.github.com/mikhin/ai-agent-trace-ui/tar.gz/5b6c46e63540e72b92e9bcee070e89f88ef9d51d#path:packages/types":
-    {}
 
   "@alloc/quick-lru@5.2.0": {}
 

@@ -1,13 +1,14 @@
 import type { TraceSpan } from "@ai-agent-trace-ui/types";
 import type { ReactElement } from "react";
 
-import { SquareTerminal, Tags } from "lucide-react";
+import { SquareTerminal, Tags, ArrowRightLeft } from "lucide-react";
 
 import type { AvatarProps } from "../Avatar";
 
 import { Tabs } from "../Tabs";
 import { DetailsViewAttributesTab } from "./DetailsViewAttributesTab";
 import { DetailsViewHeader } from "./DetailsViewHeader";
+import { DetailsViewInputOutputTab } from "./DetailsViewInputOutputTab";
 import { DetailsViewMetrics } from "./DetailsViewMetrics";
 import { DetailsViewRawDataTab } from "./DetailsViewRawDataTab";
 
@@ -62,6 +63,12 @@ export const DetailsView = ({
   onTabChange,
 }: DetailsViewProps): ReactElement => {
   const tabItems = [
+    {
+      value: "input-output",
+      label: "In/Out",
+      icon: <ArrowRightLeft className="size-4" />,
+      content: <DetailsViewInputOutputTab data={data} />,
+    },
     {
       value: "attributes",
       label: "Attributes",
