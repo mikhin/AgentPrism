@@ -10,9 +10,9 @@ export type InputOutputData = {
 };
 
 /**
- * Extract input and output values from a span's attributes
- * @param span - The Span to extract input/output data from
- * @returns Object containing input, output, and their MIME types if available
+ * Extract input and output values from a span's attributes.
+ * @param {Span} span - The span object to extract input/output data from. The span should conform to the {@link Span} type and contain relevant attributes for input, output, and their MIME types.
+ * @returns {InputOutputData} Object containing input, output, and their MIME types if available.
  */
 export const extractInputOutput = (span: Span): InputOutputData => {
   const input = getAttributeValue(span, INPUT_OUTPUT_ATTRIBUTES.INPUT_VALUE);

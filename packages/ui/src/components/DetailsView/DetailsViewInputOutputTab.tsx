@@ -17,7 +17,11 @@ interface IOContentProps {
   sectionId: string;
 }
 
-const IOContent = ({ content, mimeType }: IOContentProps): ReactElement => {
+const IOContent = ({
+  content,
+  mimeType,
+  sectionId,
+}: IOContentProps): ReactElement => {
   if (!content) {
     return (
       <p className="p-3 text-sm italic text-gray-500 dark:text-gray-400">
@@ -51,7 +55,7 @@ const IOContent = ({ content, mimeType }: IOContentProps): ReactElement => {
           booleanStyle={`color: ${colors.blue[400]};`}
           className="overflow-x-auto rounded-xl p-4"
           data={parsedData}
-          id={`json-pretty-${parsedData.id || "span-details"}`}
+          id={`json-pretty-${sectionId}`}
           keyStyle={`color: ${colors.blue[400]};`}
           mainStyle={`color: ${colors.gray[400]}; font-size: 12px;`}
           stringStyle={`color: ${colors.red[600]};`}
@@ -78,7 +82,6 @@ const IOContent = ({ content, mimeType }: IOContentProps): ReactElement => {
 
   return (
     <div className="rounded-lg border border-gray-200 dark:border-gray-600">
-      {/* Content area with pill tabs */}
       <div className="p-3">
         <Tabs
           items={tabItems}
