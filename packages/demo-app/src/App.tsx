@@ -5,9 +5,9 @@ import type {
 } from "@ai-agent-trace-ui/types";
 
 import { convertOTelDocumentToSpanCards } from "@ai-agent-trace-ui/data";
+import { TraceViewer } from "@ai-agent-trace-ui/ui";
 import { useEffect, useState } from "react";
 
-import { TraceViewer } from "./components/ai-trace-ui/TraceViewer.tsx";
 import quoTavAgentDataRaw from "./data/quo_tav_agent.json";
 import ragEarningsAgentDataRaw from "./data/rag_earnings_agent.json";
 import smolDeepResearchAgentDataRaw from "./data/smol_deep_research_agent.json";
