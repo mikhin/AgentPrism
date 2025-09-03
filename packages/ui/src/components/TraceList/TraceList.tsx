@@ -69,17 +69,16 @@ export const TraceList = ({
 
       {expanded && (
         <ul className="flex flex-col items-center rounded border border-gray-200 dark:border-gray-800">
-          {traces.map((trace, idx) => (
-            <li className="w-full list-none" key={trace.id}>
+          {traces.map((trace) => (
+            <li
+              className="w-full list-none border-b-gray-200 dark:border-b-gray-900 [&:not(:last-child)]:border-b"
+              key={trace.id}
+            >
               <TraceListItem
                 trace={trace}
                 onClick={() => onTraceSelect?.(trace)}
                 isSelected={selectedTrace?.id === trace.id}
               />
-
-              {idx < traces.length - 1 && (
-                <div className="h-px w-[calc(100%_-_32px)] bg-gray-200 dark:bg-gray-900" />
-              )}
             </li>
           ))}
         </ul>
