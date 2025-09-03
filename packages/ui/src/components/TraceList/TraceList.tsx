@@ -57,6 +57,7 @@ export const TraceList = ({
           aria-label={expanded ? "Collapse Trace List" : "Expand Trace List"}
           onClick={() => onExpandStateChange(!expanded)}
           size="sm"
+          className="lg:hidden"
         >
           <ArrowLeft
             className={cn(
