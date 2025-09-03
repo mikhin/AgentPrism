@@ -331,12 +331,16 @@ export const SpanCard: FC<SpanCardProps> = ({
         <div
           className={cn(
             "relative grid w-full",
-            state.isSelected && "outline-t-2 bg-gray-100 dark:bg-gray-900",
             state.isSelected &&
-              "before:absolute before:-top-2 before:h-3 before:w-full before:bg-gray-100 before:dark:bg-gray-900",
+              "before:absolute before:-top-2 before:h-2 before:w-full before:bg-gray-100/75 before:dark:bg-gray-900/75",
+            state.isSelected &&
+              "bg-gradient-to-b from-gray-100/75 to-gray-100/75 dark:from-gray-900/75 dark:to-gray-900/75",
           )}
           style={{
             gridTemplateColumns,
+            backgroundSize: "auto calc(100% - 8px)",
+            backgroundPosition: "top",
+            backgroundRepeat: "no-repeat",
           }}
           onClick={eventHandlers.handleCardClick}
           onKeyDown={eventHandlers.handleKeyDown}
