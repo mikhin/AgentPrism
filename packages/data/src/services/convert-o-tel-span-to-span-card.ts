@@ -4,6 +4,7 @@ import { determineSpanCategory } from "../services/determine-span-category.ts";
 import { calculateDuration } from "./calculate-duration";
 import { convertTimestamp } from "./convert-timestamp";
 import { extractCost } from "./extract-cost";
+import { extractInputOutput } from "./extract-input-output.ts";
 import { extractTokenCount } from "./extract-token-count";
 import { generateTitle } from "./generate-title";
 import { mapSpanStatus } from "./map-span-status";
@@ -17,6 +18,7 @@ export const convertOTelSpanToSpanCard = (
   const spanType = determineSpanCategory(span);
   const tokensCount = extractTokenCount(span);
   const cost = extractCost(span);
+  const ioData = extractInputOutput(span);
 
   return {
     id: span.spanId,
@@ -31,5 +33,9 @@ export const convertOTelSpanToSpanCard = (
     startTime: convertTimestamp(span.startTimeUnixNano),
     endTime: convertTimestamp(span.endTimeUnixNano),
     children,
+    input: ioData.input,
+    output: ioData.output,
+    inputMimeType: ioData.inputMimeType,
+    outputMimeType: ioData.outputMimeType,
   };
 };

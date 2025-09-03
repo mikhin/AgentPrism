@@ -6,3 +6,7 @@ export { formatDuration } from "./services/format-duration.ts";
 export { getTimelineData } from "./services/get-timeline-data.ts";
 export { flattenSpans } from "./services/flatten-span-cards.ts";
 export { findTimeRange } from "./services/find-time-range.ts";
+export {
+  extractInputOutput,
+  type InputOutputData,
+} from "./services/extract-input-output.ts";
