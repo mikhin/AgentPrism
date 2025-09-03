@@ -3,6 +3,10 @@
   background-color: white;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 @media (prefers-color-scheme: dark) {
   .sb-show-main,
   .docs-story {
