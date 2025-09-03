@@ -4,6 +4,10 @@ React components for visualizing traces from AI agents. Display LLM calls, tool 
 
 **⚠️ Alpha Release:** This library is under active development. APIs may change.
 
+## Storybook
+
+[https://ai-agent-trace-ui-sandbox.vercel.app](https://ai-agent-trace-ui-sandbox.vercel.app)
+
 ## Prerequisites
 
 - React 19+
