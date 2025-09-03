@@ -77,15 +77,13 @@ const IOContent = ({ content, sectionId }: IOContentProps): ReactElement => {
   ];
 
   return (
-    <div className="rounded-lg border border-gray-200 dark:border-gray-600">
-      <div className="p-3">
-        <Tabs
-          items={tabItems}
-          defaultValue={parsedData ? "json" : "plain"}
-          theme="pill"
-          tabsListClassName="mb-3"
-        />
-      </div>
+    <div className="rounded-lg border border-gray-200 p-3 dark:border-gray-600">
+      <Tabs
+        items={tabItems}
+        defaultValue={parsedData ? "json" : "plain"}
+        theme="pill"
+        tabsListClassName="mb-3"
+      />
     </div>
   );
 };
