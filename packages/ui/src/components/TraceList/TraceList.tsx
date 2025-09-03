@@ -78,7 +78,7 @@ export const TraceList = ({
               />
 
               {idx < traces.length - 1 && (
-                <div className="h-px w-[calc(100%_-_32px)] bg-gray-200 dark:bg-gray-900" />
+                <div className="mx-auto h-px w-[calc(100%_-_32px)] bg-gray-200 dark:bg-gray-900" />
               )}
             </li>
           ))}
