@@ -1,4 +1,4 @@
-# AI Agent Trace UI Components
+# AgentPrism
 
 React components for visualizing traces from AI agents. Display LLM calls, tool executions, and agent workflows in a hierarchical timeline.
 
