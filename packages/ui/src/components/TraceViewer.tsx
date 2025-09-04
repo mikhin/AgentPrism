@@ -65,9 +65,15 @@ const filterSpansRecursively = (
 };
 
 export const TraceViewer = ({ data }: TraceViewerProps) => {
-  const [selectedTrace, setSelectedTrace] = useState<TraceRecord>();
-  const [selectedTraceSpans, setSelectedTraceSpans] = useState<TraceSpan[]>([]);
-  const [selectedSpan, setSelectedSpan] = useState<TraceSpan>();
+  const [selectedTrace, setSelectedTrace] = useState<TraceRecord | undefined>(
+    data[0].traceRecord,
+  );
+  const [selectedTraceSpans, setSelectedTraceSpans] = useState<TraceSpan[]>(
+    data[0].spans,
+  );
+  const [selectedSpan, setSelectedSpan] = useState<TraceSpan | undefined>(
+    data[0].spans[0].children?.[0],
+  );
   const [searchValue, setSearchValue] = useState("");
 
   const [traceListExpanded, setTraceListExpanded] = useState(true);
