@@ -19,14 +19,14 @@ React components for visualizing traces from AI agents. Display LLM calls, tool 
 Copy the UI components to your project:
 
 ```bash
-npx degit mikhin/ai-agent-trace-ui/packages/ui/src/components src/components/ai-trace-ui
+npx degit evilmartians/ai-agent-trace-ui/packages/ui/src/components src/components/ai-trace-ui
 ```
 
 Install the data and types packages:
 
 ```bash
-npm install github:mikhin/ai-agent-trace-ui#main/packages/data
-npm install github:mikhin/ai-agent-trace-ui#main/packages/types
+npm install github:evilmartians/ai-agent-trace-ui#main/packages/data
+npm install github:evilmartians/ai-agent-trace-ui#main/packages/types
 ```
 
 Install required UI dependencies:
