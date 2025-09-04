@@ -6,7 +6,7 @@ React components for visualizing traces from AI agents. Display LLM calls, tool 
 
 ## Storybook
 
-[https://ai-agent-trace-ui-sandbox.vercel.app](https://ai-agent-trace-ui-sandbox.vercel.app)
+[https://agent-prism-ui.web.app/](https://agent-prism-ui.web.app/)
 
 ## Prerequisites
 
