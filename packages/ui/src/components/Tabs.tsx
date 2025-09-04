@@ -15,16 +15,25 @@ export interface TabItem {
 export type TabTheme = "underline" | "pill";
 
 const BASE_TRIGGER =
-  "text-sm font-medium text-gray-600 hover:text-gray-900 disabled:opacity-50 data-[state=active]:text-gray-900 dark:text-gray-500 dark:hover:text-white dark:data-[state=active]:text-white";
+  "text-sm font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
 
 const THEMES = {
   underline: {
-    list: "flex border-b border-gray-300 dark:border-gray-600",
-    trigger: `w-full justify-center px-4 py-2 ${BASE_TRIGGER} border-b-2 border-transparent data-[state=active]:border-gray-900 -mb-[2px] dark:border-gray-600 dark:data-[state=active]:border-gray-400`,
+    list: "flex border-b border-gray-200 dark:border-gray-800",
+    trigger: `w-full justify-center px-4 py-2.5 ${BASE_TRIGGER} 
+      text-gray-600 hover:text-gray-900 data-[state=active]:text-gray-900
+      dark:text-gray-400 dark:hover:text-gray-200 dark:data-[state=active]:text-gray-200
+      border-b-2 border-transparent data-[state=active]:border-gray-900 
+      dark:data-[state=active]:border-gray-300 -mb-[2px]
+      hover:border-gray-300 dark:hover:border-gray-600`,
   },
   pill: {
-    list: "inline-flex gap-1 p-1 bg-gray-100 rounded-lg",
-    trigger: `px-4 py-1.5 ${BASE_TRIGGER} rounded-md data-[state=active]:bg-white data-[state=active]:shadow-sm dark:bg-gray-800 dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:shadow-none`,
+    list: "inline-flex gap-1 p-1 bg-gray-100 dark:bg-gray-900 rounded-lg",
+    trigger: `px-4 py-2 ${BASE_TRIGGER} rounded-md
+      text-gray-600 hover:text-gray-900 data-[state=active]:text-gray-900
+      dark:text-gray-400 dark:hover:text-gray-200 dark:data-[state=active]:text-gray-200
+      hover:bg-gray-50 data-[state=active]:bg-white data-[state=active]:shadow-sm
+      dark:hover:bg-gray-700 dark:data-[state=active]:bg-gray-600 dark:data-[state=active]:shadow-none`,
   },
 } as const;
 
@@ -51,6 +60,7 @@ export type TabsProps = Omit<ComponentPropsWithRef<"div">, "dir"> & {
 
   /**
    * Visual theme variant for the tabs
+   * @default "underline"
    */
   theme?: TabTheme;
 
@@ -121,7 +131,11 @@ export const Tabs = ({
               triggerClassName,
             )}
           >
-            {item.icon && <span className="mr-2">{item.icon}</span>}
+            {item.icon && (
+              <span className="mr-2 text-gray-500 group-data-[state=active]:text-current dark:text-gray-400">
+                {item.icon}
+              </span>
+            )}
             <span className="truncate">{item.label}</span>
           </RadixTabs.Trigger>
         ))}
@@ -131,7 +145,7 @@ export const Tabs = ({
         <RadixTabs.Content
           key={item.value}
           value={item.value}
-          className={contentClassName}
+          className={cn("mt-4", contentClassName)}
         >
           {item.content}
         </RadixTabs.Content>

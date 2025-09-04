@@ -65,9 +65,15 @@ const filterSpansRecursively = (
 };
 
 export const TraceViewer = ({ data }: TraceViewerProps) => {
-  const [selectedTrace, setSelectedTrace] = useState<TraceRecord>();
-  const [selectedTraceSpans, setSelectedTraceSpans] = useState<TraceSpan[]>([]);
-  const [selectedSpan, setSelectedSpan] = useState<TraceSpan>();
+  const [selectedTrace, setSelectedTrace] = useState<TraceRecord | undefined>(
+    data[0].traceRecord,
+  );
+  const [selectedTraceSpans, setSelectedTraceSpans] = useState<TraceSpan[]>(
+    data[0].spans,
+  );
+  const [selectedSpan, setSelectedSpan] = useState<TraceSpan | undefined>(
+    data[0].spans[0].children?.[0],
+  );
   const [searchValue, setSearchValue] = useState("");
 
   const [traceListExpanded, setTraceListExpanded] = useState(true);
@@ -202,10 +208,10 @@ const DesktopLayout = ({
         <div className="flex flex-col gap-4">
           <TraceListItemHeader trace={selectedTrace} />
 
-          <div className="rounded border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-950">
-            <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-600">
+          <div className="rounded border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
+            <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-800">
               <SearchInput
-                id="span-search"
+                id="span-search-desktop"
                 name="search"
                 onClear={() => setSearchValue("")}
                 value={searchValue}
@@ -298,10 +304,10 @@ const MobileLayout = ({
 
         <TraceListItemHeader trace={selectedTrace} />
 
-        <div className="rounded border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-950">
-          <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-600">
+        <div className="rounded border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
+          <div className="flex items-center justify-between gap-2 border-b border-gray-200 p-3 dark:border-gray-800">
             <SearchInput
-              id="span-search"
+              id="span-search-mobile"
               name="search"
               onClear={() => setSearchValue("")}
               value={searchValue}

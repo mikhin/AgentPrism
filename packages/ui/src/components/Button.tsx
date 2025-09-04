@@ -28,7 +28,7 @@ const filledThemeClasses: Record<ColorVariant, string> = {
 const variantClasses = {
   filled: "",
   outlined:
-    "border border-2 bg-transparent text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-600",
+    "border border-2 bg-transparent text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-800",
   ghost: "bg-transparent text-gray-600 dark:text-gray-300",
 };
 

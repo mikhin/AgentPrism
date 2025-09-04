@@ -6,6 +6,7 @@ import "./styles.css";
 
 const preview: Preview = {
   parameters: {
+    backgrounds: { disable: true },
     options: {
       storySort: {
         order: ["Demo", "Main Components", "Atoms"],

@@ -42,7 +42,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
             </div>
           </div>
 
-          <div className="mt-auto space-y-2 border-t border-gray-300 p-4">
+          <div className="mt-auto space-y-2 border-t border-gray-200 p-4">
             <div className="flex cursor-pointer items-center space-x-2 rounded p-2 hover:bg-gray-200">
               <Info className="h-4 w-4" />
               <span className="text-sm">Docs</span>

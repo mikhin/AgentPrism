@@ -42,7 +42,6 @@ export const TraceListItem = ({
         "group w-full",
         "flex flex-col gap-2.5 p-4",
         "cursor-pointer rounded",
-        "outline-none -outline-offset-2 focus-visible:outline-2 focus-visible:outline-blue-600 dark:focus-visible:outline-blue-300",
         isSelected && "bg-gray-100 dark:bg-gray-900",
       )}
       role="button"

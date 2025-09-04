@@ -1,4 +1,4 @@
-# Purpose of the library
+# What is the purpose of this library?
 
 Agent Trace UI is designed to be drop-in library for displaying agent traces. Our mission is to bring an easy way to quickly setup simple UI, with total control over the source code.
 
@@ -7,7 +7,7 @@ Agent Trace UI is designed to be drop-in library for displaying agent traces. Ou
 - We use [pnpm](https://pnpm.io) as package manager and [`pnpm workspaces`](https://pnpm.io/workspaces) for separation of packages.
 - Our library is built for [React](https://react.dev/) with [TypeScript](https://www.typescriptlang.org/) and uses [Tailwind](https://tailwindcss.com/) for styling
 
-Since our main idea is having drop-in components with as little extra steps as possible, we try to limit dependencies and only use what is necessary:
+Since our primary concept is having drop-in components with as little extra steps as possible, we try limiting dependencies to only those necessary:
 
 - [lucide-react](https://lucide.dev/guide/packages/lucide-react) for icons
 - [classnames](https://jedwatson.github.io/classnames/) for managing complex styles
@@ -27,24 +27,24 @@ There are 4 packages:
 
 ## Priorities
 
-While developing new components or making changes to existing ones, we must focus on this key points:
+While developing new components or making changes to existing ones, we must focus on these key points:
 
 - Accessibility by default. Our components should follow accessibility guidelines and conform to common accessibility standars, such as [WCAG](https://www.w3.org/TR/WCAG21/).
-- All components should work and look correctly on any screen widths, starting from 375px.
-- All components should support both light and dark theme
-- Code must be clean, easy to understand and expand. Since we expect our users to adjust source code for their needs, we should think of how they will approach this - and make their lifes easier by providing easy to understand components.
+- All components should work and correctly display on any screen width, starting from 375px.
+- All components should support both light and dark themes.
+- The code must be clean, easy to understand and expand. Since we expect our users to adjust the source code for their needs, we should think of how they will approach this - and make their lives easier by providing easy-to-understand components.
 
-## Making a contribution to the project
+## Making a contribution
 
 1. Fork the repository.
-1. In project root, run `pnpm i` to install all dependencies
-1. Run `pnpm run dev` to start local dev server
-1. Create a branch in your repo, make changes and commit them. We follow [conventonal commits](https://www.conventionalcommits.org/en/v1.0.0/) format
-1. Make PR to the base repo
+1. In project root, run `pnpm i` to install all dependencies.
+1. Run `pnpm run dev` to start a local dev server.
+1. Create a branch in your repo, make changes and commit them. We follow [conventonal commits](https://www.conventionalcommits.org/en/v1.0.0/) format.
+1. Make a PR to the base repo.
 
-## Styleguide
+## Style guide
 
-Here are some rules we follow in our repository
+Here are some rules we follow in our repository:
 
 - When creating new component, place it inside `packages/ui/src/componens` folder.
 
@@ -59,7 +59,7 @@ packages
             ├── YourNewComponent.tsx
 ```
 
-- If your components gets big, it is better to move some parts of it into separate, smaller components. Create a folder with the name of your component, place your component in this folder and add "COMPONENT_NAME" prefix to all of the subcomponents. Like that:
+- If a component gets big, it's better to move some parts of it into separate, smaller components. Create a folder with the name of your component, place your component in this folder and add the "COMPONENT_NAME" prefix to all of the subcomponents. Like this:
 
 ```
 packages
@@ -93,8 +93,8 @@ import cn from "classnames";
 </div>
 ```
 
-- When creating new util or data adapter in `packages/data`, add tests for them. We use [Vitest](https://vitest.dev) for testing.
+- When creating a new util or data adapter in `packages/data`, add tests for it. We use [Vitest](https://vitest.dev) for testing.
 
-## Request new components
+## Requesting new components
 
-If you want new component to be added to the library, don't hesitate to create an issue on Github and start a discussion.
+If you want new component to be added to the library, don't hesitate to create an issue on GitHub and start a discussion.
