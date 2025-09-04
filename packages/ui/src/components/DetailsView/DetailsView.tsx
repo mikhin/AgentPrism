@@ -1,6 +1,7 @@
 import type { TraceSpan } from "@evilmartians/agent-prism-types";
 import type { ReactElement } from "react";
 
+import cn from "classnames";
 import { SquareTerminal, Tags, ArrowRightLeft } from "lucide-react";
 
 import type { AvatarProps } from "../Avatar";
@@ -85,7 +86,10 @@ export const DetailsView = ({
 
   return (
     <div
-      className={`rounded border border-gray-200 bg-white p-4 dark:border-gray-600 dark:bg-gray-950 ${className}`}
+      className={cn(
+        "min-w-0 rounded border border-gray-200 bg-white p-4 dark:border-gray-600 dark:bg-gray-950",
+        className
+      )}
     >
       <DetailsViewHeader data={data} avatar={avatar} copyButton={copyButton} />
 

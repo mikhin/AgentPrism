@@ -30,7 +30,7 @@ export const TreeView: FC<TreeViewProps> = ({
   const { minStart, maxEnd } = findTimeRange(allCards);
 
   return (
-    <div className="w-full p-2 pt-4">
+    <div className="w-full p-2 pt-4 min-w-0">
       <ul
         className={cn(className, "overflow-x-auto")}
         role="tree"
