@@ -64,4 +64,5 @@ jobs:
         run: pnpm test
 
       - name: Run build
+        if: github.ref == 'refs/heads/main'
         run: pnpm build
