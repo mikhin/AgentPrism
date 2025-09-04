@@ -126,7 +126,7 @@ export const Tabs = ({
             value={item.value}
             disabled={item.disabled}
             className={cn(
-              "flex items-center overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 dark:focus-visible:ring-gray-500",
+              "flex items-center overflow-hidden",
               currentTheme.trigger,
               triggerClassName,
             )}
@@ -145,10 +145,7 @@ export const Tabs = ({
         <RadixTabs.Content
           key={item.value}
           value={item.value}
-          className={cn(
-            "mt-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 dark:focus-visible:ring-gray-500",
-            contentClassName,
-          )}
+          className={cn("mt-4", contentClassName)}
         >
           {item.content}
         </RadixTabs.Content>
