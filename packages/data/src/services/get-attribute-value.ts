@@ -1,4 +1,4 @@
-import type { Span } from "@ai-agent-trace-ui/types";
+import type { Span } from "@evilmartians/agent-prism-types";
 
 export const getAttributeValue = (
   span: Span,

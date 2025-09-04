@@ -1,4 +1,4 @@
-import type { TraceSpan } from "@ai-agent-trace-ui/types";
+import type { TraceSpan } from "@evilmartians/agent-prism-types";
 
 import JSONPretty from "react-json-pretty";
 import colors from "tailwindcss/colors";

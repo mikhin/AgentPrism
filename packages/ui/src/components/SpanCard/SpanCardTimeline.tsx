@@ -1,6 +1,6 @@
-import type { TraceSpan } from "@ai-agent-trace-ui/types";
+import type { TraceSpan } from "@evilmartians/agent-prism-types";
 
-import { getTimelineData } from "@ai-agent-trace-ui/data";
+import { getTimelineData } from "@evilmartians/agent-prism-data";
 import cn from "classnames";
 
 import type { ColorVariant } from "../shared.ts";

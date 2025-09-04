@@ -1,4 +1,8 @@
-import type { Span, SpanKind, StatusCode } from "@ai-agent-trace-ui/types";
+import type {
+  Span,
+  SpanKind,
+  StatusCode,
+} from "@evilmartians/agent-prism-types";
 
 interface MockSpanOptions {
   name?: string;

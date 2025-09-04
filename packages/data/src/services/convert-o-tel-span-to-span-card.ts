@@ -1,4 +1,4 @@
-import type { Span, TraceSpan } from "@ai-agent-trace-ui/types";
+import type { Span, TraceSpan } from "@evilmartians/agent-prism-types";
 
 import { determineSpanCategory } from "../services/determine-span-category.ts";
 import { calculateDuration } from "./calculate-duration";

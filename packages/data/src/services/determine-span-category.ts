@@ -1,4 +1,4 @@
-import type { Span, TraceSpanCategory } from "@ai-agent-trace-ui/types";
+import type { Span, TraceSpanCategory } from "@evilmartians/agent-prism-types";
 
 import { categorizeOpenInference } from "../services/categorize-open-inference.ts";
 import { categorizeOpenTelemetryGenAI } from "../services/categorize-open-telemetry-gen-ai.ts";

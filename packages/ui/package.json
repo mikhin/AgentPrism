@@ -1,5 +1,5 @@
 {
-  "name": "@ai-agent-trace-ui/ui",
+  "name": "@evilmartians/agent-prism-ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -22,8 +22,8 @@
     "dev": "tailwind -i ./src/index.css -o ./dist/styles.css --watch"
   },
   "dependencies": {
-    "@ai-agent-trace-ui/types": "workspace:^",
-    "@ai-agent-trace-ui/data": "workspace:^",
+    "@evilmartians/agent-prism-types": "workspace:^",
+    "@evilmartians/agent-prism-data": "workspace:^",
     "@radix-ui/react-collapsible": "^1.1.11",
     "@radix-ui/react-tabs": "^1.1.13",
     "autoprefixer": "^10.4.21",

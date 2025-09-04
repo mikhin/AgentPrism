@@ -1,4 +1,4 @@
-import type { Span, TraceSpan } from "@ai-agent-trace-ui/types";
+import type { Span, TraceSpan } from "@evilmartians/agent-prism-types";
 
 import { convertOTelSpanToSpanCard } from "./convert-o-tel-span-to-span-card.ts";
 

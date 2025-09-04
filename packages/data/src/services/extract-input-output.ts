@@ -1,4 +1,7 @@
-import { INPUT_OUTPUT_ATTRIBUTES, type Span } from "@ai-agent-trace-ui/types";
+import {
+  INPUT_OUTPUT_ATTRIBUTES,
+  type Span,
+} from "@evilmartians/agent-prism-types";
 
 import { getAttributeValue } from "./get-attribute-value";
 

@@ -1,6 +1,9 @@
-import type { TraceSpan } from "@ai-agent-trace-ui/types";
+import type { TraceSpan } from "@evilmartians/agent-prism-types";
 
-import { formatDuration, getTimelineData } from "@ai-agent-trace-ui/data";
+import {
+  formatDuration,
+  getTimelineData,
+} from "@evilmartians/agent-prism-data";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import cn from "classnames";
 import {

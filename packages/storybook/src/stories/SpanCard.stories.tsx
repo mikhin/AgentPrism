@@ -1,7 +1,7 @@
-import type { TraceSpan } from "@ai-agent-trace-ui/types";
+import type { TraceSpan } from "@evilmartians/agent-prism-types";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { SpanCard, SpanCardSource } from "@ai-agent-trace-ui/ui";
+import { SpanCard, SpanCardSource } from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

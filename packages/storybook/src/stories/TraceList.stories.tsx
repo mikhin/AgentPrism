@@ -1,7 +1,7 @@
-import type { TraceRecord } from "@ai-agent-trace-ui/types";
+import type { TraceRecord } from "@evilmartians/agent-prism-types";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { TraceList, TraceListSource } from "@ai-agent-trace-ui/ui";
+import { TraceList, TraceListSource } from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

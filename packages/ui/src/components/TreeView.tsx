@@ -1,6 +1,6 @@
-import type { TraceSpan } from "@ai-agent-trace-ui/types";
+import type { TraceSpan } from "@evilmartians/agent-prism-types";
 
-import { findTimeRange, flattenSpans } from "@ai-agent-trace-ui/data";
+import { findTimeRange, flattenSpans } from "@evilmartians/agent-prism-data";
 import cn from "classnames";
 import { type FC } from "react";
 

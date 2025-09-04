@@ -1,4 +1,4 @@
-import type { Span, TraceSpanCategory } from "@ai-agent-trace-ui/types";
+import type { Span, TraceSpanCategory } from "@evilmartians/agent-prism-types";
 
 import { detectStandardOpenTelemetry } from "./detect-standard-open-telemetry.ts";
 

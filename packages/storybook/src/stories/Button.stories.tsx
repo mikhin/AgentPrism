@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, ButtonSource } from "@ai-agent-trace-ui/ui";
+import { Button, ButtonSource } from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

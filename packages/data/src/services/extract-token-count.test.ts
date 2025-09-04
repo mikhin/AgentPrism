@@ -1,4 +1,4 @@
-import { OPENTELEMETRY_GENAI_ATTRIBUTES } from "@ai-agent-trace-ui/types";
+import { OPENTELEMETRY_GENAI_ATTRIBUTES } from "@evilmartians/agent-prism-types";
 import { describe, it, expect } from "vitest";
 
 import { createMockSpan } from "../utils/tests/create-mock-span";

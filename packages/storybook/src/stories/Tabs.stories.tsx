@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Tabs, TabsSource } from "@ai-agent-trace-ui/ui";
+import { Tabs, TabsSource } from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

@@ -4,7 +4,7 @@ import {
   TextInput,
   TextInputSource,
   type TextInputProps,
-} from "@ai-agent-trace-ui/ui";
+} from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

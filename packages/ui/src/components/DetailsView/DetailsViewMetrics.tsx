@@ -1,6 +1,6 @@
-import type { TraceSpan } from "@ai-agent-trace-ui/types";
+import type { TraceSpan } from "@evilmartians/agent-prism-types";
 
-import { getDurationMs, formatDuration } from "@ai-agent-trace-ui/data";
+import { getDurationMs, formatDuration } from "@evilmartians/agent-prism-data";
 import { Coins } from "lucide-react";
 
 import { Badge } from "../Badge";

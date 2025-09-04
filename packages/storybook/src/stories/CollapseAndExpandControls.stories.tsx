@@ -4,7 +4,7 @@ import {
   ExpandAllButton,
   CollapseAllButton,
   CollapseAndExpandControlsSource,
-} from "@ai-agent-trace-ui/ui";
+} from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

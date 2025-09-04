@@ -1,7 +1,7 @@
-import type { TraceSpan } from "@ai-agent-trace-ui/types";
+import type { TraceSpan } from "@evilmartians/agent-prism-types";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { TreeView, TreeViewSource } from "@ai-agent-trace-ui/ui";
+import { TreeView, TreeViewSource } from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

@@ -19,14 +19,14 @@ React components for visualizing traces from AI agents. Display LLM calls, tool 
 Copy the UI components to your project:
 
 ```bash
-npx degit evilmartians/ai-agent-trace-ui/packages/ui/src/components src/components/ai-trace-ui
+npx degit evilmartians/agent-prism/packages/ui/src/components src/components/agent-prism
 ```
 
 Install the data and types packages:
 
 ```bash
-npm install github:evilmartians/ai-agent-trace-ui#main/packages/data
-npm install github:evilmartians/ai-agent-trace-ui#main/packages/types
+npm install @evilmartians/agent-prism-data
+npm install @evilmartians/agent-prism-types
 ```
 
 Install required UI dependencies:
@@ -41,9 +41,9 @@ Here is a minimal example of rendering a trace tree view:
 
 ```tsx
 // UI components are copied to your project - you own them, customize as needed
-import { TreeView } from "./components/ai-trace-ui/TreeView";
+import { TreeView } from "./components/agent-prism/TreeView";
 // Data transformations stay external - consistent OTLP parsing across updates
-import { convertOTelDocumentToSpanCards } from "@ai-agent-trace-ui/data";
+import { convertOTelDocumentToSpanCards } from "@evilmartians/agent-prism-data";
 // Your trace data in OTLP wire format
 import traceData from "./trace.json";
 
@@ -64,9 +64,9 @@ function App() {
 
 ```tsx
 import { useState } from "react";
-import { TraceList, TreeView, DetailsView } from "@ai-agent-trace-ui/ui";
-import { convertOTelDocumentToSpanCards } from "@ai-agent-trace-ui/data";
-import type { TraceSpan } from "@ai-agent-trace-ui/types";
+import { TraceList, TreeView, DetailsView } from "@evilmartians/agent-prism-ui";
+import { convertOTelDocumentToSpanCards } from "@evilmartians/agent-prism-data";
+import type { TraceSpan } from "@evilmartians/agent-prism-types";
 
 function TraceExplorer() {
   const [traces, setTraces] = useState<TraceSpan[][]>([]);
@@ -125,7 +125,7 @@ function TraceExplorer() {
 
 ## Data Format
 
-This UI library uses its own data format tailored for UI components. To integrate your data, you can use the provided data adapters from the `@ai-agent-trace-ui/data` package. Each adapter is designed to handle different input data formats and will transform the data into the UI-compatible structure.
+This UI library uses its own data format tailored for UI components. To integrate your data, you can use the provided data adapters from the `@evilmartians/agent-prism-data` package. Each adapter is designed to handle different input data formats and will transform the data into the UI-compatible structure.
 
 ### Data Adapters
 

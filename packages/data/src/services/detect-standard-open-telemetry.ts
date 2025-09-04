@@ -2,7 +2,7 @@ import {
   STANDARD_OPENTELEMETRY_ATTRIBUTES,
   STANDARD_OPENTELEMETRY_PATTERNS,
   type Span,
-} from "@ai-agent-trace-ui/types";
+} from "@evilmartians/agent-prism-types";
 
 import { getAttributeValue } from "../services/get-attribute-value.ts";
 

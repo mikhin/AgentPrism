@@ -1,7 +1,7 @@
 import {
   OPENTELEMETRY_GENAI_ATTRIBUTES,
   type Span,
-} from "@ai-agent-trace-ui/types";
+} from "@evilmartians/agent-prism-types";
 
 import { getAttributeValue } from "./get-attribute-value.ts";
 

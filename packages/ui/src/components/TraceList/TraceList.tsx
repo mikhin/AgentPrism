@@ -1,4 +1,4 @@
-import type { TraceRecord } from "@ai-agent-trace-ui/types";
+import type { TraceRecord } from "@evilmartians/agent-prism-types";
 
 import cn from "classnames";
 import { ArrowLeft } from "lucide-react";
