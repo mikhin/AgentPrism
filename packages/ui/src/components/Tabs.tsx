@@ -19,10 +19,10 @@ const BASE_TRIGGER =
 
 const THEMES = {
   underline: {
-    list: "flex border-b border-gray-200 dark:border-gray-700",
+    list: "flex border-b border-gray-200 dark:border-gray-800",
     trigger: `w-full justify-center px-4 py-2.5 ${BASE_TRIGGER} 
       text-gray-600 hover:text-gray-900 data-[state=active]:text-gray-900
-      dark:text-gray-400 dark:hover:text-gray-200 dark:data-[state=active]:text-white
+      dark:text-gray-400 dark:hover:text-gray-200 dark:data-[state=active]:text-gray-200
       border-b-2 border-transparent data-[state=active]:border-gray-900 
       dark:data-[state=active]:border-gray-300 -mb-[2px]
       hover:border-gray-300 dark:hover:border-gray-600`,
@@ -31,7 +31,7 @@ const THEMES = {
     list: "inline-flex gap-1 p-1 bg-gray-100 dark:bg-gray-900 rounded-lg",
     trigger: `px-4 py-2 ${BASE_TRIGGER} rounded-md
       text-gray-600 hover:text-gray-900 data-[state=active]:text-gray-900
-      dark:text-gray-400 dark:hover:text-gray-200 dark:data-[state=active]:text-white
+      dark:text-gray-400 dark:hover:text-gray-200 dark:data-[state=active]:text-gray-200
       hover:bg-gray-50 data-[state=active]:bg-white data-[state=active]:shadow-sm
       dark:hover:bg-gray-700 dark:data-[state=active]:bg-gray-600 dark:data-[state=active]:shadow-none`,
   },
