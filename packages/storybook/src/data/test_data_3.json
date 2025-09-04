@@ -560,7 +560,7 @@
           },
           {
             "scope": {
-              "name": "quotientai.chroma"
+              "name": "vectorstore.chroma"
             },
             "spans": [
               {
@@ -1122,14 +1122,14 @@
         "scopeSpans": [
           {
             "scope": {
-              "name": "quotient.sdk.python"
+              "name": "telemetry.sdk.python"
             },
             "spans": [
               {
                 "traceId": "tH12H+eb6IruQTQs3VJyaA==",
                 "spanId": "IkweT4IEqvQ=",
                 "parentSpanId": "yP3finWLFco=",
-                "name": "quotient.end_of_trace",
+                "name": "telemetry.end_of_trace",
                 "kind": "SPAN_KIND_INTERNAL",
                 "startTimeUnixNano": "1751474867486249000",
                 "endTimeUnixNano": "1751474867486312000",
@@ -1147,25 +1147,25 @@
                     }
                   },
                   {
-                    "key": "quotient.trace.complete",
+                    "key": "telemetry.trace.complete",
                     "value": {
                       "boolValue": true
                     }
                   },
                   {
-                    "key": "quotient.trace.marker",
+                    "key": "telemetry.trace.marker",
                     "value": {
                       "boolValue": true
                     }
                   },
                   {
-                    "key": "quotient.trace.id",
+                    "key": "telemetry.trace.id",
                     "value": {
                       "stringValue": "b47d761fe79be88aee41342cdd527268"
                     }
                   },
                   {
-                    "key": "quotient.marker.timestamp",
+                    "key": "telemetry.marker.timestamp",
                     "value": {
                       "intValue": "1751474867486303000"
                     }

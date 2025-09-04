@@ -49,7 +49,7 @@
                   {
                     "key": "app.name",
                     "value": {
-                      "stringValue": "tavily-quotient-agent"
+                      "stringValue": "generic-agent"
                     }
                   },
                   {
@@ -59,7 +59,7 @@
                     }
                   },
                   {
-                    "key": "quotient.detections_array",
+                    "key": "agent.detections_array",
                     "value": {
                       "stringValue": "hallucination_detection,document_relevancy_detection"
                     }
@@ -252,7 +252,7 @@
                   {
                     "key": "app.name",
                     "value": {
-                      "stringValue": "tavily-quotient-agent"
+                      "stringValue": "generic-agent"
                     }
                   },
                   {
@@ -262,7 +262,7 @@
                     }
                   },
                   {
-                    "key": "quotient.detections_array",
+                    "key": "agent.detections_array",
                     "value": {
                       "stringValue": "hallucination_detection,document_relevancy_detection"
                     }
@@ -509,7 +509,7 @@
                   {
                     "key": "app.name",
                     "value": {
-                      "stringValue": "tavily-quotient-agent"
+                      "stringValue": "generic-agent"
                     }
                   },
                   {
@@ -519,7 +519,7 @@
                     }
                   },
                   {
-                    "key": "quotient.detections_array",
+                    "key": "agent.detections_array",
                     "value": {
                       "stringValue": "hallucination_detection,document_relevancy_detection"
                     }
@@ -712,7 +712,7 @@
                   {
                     "key": "app.name",
                     "value": {
-                      "stringValue": "tavily-quotient-agent"
+                      "stringValue": "generic-agent"
                     }
                   },
                   {
@@ -722,7 +722,7 @@
                     }
                   },
                   {
-                    "key": "quotient.detections_array",
+                    "key": "agent.detections_array",
                     "value": {
                       "stringValue": "hallucination_detection,document_relevancy_detection"
                     }
@@ -1035,7 +1035,7 @@
                   {
                     "key": "app.name",
                     "value": {
-                      "stringValue": "tavily-quotient-agent"
+                      "stringValue": "generic-agent"
                     }
                   },
                   {
@@ -1045,7 +1045,7 @@
                     }
                   },
                   {
-                    "key": "quotient.detections_array",
+                    "key": "agent.detections_array",
                     "value": {
                       "stringValue": "hallucination_detection,document_relevancy_detection"
                     }
@@ -1394,7 +1394,7 @@
                   {
                     "key": "app.name",
                     "value": {
-                      "stringValue": "tavily-quotient-agent"
+                      "stringValue": "generic-agent"
                     }
                   },
                   {
@@ -1404,7 +1404,7 @@
                     }
                   },
                   {
-                    "key": "quotient.detections_array",
+                    "key": "agent.detections_array",
                     "value": {
                       "stringValue": "hallucination_detection,document_relevancy_detection"
                     }
@@ -1635,14 +1635,14 @@
           },
           {
             "scope": {
-              "name": "quotient.sdk.python"
+              "name": "agent.sdk.python"
             },
             "spans": [
               {
                 "traceId": "uoqwG/CGgzyYnOKnop7uMQ==",
                 "spanId": "OlL91GYQ5fc=",
                 "parentSpanId": "iINv0X+P/aw=",
-                "name": "quotient.end_of_trace",
+                "name": "agent.end_of_trace",
                 "kind": "SPAN_KIND_INTERNAL",
                 "startTimeUnixNano": "1751474533202028000",
                 "endTimeUnixNano": "1751474533202075000",
@@ -1650,7 +1650,7 @@
                   {
                     "key": "app.name",
                     "value": {
-                      "stringValue": "tavily-quotient-agent"
+                      "stringValue": "generic-agent"
                     }
                   },
                   {
@@ -1660,31 +1660,31 @@
                     }
                   },
                   {
-                    "key": "quotient.detections_array",
+                    "key": "agent.detections_array",
                     "value": {
                       "stringValue": "hallucination_detection,document_relevancy_detection"
                     }
                   },
                   {
-                    "key": "quotient.trace.complete",
+                    "key": "agent.trace.complete",
                     "value": {
                       "boolValue": true
                     }
                   },
                   {
-                    "key": "quotient.trace.marker",
+                    "key": "agent.trace.marker",
                     "value": {
                       "boolValue": true
                     }
                   },
                   {
-                    "key": "quotient.trace.id",
+                    "key": "agent.trace.id",
                     "value": {
                       "stringValue": "ba8ab01bf086833c989ce2a7a29eee31"
                     }
                   },
                   {
-                    "key": "quotient.marker.timestamp",
+                    "key": "agent.marker.timestamp",
                     "value": {
                       "intValue": "1751474533202065000"
                     }
@@ -1704,7 +1704,7 @@
                   {
                     "key": "app.name",
                     "value": {
-                      "stringValue": "tavily-quotient-agent"
+                      "stringValue": "generic-agent"
                     }
                   },
                   {
@@ -1714,7 +1714,7 @@
                     }
                   },
                   {
-                    "key": "quotient.detections_array",
+                    "key": "agent.detections_array",
                     "value": {
                       "stringValue": "hallucination_detection,document_relevancy_detection"
                     }

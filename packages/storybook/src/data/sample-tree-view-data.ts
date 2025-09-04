@@ -114,7 +114,7 @@ export const sampleTreeViewData: TraceSpan[] = [
       },
       {
         id: "1-3",
-        title: "tavily_search",
+        title: "agent_search",
         startTime: new Date("2023-01-01T00:01:30Z"),
         endTime: new Date("2023-01-01T00:02:00Z"),
         duration: 1880,
@@ -122,18 +122,14 @@ export const sampleTreeViewData: TraceSpan[] = [
         status: "success",
         tokensCount: 100,
         type: "tool_execution",
-        raw: `{"span_id": "tavily-search-001", "query": "AI trends 2024", "results": 10}`,
+        raw: `{"span_id": "agent-search-001", "query": "AI trends 2024", "results": 10}`,
         attributes: [
-          { key: "function.name", value: { stringValue: "tavily_search" } },
+          { key: "function.name", value: { stringValue: "agent_search" } },
           {
             key: "function.parameters",
             value: { stringValue: '{"query": "AI trends 2024"}' },
           },
           { key: "http.method", value: { stringValue: "POST" } },
-          {
-            key: "http.url",
-            value: { stringValue: "https://api.tavily.com/search" },
-          },
           { key: "http.status_code", value: { intValue: "200" } },
           { key: "search.results_count", value: { intValue: "10" } },
         ],
@@ -212,7 +208,7 @@ export const sampleTreeViewData: TraceSpan[] = [
       },
       {
         id: "1-5",
-        title: "tavily_extract",
+        title: "agent_extract",
         startTime: new Date("2023-01-01T00:02:15Z"),
         endTime: new Date("2023-01-01T00:02:20Z"),
         duration: 363900,
@@ -222,7 +218,7 @@ export const sampleTreeViewData: TraceSpan[] = [
         type: "tool_execution",
         raw: `{"span_id": "extract-001", "urls": 2, "status": "PENDING", "progress": 50}`,
         attributes: [
-          { key: "function.name", value: { stringValue: "tavily_extract" } },
+          { key: "function.name", value: { stringValue: "agent_extract" } },
           {
             key: "function.parameters",
             value: { stringValue: '{"urls": ["url1", "url2"]}' },

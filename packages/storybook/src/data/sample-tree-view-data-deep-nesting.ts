@@ -1098,7 +1098,7 @@ export const sampleTreeViewDataDeepNesting: TraceSpan[] = [
       },
       {
         id: "1-3",
-        title: "tavily_search",
+        title: "agent_search",
         startTime: new Date("2023-01-01T00:01:30Z"),
         endTime: new Date("2023-01-01T00:02:00Z"),
         duration: 1880,
@@ -1123,7 +1123,7 @@ export const sampleTreeViewDataDeepNesting: TraceSpan[] = [
         children: [
           {
             id: "1-3-1",
-            title: "tavily_search",
+            title: "agent_search",
             startTime: new Date("2023-01-01T00:01:31Z"),
             endTime: new Date("2023-01-01T00:01:45Z"),
             duration: 14000,
@@ -1148,7 +1148,7 @@ export const sampleTreeViewDataDeepNesting: TraceSpan[] = [
             children: [
               {
                 id: "1-3-1-1",
-                title: "tavily_search",
+                title: "agent_search",
                 startTime: new Date("2023-01-01T00:01:32Z"),
                 endTime: new Date("2023-01-01T00:01:40Z"),
                 duration: 8000,
@@ -1175,7 +1175,7 @@ export const sampleTreeViewDataDeepNesting: TraceSpan[] = [
                 children: [
                   {
                     id: "1-3-1-1-1",
-                    title: "tavily_search",
+                    title: "agent_search",
                     startTime: new Date("2023-01-01T00:01:33Z"),
                     endTime: new Date("2023-01-01T00:01:37Z"),
                     duration: 4000,
@@ -1205,7 +1205,7 @@ export const sampleTreeViewDataDeepNesting: TraceSpan[] = [
                     children: [
                       {
                         id: "1-3-1-1-1-1",
-                        title: "tavily_search",
+                        title: "agent_search",
                         startTime: new Date("2023-01-01T00:01:34Z"),
                         endTime: new Date("2023-01-01T00:01:36Z"),
                         duration: 2000,
@@ -1512,7 +1512,7 @@ export const sampleTreeViewDataDeepNesting: TraceSpan[] = [
       },
       {
         id: "1-5",
-        title: "tavily_extract",
+        title: "agent_extract",
         startTime: new Date("2023-01-01T00:02:15Z"),
         endTime: new Date("2023-01-01T00:02:20Z"),
         duration: 363900,
@@ -1537,7 +1537,7 @@ export const sampleTreeViewDataDeepNesting: TraceSpan[] = [
         children: [
           {
             id: "1-5-1",
-            title: "tavily_extract",
+            title: "agent_extract",
             startTime: new Date("2023-01-01T00:02:16Z"),
             endTime: new Date("2023-01-01T00:02:19Z"),
             duration: 300000,
@@ -1562,7 +1562,7 @@ export const sampleTreeViewDataDeepNesting: TraceSpan[] = [
             children: [
               {
                 id: "1-5-1-1",
-                title: "tavily_extract",
+                title: "agent_extract",
                 startTime: new Date("2023-01-01T00:02:17Z"),
                 endTime: new Date("2023-01-01T00:02:18Z"),
                 duration: 100000,
@@ -1589,7 +1589,7 @@ export const sampleTreeViewDataDeepNesting: TraceSpan[] = [
                 children: [
                   {
                     id: "1-5-1-1-1",
-                    title: "tavily_extract",
+                    title: "agent_extract",
                     startTime: new Date("2023-01-01T00:02:17Z"),
                     endTime: new Date("2023-01-01T00:02:18Z"),
                     duration: 50000,
@@ -1619,7 +1619,7 @@ export const sampleTreeViewDataDeepNesting: TraceSpan[] = [
                     children: [
                       {
                         id: "1-5-1-1-1-1",
-                        title: "tavily_extract",
+                        title: "agent_extract",
                         startTime: new Date("2023-01-01T00:02:17Z"),
                         endTime: new Date("2023-01-01T00:02:18Z"),
                         duration: 25000,
