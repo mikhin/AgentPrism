@@ -4,9 +4,9 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { convertOTelDocumentToSpanCards } from "@evilmartians/agent-prism-data";
 import { TraceViewer } from "@evilmartians/agent-prism-ui";
 
-import quoTavAgentDataRaw from "../data/quo_tav_agent.json";
-import ragEarningsAgentDataRaw from "../data/rag_earnings_agent.json";
-import smolDeepResearchAgentDataRaw from "../data/smol_deep_research_agent.json";
+import testData1 from "../data/test_data_1.json";
+import testData2 from "../data/test_data_2.json";
+import testData3 from "../data/test_data_3.json";
 
 const meta: Meta<typeof TraceViewer> = {
   title: "Demo/TraceViewer",
@@ -14,47 +14,47 @@ const meta: Meta<typeof TraceViewer> = {
   parameters: {},
 };
 
-const quoTavAgentData = convertOTelDocumentToSpanCards(
-  quoTavAgentDataRaw as OpenTelemetryDocument[],
+const agentData1 = convertOTelDocumentToSpanCards(
+  testData1 as OpenTelemetryDocument[],
 );
-const ragEarningsAgentData = convertOTelDocumentToSpanCards(
-  ragEarningsAgentDataRaw as OpenTelemetryDocument[],
+const agentData2 = convertOTelDocumentToSpanCards(
+  testData2 as OpenTelemetryDocument[],
 );
 
-const smolDeepResearchAgentData = convertOTelDocumentToSpanCards(
-  smolDeepResearchAgentDataRaw as OpenTelemetryDocument[],
+const agentData3 = convertOTelDocumentToSpanCards(
+  testData3 as OpenTelemetryDocument[],
 );
 
 const data = [
   {
     traceRecord: {
-      id: "quo-tav",
+      id: "test-data-1",
       name: "7a8b9c1d",
       spansCount: 24,
       durationMs: 3200,
       agentDescription: "research-agent",
     },
-    spans: quoTavAgentData,
+    spans: agentData1,
   },
   {
     traceRecord: {
-      id: "rag-earnings",
+      id: "test-data-2",
       name: "f2e3d4c5",
       spansCount: 156,
       durationMs: 45670,
       agentDescription: "data-analysis-bot",
     },
-    spans: ragEarningsAgentData,
+    spans: agentData2,
   },
   {
     traceRecord: {
-      id: "smol-deep-research",
+      id: "test-data-3",
       name: "9b8a7c6d",
       spansCount: 13,
       durationMs: 2500,
       agentDescription: "customer-support-ai",
     },
-    spans: smolDeepResearchAgentData,
+    spans: agentData3,
   },
 ];
 
