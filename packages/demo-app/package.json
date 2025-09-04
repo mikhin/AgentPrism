@@ -1,5 +1,5 @@
 {
-  "name": "ai-agent-trace-ui-sandbox",
+  "name": "@evilmartians/agent-prism-sandbox",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,9 +9,9 @@
     "tsc": "tsc -p tsconfig.app.json --noEmit --skipLibCheck"
   },
   "dependencies": {
-    "@ai-agent-trace-ui/types": "workspace:^",
-    "@ai-agent-trace-ui/data": "workspace:^",
-    "@ai-agent-trace-ui/ui": "workspace:^",
+    "@evilmartians/agent-prism-types": "workspace:^",
+    "@evilmartians/agent-prism-data": "workspace:^",
+    "@evilmartians/agent-prism-ui": "workspace:^",
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-tabs": "^1.1.13",
     "autoprefixer": "^10.4.21",

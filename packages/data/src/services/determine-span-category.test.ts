@@ -23,7 +23,7 @@ import {
   OPENINFERENCE_ATTRIBUTES,
   OPENTELEMETRY_GENAI_ATTRIBUTES,
   STANDARD_OPENTELEMETRY_ATTRIBUTES,
-} from "@ai-agent-trace-ui/types";
+} from "@evilmartians/agent-prism-types";
 
 import { categorizeOpenInference } from "../services/categorize-open-inference";
 import { categorizeOpenTelemetryGenAI } from "../services/categorize-open-telemetry-gen-ai";

@@ -3,7 +3,7 @@ import {
   OPENTELEMETRY_GENAI_MAPPINGS,
   type Span,
   type TraceSpanCategory,
-} from "@ai-agent-trace-ui/types";
+} from "@evilmartians/agent-prism-types";
 
 import { getAttributeValue } from "./get-attribute-value.ts";
 

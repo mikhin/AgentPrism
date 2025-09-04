@@ -2,10 +2,10 @@ import type {
   OpenTelemetryDocument,
   TraceRecord,
   TraceSpan,
-} from "@ai-agent-trace-ui/types";
+} from "@evilmartians/agent-prism-types";
 
-import { convertOTelDocumentToSpanCards } from "@ai-agent-trace-ui/data";
-import { TraceViewer } from "@ai-agent-trace-ui/ui";
+import { convertOTelDocumentToSpanCards } from "@evilmartians/agent-prism-data";
+import { TraceViewer } from "@evilmartians/agent-prism-ui";
 import { useEffect, useState } from "react";
 
 import quoTavAgentDataRaw from "./data/quo_tav_agent.json";

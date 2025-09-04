@@ -2,7 +2,7 @@ import type {
   OpenTelemetryDocument,
   Span,
   TraceSpan,
-} from "@ai-agent-trace-ui/types";
+} from "@evilmartians/agent-prism-types";
 
 import { convertOTelTraceToSpanTree } from "./convert-o-tel-trace-to-span-tree";
 

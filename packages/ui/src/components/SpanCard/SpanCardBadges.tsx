@@ -1,4 +1,4 @@
-import type { TraceSpan } from "@ai-agent-trace-ui/types";
+import type { TraceSpan } from "@evilmartians/agent-prism-types";
 
 import { Badge } from "../Badge.tsx";
 import { PriceBadge } from "../PriceBadge.tsx";

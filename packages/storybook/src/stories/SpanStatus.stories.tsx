@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { SpanStatus, SpanStatusSource } from "@ai-agent-trace-ui/ui";
+import { SpanStatus, SpanStatusSource } from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

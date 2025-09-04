@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { SearchInput, SearchInputSource } from "@ai-agent-trace-ui/ui";
+import { SearchInput, SearchInputSource } from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

@@ -1,6 +1,6 @@
-import type { TraceRecord } from "@ai-agent-trace-ui/types";
+import type { TraceRecord } from "@evilmartians/agent-prism-types";
 
-import { formatDuration } from "@ai-agent-trace-ui/data";
+import { formatDuration } from "@evilmartians/agent-prism-data";
 
 import { Avatar, type AvatarProps } from "../Avatar.tsx";
 import { Badge } from "../Badge.tsx";

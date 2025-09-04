@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Avatar, AvatarSource } from "@ai-agent-trace-ui/ui";
+import { Avatar, AvatarSource } from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

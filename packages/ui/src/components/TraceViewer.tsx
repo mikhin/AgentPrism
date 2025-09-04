@@ -1,5 +1,8 @@
-import { flattenSpans } from "@ai-agent-trace-ui/data";
-import { type TraceRecord, type TraceSpan } from "@ai-agent-trace-ui/types";
+import { flattenSpans } from "@evilmartians/agent-prism-data";
+import {
+  type TraceRecord,
+  type TraceSpan,
+} from "@evilmartians/agent-prism-types";
 import cn from "classnames";
 import { ArrowLeft } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";

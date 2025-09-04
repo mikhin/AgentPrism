@@ -44,7 +44,7 @@ importers:
 
   packages/data:
     dependencies:
-      "@ai-agent-trace-ui/types":
+      "@evilmartians/agent-prism-types":
         specifier: workspace:^
         version: link:../types
     devDependencies:
@@ -69,13 +69,13 @@ importers:
 
   packages/demo-app:
     dependencies:
-      "@ai-agent-trace-ui/data":
+      "@evilmartians/agent-prism-data":
         specifier: workspace:^
         version: link:../data
-      "@ai-agent-trace-ui/types":
+      "@evilmartians/agent-prism-types":
         specifier: workspace:^
         version: link:../types
-      "@ai-agent-trace-ui/ui":
+      "@evilmartians/agent-prism-ui":
         specifier: workspace:^
         version: link:../ui
       "@radix-ui/react-collapsible":
@@ -145,13 +145,13 @@ importers:
 
   packages/storybook:
     dependencies:
-      "@ai-agent-trace-ui/data":
+      "@evilmartians/agent-prism-data":
         specifier: workspace:^
         version: link:../data
-      "@ai-agent-trace-ui/types":
+      "@evilmartians/agent-prism-types":
         specifier: workspace:^
         version: link:../types
-      "@ai-agent-trace-ui/ui":
+      "@evilmartians/agent-prism-ui":
         specifier: workspace:^
         version: link:../ui
       "@storybook/blocks":
@@ -257,10 +257,10 @@ importers:
 
   packages/ui:
     dependencies:
-      "@ai-agent-trace-ui/data":
+      "@evilmartians/agent-prism-data":
         specifier: workspace:^
         version: link:../data
-      "@ai-agent-trace-ui/types":
+      "@evilmartians/agent-prism-types":
         specifier: workspace:^
         version: link:../types
       "@radix-ui/react-collapsible":

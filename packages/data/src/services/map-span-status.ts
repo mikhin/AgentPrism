@@ -1,4 +1,7 @@
-import type { StatusCode, TraceSpanStatus } from "@ai-agent-trace-ui/types";
+import type {
+  StatusCode,
+  TraceSpanStatus,
+} from "@evilmartians/agent-prism-types";
 
 export const mapSpanStatus = (statusCode?: StatusCode): TraceSpanStatus => {
   switch (statusCode) {

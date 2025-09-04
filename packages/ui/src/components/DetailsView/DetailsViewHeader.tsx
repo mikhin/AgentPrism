@@ -1,4 +1,4 @@
-import type { TraceSpan } from "@ai-agent-trace-ui/types";
+import type { TraceSpan } from "@evilmartians/agent-prism-types";
 
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";

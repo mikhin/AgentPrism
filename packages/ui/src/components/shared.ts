@@ -1,4 +1,4 @@
-import type { TraceSpanCategory } from "@ai-agent-trace-ui/types";
+import type { TraceSpanCategory } from "@evilmartians/agent-prism-types";
 
 import {
   Zap,

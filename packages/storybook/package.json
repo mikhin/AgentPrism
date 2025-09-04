@@ -1,5 +1,5 @@
 {
-  "name": "storybook",
+  "name": "@evilmartians/agent-prism-storybook",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,9 +12,9 @@
     "tsc": "tsc -p tsconfig.app.json --noEmit --skipLibCheck"
   },
   "dependencies": {
-    "@ai-agent-trace-ui/data": "workspace:^",
-    "@ai-agent-trace-ui/types": "workspace:^",
-    "@ai-agent-trace-ui/ui": "workspace:^",
+    "@evilmartians/agent-prism-data": "workspace:^",
+    "@evilmartians/agent-prism-types": "workspace:^",
+    "@evilmartians/agent-prism-ui": "workspace:^",
     "@storybook/blocks": "^8.6.14",
     "lucide-react": "^0.534.0",
     "react": "^19.1.1",

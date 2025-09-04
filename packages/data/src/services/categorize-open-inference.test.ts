@@ -1,4 +1,4 @@
-import { OPENINFERENCE_ATTRIBUTES } from "@ai-agent-trace-ui/types";
+import { OPENINFERENCE_ATTRIBUTES } from "@evilmartians/agent-prism-types";
 import { describe, expect, it } from "vitest";
 
 import { createMockSpan } from "../utils/tests/create-mock-span";

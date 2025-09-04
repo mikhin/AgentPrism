@@ -1,7 +1,7 @@
 import {
   OPENINFERENCE_ATTRIBUTES,
   OPENTELEMETRY_GENAI_ATTRIBUTES,
-} from "@ai-agent-trace-ui/types";
+} from "@evilmartians/agent-prism-types";
 import { describe, expect, it } from "vitest";
 
 import { createMockSpan } from "../utils/tests/create-mock-span";

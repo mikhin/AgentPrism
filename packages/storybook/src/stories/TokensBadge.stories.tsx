@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { TokensBadge, TokensBadgeSource } from "@ai-agent-trace-ui/ui";
+import { TokensBadge, TokensBadgeSource } from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

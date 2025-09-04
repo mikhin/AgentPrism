@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   CollapsibleSection,
   CollapsibleSectionSource,
-} from "@ai-agent-trace-ui/ui";
+} from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

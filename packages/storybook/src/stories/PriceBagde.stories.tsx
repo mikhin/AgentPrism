@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { PriceBadge, PriceBadgeSource } from "@ai-agent-trace-ui/ui";
+import { PriceBadge, PriceBadgeSource } from "@evilmartians/agent-prism-ui";
 import {
   Description,
   Primary,

@@ -1,4 +1,4 @@
-import type { TraceSpanStatus } from "@ai-agent-trace-ui/types";
+import type { TraceSpanStatus } from "@evilmartians/agent-prism-types";
 import type { ComponentPropsWithRef } from "react";
 
 import cn from "classnames";
