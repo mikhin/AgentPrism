@@ -27,7 +27,7 @@ export const TraceList = ({
   return (
     <div
       className={cn(
-        "w-full",
+        "w-full min-w-0",
         "flex flex-col gap-3",
         expanded ? "w-full" : "w-fit",
         className,
