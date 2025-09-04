@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "pnpm run --parallel dev",
     "build": "pnpm run --parallel build",
+    "deploy:storybook": "pnpm --filter @evilmartians/agent-prism-storybook build && firebase deploy --only hosting",
     "format": "pnpm exec prettier . --write",
     "format:check": "pnpm exec prettier .",
     "eslint": "pnpm dlx eslint . --fix",
