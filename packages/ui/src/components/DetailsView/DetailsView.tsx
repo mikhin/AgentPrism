@@ -87,7 +87,7 @@ export const DetailsView = ({
   return (
     <div
       className={cn(
-        "min-w-0 rounded border border-gray-200 bg-white p-4 dark:border-gray-600 dark:bg-gray-950",
+        "min-w-0 rounded border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-950",
         className
       )}
     >

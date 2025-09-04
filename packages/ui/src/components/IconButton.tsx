@@ -30,7 +30,7 @@ const sizeClasses: Record<IconButtonSize, string> = {
 };
 
 const variantClasses: Record<IconButtonVariant, string> = {
-  default: "rounded border border-gray-200 bg-transparent dark:border-gray-600",
+  default: "rounded border border-gray-200 bg-transparent dark:border-gray-800",
   ghost: "rounded bg-transparent",
 };
 

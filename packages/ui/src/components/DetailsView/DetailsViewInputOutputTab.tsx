@@ -33,7 +33,7 @@ const IOContent = ({ content, sectionId }: IOContentProps): ReactElement => {
     );
   }
 
-  let parsedData = null;
+  let parsedData;
 
   try {
     parsedData = JSON.parse(content);
@@ -77,7 +77,7 @@ const IOContent = ({ content, sectionId }: IOContentProps): ReactElement => {
   ];
 
   return (
-    <div className="rounded-lg border border-gray-200 p-3 dark:border-gray-600">
+    <div className="rounded-lg border border-gray-200 p-3 dark:border-gray-800">
       <Tabs
         items={tabItems}
         defaultValue={parsedData ? "json" : "plain"}
