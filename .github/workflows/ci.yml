@@ -66,3 +66,12 @@ jobs:
       - name: Run build
         if: github.ref == 'refs/heads/main'
         run: pnpm build
+
+      - name: Deploy Storybook to Firebase
+        if: github.ref == 'refs/heads/main'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_AI_AGENT_TRACE_UI }}"
+          projectId: agent-prism-ui
+          channelId: live

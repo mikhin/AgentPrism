@@ -88,7 +88,7 @@ export const DetailsView = ({
     <div
       className={cn(
         "min-w-0 rounded border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-950",
-        className
+        className,
       )}
     >
       <DetailsViewHeader data={data} avatar={avatar} copyButton={copyButton} />
