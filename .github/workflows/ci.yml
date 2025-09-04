@@ -63,10 +63,6 @@ jobs:
       - name: Run tests
         run: pnpm test
 
-      - name: Run build
-        if: github.ref == 'refs/heads/main'
-        run: pnpm build
-
       - name: Deploy Storybook to Firebase
         if: github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
