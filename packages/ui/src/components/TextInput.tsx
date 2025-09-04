@@ -117,7 +117,7 @@ export const TextInput = ({
             !!onClear && "pr-8",
             "rounded border border-gray-200 bg-transparent dark:border-gray-800",
             "text-gray-700 placeholder:text-gray-400 dark:text-gray-200 dark:placeholder:text-gray-600",
-            "hover:border-gray-300 dark:hover:border-gray-700",
+            "hover:border-gray-200 dark:hover:border-gray-700",
             "outline-none outline-offset-0 focus-visible:outline-1 focus-visible:outline-blue-600 dark:focus-visible:outline-blue-300",
           )}
           {...rest}

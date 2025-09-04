@@ -72,7 +72,7 @@ export const Badge = ({
 
   const variantClasses =
     variant === "outline"
-      ? `border border-gray-300 dark:border-gray-800 ${text} ${darkText} bg-transparent dark:bg-transparent`
+      ? `border border-gray-200 dark:border-gray-800 ${text} ${darkText} bg-transparent dark:bg-transparent`
       : `${bg} ${text} ${darkBg} ${darkText}`;
 
   return (

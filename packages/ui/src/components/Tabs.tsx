@@ -19,7 +19,7 @@ const BASE_TRIGGER =
 
 const THEMES = {
   underline: {
-    list: "flex border-b border-gray-300 dark:border-gray-800",
+    list: "flex border-b border-gray-200 dark:border-gray-800",
     trigger: `w-full justify-center px-4 py-2 ${BASE_TRIGGER} border-b-2 border-transparent data-[state=active]:border-gray-900 -mb-[2px] dark:border-gray-800 dark:data-[state=active]:border-gray-400`,
   },
   pill: {
