@@ -25,8 +25,7 @@ npx degit evilmartians/agent-prism/packages/ui/src/components src/components/age
 Install the data and types packages:
 
 ```bash
-npm install @evilmartians/agent-prism-data
-npm install @evilmartians/agent-prism-types
+npm install @evilmartians/agent-prism-data @evilmartians/agent-prism-types
 ```
 
 Install required UI dependencies:
