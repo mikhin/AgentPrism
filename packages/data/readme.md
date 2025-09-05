@@ -1,8 +1,8 @@
 # @evilmartians/agent-prism-data
 
-Data transformation utilities for [AgentPrism](https://github.com/evilmartians/AgentPrism) - converting OpenTelemetry traces to UI-ready formats for AI agent trace visualization.
+Data transformation utilities for [AgentPrism](https://github.com/evilmartians/agent-prism) - converting OpenTelemetry traces to UI-ready formats for AI agent trace visualization.
 
-Part of the [AgentPrism](https://github.com/evilmartians/AgentPrism) project for visualizing AI agent traces, LLM calls, and tool executions.
+Part of the [AgentPrism](https://github.com/evilmartians/agent-prism) project for visualizing AI agent traces, LLM calls, and tool executions.
 
 ## Installation
 
@@ -57,11 +57,11 @@ const { input, output } = extractInputOutput(span);
 ## Related Packages
 
 - [`@evilmartians/agent-prism-types`](https://www.npmjs.com/package/@evilmartians/agent-prism-types) - TypeScript type definitions
-- [AgentPrism UI Components](https://github.com/evilmartians/AgentPrism) - React components for visualization
+- [AgentPrism UI Components](https://github.com/evilmartians/agent-prism) - React components for visualization
 
 ## Documentation
 
-See the main [AgentPrism documentation](https://github.com/evilmartians/AgentPrism) and [Storybook](https://agent-prism-ui.web.app/) for complete usage examples and UI components.
+See the main [AgentPrism documentation](https://github.com/evilmartians/agent-prism) and [Storybook](https://agent-prism-ui.web.app/) for complete usage examples and UI components.
 
 ## License
 
