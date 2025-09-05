@@ -52,8 +52,11 @@ function App() {
 
   return (
     <TreeView
+      expandButton="inside"
+      expandedSpansIds={[]}
+      onExpandSpansIdsChange={() => {}}
+      onSpanSelect={(span) => console.log("Clicked:", span)}
       spans={spans}
-      onSpanClick={(span) => console.log("Clicked:", span)}
     />
   );
 }
@@ -62,48 +65,71 @@ function App() {
 ## Full Example: Traces List → Tree View → Details
 
 ```tsx
-import { useState } from "react";
-import { TraceList, TreeView, DetailsView } from "@evilmartians/agent-prism-ui";
+import { useState, useEffect } from "react";
+import { TraceList } from "./components/agent-prism/TraceList/TraceList";
+import { TreeView } from "./components/agent-prism/TreeView";
+import { DetailsView } from "./components/agent-prism/DetailsView/DetailsView";
 import { convertOTelDocumentToSpanCards } from "@evilmartians/agent-prism-data";
-import type { TraceSpan } from "@evilmartians/agent-prism-types";
+import type { TraceSpan, TraceRecord } from "@evilmartians/agent-prism-types";
 
 function TraceExplorer() {
-  const [traces, setTraces] = useState<TraceSpan[][]>([]);
-  const [selectedTrace, setSelectedTrace] = useState<TraceSpan[] | null>(null);
-  const [selectedSpan, setSelectedSpan] = useState<TraceSpan | null>(null);
+  const [data, setData] = useState<
+    Array<{ traceRecord: TraceRecord; spans: TraceSpan[] }>
+  >([]);
+  const [selectedTrace, setSelectedTrace] = useState<TraceRecord | undefined>(
+    undefined,
+  );
+  const [selectedTraceSpans, setSelectedTraceSpans] = useState<TraceSpan[]>([]);
+  const [selectedSpan, setSelectedSpan] = useState<TraceSpan | undefined>(
+    undefined,
+  );
+  const [expandedSpansIds, setExpandedSpansIds] = useState<string[]>([]);
 
   // Fetch your traces from backend
   useEffect(() => {
     fetch("/api/traces")
       .then((res) => res.json())
-      .then((data) => {
-        const processedTraces = data.map((doc) =>
-          convertOTelDocumentToSpanCards(doc),
-        );
-        setTraces(processedTraces);
+      .then((rawData) => {
+        const processedData = rawData.map((doc) => ({
+          traceRecord: doc.traceRecord, // Assuming your API returns this structure
+          spans: convertOTelDocumentToSpanCards(doc),
+        }));
+        setData(processedData);
       });
   }, []);
+
+  const traceRecords = data.map((item) => item.traceRecord);
+
+  const handleTraceSelect = (trace: TraceRecord) => {
+    setSelectedTrace(trace);
+    const traceData = data.find((item) => item.traceRecord.id === trace.id);
+    setSelectedTraceSpans(traceData?.spans ?? []);
+    setSelectedSpan(undefined);
+  };
 
   return (
     <div className="flex h-screen">
       {/* Traces list sidebar */}
       <div className="w-80 border-r">
         <TraceList
-          traces={traces}
-          onTraceSelect={(trace) => {
-            setSelectedTrace(trace);
-            setSelectedSpan(null);
-          }}
+          traces={traceRecords}
+          expanded={true}
+          onExpandStateChange={() => {}}
+          onTraceSelect={handleTraceSelect}
+          selectedTrace={selectedTrace}
         />
       </div>
 
       {/* Tree view */}
       <div className="flex-1 overflow-auto">
-        {selectedTrace && (
+        {selectedTraceSpans.length > 0 && (
           <TreeView
-            spans={selectedTrace}
-            onSpanClick={setSelectedSpan}
-            selectedSpanId={selectedSpan?.id}
+            spans={selectedTraceSpans}
+            expandButton="inside"
+            onSpanSelect={setSelectedSpan}
+            selectedSpan={selectedSpan}
+            expandedSpansIds={expandedSpansIds}
+            onExpandSpansIdsChange={setExpandedSpansIds}
           />
         )}
       </div>
@@ -111,10 +137,7 @@ function TraceExplorer() {
       {/* Details panel */}
       {selectedSpan && (
         <div className="w-96 border-l">
-          <DetailsView
-            span={selectedSpan}
-            onClose={() => setSelectedSpan(null)}
-          />
+          <DetailsView data={selectedSpan} />
         </div>
       )}
     </div>
