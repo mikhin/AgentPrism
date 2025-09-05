@@ -62,6 +62,10 @@ export const App = () => {
     ]);
   }, []);
 
+  if (data.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Layout>
       <TraceViewer data={data} />
