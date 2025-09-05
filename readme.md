@@ -4,6 +4,8 @@ React components for visualizing traces from AI agents. Display LLM calls, tool 
 
 **⚠️ Alpha Release:** This library is under active development. APIs may change.
 
+<img width="1280" height="755" alt="github-cover-screen" src="https://github.com/user-attachments/assets/7fa167ab-aa33-4b18-b6f0-83af9ef5cfba" />
+
 ## Storybook
 
 [https://agent-prism-ui.web.app/](https://agent-prism-ui.web.app/)
