@@ -51,3 +51,6 @@ export { default as TabsSource } from "./components/Tabs.tsx?raw";
 
 export { TraceViewer, type TraceViewerProps } from "./components/TraceViewer";
 export { default as TraceViewerSource } from "./components/TraceViewer.tsx?raw";
+
+export { TimestampBadge } from "./components/TimestampBadge.tsx";
+export { default as TimestampBadgeSource } from "./components/TimestampBadge.tsx?raw";

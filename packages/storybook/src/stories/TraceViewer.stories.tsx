@@ -33,7 +33,7 @@ const data: TraceViewerProps["data"] = [
       spansCount: 24,
       durationMs: 3200,
       agentDescription: "research-agent",
-      
+      startTime: Date.now(),      
     },
     spans: agentData1,
     badges: [
@@ -62,6 +62,7 @@ const data: TraceViewerProps["data"] = [
       spansCount: 156,
       durationMs: 45670,
       agentDescription: "data-analysis-bot",
+      startTime: Date.now(),
     },
     spans: agentData2,
     badges: [
@@ -90,6 +91,7 @@ const data: TraceViewerProps["data"] = [
       spansCount: 13,
       durationMs: 2500,
       agentDescription: "customer-support-ai",
+      startTime: Date.now(),
     },
     spans: agentData3,
     badges: [
