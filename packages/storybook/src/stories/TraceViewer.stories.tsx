@@ -2,7 +2,7 @@ import type { OpenTelemetryDocument } from "@evilmartians/agent-prism-types";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { convertOTelDocumentToSpanCards } from "@evilmartians/agent-prism-data";
-import { TraceViewer } from "@evilmartians/agent-prism-ui";
+import { TraceViewer, type TraceViewerProps } from "@evilmartians/agent-prism-ui";
 
 import testData1 from "../data/test_data_1.json";
 import testData2 from "../data/test_data_2.json";
@@ -25,7 +25,7 @@ const agentData3 = convertOTelDocumentToSpanCards(
   testData3 as OpenTelemetryDocument[],
 );
 
-const data = [
+const data: TraceViewerProps["data"] = [
   {
     traceRecord: {
       id: "test-data-1",
@@ -33,8 +33,27 @@ const data = [
       spansCount: 24,
       durationMs: 3200,
       agentDescription: "research-agent",
+      
     },
     spans: agentData1,
+    badges: [
+      {
+        label: "app: dev-chatbot",
+        theme: "sky",
+      },
+      {
+        label: "env: dev",
+        theme: "gray",
+      },
+      {
+        label: "gpt-4",
+        theme: "purple",
+      },
+      {
+        label: "5 tools",
+        theme: "orange",
+      },
+    ],
   },
   {
     traceRecord: {
@@ -45,6 +64,24 @@ const data = [
       agentDescription: "data-analysis-bot",
     },
     spans: agentData2,
+    badges: [
+      {
+        label: "app: staging-assistant",
+        theme: "sky",
+      },
+      {
+        label: "env: staging",
+        theme: "gray",
+      },
+      {
+        label: "claude-3-sonnet",
+        theme: "purple",
+      },
+      {
+        label: "10 tools",
+        theme: "orange",
+      },
+    ],
   },
   {
     traceRecord: {
@@ -55,6 +92,20 @@ const data = [
       agentDescription: "customer-support-ai",
     },
     spans: agentData3,
+    badges: [
+      {
+        label: "app: prod-analyzer",
+        theme: "sky",
+      },
+      {
+        label: "env: production",
+        theme: "gray",
+      },
+      {
+        label: "gpt-4-turbo",
+        theme: "purple",
+      },
+    ],
   },
 ];
 
