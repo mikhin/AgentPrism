@@ -64,9 +64,7 @@ export const TraceListItem = ({
         )}
 
         {badges?.map((badge, index) => (
-          <Badge key={index} theme={badge.theme} size="xs">
-            {badge.children}
-          </Badge>
+          <Badge key={index} theme={badge.theme} size="xs" label={badge.label} />
         ))}
       </div>
     </div>
